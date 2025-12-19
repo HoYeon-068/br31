@@ -5,10 +5,10 @@
             <nav class="site-footer-policy">
                 <ul class="site-footer-policy__list">
                     <li class="site-footer-policy__item">
-                        <a href="information-center/store-offer/offer.html" class="site-footer-policy__link">신규 직영점 입점제의</a>
+                        <a href="${pageContext.request.contextPath}/information-center/store-offer/offer.html" class="site-footer-policy__link">신규 직영점 입점제의</a>
                     </li>
                     <li class="site-footer-policy__item">
-                        <a href="information-center/consulting/br.html" class="site-footer-policy__link">점포개설문의</a>
+                        <a href="${pageContext.request.contextPath}/information-center/consulting/br.html" class="site-footer-policy__link">점포개설문의</a>
                     </li>
                     <li class="site-footer-policy__item">
                         <a href="https://spc.recruiter.co.kr/appsite/company/index" target="_blank" class="site-footer-policy__link">채용문의</a>
@@ -20,19 +20,19 @@
                         <a href="https://www.happypointcard.com/page/customer/term.spc" target="_blank" class="site-footer-policy__link">해피포인트카드 이용약관</a>
                     </li>
                     <li class="site-footer-policy__item">
-                        <a href="information-center/customer/policy-reword.html" class="site-footer-policy__link">배스킨라빈스 리워드 이용약관</a>
+                        <a href="${pageContext.request.contextPath}/information-center/customer/policy-reword.html" class="site-footer-policy__link">배스킨라빈스 리워드 이용약관</a>
                     </li>
                     <li class="site-footer-policy__item site-footer-policy__item--point">
-                        <a href="information-center/customer/policy.html" class="site-footer-policy__link">개인정보처리방침</a>
+                        <a href="${pageContext.request.contextPath}/information-center/customer/policy.html" class="site-footer-policy__link">개인정보처리방침</a>
                     </li>
                     <li class="site-footer-policy__item">
-                        <a href="information-center/customer/policy-cctv.html" class="site-footer-policy__link">영상정보처리기기운영관리방침</a>
+                        <a href="${pageContext.request.contextPath}/information-center/customer/policy-cctv.html" class="site-footer-policy__link">영상정보처리기기운영관리방침</a>
                     </li>
                     <li class="site-footer-policy__item">
-                        <a href="information-center/customer/safety-management.html" class="site-footer-policy__link">안전보건 경영방침</a>
+                        <a href="${pageContext.request.contextPath}/information-center/customer/safety-management.html" class="site-footer-policy__link">안전보건 경영방침</a>
                     </li>
                     <li class="site-footer-policy__item">
-                        <a href="information-center/fairtrade/list.html" class="site-footer-policy__link">공정거래자율준수</a>
+                        <a href="${pageContext.request.contextPath}/information-center/fairtrade/list.html" class="site-footer-policy__link">공정거래자율준수</a>
                     </li>                    
                     <li class="site-footer-policy__item">
                         <a href="https://procure.spc.co.kr/login?springViewName=redirect%3A%2Flogin" target="_blank" class="site-footer-policy__link">거래희망회사 사전등록</a>

@@ -3,7 +3,7 @@
     <div class="site-header__container">
         <div class="site-header__content">
             <h1 class="site-header-logo">
-                <a href="index.html" class="site-header-logo__link">
+                <a href="${pageContext.request.contextPath}/index.html" class="site-header-logo__link">
                     <span class="site-header-logo__text">Baskin Robbins</span>
                 </a>
             </h1>
@@ -11,32 +11,32 @@
             <nav class="site-menu">
                 <ul class="site-menu__list">
                     <li class="site-menu__item">
-                        <a href="menu/lista9a4.html?category=A" class="site-menu__link">Menu</a>
+                        <a href="${pageContext.request.contextPath}/menu/lista9a4.html?category=A" class="site-menu__link">Menu</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="menu/fom.html" class="site-menu-list__link">이달의 맛</a>
+                                            <a href="${pageContext.request.contextPath}/menu/fom.html" class="site-menu-list__link">이달의 맛</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="menu/lista9a4.html?category=A" class="site-menu-list__link">아이스크림</a>
+                                            <a href="${pageContext.request.contextPath}/menu/lista9a4.html?category=A" class="site-menu-list__link">아이스크림</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="menu/list22cf.html?category=F" class="site-menu-list__link">프리팩</a>
+                                            <a href="${pageContext.request.contextPath}/menu/list22cf.html?category=F" class="site-menu-list__link">프리팩</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="menu/list9c26.html?category=B" class="site-menu-list__link">아이스크림 케이크</a>
+                                            <a href="${pageContext.request.contextPath}/menu/list9c26.html?category=B" class="site-menu-list__link">아이스크림 케이크</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="menu/listab3a.html?category=E" class="site-menu-list__link">디저트</a>
+                                            <a href="${pageContext.request.contextPath}/menu/listab3a.html?category=E" class="site-menu-list__link">디저트</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="menu/list_subcategoryd7a1.html?category=C" class="site-menu-list__link">음료</a>
+                                            <a href="${pageContext.request.contextPath}/menu/list_subcategoryd7a1.html?category=C" class="site-menu-list__link">음료</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="menu/list_subcategoryfd8a.html?category=D" class="site-menu-list__link">커피</a>
+                                            <a href="${pageContext.request.contextPath}/menu/list_subcategoryfd8a.html?category=D" class="site-menu-list__link">커피</a>
                                         </li>
                                     </ul>
 
@@ -45,36 +45,36 @@
                         </div>
                     </li>
                     <li class="site-menu__item">
-                        <a href="play/event/list.html" class="site-menu__link">BR Play</a>
+                        <a href="${pageContext.request.contextPath}/play/event/list.html" class="site-menu__link">BR Play</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="play/event/list.html" class="site-menu-list__link">이벤트</a>
+                                            <a href="${pageContext.request.contextPath}/play/event/list.html" class="site-menu-list__link">이벤트</a>
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="play/event/lista9a4.html?category=A" class="site-menu-sub__link">프로모션</a>
+                                                    <a href="${pageContext.request.contextPath}/play/event/lista9a4.html?category=A" class="site-menu-sub__link">프로모션</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="play/event/listd7a1.html?category=C" class="site-menu-sub__link">제휴혜택</a>
+                                                    <a href="${pageContext.request.contextPath}/play/event/listd7a1.html?category=C" class="site-menu-sub__link">제휴혜택</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="site-menu-list__item site-menu-list__item--depth">
-                                            <a href="play/plaza/list.html" class="site-menu-list__link">BR Play</a>
+                                            <a href="${pageContext.request.contextPath}/play/plaza/list.html" class="site-menu-list__link">BR Play</a>
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="play/plaza/list.html" class="site-menu-sub__link">배라광장</a>
+                                                    <a href="${pageContext.request.contextPath}/play/plaza/list.html" class="site-menu-sub__link">배라광장</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="play/recipe/list.html" class="site-menu-sub__link">BR레시피</a>
+                                                    <a href="${pageContext.request.contextPath}/play/recipe/list.html" class="site-menu-sub__link">BR레시피</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="play/myflavor/list.html" class="site-menu-sub__link">마이플레이버리스트</a>
+                                                    <a href="${pageContext.request.contextPath}/play/myflavor/list.html" class="site-menu-sub__link">마이플레이버리스트</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -86,20 +86,20 @@
                         </div>
                     </li>
                     <li class="site-menu__item">
-                        <a href="story/story.html" class="site-menu__link">BR Story</a>
+                        <a href="${pageContext.request.contextPath}/story/story.html" class="site-menu__link">BR Story</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="story/story.html" class="site-menu-list__link">브랜드 스토리</a>
+                                            <a href="${pageContext.request.contextPath}/story/story.html" class="site-menu-list__link">브랜드 스토리</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="story/historybc5e.html?release_year=2025" class="site-menu-list__link">이달의 맛 히스토리</a>
+                                            <a href="${pageContext.request.contextPath}/story/historybc5e.html?release_year=2025" class="site-menu-list__link">이달의 맛 히스토리</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="story/be-better.html" class="site-menu-list__link">Be Better</a>
+                                            <a href="${pageContext.request.contextPath}/story/be-better.html" class="site-menu-list__link">Be Better</a>
                                         </li>
                                     </ul>
 
@@ -108,38 +108,38 @@
                         </div>
                     </li>
                     <li class="site-menu__item">
-                        <a href="store/map.html" class="site-menu__link">Delivery/Store</a>
+                        <a href="${pageContext.request.contextPath}/store/map.html" class="site-menu__link">Delivery/Store</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="store/map.html" class="site-menu-list__link">Store</a>
+                                            <a href="${pageContext.request.contextPath}/store/map.html" class="site-menu-list__link">Store</a>
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="store/map.html" class="site-menu-sub__link">매장 찾기</a>
+                                                    <a href="${pageContext.request.contextPath}/store/map.html" class="site-menu-sub__link">매장 찾기</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="store/flavor.html" class="site-menu-sub__link">100flavor 플래그십스토어</a>
+                                                    <a href="${pageContext.request.contextPath}/store/flavor.html" class="site-menu-sub__link">100flavor 플래그십스토어</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="store/workshop.html" class="site-menu-sub__link">워크샵 by 배스킨라빈스</a>
+                                                    <a href="${pageContext.request.contextPath}/store/workshop.html" class="site-menu-sub__link">워크샵 by 배스킨라빈스</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="information-center/consulting/br.html" class="site-menu-sub__link">점포개설문의</a>
+                                                    <a href="${pageContext.request.contextPath}/information-center/consulting/br.html" class="site-menu-sub__link">점포개설문의</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="site-menu-list__item site-menu-list__item--depth">
-                                            <a href="play/plaza/list.html" class="site-menu-list__link">Delivery</a>
+                                            <a href="${pageContext.request.contextPath}/play/plaza/list.html" class="site-menu-list__link">Delivery</a>
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="store/delivary.html" class="site-menu-sub__link">배달주문</a>
+                                                    <a href="${pageContext.request.contextPath}/store/delivary.html" class="site-menu-sub__link">배달주문</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="store/catering.html" class="site-menu-sub__link">단체주문</a>
+                                                    <a href="${pageContext.request.contextPath}/store/catering.html" class="site-menu-sub__link">단체주문</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -152,14 +152,14 @@
 
 
                     <li class="site-menu__item">
-                        <a href="brapp/brapp.html" class="site-menu__link">배라앱</a>
+                        <a href="brapp.html" class="site-menu__link">배라앱</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="brapp/brapp.html" class="site-menu-list__link">배라앱 소개 및 다운로드</a>
+                                            <a href="brapp.html" class="site-menu-list__link">배라앱 소개 및 다운로드</a>
                                         </li>                                        
                                     </ul>
                                 </div>
@@ -170,29 +170,29 @@
 
                     
                     <li class="site-menu__item site-menu__item--hidden">
-                        <a href="information-center/customer/list.html" class="site-menu__link">Information Center</a>
+                        <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-menu__link">Information Center</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="information-center/customer/list.html" class="site-menu-list__link">고객센터</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-menu-list__link">고객센터</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="information-center/customer/ccm.html" class="site-menu-list__link">소비자중심경영(CCM)</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/customer/ccm.html" class="site-menu-list__link">소비자중심경영(CCM)</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="information-center/praise/list.html" class="site-menu-list__link">칭찬점포</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/praise/list.html" class="site-menu-list__link">칭찬점포</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="information-center/notice/list.html" class="site-menu-list__link">공지사항</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/notice/list.html" class="site-menu-list__link">공지사항</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="information-center/press/list.html" class="site-menu-list__link">보도자료</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/press/list.html" class="site-menu-list__link">보도자료</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="information-center/fairtrade/list.html" class="site-menu-list__link">공정거래자율준수</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/fairtrade/list.html" class="site-menu-list__link">공정거래자율준수</a>
                                         </li>                                        
                                     </ul>
 
@@ -218,7 +218,7 @@
                     </button>
 
                     <form name="loginForm" method="get" action="https://www.baskinrobbins.co.kr/login/login.php" >
-                        <input type="hidden" name="returnURL" value="/" />
+                        <input type="hidden" name="returnURL" value="/brapp/brapp.php" />
                     </form>
 
                     <nav class="site-user-menu__content dropdown-menu">
@@ -233,7 +233,7 @@
                             
 
                             <li class="site-user-menu__item">
-                                <a href="information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
+                                <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
                             </li>
                         </ul>
                     </nav>

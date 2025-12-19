@@ -23,14 +23,7 @@
 <meta property="og:image" content="${pageContext.request.contextPath}/resources/images/common/img_share.png">
 <meta property="og:type" content="website">
 
-<script>
-    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
-        window.location = 'microsoft-edge:' + window.location;
-        setTimeout(function () {
-            window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
-        }, 13);
-    }
-</script>
+
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">

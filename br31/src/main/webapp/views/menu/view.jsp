@@ -1,0 +1,322 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="ko">
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<title>배스킨라빈스</title>
+
+<meta name="description" content="행복을 전하는 프리미엄 아이스크림, 배스킨라빈스 공식 홈페이지 입니다.">
+<meta name="keywords" content="baskinrobbins, br31, 배스킨라빈스, 배라, 베라">
+<meta name="author" content="배스킨라빈스">
+<meta property="og:site_name" content="배스킨라빈스">
+<meta property="og:url" content="../index.html">
+<meta property="og:title" content="배스킨라빈스">
+<meta property="og:description" content="행복을 전하는 프리미엄 아이스크림, 배스킨라빈스 공식 홈페이지 입니다.">
+<meta property="og:image" content="${pageContext.request.contextPath}/resources/images/common/img_share.png">
+<meta property="og:type" content="website">
+
+
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
+
+<script type="module" src="https://bks0c7yrb0.execute-api.ap-northeast-2.amazonaws.com/v1/api/fontstream/djs/?sid=gAAAAABk3G1_eyGB8FmZaMXgewjzvKQwe0I-4Kj9Xj-dKpNnUlp_rsk4w6Z_0UeYWyfihX4Dle9eu9HBqxj-2haSIR5ke8aarBIUuDqDVOLuImctKnYplmDTPSV-Bfn2TzQR4jSr7yknqw7gbTlj_xE3x62PMBY9Y3jC5rjtwuoBrWb2FaAY21Z2idAGvnk9xlfgI9CdciJwW6IGsijBsI592KNSqOLc9CQ4zV1Jziva1IN_NNxkzeG_pkU7_0TogufO4qTNTYRr" charset="utf-8"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+
+<script type="text/javascript" src="../../wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "1244aec76d3dcc0";
+    if(window.wcs) {
+        wcs_do();
+    }
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    '../../connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '702697714849597');
+    fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=702697714849597&amp;ev=PageView&amp;noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- kakao Pixel Code -->
+<script type="text/javascript" charset="UTF-8" src="../../t1.daumcdn.net/kas/static/kp.js"></script>
+<script type="text/javascript">
+    kakaoPixel('3252020519874834867').pageView();
+</script>
+<!-- End kakao Pixel Code -->
+
+<!-- Danggeun Market Code -->
+<script src="../../karrot-pixel.business.daangn.com/0.1/karrot-pixel.umd.js"></script>
+<script>
+    window.karrotPixel.init('1700024703697300001');
+    window.karrotPixel.track('ViewPage');
+</script>
+<!-- End Danggeun Market Code -->
+
+<!-- Twitter conversion tracking base code -->
+<script>
+    !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+    },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='../../static.ads-twitter.com/uwt.js',
+    a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+    twq('config','ogfh2');
+</script>
+<!-- End Twitter conversion tracking base code -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KX964ZZL');</script>
+<!-- End Google Tag Manager --></head>
+<body id="baskinrobbins-menu-view" class="baskinrobbins-menu-view">
+
+<div class="skipnav"><a href="#content">본문 영역으로 바로가기</a></div>
+
+
+<jsp:include page="/views/layout/header.jsp" />
+
+<div class="site-container">
+    <div id="content" class="menu-view">
+        <section>
+                        <article class="menu-view-top menu-view-top--icecream">
+                <div class="menu-view-top__container">
+                    <div class="menu-view-top__content menu-view-top__content--center">
+                        <div class="menu-view-top__box">
+                            <header class="menu-view-header">
+                                <div class="menu-view-header__container">
+                                    <div class="menu-view-header__content">
+                                        <p class="menu-view-header__category">ICECREAM</p>
+                                        <h2 class="menu-view-header__title">
+                                            <span class="menu-view-header__title--en">
+                                                DEAR CHOCO Pocky                                            </span>
+                                            <span class="menu-view-header__title--ko">
+                                                초코포키해♥                                            </span>
+                                        </h2>
+                                        <p class="menu-view-header__text">
+                                            진한 달콤함의 초콜릿 &amp; 초콜릿 쿠키 맛 아이스크림 속 포키의 맛과 식감을 담은 초코 프레첼 스틱이 쏙쏙!                                        </p>
+                                                                            </div>
+                                </div>
+                            </header>
+                                                            <div class="menu-view-ingredients">
+                                    <ul class="menu-view-ingredients__list">
+                                                                                    <li class="menu-view-ingredients__item">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/composition/b58a1b891c11d9bb499d123605d26af6.png" alt="포키" class="menu-view-ingredients__image">
+                                                <span class="menu-view-ingredients__name">포키</span>
+                                            </li>
+                                                                                </ul>
+                                </div>
+                            
+
+                                                    </div>
+
+                        <div>
+                            <div class="menu-view-hero menu-view-hero--icecream menu-view-hero--current" style="background-color: #623924;">
+
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/d1c5862f5649eb3de61e7cc150999d18.png" alt="초코포키해♥" class="menu-view-hero__image">
+                            </div>
+                        </div>
+                    </div>
+
+                                            <a href="view599c.html?seq=834" class="menu-view-top__link menu-view-top__link--prev">
+                            <span class="menu-view-top__text">골든 프랄린 버터</span>
+                        </a>
+                        <div class="menu-view-top__content menu-view-top__content--left">
+                            <!-- 관리자: 이전 컨텐츠 컬러값  -->
+                            <div class="menu-view-hero menu-view-hero--left" style="background-color: #F2C06E">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-view-hero__image">
+                            </div>
+                        </div>
+                                                <a href="view565c.html?seq=803" class="menu-view-top__link menu-view-top__link--next">
+                            <span class="menu-view-top__text">말차다미아</span>
+                        </a>
+                        <div class="menu-view-top__content menu-view-top__content--right">
+                            <!-- 관리자: 이전 컨텐츠 컬러값  -->
+                            <div class="menu-view-hero menu-view-hero--right" style="background-color:#9ca759">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/196edabde017591708905ad0f489257e.png" alt="말차다미아" class="menu-view-hero__image">
+                            </div>
+                        </div>
+                                        </div>
+            </article>
+
+            <div class="menu-view__container">
+                                    <article class="menu-view-nutrition">
+                        <div class="menu-view-nutrition__container">
+                            <h3 class="menu-view-nutrition__title">영양정보</h3>
+
+                            <dl class="menu-view-nutrition__content">
+                                <div class="menu-view-nutrition__item">
+                                    <dt class="menu-view-nutrition__name">1회 제공량(g)</dt>
+                                    <dd class="menu-view-nutrition__text">115</dd>
+                                </div>
+                                <div class="menu-view-nutrition__item">
+                                    <dt class="menu-view-nutrition__name">열량(kcal)</dt>
+                                    <dd class="menu-view-nutrition__text">313</dd>
+                                </div>
+                                <div class="menu-view-nutrition__item">
+                                    <dt class="menu-view-nutrition__name">당류(g)</dt>
+                                    <dd class="menu-view-nutrition__text" style="">27</dd>
+                                </div>
+                                <div class="menu-view-nutrition__item">
+                                    <dt class="menu-view-nutrition__name">단백질(g)</dt>
+                                    <dd class="menu-view-nutrition__text">4</dd>
+                                </div>
+                                <div class="menu-view-nutrition__item">
+                                    <dt class="menu-view-nutrition__name">포화지방(g)</dt>
+                                    <dd class="menu-view-nutrition__text">9</dd>
+                                </div>
+                                <div class="menu-view-nutrition__item">
+                                    <dt class="menu-view-nutrition__name">나트륨(mg)</dt>
+                                    <dd class="menu-view-nutrition__text">208</dd>
+                                </div>
+                                                                <div class="menu-view-nutrition__item">
+                                    <dt class="menu-view-nutrition__name">알레르기 성분</dt>
+                                    <dd class="menu-view-nutrition__text">우유, 대두, 밀, 땅콩 </dd>
+                                </div>
+                            </dl>
+                        </div>
+
+                                            </article>
+                
+                                    <article class="menu-view-content">
+                        <div class="menu-view-content__container">
+                            <div class="menu-view-content__content">
+                                <p style="text-align&#58; center&#59;"><img alt="" src="${pageContext.request.contextPath}/resources/images/upload/ckeditor/6a07c45312d30139d9baa250a3a4c4a7.png" /></p>                            </div>
+                        </div>
+                    </article>
+                                    <article class="menu-view-size">
+                        <h3 class="menu-view-size__title">SELECT SIZE</h3>
+
+                        <div class="menu-view-size__container">
+                            <article class="menu-view-size__content menu-view-list">
+                                <h4 class="menu-view-list__title">
+                                    CONE &amp; CUP
+                                    <span>콘,컵 제외 중량</span>
+                                </h4>
+
+                                <ul class="menu-view-list__list-cone-cup">
+                                    <li class="menu-view-list__item menu-view-list__item--c1">
+                                        <span class="menu-view-list__name">싱글레귤러</span>
+                                        <span class="menu-view-list__weight">1가지 맛 (중량 115 g)</span>
+                                        <strong class="menu-view-list__price">3,900원</strong>
+                                    </li>
+                                    <li class="menu-view-list__item menu-view-list__item--c2">
+                                        <span class="menu-view-list__name">싱글킹</span>
+                                        <span class="menu-view-list__weight">1가지 맛 (중량 145 g)</span>
+                                        <strong class="menu-view-list__price">4,700원</strong>
+                                    </li>
+                                    <li class="menu-view-list__item menu-view-list__item--c3">
+                                        <span class="menu-view-list__name">더블주니어</span>
+                                        <span class="menu-view-list__weight">2가지맛(중량 150 g)</span>
+                                        <strong class="menu-view-list__price">5,100원</strong>
+                                    </li>
+                                    <li class="menu-view-list__item menu-view-list__item--c4">
+                                        <span class="menu-view-list__name">트리플 주니어</span>
+                                        <span class="menu-view-list__weight">3가지맛(중량 225 g)</span>
+                                        <strong class="menu-view-list__price">7,200원</strong>
+                                    </li>
+                                    <li class="menu-view-list__item menu-view-list__item--c5">
+                                        <span class="menu-view-list__name">더블레귤러</span>
+                                        <span class="menu-view-list__weight">2가지맛(중량 230 g)</span>
+                                        <strong class="menu-view-list__price">7,300원</strong>
+                                    </li>
+                                </ul>
+                            </article>
+
+                            <article class="menu-view-size__content menu-view-list">
+                                <h4 class="menu-view-list__title">
+                                    HAND PACK
+                                    <span>용기 포함 중량</span>
+                                </h4>
+
+                                <ul class="menu-view-list__list">
+                                    <li class="menu-view-list__item menu-view-list__item--hp1">
+                                        <span class="menu-view-list__name">파인트</span>
+                                        <span class="menu-view-list__weight">3가지맛(중량 336 g)</span>
+                                        <strong class="menu-view-list__price">9,800원</strong>
+                                    </li>
+                                    <li class="menu-view-list__item menu-view-list__item--hp2">
+                                        <span class="menu-view-list__name">쿼터</span>
+                                        <span class="menu-view-list__weight">4가지맛(중량 643 g)</span>
+                                        <strong class="menu-view-list__price">18,500원</strong>
+                                    </li>
+                                    <li class="menu-view-list__item menu-view-list__item--hp3">
+                                        <span class="menu-view-list__name">패밀리</span>
+                                        <span class="menu-view-list__weight">5가지맛(중량 989 g)</span>
+                                        <strong class="menu-view-list__price">26,000원</strong>
+                                    </li>
+                                    <li class="menu-view-list__item menu-view-list__item--hp4">
+                                        <span class="menu-view-list__name">하프갤론</span>
+                                        <span class="menu-view-list__weight">6가지맛(중량 1,237 g)</span>
+                                        <strong class="menu-view-list__price">31,500원</strong>
+                                    </li>
+                                </ul>
+                            </article>
+
+                                                        <p class="menu-view-size__text">* 일부 제품에 한해 가격이 상이할 수 있습니다.</p>
+                                                    </div>
+                    </article>
+
+                    <article class="menu-view-mixture">
+                        <div class="menu-view-mixture__container">
+                            <header class="menu-view-mixture__header">
+                                <h3 class="menu-view-mixture__title">BR 추천 조합</h3>
+                                <p class="menu-view-mixture__text">마이 플레이버 리스트 맛 조합 추천</p>
+                            </header>
+
+                            <div class="menu-view-mixture__content">
+                                <div class="menu-view-mixture__inner">
+                                    <div class="swiper">
+                                        <div class="swiper-wrapper">
+                                                                                        <!-- 항상 존재하는 것 -->
+                                            <div class="swiper-slide menu-view-mixture__item menu-view-mixture__item--default">
+                                                <a href="../play/myflavor/list.html" class="menu-view-mixture__link">
+                                                    <p class="menu-view-mixture__description">
+                                                    <span class="menu-view-mixture__description-text-1">
+                                                        더 다양한 맛 조합이 보고 싶다면?<br>
+                                                        내가 추천하는 조합이 있다면?
+                                                    </span>
+                                                        <span class="menu-view-mixture__description-text-2">
+                                                        <span>마이 플레이버리스트</span>
+                                                    </span>
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                            </div>
+        </section>
+    </div>
+</div>
+
+<jsp:include page="/views/layout/footer.jsp" />
+
+</body>
+
+
+</html>

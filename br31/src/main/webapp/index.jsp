@@ -6,7 +6,7 @@
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -22,7 +22,14 @@
 <meta property="og:image" content="${pageContext.request.contextPath}/resources/images/common/img_share.png">
 <meta property="og:type" content="website">
 
-
+<script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+        window.location = 'microsoft-edge:' + window.location;
+        setTimeout(function () {
+            window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
+        }, 13);
+    }
+</script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
@@ -32,288 +39,70 @@
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
+<script type="text/javascript" src="../wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "1244aec76d3dcc0";
+    if(window.wcs) {
+        wcs_do();
+    }
+</script>
 
+<!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    '../connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '702697714849597');
+    fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=702697714849597&amp;ev=PageView&amp;noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
+<!-- kakao Pixel Code -->
+<script type="text/javascript" charset="UTF-8" src="../t1.daumcdn.net/kas/static/kp.js"></script>
+<script type="text/javascript">
+    kakaoPixel('3252020519874834867').pageView();
+</script>
+<!-- End kakao Pixel Code -->
 
+<!-- Danggeun Market Code -->
+<script src="../karrot-pixel.business.daangn.com/0.1/karrot-pixel.umd.js"></script>
+<script>
+    window.karrotPixel.init('1700024703697300001');
+    window.karrotPixel.track('ViewPage');
+</script>
+<!-- End Danggeun Market Code -->
 
+<!-- Twitter conversion tracking base code -->
+<script>
+    !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+    },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='../static.ads-twitter.com/uwt.js',
+    a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+    twq('config','ogfh2');
+</script>
+<!-- End Twitter conversion tracking base code -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KX964ZZL');</script>
+<!-- End Google Tag Manager --></head>
+<body id="baskinrobbins-main" class="baskinrobbins-main ">
 
 <div class="skipnav"><a href="#content">본문 영역으로 바로가기</a></div>
 
-<header class="site-header">
-    <div class="site-header__container">
-        <div class="site-header__content">
-            <h1 class="site-header-logo">
-                <a href="index.html" class="site-header-logo__link">
-                    <span class="site-header-logo__text">Baskin Robbins</span>
-                </a>
-            </h1>
+<jsp:include page="/views/layout/header.jsp" />
 
-            <nav class="site-menu">
-                <ul class="site-menu__list">
-                    <li class="site-menu__item">
-                        <a href="menu/lista9a4.html?category=A" class="site-menu__link">Menu</a>
-
-                        <div class="site-menu-list">
-                            <div class="site-menu-list__container">
-                                <div class="site-menu-list__content">
-                                    <ul class="site-menu-list__list">
-                                        <li class="site-menu-list__item">
-                                            <a href="menu/fom.html" class="site-menu-list__link">이달의 맛</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="menu/lista9a4.html?category=A" class="site-menu-list__link">아이스크림</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="menu/list22cf.html?category=F" class="site-menu-list__link">프리팩</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="menu/list9c26.html?category=B" class="site-menu-list__link">아이스크림 케이크</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="menu/listab3a.html?category=E" class="site-menu-list__link">디저트</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="menu/list_subcategoryd7a1.html?category=C" class="site-menu-list__link">음료</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="menu/list_subcategoryfd8a.html?category=D" class="site-menu-list__link">커피</a>
-                                        </li>
-                                    </ul>
-
-                                                                    </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="site-menu__item">
-                        <a href="play/event/list.html" class="site-menu__link">BR Play</a>
-
-                        <div class="site-menu-list">
-                            <div class="site-menu-list__container">
-                                <div class="site-menu-list__content">
-                                    <ul class="site-menu-list__list">
-                                        <li class="site-menu-list__item">
-                                            <a href="play/event/list.html" class="site-menu-list__link">이벤트</a>
-
-                                            <ul class="site-menu-sub">
-                                                <li class="site-menu-sub__item">
-                                                    <a href="play/event/lista9a4.html?category=A" class="site-menu-sub__link">프로모션</a>
-                                                </li>
-                                                <li class="site-menu-sub__item">
-                                                    <a href="play/event/listd7a1.html?category=C" class="site-menu-sub__link">제휴혜택</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="site-menu-list__item site-menu-list__item--depth">
-                                            <a href="play/plaza/list.html" class="site-menu-list__link">BR Play</a>
-
-                                            <ul class="site-menu-sub">
-                                                <li class="site-menu-sub__item">
-                                                    <a href="play/plaza/list.html" class="site-menu-sub__link">배라광장</a>
-                                                </li>
-                                                <li class="site-menu-sub__item">
-                                                    <a href="play/recipe/list.html" class="site-menu-sub__link">BR레시피</a>
-                                                </li>
-                                                <li class="site-menu-sub__item">
-                                                    <a href="play/myflavor/list.html" class="site-menu-sub__link">마이플레이버리스트</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-
-
-                                                                    </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="site-menu__item">
-                        <a href="story/story.html" class="site-menu__link">BR Story</a>
-
-                        <div class="site-menu-list">
-                            <div class="site-menu-list__container">
-                                <div class="site-menu-list__content">
-                                    <ul class="site-menu-list__list">
-                                        <li class="site-menu-list__item">
-                                            <a href="story/story.html" class="site-menu-list__link">브랜드 스토리</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="story/historybc5e.html?release_year=2025" class="site-menu-list__link">이달의 맛 히스토리</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="story/be-better.html" class="site-menu-list__link">Be Better</a>
-                                        </li>
-                                    </ul>
-
-                                                                    </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="site-menu__item">
-                        <a href="store/map.html" class="site-menu__link">Delivery/Store</a>
-
-                        <div class="site-menu-list">
-                            <div class="site-menu-list__container">
-                                <div class="site-menu-list__content">
-                                    <ul class="site-menu-list__list">
-                                        <li class="site-menu-list__item">
-                                            <a href="store/map.html" class="site-menu-list__link">Store</a>
-                                            <ul class="site-menu-sub">
-                                                <li class="site-menu-sub__item">
-                                                    <a href="store/map.html" class="site-menu-sub__link">매장 찾기</a>
-                                                </li>
-                                                <li class="site-menu-sub__item">
-                                                    <a href="store/flavor.html" class="site-menu-sub__link">100flavor 플래그십스토어</a>
-                                                </li>
-                                                <li class="site-menu-sub__item">
-                                                    <a href="store/workshop.html" class="site-menu-sub__link">워크샵 by 배스킨라빈스</a>
-                                                </li>
-                                                <li class="site-menu-sub__item">
-                                                    <a href="information-center/consulting/br.html" class="site-menu-sub__link">점포개설문의</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="site-menu-list__item site-menu-list__item--depth">
-                                            <a href="play/plaza/list.html" class="site-menu-list__link">Delivery</a>
-
-                                            <ul class="site-menu-sub">
-                                                <li class="site-menu-sub__item">
-                                                    <a href="store/delivary.html" class="site-menu-sub__link">배달주문</a>
-                                                </li>
-                                                <li class="site-menu-sub__item">
-                                                    <a href="store/catering.html" class="site-menu-sub__link">단체주문</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-
-                                                                    </div>
-                            </div>
-                        </div>
-                    </li>
-
-
-                    <li class="site-menu__item">
-                        <a href="brapp/brapp.html" class="site-menu__link">배라앱</a>
-
-                        <div class="site-menu-list">
-                            <div class="site-menu-list__container">
-                                <div class="site-menu-list__content">
-                                    <ul class="site-menu-list__list">
-                                        <li class="site-menu-list__item">
-                                            <a href="brapp/brapp.html" class="site-menu-list__link">배라앱 소개 및 다운로드</a>
-                                        </li>                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    
-
-                    
-                    <li class="site-menu__item site-menu__item--hidden">
-                        <a href="information-center/customer/list.html" class="site-menu__link">Information Center</a>
-
-                        <div class="site-menu-list">
-                            <div class="site-menu-list__container">
-                                <div class="site-menu-list__content">
-                                    <ul class="site-menu-list__list">
-                                        <li class="site-menu-list__item">
-                                            <a href="information-center/customer/list.html" class="site-menu-list__link">고객센터</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="information-center/customer/ccm.html" class="site-menu-list__link">소비자중심경영(CCM)</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="information-center/praise/list.html" class="site-menu-list__link">칭찬점포</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="information-center/notice/list.html" class="site-menu-list__link">공지사항</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="information-center/press/list.html" class="site-menu-list__link">보도자료</a>
-                                        </li>
-                                        <li class="site-menu-list__item">
-                                            <a href="information-center/fairtrade/list.html" class="site-menu-list__link">공정거래자율준수</a>
-                                        </li>                                        
-                                    </ul>
-
-                                                                    </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="site-header__content">
-            <div class="site-header__search">
-                <button type="button" class="site-header__search-button">
-                    <span class="site-header__search-hidden">검색</span>
-                </button>
-            </div>
-
-            <div class="site-user-menu">
-                <div class="site-user-menu__container">
-                    <button class="site-user-menu__button" data-bs-toggle="dropdown">
-                        <span class="site-user-menu__text">메뉴 열고 닫기</span>
-                    </button>
-
-                    <form name="loginForm" method="get" action="https://www.baskinrobbins.co.kr/login/login.php" >
-                        <input type="hidden" name="returnURL" value="/" />
-                    </form>
-
-                    <nav class="site-user-menu__content dropdown-menu">
-                        <ul class="site-user-menu__list">
-                                                            <li class="site-user-menu__item">
-                                    <!--                                <a href="/login/login.php" class="site-user-menu__link">Login</a>-->
-                                    <a href="#" onclick="document.loginForm.submit();" class="site-user-menu__link">Login</a>
-                                </li>
-                                <li class="site-user-menu__item">
-                                    <a href="https://www.happypointcard.com/page/join/index.spc" target="_blank" class="site-user-menu__link">Join</a>
-                                </li>
-                            
-
-                            <li class="site-user-menu__item">
-                                <a href="information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="site-search">
-        <div class="site-search__container">
-            <div class="site-search__content">
-                <button type="button" class="site-search__close">
-                    <span class="site-search__close-text">close</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="site-search__container">
-            <div class="site-search__content">
-                <form action="https://www.baskinrobbins.co.kr/search/list.php" class="site-search__form">
-                    <fieldset>
-                        <legend>제품 검색 폼</legend>
-
-                        <div class="site-search__box">
-                            <input type="text" name="findword" class="site-search__input" placeholder="제품명을 입력하세요">
-
-                            <button type="button" class="site-search__delete">
-                                <span class="site-search__hidden">삭제</span>
-                            </button>
-
-                            <button type="submit" class="site-search__submit">
-                                <span class="site-search__hidden">검색</span>
-                            </button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-</header>
 <div id="content" class="main">
     <div class="main-hero">
         <div class="main-hero__container">
@@ -322,7 +111,7 @@
                                     <a href="menu/list9c26.html?category=B" target='_self' class="main-hero__link">
                         <span class="main-hero__text">타이틀</span>
                     </a>
-                                    <img src="upload/main/banner/8d8b43a04a4a994b3d6aea329d1da086.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/main/banner/8d8b43a04a4a994b3d6aea329d1da086.jpg" alt="">
                 </div>
                 
                 <div class="main-hero-list">
@@ -330,17 +119,17 @@
                         <ul class="main-hero-list__list">
                                                         <li class="main-hero-list__item">
                                                                     <a href="play/event/view800d.html?seq=428" target='_self' class="main-hero-list__link">
-                                        <img src="upload/main/banner/ea53de187a1a3330c7eec5679f63a637.png" alt="" class="main-hero-list__image">
+                                        <img src="${pageContext.request.contextPath}/resources/images/upload/main/banner/ea53de187a1a3330c7eec5679f63a637.png" alt="" class="main-hero-list__image">
                                     </a>
                                                             </li>
                                                             <li class="main-hero-list__item">
                                                                     <a href="play/event/view360b.html?seq=427" target='_self' class="main-hero-list__link">
-                                        <img src="upload/main/banner/4b18bd067af44ccecf7809adb3aa1e4b.png" alt="" class="main-hero-list__image">
+                                        <img src="${pageContext.request.contextPath}/resources/images/upload/main/banner/4b18bd067af44ccecf7809adb3aa1e4b.png" alt="" class="main-hero-list__image">
                                     </a>
                                                             </li>
                                                             <li class="main-hero-list__item">
                                                                     <a href="play/event/viewe0b6.html?seq=438" target='_self' class="main-hero-list__link">
-                                        <img src="upload/main/banner/b384fc1868507ac1f19a6eee4926635e.png" alt="" class="main-hero-list__image">
+                                        <img src="${pageContext.request.contextPath}/resources/images/upload/main/banner/b384fc1868507ac1f19a6eee4926635e.png" alt="" class="main-hero-list__image">
                                     </a>
                                                             </li>
                                                         </ul>
@@ -374,7 +163,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/viewe0b6.html?seq=438" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/7d9230dfb8da0d88e774f809cd8a341d.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/7d9230dfb8da0d88e774f809cd8a341d.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -388,7 +177,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/view7d49.html?seq=437" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/f04a5f9b4383cb1d4b56d8626d7bd62c.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/f04a5f9b4383cb1d4b56d8626d7bd62c.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -402,7 +191,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/view8302.html?seq=436" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/b8a1c48b0e4a9e2e512301db4425286c.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/b8a1c48b0e4a9e2e512301db4425286c.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -416,7 +205,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/view800d.html?seq=428" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/6c37e0ec06855a59b42ab74aec30a9aa.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/6c37e0ec06855a59b42ab74aec30a9aa.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -430,7 +219,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/view360b.html?seq=427" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/a1298e563c4bbaf1ce543d933b79c3ba.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/a1298e563c4bbaf1ce543d933b79c3ba.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -444,7 +233,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/view1148.html?seq=396" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/8c4602593cd42afb7a33e3351eeca9f6.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/8c4602593cd42afb7a33e3351eeca9f6.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -458,7 +247,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/view6919.html?seq=385" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/0e55f845f27237246e26c604c219e7b6.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/0e55f845f27237246e26c604c219e7b6.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -472,7 +261,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/view2f98.html?seq=380" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/0b4516c5dd11234d7a74eabcb64dcb08.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/0b4516c5dd11234d7a74eabcb64dcb08.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -486,7 +275,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/viewb2b1.html?seq=342" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/e5546c5856ce3916f7dab4326579054a.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/e5546c5856ce3916f7dab4326579054a.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -500,7 +289,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/view68db.html?seq=99" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/0143a84def93d9c70ed42612fb8af488.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/0143a84def93d9c70ed42612fb8af488.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -514,7 +303,7 @@
                                             <div class="swiper-slide">
                             <a href="play/event/viewd9d9.html?seq=2" class="main-promotion__link">
                                 <div class="main-promotion__frame">
-                                    <img src="upload/promotion/event/388539cae1fd5d2f219392ad712b21ff.png" alt="" class="main-promotion__image">
+                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/388539cae1fd5d2f219392ad712b21ff.png" alt="" class="main-promotion__image">
                                 </div>
 
                                 <div class="main-promotion__content">
@@ -554,14 +343,14 @@
                                     <li class="main-new__item">
                                         <a href="menu/view9dc3.html?seq=840" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/a0c2854fd424430028246bfc094fc078.png" alt="초코포키해♥" class="main-new__frame">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/a0c2854fd424430028246bfc094fc078.png" alt="초코포키해♥" class="main-new__frame">
                                             </div>
                                         </a>
                                     </li>
                                                             <li class="main-new__item">
                                         <a href="menu/view4348.html?seq=846" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/26898fd791b8c5be0cfcd168827b68c3.png" alt="달콤 가득 포키 케이크" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/26898fd791b8c5be0cfcd168827b68c3.png" alt="달콤 가득 포키 케이크" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">달콤 가득 포키 케이크</p>
@@ -572,7 +361,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view5280.html?seq=845" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/9e7540e9fb9077e99e0ac602281093c6.png" alt="한입 쏙! 포키 케이크" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/9e7540e9fb9077e99e0ac602281093c6.png" alt="한입 쏙! 포키 케이크" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">한입 쏙! 포키 케이크</p>
@@ -583,7 +372,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view32e0.html?seq=852" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/d7db5bc58163ac95be41f5f7225e9ff3.png" alt="골든 프랄렌 버터 쿠키 샌드" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/d7db5bc58163ac95be41f5f7225e9ff3.png" alt="골든 프랄렌 버터 쿠키 샌드" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">골든 프랄렌 버터 쿠키 샌드</p>
@@ -594,7 +383,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view5247.html?seq=853" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/1676d64ffbf8dd5e1868da41f97e24ca.png" alt="스트로베리 버터 쿠키 샌드" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/1676d64ffbf8dd5e1868da41f97e24ca.png" alt="스트로베리 버터 쿠키 샌드" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">스트로베리 버터 쿠키 샌드</p>
@@ -611,14 +400,14 @@
                                     <li class="main-new__item">
                                         <a href="menu/view599c.html?seq=834" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/a875797e861588de68b0a5b5dacbde03.png" alt="골든 프랄린 버터" class="main-new__frame">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/a875797e861588de68b0a5b5dacbde03.png" alt="골든 프랄린 버터" class="main-new__frame">
                                             </div>
                                         </a>
                                     </li>
                                                             <li class="main-new__item">
                                         <a href="menu/view926a.html?seq=847" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/02a1b39092800f09dc77c85fd8178600.png" alt="골든 프랄린 버터 케이크" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/02a1b39092800f09dc77c85fd8178600.png" alt="골든 프랄린 버터 케이크" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#7D3B0E;">골든 프랄린 버터 케이크</p>
@@ -629,7 +418,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view6253.html?seq=832" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/4491e9462749c3338086d46ea0c89966.png" alt="마이멜로디와 더 듬뿍 딸기" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/4491e9462749c3338086d46ea0c89966.png" alt="마이멜로디와 더 듬뿍 딸기" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">마이멜로디와 더 듬뿍 딸기</p>
@@ -640,7 +429,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view14f5.html?seq=812" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/ad72ac1361e2c846f1d78fb5a6022fde.png" alt="네모 블록 마이멜로디" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/ad72ac1361e2c846f1d78fb5a6022fde.png" alt="네모 블록 마이멜로디" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">네모 블록 마이멜로디</p>
@@ -651,7 +440,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view56ac.html?seq=831" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/1c620b143e24330df572e0dce69ff4b0.png" alt="더 듬뿍 오렌지 앤 자몽케이크" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/1c620b143e24330df572e0dce69ff4b0.png" alt="더 듬뿍 오렌지 앤 자몽케이크" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">더 듬뿍 오렌지 앤 자몽케이크</p>
@@ -668,14 +457,14 @@
                                     <li class="main-new__item">
                                         <a href="menu/view3a03.html?seq=825" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/29c099ccc07d67d20d18084e47aebe7a.png" alt="핑크 베리 말차" class="main-new__frame">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/29c099ccc07d67d20d18084e47aebe7a.png" alt="핑크 베리 말차" class="main-new__frame">
                                             </div>
                                         </a>
                                     </li>
                                                             <li class="main-new__item">
                                         <a href="menu/view9ef0.html?seq=839" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/6a358aeeb18e770c6967cef44d84edff.png" alt="말차 밀크 쉐이크" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/6a358aeeb18e770c6967cef44d84edff.png" alt="말차 밀크 쉐이크" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#6b4135;">말차 밀크 쉐이크</p>
@@ -686,7 +475,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view2be3.html?seq=838" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/44a8c2e8e4d21bbe67b726d5e7895eca.png" alt="핑크 베리 말차 쉐이크" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/44a8c2e8e4d21bbe67b726d5e7895eca.png" alt="핑크 베리 말차 쉐이크" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#99582a;">핑크 베리 말차 쉐이크</p>
@@ -697,7 +486,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view3557.html?seq=828" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/d28468b13fbe546c8967a601bc7f4afa.png" alt="핑크 베리 말차" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/d28468b13fbe546c8967a601bc7f4afa.png" alt="핑크 베리 말차" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">핑크 베리 말차</p>
@@ -708,7 +497,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/viewac4a.html?seq=829" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/4e998fc0cde462caec1aa3ab74d99b62.png" alt="진정한 말차 티라미수" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/4e998fc0cde462caec1aa3ab74d99b62.png" alt="진정한 말차 티라미수" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">진정한 말차 티라미수</p>
@@ -725,14 +514,14 @@
                                     <li class="main-new__item">
                                         <a href="menu/view565c.html?seq=803" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/18335ef0951b5821b4028682651aaf23.png" alt="말차다미아" class="main-new__frame">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/18335ef0951b5821b4028682651aaf23.png" alt="말차다미아" class="main-new__frame">
                                             </div>
                                         </a>
                                     </li>
                                                             <li class="main-new__item">
                                         <a href="menu/viewf094.html?seq=835" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/707327a2f019f692e5e0d6083981ec49.png" alt="아이스 흑임자 경단" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/707327a2f019f692e5e0d6083981ec49.png" alt="아이스 흑임자 경단" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#6b4135;">아이스 흑임자 경단</p>
@@ -743,7 +532,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view34a1.html?seq=836" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/447077ee2026d1237b96f2e13892ba3e.png" alt="아이스 인절미 경단" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/447077ee2026d1237b96f2e13892ba3e.png" alt="아이스 인절미 경단" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#6b4135;">아이스 인절미 경단</p>
@@ -754,7 +543,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view9e7f.html?seq=779" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/898bcdd99056dec50a069874df728edf.png" alt="더 듬뿍 프루티 케이크" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/898bcdd99056dec50a069874df728edf.png" alt="더 듬뿍 프루티 케이크" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#EA6082;">더 듬뿍 프루티 케이크</p>
@@ -765,7 +554,7 @@
                                                             <li class="main-new__item">
                                         <a href="menu/view617a.html?seq=732" class="main-new__link">
                                             <div class="main-new__frame">
-                                                <img src="upload/main/newitems/f7f0884e6f9127044d09d3718135e6db.png" alt="더 듬뿍 딸기 케이크" class="main-new__image">
+                                                <img src="${pageContext.request.contextPath}/resources/images/upload/main/newitems/f7f0884e6f9127044d09d3718135e6db.png" alt="더 듬뿍 딸기 케이크" class="main-new__image">
                                             </div>
                                             <div class="main-new__box">
                                                 <p class="main-new__title" style="color:#f6c4be;">더 듬뿍 딸기 케이크</p>
@@ -802,12 +591,12 @@
                 <ul class="main-play__list">
                                         <li class="main-play__item">
                         <a href="play/myflavor/list.html" class="main-play__link">
-                            <img src="upload/main/brplay/38ec45e00b62db0f26e4ee90ce889841.png" alt="MY FLAVOR LIST" class="main-play__image">
+                            <img src="${pageContext.request.contextPath}/resources/images/upload/main/brplay/38ec45e00b62db0f26e4ee90ce889841.png" alt="MY FLAVOR LIST" class="main-play__image">
                         </a>
                     </li>
                                         <li class="main-play__item">
                         <a href="play/plaza/list.html" class="main-play__link">
-                            <img src="upload/main/brplay/99847b6c140916bfe27eceea5c2ed9dc.png" alt="배묻배답" class="main-play__image">
+                            <img src="${pageContext.request.contextPath}/resources/images/upload/main/brplay/99847b6c140916bfe27eceea5c2ed9dc.png" alt="배묻배답" class="main-play__image">
                         </a>
                     </li>
                                     </ul>
@@ -896,77 +685,77 @@
                                     <div class="swiper-slide">
                         <a href="play/event/view2bda.html?seq=439" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/e2828ebba4cca1bff2bd859847dfb380.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/e2828ebba4cca1bff2bd859847dfb380.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view876b.html?seq=403" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/af2e446544c96f2537e0f55bb99ba35b.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/af2e446544c96f2537e0f55bb99ba35b.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view0d33.html?seq=9" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/872ac902cefee2ecab1774466e203c6c.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/872ac902cefee2ecab1774466e203c6c.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view59a5.html?seq=10" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/02de337a0b96ddbc1500461cccc6801c.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/02de337a0b96ddbc1500461cccc6801c.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/viewff16.html?seq=122" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/37ca9bacd1069187ca9c50f64eda5e3f.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/37ca9bacd1069187ca9c50f64eda5e3f.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view15ca.html?seq=314" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/feefab979b65d3197e6671326820c63d.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/feefab979b65d3197e6671326820c63d.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view950b.html?seq=309" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/051904573a6faab9482caafffa2d6bfc.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/051904573a6faab9482caafffa2d6bfc.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view7dc5.html?seq=253" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/8cd1cd1a26445abb0ad98fad3171582f.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/8cd1cd1a26445abb0ad98fad3171582f.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view01ea.html?seq=25" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/cd99fb2f46c76c61090adc4c446f29c0.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/cd99fb2f46c76c61090adc4c446f29c0.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view4dac.html?seq=11" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/c9b25ee4553b2ecfc6da305bdc5de276.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/c9b25ee4553b2ecfc6da305bdc5de276.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
                                         <div class="swiper-slide">
                         <a href="play/event/view5a16.html?seq=7" class="main-br-benefit__link">
                             <div class="main-br-benefit__frame">
-                                <img src="upload/promotion/event/8e5747a04cbeb6c854716c824d19ec27.png" alt="" class="main-br-benefit__image">
+                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/8e5747a04cbeb6c854716c824d19ec27.png" alt="" class="main-br-benefit__image">
                             </div>
                         </a>
                     </div>
@@ -1025,166 +814,6 @@
 </div>
 
 
-<footer class="site-footer">
-    <div class="site-footer__container">
-        <div class="site-footer__content">
-            <nav class="site-footer-policy">
-                <ul class="site-footer-policy__list">
-                    <li class="site-footer-policy__item">
-                        <a href="information-center/store-offer/offer.html" class="site-footer-policy__link">신규 직영점 입점제의</a>
-                    </li>
-                    <li class="site-footer-policy__item">
-                        <a href="information-center/consulting/br.html" class="site-footer-policy__link">점포개설문의</a>
-                    </li>
-                    <li class="site-footer-policy__item">
-                        <a href="https://spc.recruiter.co.kr/appsite/company/index" target="_blank" class="site-footer-policy__link">채용문의</a>
-                    </li>
-                    <li class="site-footer-policy__item">
-                        <a href="https://www.spc.co.kr/compliance/hotline" target="_blank" class="site-footer-policy__link">윤리신고센터</a>
-                    </li>
-                    <li class="site-footer-policy__item">
-                        <a href="https://www.happypointcard.com/page/customer/term.spc" target="_blank" class="site-footer-policy__link">해피포인트카드 이용약관</a>
-                    </li>
-                    <li class="site-footer-policy__item">
-                        <a href="information-center/customer/policy-reword.html" class="site-footer-policy__link">배스킨라빈스 리워드 이용약관</a>
-                    </li>
-                    <li class="site-footer-policy__item site-footer-policy__item--point">
-                        <a href="information-center/customer/policy.html" class="site-footer-policy__link">개인정보처리방침</a>
-                    </li>
-                    <li class="site-footer-policy__item">
-                        <a href="information-center/customer/policy-cctv.html" class="site-footer-policy__link">영상정보처리기기운영관리방침</a>
-                    </li>
-                    <li class="site-footer-policy__item">
-                        <a href="information-center/customer/safety-management.html" class="site-footer-policy__link">안전보건 경영방침</a>
-                    </li>
-                    <li class="site-footer-policy__item">
-                        <a href="information-center/fairtrade/list.html" class="site-footer-policy__link">공정거래자율준수</a>
-                    </li>                    
-                    <li class="site-footer-policy__item">
-                        <a href="https://procure.spc.co.kr/login?springViewName=redirect%3A%2Flogin" target="_blank" class="site-footer-policy__link">거래희망회사 사전등록</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="site-footer__content site-footer__content--space-between">
-            <div class="site-footer__box">
-                <div class="site-footer-info">
-                    <h1 class="site-footer-info__logo">
-                        <span class="site-footer-info__text">baskiN robbiNs</span>
-                    </h1>
-
-                    <p class="site-footer-info__text">사업자 등록번호 : 303-81-09535</p>
-                    <p class="site-footer-info__text">비알코리아(주) 대표이사 도세호</p>
-                    <address class="site-footer-info__text">서울특별시 서초구 남부순환로 2620(양재동 11-149번지)</address>
-                    <p class="site-footer-info__text">TEL : <a href="tel:080-555-3131" class="site-footer-info__link">080-555-3131</a></p>
-                    <p class="site-footer-info__text">개인정보관리책임자 : 조성희/실장</p>
-                    <p class="site-footer-info__text">Copyright &copy; 2023 BRKOREA Company. All Rights Reserved.</p>
-                </div>
-            </div>
-
-            <div class="site-footer__box">
-                <nav class="site-footer-menu"></nav>
-            </div>
-        </div>
-        <div class="site-footer__content site-footer__content--space-between">
-            <div class="site-footer__box">
-                <nav class="site-footer-relation">
-                    <ul class="site-footer-relation__list">
-                        <li class="site-footer-relation__item">
-                            <a href="https://www.happypointcard.com/page/main/index.spc" target="_blank" class="site-footer-relation__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/footer_logo01.png" alt="Happy Point" class="site-footer-relation__image">
-                            </a>
-                        </li>
-                        <li class="site-footer-relation__item">
-                            <a href="https://market-web.happypointcard.com/" target="_blank" class="site-footer-relation__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/footer_logo02.png" alt="Happy Market" class="site-footer-relation__image">
-                            </a>
-                        </li>
-                        <li class="site-footer-relation__item">
-                            <a href="https://www.spc.co.kr/foundation/csr" target="_blank" class="site-footer-relation__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/footer_logo03.png" alt="SPC그룹 사회공헌활동 SPC 행복한 이야기" class="site-footer-relation__image">
-                            </a>
-                        </li>
-                        <li class="site-footer-relation__item">
-                            <a href="https://knqa.ksa.or.kr/knqa/2276/subview.do" target="_blank" class="site-footer-relation__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/footer_logo04.png" alt="국가품질상 - KSA 한국표준협회" class="site-footer-relation__image">
-                            </a>
-                        </li>
-                        <li class="site-footer-relation__item site">
-                            <a href="https://www.kca.go.kr/ccm/" target="_blank" class="site-footer-relation__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/footer_logo05.png" alt="소비자중심경영 인증제도" class="site-footer-relation__image">
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="site-footer__box">
-                <nav class="site-footer-sns">
-                    <ul class="site-footer-sns__list">
-                        <li class="site-footer-sns__item">
-                            <a href="https://bra-brus.baskinrobbins.co.kr/web/share" target="_blank" class="site-footer-sns__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/btn_app.png" alt="baskinApp">
-                            </a>
-                        </li>
-                        <li class="site-footer-sns__item">
-                            <a href="https://www.instagram.com/baskinrobbinskorea/" target="_blank" class="site-footer-sns__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/btn_instagram.png" alt="Instagram">
-                            </a>
-                        </li>
-                        <li class="site-footer-sns__item">
-                            <a href="https://www.youtube.com/channel/UCdUlCaxi7gx9Q-WDVDe30YA" target="_blank" class="site-footer-sns__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/btn_youtube.png" alt="Youtube">
-                            </a>
-                        </li>
-                        <li class="site-footer-sns__item">
-                            <a href="https://www.facebook.com/baskinrobbinskr/?locale=ko_KR" target="_blank" class="site-footer-sns__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/btn_facebook.png" alt="Facebook">
-                            </a>
-                        </li>
-                        <li class="site-footer-sns__item">
-                            <a href="https://www.brmagazine.co.kr/" target="_blank" class="site-footer-sns__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/common/btn_magazine.png" alt="brmagazine">
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <div class="site-footer-family-site">
-                    <button type="button" class="site-footer-family-site__button" data-bs-toggle="dropdown">
-                        <span class="site-footer-family-site__text">FAMILY SITE</span>
-                    </button>
-
-                    <ul class="site-footer-family-site__list dropdown-menu">
-                        <li class="site-footer-family-site__item">
-                            <a href="http://www.spc.co.kr/" target="_blank" class="site-footer-family-site__link">SPC그룹사이트</a>
-                        </li>
-                        <li class="site-footer-family-site__item">
-                            <a href="http://www.spcmagazine.com/" target="_blank" class="site-footer-family-site__link">SPC MAGAZINE</a>
-                        </li>
-                        <li class="site-footer-family-site__item">
-                            <a href="http://www.happypointcard.com/" target="_blank" class="site-footer-family-site__link">해피포인트카드</a>
-                        </li>
-                        <li class="site-footer-family-site__item">
-                            <a href="http://www.caffe-pascucci.co.kr/" target="_blank" class="site-footer-family-site__link">파스쿠찌</a>
-                        </li>
-                        <li class="site-footer-family-site__item">
-                            <a href="http://www.spcsamlip.co.kr/" target="_blank" class="site-footer-family-site__link">삼립</a>
-                        </li>
-                        <li class="site-footer-family-site__item">
-                            <a href="http://www.paris.co.kr/" target="_blank" class="site-footer-family-site__link">파리바게뜨</a>
-                        </li>
-                        <li class="site-footer-family-site__item">
-                            <a href="http://www.dunkindonuts.co.kr/" target="_blank" class="site-footer-family-site__link">던킨</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+<jsp:include page="/views/layout/footer.jsp" />
 </body>
-
-<!-- Mirrored from www.baskinrobbins.co.kr/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 00:52:06 GMT -->
 </html>

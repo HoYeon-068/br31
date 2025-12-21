@@ -30,14 +30,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
-
-<script type="text/javascript">
-    if(!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "1244aec76d3dcc0";
-    if(window.wcs) {
-        wcs_do();
-    }
-</script>
+</head>
 
 
 <body id="baskinrobbins-brapp" class="baskinrobbins-brapp">

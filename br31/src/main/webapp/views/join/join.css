@@ -1,0 +1,314 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'YeogiOttaeJalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+.lab { /* 아래에 lab 또 있음 */
+	font-family: 'YeogiOttaeJalnan';
+}
+
+.page-title{
+  width: 100%;
+  display: flex;
+  justify-content: center;  /* 가로 중앙 */
+  padding-top: 130px;
+  
+}
+
+.title{
+  font-family: 'YeogiOttaeJalnan';
+  font-size: 85px;
+  color: #F986BD;
+  margin: 60px 0 30px;
+  text-align: center;
+}
+
+/* ===== 기본 ===== */
+*{ box-sizing: border-box; }
+body{
+  
+  margin: 0;
+  background: #fff;
+  color: #222;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+}
+
+/* ===== 전체 컨테이너 ===== */
+.element-light{
+  width: 100%;
+  max-width: 980px;
+  background: #fff;
+  padding-bottom: 60px;
+}
+
+
+
+/* ===== 메인 폼 영역 ===== */
+.frame{
+  width: 760px;
+  margin: 20px auto 0;
+}
+
+/* 상단 라인 + 필수문구 */
+.topline{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);   /* ⭐ 가운데 기준 */
+  width: calc(100% + 140px);  
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 2px solid #f986bd;
+  padding: 8px 0 10px;
+  margin-bottom: 18px;
+}
+.req{ font-size: 12px; color:#666; }
+.req b{ color:#f986bd; }
+
+/* ===== 폼 그리드 (라벨 120px + 입력 1fr) ===== */
+.join-form{
+  display: grid;
+  gap: 14px;
+}
+.row{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  column-gap: 22px;
+}
+.lab{
+  font-size: 18px;
+  font-weight: 700;
+  color:#222;
+}
+.ctrl{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* input/select 기본 */
+.ctrl input,
+.ctrl select{
+  height: 42px;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 13px;
+  outline: none;
+  background: #fff;
+}
+.ctrl input{ width: 100%; }
+.ctrl select{ width: 160px; }
+
+/* 이메일 */
+.ctrl.email input{ width: 220px; }
+.ctrl.email .at{ color:#999; font-size: 14px; }
+
+/* 휴대폰 */
+.ctrl.phone input{ flex: 1; }
+.subbtn{
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  background:#fff;
+  color:#bbb;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* 성별 */
+.ctrl.radios{ 
+	gap: 18px; 
+	 flex-direction: row; 	
+}
+.ctrl.radios label{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color:#444;
+  white-space: nowrap;  /* 줄바꿈 방지 */
+}
+
+/* 생년월일 */
+.ctrl.birth{ gap: 8px; }
+.ctrl.birth input{
+  width: 110px;
+  text-align: center;
+}
+.ctrl.birth span{ color:#bbb; }
+
+/* ===== 약관 ===== */
+.divider{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);   /* ⭐ 가운데 기준 */
+  width: calc(100% + 140px);  	
+  border-top: 2px solid #f986bd;
+  margin: 22px 0 18px;
+}
+
+.terms-wrap{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  column-gap: 22px;
+}
+.terms-title{
+  font-size: 16px;
+  font-weight: 800;
+  color:#222;
+  padding-top: 6px;
+  font-family: "YeogiOttaeJalnan";
+}
+.terms-box{
+  font-size: 12px;
+  color:#444;
+}
+.trow{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+}
+.t-desc{
+  margin: 2px 0 10px;
+  font-size: 11px;
+  color:#888;
+}
+.tlist .trow{
+  justify-content: space-between;
+}
+.tlist .trow span{
+  flex: 1;
+  margin-left: 6px;
+}
+.tlink{
+  color:#f986bd;
+  font-size: 11px;
+  text-decoration: none;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+.t-sub{
+  display: flex;
+  gap: 18px;
+  padding: 6px 0 6px 22px;
+}
+.t-sub label{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color:#444;
+}
+
+/* ===== 가입 버튼 ===== */
+.cta{
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+  margin-bottom: 100px;
+}
+.joinbtn{
+  width: 260px;
+  height: 46px;
+  border: none;
+  border-radius: 2px;
+  background: #f986bd;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 라디오 */
+.ctrl.radios{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.ctrl.radios input[type="radio"]{
+  transform: scale(1.0);
+  transform-origin: left center;
+} 
+
+/*헤더*/
+.site-header {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    width: 100%;
+    min-width: var(--size-pc);
+    height: 90px;
+    background: #f986bd;
+}
+
+.site-header-logo__link{
+	display: block;
+    width: 52px;
+    height: 60px;
+    margin-left: 20px;
+
+}
+
+/* 회원가입 완료 */
+.jc-title{
+  margin-top: 80px;      /* 헤더 아래 간격 */
+  margin-bottom: 40px;
+}
+
+/* 완료 페이지 텍스트 */
+.jc-content{
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+  line-height: 1.6;
+  margin-bottom: 26px;
+}
+
+/* 버튼 영역: 가운데 정렬 + 간격 */
+.jc-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 버튼 공통 */
+.jc-btn button{
+  width: 120px;
+  height: 36px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 왼쪽 버튼(회색) */
+.jc-mainbtn{
+  background: #d9d9d9;
+  border: 1px solid #d9d9d9;
+  color: #fff;
+}
+
+/* 오른쪽 버튼(핑크) */
+.jc-loginbtn{
+  background: #f986bd;
+  border: 1px solid #f986bd;
+  color: #fff;
+}
+
+.jc-btn{
+	margin-bottom: 150px;
+	
+}

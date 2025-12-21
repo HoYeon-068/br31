@@ -27,69 +27,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
 
-<script type="module" src="https://bks0c7yrb0.execute-api.ap-northeast-2.amazonaws.com/v1/api/fontstream/djs/?sid=gAAAAABk3G1_eyGB8FmZaMXgewjzvKQwe0I-4Kj9Xj-dKpNnUlp_rsk4w6Z_0UeYWyfihX4Dle9eu9HBqxj-2haSIR5ke8aarBIUuDqDVOLuImctKnYplmDTPSV-Bfn2TzQR4jSr7yknqw7gbTlj_xE3x62PMBY9Y3jC5rjtwuoBrWb2FaAY21Z2idAGvnk9xlfgI9CdciJwW6IGsijBsI592KNSqOLc9CQ4zV1Jziva1IN_NNxkzeG_pkU7_0TogufO4qTNTYRr" charset="utf-8"></script>
 
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
-<script type="text/javascript" src="../../wcs.naver.net/wcslog.js"></script>
-<script type="text/javascript">
-    if(!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "1244aec76d3dcc0";
-    if(window.wcs) {
-        wcs_do();
-    }
-</script>
-
-<!-- Meta Pixel Code -->
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    '../../connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '702697714849597');
-    fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=702697714849597&amp;ev=PageView&amp;noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-<!-- kakao Pixel Code -->
-<script type="text/javascript" charset="UTF-8" src="../../t1.daumcdn.net/kas/static/kp.js"></script>
-<script type="text/javascript">
-    kakaoPixel('3252020519874834867').pageView();
-</script>
-<!-- End kakao Pixel Code -->
-
-<!-- Danggeun Market Code -->
-<script src="../../karrot-pixel.business.daangn.com/0.1/karrot-pixel.umd.js"></script>
-<script>
-    window.karrotPixel.init('1700024703697300001');
-    window.karrotPixel.track('ViewPage');
-</script>
-<!-- End Danggeun Market Code -->
-
-<!-- Twitter conversion tracking base code -->
-<script>
-    !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
-    },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='../../static.ads-twitter.com/uwt.js',
-    a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
-    twq('config','ogfh2');
-</script>
-<!-- End Twitter conversion tracking base code -->
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KX964ZZL');</script>
-<!-- End Google Tag Manager --></head>
+</head>
 <body id="baskinrobbins-menu-view" class="baskinrobbins-menu-view">
 
 <div class="skipnav"><a href="#content">본문 영역으로 바로가기</a></div>

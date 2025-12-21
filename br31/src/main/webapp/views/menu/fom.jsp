@@ -131,14 +131,14 @@
 
                     <ul class="menu-fom-menu">
                                             <li class="menu-fom-menu__item">
-                            <img src="${pageContext.request.contextPath}/upload/product/composition/22ba5bb699cbb5752f1e1de5cae20bae.png" class="menu-fom-menu__image" alt="버터">
+                            <img src="${pageContext.request.contextPath}/resources/images/upload/product/composition/22ba5bb699cbb5752f1e1de5cae20bae.png" class="menu-fom-menu__image" alt="버터">
                             <p class="menu-fom-menu__text">버터</p>
                         </li>
                                         </ul>
                 </div>
 
                 <div class="menu-fom__content">
-                    <img src="${pageContext.request.contextPath}/upload/product/monthBest/4571219865f969b7ed5a2693f71addf5.png" alt="프랑스 이즈니 생 메르 버터의 풍미가 가득한 버터 아이스크림과 달콤한 프랄린 슈가 리본의 만남" class="menu-fom__image">
+                    <img src="${pageContext.request.contextPath}/resources/images/upload/product/monthBest/4571219865f969b7ed5a2693f71addf5.png" alt="프랑스 이즈니 생 메르 버터의 풍미가 가득한 버터 아이스크림과 달콤한 프랄린 슈가 리본의 만남" class="menu-fom__image">
                 </div>
 
                                 <br><br><br><br>
@@ -165,7 +165,7 @@
                                                 <div class="swiper-slide">
                                 <a href="view599c.html?seq=834" class="menu-fom-new__link">
                                     <div class="menu-fom-new__frame">
-                                        <img src="${pageContext.request.contextPath}/upload/product/monthBest/newProduct/9bca3b5e9cc74fa0f98e3f154a7d091d.png" class="menu-fom-new__image" alt="">
+                                        <img src="${pageContext.request.contextPath}/resources/images/upload/product/monthBest/newProduct/9bca3b5e9cc74fa0f98e3f154a7d091d.png" class="menu-fom-new__image" alt="">
                                     </div>
                                     <h5 class="menu-fom-new__name">골든 프랄린 버터</h5>
 <!--                                    <p class="menu-fom-new__text">-->

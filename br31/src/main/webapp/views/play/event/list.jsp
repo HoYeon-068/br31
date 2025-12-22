@@ -18,7 +18,7 @@
     <meta name="keywords" content="baskinrobbins, br31, 배스킨라빈스, 배라, 베라">
     <meta name="author" content="배스킨라빈스">
     <meta property="og:site_name" content="배스킨라빈스">
-    <meta property="og:url" content="${pageContext.request.contextPath}/index.html">
+    <meta property="og:url" content="${pageContext.request.contextPath}/index.jsp">
     <meta property="og:title" content="[배스킨라빈스] 이벤트">
     <meta property="og:description" content="배스킨라빈스의 이벤트 메뉴입니다.">
     <meta property="og:image" content="${pageContext.request.contextPath}/resources/images/common/img_share.png">

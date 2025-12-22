@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <head>
-<!-- jquery 적용 코드 -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,65 +37,25 @@
 
 <jsp:include page="/views/layout/header.jsp" />
 
-  <div class="page-title">
-	  <div class="title">아이디 찾기</div>
+  <div class="page-title jc-title">
+	  <div class="title">비밀번호 재발급 완료</div>
+  </div>
+  	
+  
+  <div class="jc-content">
+  	님의 임시 비밀번호는 <br>
+  	입니다 <br>
+  	로그인 후 비밀번호를 변경하세요
   </div>
   
-    <div class="find-tabs">
-    <!--  data-사용자 지정="" ->jquery에서 data("사용자 지정")으로 사용 가능  -->
-    <button type="button" class="tab-btn active" data-target="phoneForm">휴대폰 번호로 찾기</button>
-    <button type="button" class="tab-btn" data-target="emailForm">이메일로 찾기</button>
+  <div class="jc-btn">
+  	 <button type="button" class="jc-mainbtn">메인으로 이동</button>
+  	 <button type="button" class="jc-loginbtn">로그인</button>
   </div>
-
-  <div class="fi-form">
-  <!-- 휴대폰번호로 찾기 -->
-  <form id="phoneForm" class="find-form" action="">
-    <div class="field">
-      <label class="lab">이름</label>
-      <input type="text" placeholder="이름을 입력해 주세요" />
-    </div>
-
-    <div class="field">
-      <label class="lab">휴대폰 번호</label>
-      <input type="text" placeholder="휴대폰 번호를 입력해 주세요" />
-    </div>
-
-    <button type="submit" class="check-btn">확인</button>
-  </form>
-
-  
-  <!-- 이메일로 찾기 -->
-  <form id="emailForm" class="find-form hidden" action="">
-    <div class="field">
-      <label class="lab">이름</label>
-      <input type="text" placeholder="이름을 입력해 주세요" />
-    </div>
-
-    <div class="field">
-      <label class="lab">이메일</label>
-      <input type="text" placeholder="이메일을 입력해 주세요" />
-    </div>
-
-    <button type="submit" class="check-btn">확인</button>
-  </form>
-  </div>
-  
-  <jsp:include page="/views/layout/footer.jsp" />
-  
-  <script>
-  const tabBtns = $(".tab-btn");
-  const forms = $(".find-form");
-  
-  tabBtns.on("click", function(){
-	tabBtns.removeClass("active");
-	$(this).addClass("active");
 	
-	forms.addClass("hidden");
 	
-	const target = $(this).data("target");
-	$("#"+target).removeClass("hidden"); /* #폼아이디 가져옴 */
-  })
-  </script>
-  console.log($)
-  
-  </body>
+</body>
+
+
+
+<jsp:include page="/views/layout/footer.jsp" />

@@ -36,44 +36,46 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css" />
 </head>
 
-
-
 <body>
 
+<!--   -->
 <jsp:include page="/views/layout/header.jsp" />
+<div class="page-title">
+ <div class="title">프로필 수정</div>
+</div>
 
-  <div class="page-title">
-	  <div class="title">회원가입</div>
-  </div>
 
 
 <div class="frame">
-  <!-- 안내 -->
-  <div class="topline">
-    <span class="req"><b>*</b> 모두 필수 입력</span>
-  </div>
 
-  <!-- 폼 -->
-  <form class="join-form">
+<div class="profile-line">
+  <img class="profile-thumb"
+       src="${pageContext.request.contextPath}/resources/images/menu/icon_size_c_5.jpg"
+       alt="profile">
+
+  <label class="profile-change" for="profileFile">프로필 사진 변경</label>
+  <input type="file" id="profileFile" name="profileFile" accept="image/*" hidden >
+</div>
+
+<form class="join-form">
     <div class="row">
       <div class="lab">아이디</div>
       <div class="ctrl">
-        <input type="text" placeholder="아이디를 입력해주세요" />
-        <button type="button" class="subbtn">중복확인</button>
+        <input type="text" placeholder="" disabled="disabled"/>
       </div>
     </div>
 
     <div class="row">
       <div class="lab">비밀번호</div>
       <div class="ctrl">
-        <input type="password" placeholder="비밀번호를 입력해주세요" />
+        <input type="password" placeholder="기존 비밀번호" />
       </div>
     </div>
 
     <div class="row">
-      <div class="lab">비밀번호확인</div>
+      <div class="lab">새 비밀번호</div>
       <div class="ctrl">
-        <input type="password" placeholder="비밀번호를 한번 더 입력해주세요" />
+        <input type="password" placeholder="새 비밀번호를 입력해주세요" />
       </div>
     </div>
 
@@ -95,7 +97,7 @@
     <div class="row">
       <div class="lab">이메일</div>
       <div class="ctrl email">
-        <input type="text" placeholder="예: scoop" />
+        <input type="text" placeholder="" />
         <span class="at">@</span>
         
         <%
@@ -123,116 +125,18 @@
     <div class="row">
       <div class="lab">휴대폰</div>
       <div class="ctrl phone">
-        <input type="text" placeholder="숫자만 입력해주세요." />
+        <input type="text" placeholder="" />
         <button type="button" class="subbtn">인증번호 받기</button>
       </div>
     </div>
 
-    <div class="row">
-      <div class="lab">성별</div>
-      <div class="ctrl radios">
-        <label><input type="radio" name="gender" /> 남자</label>
-        <label><input type="radio" name="gender" /> 여자</label>
-        <label><input type="radio" name="gender" checked /> 선택안함</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="lab">생년월일</div>
-      <div class="ctrl birth">
-		<select name="birthY" >
-			<option value="">YYYY</option>		
-		<%
-			int thisYear = LocalDate.now().getYear();
-			for(int i = thisYear; i>= 1900; i--){
-		%>				
-			<option value="<%= i%>"><%= i%></option>
-		<%
-			}
-		%>
-		</select>
-		<select name="birthM"  >
-			<option value="">MM</option>		
-		<%
-			for(int i = 1; i<=12; i++){
-		%>				
-			<option value="<%= i%>"><%= i%></option>
-		<%
-			}
-		%>
-		</select>
-		<select name="birthD" >
-			<option value="">DD</option>		
-		<%
-			for(int i = 1; i<=31; i++){
-		%>				
-			<option value="<%= i%>"><%= i%></option>
-		<%
-			}
-		%>
-		</select>
-      </div>
-    </div>
   </form>
+</div> 
 
-  <!-- 약관 구분선 -->
-  <div class="divider"></div>
-
-  <!-- 약관 -->
-  <div class="terms-wrap">
-    <div class="terms-title">이용약관동의</div>
-
-    <div class="terms-box">
-      <label class="trow all">
-        <input type="checkbox" />
-        <span>전체 동의합니다.</span>
-      </label>
-      <p class="t-desc">
-        선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스 이용은 가능합니다.
-      </p>
-
-      <div class="tlist">
-        <label class="trow">
-          <input type="checkbox" />
-          <span>이용약관 동의 (필수)</span>
-          <a href="#" class="tlink">약관보기 &gt;</a>
-        </label>
-
-        <label class="trow">
-          <input type="checkbox" />
-          <span>개인정보 수집·이용 동의 (필수)</span>
-          <a href="#" class="tlink">약관보기 &gt;</a>
-        </label>
-
-        <label class="trow">
-          <input type="checkbox" />
-          <span>마케팅 광고 활용을 위한 수집 및 이용 동의 (선택)</span>
-          <a href="#" class="tlink">약관보기 &gt;</a>
-        </label>
-
-        <label class="trow">
-          <input type="checkbox" />
-          <span>이벤트 등 프로모션 정보 수신 동의 (선택)</span>
-        </label>
-
-        <div class="t-sub">
-          <label><input type="checkbox" /> SMS</label>
-          <label><input type="checkbox" /> 이메일</label>
-        </div>
-
-        <label class="trow">
-          <input type="checkbox" />
-          <span>본인은 만 14세 이상입니다. (필수)</span>
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <!-- 가입 버튼 -->
   <div class="cta">
-    <button type="button" class="joinbtn">가입하기</button>
+    <button type="button" class="joinbtn">저장</button>
+    <!-- 마이페이지로 이동 -->
   </div>
-</div>
 
-  </body>
-<jsp:include page="/views/layout/footer.jsp" />
+</body>
+</html>

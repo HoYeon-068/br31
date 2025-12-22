@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <head>
-<link rel="stylesheet" href="join.css" />
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -28,12 +29,15 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css" />
 </head>
 
-<jsp:include page="/views/layout/header.jsp" />
 
 
 <body>
+
+<jsp:include page="/views/layout/header.jsp" />
+
   <div class="page-title jc-title">
 	  <div class="title">회원가입 완료</div>
   </div>

@@ -91,7 +91,7 @@
         <nav class="page-tab">
             <ul class="page-tab__list">
                 <li class="page-tab__item page-tab__item--active">
-                    <a href="list.php" class="page-tab__link">
+                    <a href="list.jsp" class="page-tab__link">
                         <span class="page-tab__text">전체</span>
                     </a>
                 </li>

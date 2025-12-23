@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import mvc.domain.menu.MenuListDTO;
 import mvc.domain.menu.ProductDTO;
 
 public class ProductDAOImpl implements ProductDAO{
@@ -37,9 +38,10 @@ public class ProductDAOImpl implements ProductDAO{
 	
 
 	@Override
-	public List<ProductDTO> select() throws SQLException {
+	public List<ProductDTO> select(int category_num) throws SQLException {
 		String sql = "SELECT * \r\n"
-				+ "FROM \"products\"";
+				+ "FROM \"products\"\r\n"
+				+" WHERE \"category_id\"=?";
 
 		ArrayList<ProductDTO> list = null;
 
@@ -50,6 +52,7 @@ public class ProductDAOImpl implements ProductDAO{
 
 		try {			
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category_num);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -104,6 +107,11 @@ public class ProductDAOImpl implements ProductDAO{
 		} 
 
 		return list;
+	}
+	@Override
+	public List<MenuListDTO> selectList(int category_num) throws SQLException {
+		
+		return null;
 	}
 	
 }

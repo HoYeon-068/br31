@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.util.ConnectionProvider;
 
 import mvc.command.CommandHandler;
+import mvc.domain.menu.MenuListDTO;
 import mvc.domain.menu.ProductDTO;
 import mvc.persistence.menu.ProductDAO;
 import mvc.persistence.menu.ProductDAOImpl;
@@ -21,13 +22,25 @@ public class ListHandler implements CommandHandler{
 		
 		Connection conn = ConnectionProvider.getConnection();
 		ProductDAO dao = new ProductDAOImpl(conn);
-
-		java.util.List<ProductDTO> list = null;
+		
+		
+		int category_num=request.getParameter("category_num")!=null?
+				Integer.parseInt(request.getParameter("category_num")):1;
+		
+		
+		java.util.List<MenuListDTO> list = null;
 		
 		
 		
 		try {
-			list = dao.select();
+			//list = dao.select(1);
+			
+			/*
+			 * for (int i = 0; i < list.size(); i++) {
+			 * 
+			 * System.out.println(list.get(i).getProduct_name()); }
+			 */
+			
 			System.out.println("성공");
 		} catch (Exception e) {
 			System.out.println("> menu ListHandler.process() Exception...");
@@ -35,7 +48,7 @@ public class ListHandler implements CommandHandler{
 		}finally {
 			conn.close();
 		}
-		
+		request.setAttribute("list", list);
 		return "/views/menu/list.jsp";
 	}
 

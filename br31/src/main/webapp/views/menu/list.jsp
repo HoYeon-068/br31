@@ -111,7 +111,42 @@
         <div>
             <div class="menu-list">
                 <ul class="menu-list__list">
-						<!-- 반복 -->
+                
+                <%--              <li class="menu-list__item menu-list__item--fom menu-list__item--icecream" style="--menu-list-color: #F2C06E">
+                        <a href="view599c.html?seq=834" class="menu-list__link">
+                            <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-list__image">
+                            <span class="menu-list__hash" style="color:#5f3728">
+                            #버터아이스크림 #프랄린슈가                             </span>
+                        </a>
+                        <strong class="menu-list__title">골든 프랄린 버터</strong>
+                    </li> --%>
+                
+                
+                <c:forEach items="${list}" var="vo">
+                	<li class="menu-list__item menu-list__item--fom menu-list__item--icecream" style="--menu-list-color: ${vo.bg_color}">
+                        <a href="${pageContext.request.contextPath}/menu/view.do?seq=${vo.products_id}" class="menu-list__link">
+                            <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-list__image">
+                            <span class="menu-list__hash" style="color:#5f3728">
+                            #버터아이스크림 #프랄린슈가                             </span>
+                        </a>
+                        <strong class="menu-list__title">${vo.product_name}</strong>
+                    </li>
+                </c:forEach>
+                
+                
+                
+					
+					<%--              <li class="menu-list__item menu-list__item--fom menu-list__item--icecream" style="--menu-list-color: #F2C06E">
+                        <a href="view599c.html?seq=834" class="menu-list__link">
+                            <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-list__image">
+                            <span class="menu-list__hash" style="color:#5f3728">
+                            #버터아이스크림 #프랄린슈가                             </span>
+                        </a>
+                        <strong class="menu-list__title">골든 프랄린 버터</strong>
+                    </li> --%>
+					
+					
+					<%-- 
                                     <li class="menu-list__item menu-list__item--fom menu-list__item--icecream" style="--menu-list-color: #F2C06E">
                         <a href="view599c.html?seq=834" class="menu-list__link">
                             <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-list__image">
@@ -120,7 +155,11 @@
                         </a>
                         <strong class="menu-list__title">골든 프랄린 버터</strong>
                     </li>
-					<!-- 반복 -->
+					
+					
+					
+					
+					
                                     <li class="menu-list__item menu-list__item--new menu-list__item--icecream" style="--menu-list-color: #623924">
                         <a href="view9dc3.html?seq=840" class="menu-list__link">
                             <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/d1c5862f5649eb3de61e7cc150999d18.png" alt="초코포키해♥" class="menu-list__image">
@@ -399,7 +438,7 @@
                         </a>
 
                         <strong class="menu-list__title">바닐라</strong>
-                    </li>
+                    </li> --%>
                                 </ul>
             </div>
         </div>

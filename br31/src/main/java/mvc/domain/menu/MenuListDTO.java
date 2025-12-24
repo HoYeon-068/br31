@@ -13,10 +13,9 @@ import lombok.NoArgsConstructor;
 public class MenuListDTO {
 	private int products_id;
 	private String product_name;
-	private String tag;
-	private String english_name;
+	private String tags;
 	private String sub_title;
 	private String img_path;
 	private String bg_color;
-	
+	private String span_color;
 }

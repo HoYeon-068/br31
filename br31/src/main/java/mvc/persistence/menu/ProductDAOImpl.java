@@ -17,6 +17,7 @@ public class ProductDAOImpl implements ProductDAO{
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	private ProductDTO vo = null;
+	private MenuListDTO menuListVo=null;
 
 	// 1. 생성자 DI 
 	public ProductDAOImpl() {
@@ -109,9 +110,111 @@ public class ProductDAOImpl implements ProductDAO{
 		return list;
 	}
 	@Override
-	public List<MenuListDTO> selectList(int category_num) throws SQLException {
+	public List<MenuListDTO> selectList(String category) throws SQLException {
+		String condition = "";
+
+		if ("B".equals(category)) {
+		    condition = " OR p.\"category_id\" = ? ";
+		}
 		
-		return null;
+		System.out.println(category);
+		
+		String sql =
+			    "SELECT " +
+			    "    p.\"products_id\", " +
+			    "    p.\"product_name\", " +
+			    "    p.\"sub_title\", " +
+			    "    p.\"img_path\", " +
+			    "    p.\"bg_color\", " +
+			    "    p.\"span_color\", " +
+			    "    LISTAGG('#' || pt.\"tag\", ' ') " +
+			    "        WITHIN GROUP (ORDER BY pt.\"tag\") AS \"tags\" " +
+			    "FROM \"products\" p " +
+			    "LEFT JOIN \"product_tag\" pt " +
+			    "    ON p.\"products_id\" = pt.\"products_id\" " +
+			    "WHERE p.\"category_id\" = ? " +
+			    condition +
+			    "GROUP BY " +
+			    "    p.\"products_id\", " +
+			    "    p.\"product_name\", " +
+			    "    p.\"sub_title\", " +
+			    "    p.\"img_path\", " +
+			    "    p.\"bg_color\", " +
+			    "    p.\"span_color\"";
+
+		ArrayList<MenuListDTO> list = null;
+
+		int products_id;
+		String product_name,sub_title,img_path,bg_color,tags,span_color; 
+		
+		
+		int category_id=0;
+		
+		switch (category) {
+		case "A":
+			category_id=1;
+			break;
+		case "B":
+			category_id=2;
+			break;
+		case "C":
+			category_id=4;
+			break;
+
+		default:
+			System.out.println("카테고리 switch문 오류");
+			break;
+		}
+		
+		try {			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category_id);
+			if (!condition.equals("")) {
+				pstmt.setInt(2, 3);
+			}
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				list = new ArrayList<MenuListDTO>();
+				do {
+					// seq, title, writer, email, writedate, readed
+					products_id = rs.getInt("products_id");
+					product_name = rs.getString("product_name");
+					sub_title = rs.getString("sub_title");
+					img_path = rs.getString("img_path");
+					bg_color = rs.getString("bg_color");
+					tags = rs.getString("tags");
+					span_color=rs.getString("span_color");
+
+					menuListVo = new MenuListDTO().builder()
+							.products_id(products_id)
+							.product_name(product_name)
+							.sub_title(sub_title)
+							.img_path(img_path)
+							.bg_color(bg_color)
+							.tags(tags)
+							.span_color(span_color)
+							.build();
+
+					list.add(menuListVo);
+
+				} while (rs.next());
+
+			}
+
+		} catch (SQLException e) { 
+			System.out.println("오류 ProductDAO");
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) { 
+				e.printStackTrace();
+			}
+		} 
+
+		return list;
 	}
 	
 }

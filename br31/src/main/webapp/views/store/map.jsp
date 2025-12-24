@@ -102,7 +102,7 @@
 
         <div class="store-map__container">
             <div class="store-map__content">
-                <form action="https://www.baskinrobbins.co.kr/api/store-list.php" class="store-map-form" method="get">
+                <form action="${pageContext.request.contextPath}/views/api/store-list.jsp" class="store-map-form" method="get">
                     <fieldset class="store-map-form__fieldset">
                         <legend>매장 찾기</legend>
 

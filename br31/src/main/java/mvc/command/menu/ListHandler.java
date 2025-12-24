@@ -24,8 +24,8 @@ public class ListHandler implements CommandHandler{
 		ProductDAO dao = new ProductDAOImpl(conn);
 		
 		
-		int category_num=request.getParameter("category_num")!=null?
-				Integer.parseInt(request.getParameter("category_num")):1;
+		String category=request.getParameter("category")!=null?
+				 request.getParameter("category"):"A";
 		
 		
 		java.util.List<MenuListDTO> list = null;
@@ -33,7 +33,7 @@ public class ListHandler implements CommandHandler{
 		
 		
 		try {
-			//list = dao.select(1);
+			list = dao.selectList(category);
 			
 			/*
 			 * for (int i = 0; i < list.size(); i++) {
@@ -41,7 +41,6 @@ public class ListHandler implements CommandHandler{
 			 * System.out.println(list.get(i).getProduct_name()); }
 			 */
 			
-			System.out.println("성공");
 		} catch (Exception e) {
 			System.out.println("> menu ListHandler.process() Exception...");
 			e.printStackTrace();

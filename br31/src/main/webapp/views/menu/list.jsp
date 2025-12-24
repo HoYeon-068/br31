@@ -123,11 +123,11 @@
                 
                 
                 <c:forEach items="${list}" var="vo">
-                	<li class="menu-list__item menu-list__item--fom menu-list__item--icecream" style="--menu-list-color: ${vo.bg_color}">
+                	<li class="menu-list__item menu-list__item--icecream" style="--menu-list-color: ${vo.bg_color}">
                         <a href="${pageContext.request.contextPath}/menu/view.do?seq=${vo.products_id}" class="menu-list__link">
-                            <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-list__image">
-                            <span class="menu-list__hash" style="color:#5f3728">
-                            #버터아이스크림 #프랄린슈가                             </span>
+                            <img src="${pageContext.request.contextPath}${vo.img_path}" alt="골든 프랄린 버터" class="menu-list__image">
+                            <span class="menu-list__hash" style="color:${vo.span_color}">
+                            ${vo.tags}                         </span>
                         </a>
                         <strong class="menu-list__title">${vo.product_name}</strong>
                     </li>

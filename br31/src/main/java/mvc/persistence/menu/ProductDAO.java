@@ -8,7 +8,7 @@ import mvc.domain.menu.ProductDTO;
 
 public interface ProductDAO {
 	List<ProductDTO> select(int category_num) throws SQLException;
-	List<MenuListDTO> selectList(int category_num) throws SQLException;
+	List<MenuListDTO> selectList(String category) throws SQLException;
 	
 	
 }

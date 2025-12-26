@@ -12742,4 +12742,11 @@ ul.recipe-view-order__list+.recipe-view-order__name,ol.recipe-view-order__list+.
   font-weight:600;
   font-size:30px
 }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 

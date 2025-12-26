@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import mvc.domain.menu.IceNutritionDTO;
 import mvc.domain.menu.MenuListDTO;
+import mvc.domain.menu.MenuViewDTO;
 import mvc.domain.menu.ProductDTO;
 
 public class ProductDAOImpl implements ProductDAO{
@@ -18,7 +20,8 @@ public class ProductDAOImpl implements ProductDAO{
 	private ResultSet rs = null;
 	private ProductDTO vo = null;
 	private MenuListDTO menuListVo=null;
-
+	private MenuViewDTO menuViewDTO=null;
+	
 	// 1. 생성자 DI 
 	public ProductDAOImpl() {
 		super(); 
@@ -39,26 +42,26 @@ public class ProductDAOImpl implements ProductDAO{
 	
 
 	@Override
-	public List<ProductDTO> select(int category_num) throws SQLException {
+	public ProductDTO selectOne(int product_num) throws SQLException {
 		String sql = "SELECT * \r\n"
 				+ "FROM \"products\"\r\n"
-				+" WHERE \"category_id\"=?";
+				+" WHERE \"products_id\"=?";
 
-		ArrayList<ProductDTO> list = null;
+		
+		
 
 		int products_id,category_id,price;
 		String product_name, english_name, sub_title,description
-		,product_status,img_path,img_s_path,bg_color,poster_path;
+		,product_status,img_path,bg_color,span_color,poster_path;
 		Date release_date;
 
 		try {			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, category_num);
+			pstmt.setInt(1, product_num);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				list = new ArrayList<ProductDTO>();
-				do {
+					System.out.println("값 있음"+product_num);
 					// seq, title, writer, email, writedate, readed
 					products_id = rs.getInt("products_id");
 					category_id = rs.getInt("category_id");
@@ -69,8 +72,8 @@ public class ProductDAOImpl implements ProductDAO{
 					description = rs.getString("description");
 					product_status = rs.getString("product_status");
 					img_path = rs.getString("img_path");
-					img_s_path = rs.getString("img_s_path");
 					bg_color = rs.getString("bg_color");
+					span_color=rs.getString("span_color");
 					poster_path = rs.getString("poster_path");
 					release_date = rs.getDate("release_date");
 
@@ -84,15 +87,11 @@ public class ProductDAOImpl implements ProductDAO{
 							.description(description)
 							.product_status(product_status)
 							.img_path(img_path)
-							.img_s_path(img_s_path)
 							.bg_color(bg_color)
+							.span_color(bg_color)
 							.poster_path(poster_path)
 							.release_date(release_date)
 							.build();
-
-					list.add(vo);
-
-				} while (rs.next());
 
 			}
 
@@ -107,7 +106,7 @@ public class ProductDAOImpl implements ProductDAO{
 			}
 		} 
 
-		return list;
+		return vo;
 	}
 	@Override
 	public List<MenuListDTO> selectList(String category) throws SQLException {
@@ -160,7 +159,15 @@ public class ProductDAOImpl implements ProductDAO{
 		case "C":
 			category_id=4;
 			break;
-
+		case "D":
+			category_id=5;
+			break;
+		case "E":
+			category_id=6;
+			break;
+		case "F":
+			category_id=7;
+			break;
 		default:
 			System.out.println("카테고리 switch문 오류");
 			break;
@@ -216,5 +223,6 @@ public class ProductDAOImpl implements ProductDAO{
 
 		return list;
 	}
+	
 	
 }

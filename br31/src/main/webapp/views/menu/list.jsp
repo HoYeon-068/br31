@@ -32,7 +32,7 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body id="baskinrobbins-menu" class="baskinrobbins-menu">
 
@@ -50,43 +50,43 @@
                 </div>
             </a>
         </li>
-        <li class="page-menu__item page-menu__item--active">
-            <a href="lista9a4.html?category=A" class="page-menu__link">
+        <li class="page-menu__item ${category=='A'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=A" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">아이스크림</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list22cf.html?category=F" class="page-menu__link">
+        <li class="page-menu__item ${category=='B'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=B" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">프리팩</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list9c26.html?category=B" class="page-menu__link">
+        <li class="page-menu__item ${category=='C'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=C" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">아이스크림케이크</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="listab3a.html?category=E" class="page-menu__link">
+        <li class="page-menu__item ${category=='D'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=D" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">디저트</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list_subcategoryd7a1.html?category=C" class="page-menu__link">
+        <li class="page-menu__item ${category=='E'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=E" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">음료</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list_subcategoryfd8a.html?category=D" class="page-menu__link">
+        <li class="page-menu__item ${category=='F'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=F" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">커피</span>
                 </div>
@@ -99,11 +99,11 @@
             <div class="page-header__container">
                 <div class="page-header__content">
                     <h2 class="page-header__title">
-                        Ice Cream                    </h2>
+                        ${title}                   </h2>
                 </div>
                 <div class="page-header__content">
                     <p class="page-header__text">
-                        한 입에 물면 달콤하게 사르르 녹는 아이스크림.<br/>당신이 어떤 기분이든 그 아이스크림을 따라 당신의 기분은 아마 달콤해졌을 거예요.                    </p>
+                        ${description}</p>
                 </div>
             </div>
         </header>
@@ -447,6 +447,11 @@
 </section>
 
 <jsp:include page="/views/layout/footer.jsp" />
+
+
+<script>
+	$("")
+</script>
 
 </body>
 

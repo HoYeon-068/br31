@@ -51,43 +51,43 @@
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="lista9a4.html?category=A" class="page-menu__link">
+        <li class="page-menu__item ${category=='A'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=A" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">아이스크림</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list22cf.html?category=F" class="page-menu__link">
+        <li class="page-menu__item ${category=='B'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=B" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">프리팩</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list9c26.html?category=B" class="page-menu__link">
+        <li class="page-menu__item ${category=='C'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=C" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">아이스크림케이크</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="listab3a.html?category=E" class="page-menu__link">
+        <li class="page-menu__item ${category=='D'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=D" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">디저트</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item page-menu__item--active">
-            <a href="list_subcategoryd7a1.html?category=C" class="page-menu__link">
+        <li class="page-menu__item ${category=='E'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=E" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">음료</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list_subcategoryfd8a.html?category=D" class="page-menu__link">
+        <li class="page-menu__item ${category=='F'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=F" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">커피</span>
                 </div>
@@ -95,16 +95,16 @@
         </li>
     </ul>
 </nav>
-    <div id="content">
+     <div id="content">
         <header class="page-header">
             <div class="page-header__container">
                 <div class="page-header__content">
                     <h2 class="page-header__title">
-                        Beverage                    </h2>
+                        ${title}                   </h2>
                 </div>
                 <div class="page-header__content">
                     <p class="page-header__text">
-                        짜릿하게 시원한 블라스트부터 아이스크림을 듬뿍넣고 갈아만든 쉐이크까지!<br/>배스킨라빈스만의 특별함을 음료로 만나보세요.                     </p>
+                        ${description}</p>
                 </div>
             </div>
         </header>
@@ -112,17 +112,24 @@
         <div>
             <div class="menu-list">
                 <ul class="menu-list__list">
-
-                                            <li class="menu-list__item  menu-list__item--drink" style="--menu-list-color: #BA905C">
-                            <a href="view_subcategorybb8d.html?seq=59" class="menu-list__link">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/5fb030fdcc70e6077e42b8f0d6766f02.png" alt="버터팝콘쉐이크" class="menu-list__image">
-                                <span class="menu-list__hash" style="color:#ffffff">
-                            #버터팝콘 #쉐이크                             </span>
+				
+				
+				<c:forEach items="${list}" var="vo">
+					 <li class="menu-list__item  menu-list__item--drink" style="--menu-list-color: ${vo.bg_color}">
+                            <a href="${pageContext.request.contextPath}/menu/view.do?seq=${vo.products_id}" class="menu-list__link">
+                                <img src="${pageContext.request.contextPath}${vo.img_path}" alt="버터팝콘쉐이크" class="menu-list__image">
+                                <span class="menu-list__hash" style="color:${vo.span_color}">
+                            ${vo.tags}                              </span>
                             </a>
-                            <strong class="menu-list__title">버터팝콘쉐이크</strong>
-                            <strong class="menu-list__desc"></strong>
+                            <strong class="menu-list__title">${vo.product_name}</strong>
+                            <strong class="menu-list__desc">${vo.sub_title}</strong>
                         </li>
-                                                <li class="menu-list__item  menu-list__item--drink" style="--menu-list-color: #9ca754">
+				</c:forEach>
+				
+               
+                        
+                        
+                          <%--                       <li class="menu-list__item  menu-list__item--drink" style="--menu-list-color: #9ca754">
                             <a href="view_subcategory791a.html?seq=58" class="menu-list__link">
                                 <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/f5b3686f3d7299a42d063f54683ef935.png" alt="말차 쉐이크 2종" class="menu-list__image">
                                 <span class="menu-list__hash" style="color:#ffffff">
@@ -274,7 +281,7 @@
                             </a>
                             <strong class="menu-list__title">딸기 연유 라떼</strong>
                             <strong class="menu-list__desc"></strong>
-                        </li>
+                        </li> --%>
                                         </ul>
             </div>
         </div>

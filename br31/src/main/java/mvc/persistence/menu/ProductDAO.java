@@ -4,11 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import mvc.domain.menu.MenuListDTO;
+import mvc.domain.menu.MenuViewDTO;
 import mvc.domain.menu.ProductDTO;
 
 public interface ProductDAO {
-	List<ProductDTO> select(int category_num) throws SQLException;
+	ProductDTO selectOne(int category_num) throws SQLException;
 	List<MenuListDTO> selectList(String category) throws SQLException;
-	
 	
 }

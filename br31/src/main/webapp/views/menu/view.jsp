@@ -52,9 +52,9 @@
                                         <p class="menu-view-header__category">ICECREAM</p>
                                         <h2 class="menu-view-header__title">
                                             <span class="menu-view-header__title--en">
-                                                DEAR CHOCO Pocky                                            </span>
+                                                ${dto.english_name}                                            </span>
                                             <span class="menu-view-header__title--ko">
-                                                초코포키해♥                                            </span>
+                                                ${dto.product_name}                                            </span>
                                         </h2>
                                         <p class="menu-view-header__text">
                                             진한 달콤함의 초콜릿 &amp; 초콜릿 쿠키 맛 아이스크림 속 포키의 맛과 식감을 담은 초코 프레첼 스틱이 쏙쏙!                                        </p>

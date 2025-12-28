@@ -41,8 +41,11 @@ public class ViewHandler implements CommandHandler{
 						 .category_id(productDTO.getCategory_id())
 						 .product_name(productDTO.getProduct_name())
 						 .english_name(productDTO.getEnglish_name())
+						 .price(productDTO.getPrice())
 						 .description(productDTO.getDescription())
 						 .poster_path(productDTO.getPoster_path())
+						 .img_path(productDTO.getImg_path())
+						 .bg_color(productDTO.getBg_color())
 						 .iceNutritionDTO(iceNutritionDTO)
 						 .build();
 			

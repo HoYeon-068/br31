@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import mvc.domain.menu.IceNutritionDTO;
+import mvc.domain.menu.IngredientDTO;
 import mvc.domain.menu.MenuListDTO;
 import mvc.domain.menu.MenuViewDTO;
 import mvc.domain.menu.ProductDTO;
@@ -118,7 +119,7 @@ public class ProductDAOImpl implements ProductDAO{
 		
 		System.out.println(category);
 		
-		String sql =
+		String sql = 
 			    "SELECT " +
 			    "    p.\"products_id\", " +
 			    "    p.\"product_name\", " +
@@ -126,20 +127,17 @@ public class ProductDAOImpl implements ProductDAO{
 			    "    p.\"img_path\", " +
 			    "    p.\"bg_color\", " +
 			    "    p.\"span_color\", " +
-			    "    LISTAGG('#' || pt.\"tag\", ' ') " +
-			    "        WITHIN GROUP (ORDER BY pt.\"tag\") AS \"tags\" " +
+			    "    T.\"tags\" " +
 			    "FROM \"products\" p " +
-			    "LEFT JOIN \"product_tag\" pt " +
-			    "    ON p.\"products_id\" = pt.\"products_id\" " +
-			    "WHERE p.\"category_id\" = ? " +
-			    condition +
-			    "GROUP BY " +
-			    "    p.\"products_id\", " +
-			    "    p.\"product_name\", " +
-			    "    p.\"sub_title\", " +
-			    "    p.\"img_path\", " +
-			    "    p.\"bg_color\", " +
-			    "    p.\"span_color\"";
+			    "LEFT JOIN ( " +
+			    "    SELECT " +
+			    "        \"products_id\", " +
+			    "        LISTAGG('#' || \"tag\", ' ') WITHIN GROUP (ORDER BY \"tag\") AS \"tags\" " +
+			    "    FROM (SELECT DISTINCT \"products_id\", \"tag\" FROM \"product_tag\") " +
+			    "    GROUP BY \"products_id\" " +
+			    ") T ON p.\"products_id\" = T.\"products_id\" " +
+			    "WHERE p.\"category_id\" = ?"+
+			    condition;
 
 		ArrayList<MenuListDTO> list = null;
 
@@ -183,6 +181,69 @@ public class ProductDAOImpl implements ProductDAO{
 
 			if (rs.next()) {
 				list = new ArrayList<MenuListDTO>();
+				do {
+					// seq, title, writer, email, writedate, readed
+					products_id = rs.getInt("products_id");
+					product_name = rs.getString("product_name");
+					sub_title = rs.getString("sub_title");
+					img_path = rs.getString("img_path");
+					bg_color = rs.getString("bg_color");
+					tags = rs.getString("tags");
+					span_color=rs.getString("span_color");
+
+					menuListVo = new MenuListDTO().builder()
+							.products_id(products_id)
+							.product_name(product_name)
+							.sub_title(sub_title)
+							.img_path(img_path)
+							.bg_color(bg_color)
+							.tags(tags)
+							.span_color(span_color)
+							.build();
+
+					list.add(menuListVo);
+
+				} while (rs.next());
+
+			}
+
+		} catch (SQLException e) { 
+			System.out.println("오류 ProductDAO");
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) { 
+				e.printStackTrace();
+			}
+		} 
+
+		return list;
+	}
+	@Override
+	public List<IngredientDTO> selectIngredient(int products_id) throws SQLException {
+		
+		String sql =
+			    "SELECT * " +
+			    "FROM \"ingredient\" i " +
+			    "RIGHT JOIN \"ingredient_products\" p " +
+			    "ON i.\"ingredient_id\" = p.\"ingredient_id\"";
+
+		ArrayList<IngredientDTO> list = null;
+
+		int products_id;
+		String product_name,sub_title,img_path,bg_color,tags,span_color; 
+		
+		
+		
+		try {			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category_id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				list = new ArrayList<IngredientDTO>();
 				do {
 					// seq, title, writer, email, writedate, readed
 					products_id = rs.getInt("products_id");

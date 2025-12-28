@@ -291,6 +291,4 @@
 <jsp:include page="/views/layout/footer.jsp" />
 
 </body>
-
-<!-- Mirrored from www.baskinrobbins.co.kr/menu/list_subcategory.php?category=C by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 00:53:10 GMT -->
 </html>

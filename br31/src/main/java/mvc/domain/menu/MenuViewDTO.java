@@ -1,5 +1,7 @@
 package mvc.domain.menu;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +17,11 @@ public class MenuViewDTO {
 	private String product_name;
 	private String english_name;
 	private String description;
+	private int price;
+	private String bg_color;
+	private String img_path;
 	private String poster_path;
 	private IceNutritionDTO iceNutritionDTO;
+	private List<IngredientDTO> ingredientDTO; 
 	
 }

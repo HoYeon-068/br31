@@ -17,6 +17,7 @@ public class MenuViewDTO {
 	private String product_name;
 	private String english_name;
 	private String description;
+	private String category_name;
 	private int price;
 	private String bg_color;
 	private String img_path;

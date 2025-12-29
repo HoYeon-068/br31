@@ -42,14 +42,14 @@
 <div class="site-container">
     <div id="content" class="menu-view">
         <section>
-                        <article class="menu-view-top menu-view-top--icecream">
+                        <article class="menu-view-top menu-view-top--${dto.category_name}">
                 <div class="menu-view-top__container">
                     <div class="menu-view-top__content menu-view-top__content--center">
                         <div class="menu-view-top__box">
                             <header class="menu-view-header">
                                 <div class="menu-view-header__container">
                                     <div class="menu-view-header__content">
-                                        <p class="menu-view-header__category">ICECREAM</p>
+                                        <p class="menu-view-header__category">${dto.category_name}</p>
                                         <h2 class="menu-view-header__title">
                                             <span class="menu-view-header__title--en">
                                                 ${dto.english_name}                                            </span>
@@ -68,10 +68,16 @@
                             </header>
                                                             <div class="menu-view-ingredients">
                                     <ul class="menu-view-ingredients__list">
-                                                                                    <li class="menu-view-ingredients__item">
-                                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/composition/b58a1b891c11d9bb499d123605d26af6.png" alt="포키" class="menu-view-ingredients__image">
-                                                <span class="menu-view-ingredients__name">포키</span>
+                                    	<c:forEach items="${dto.ingredientDTO}" var="vo">
+                                    		<li class="menu-view-ingredients__item">
+                                                <img src="${pageContext.request.contextPath}${vo.img_path}" alt="${vo.ingredient_name}" class="menu-view-ingredients__image">
+                                                <span class="menu-view-ingredients__name">${vo.ingredient_name}</span>
                                             </li>
+                                    	</c:forEach>
+                                    
+                                    
+                                    
+                                            
                                                                                 </ul>
                                 </div>
                             
@@ -79,7 +85,7 @@
                                                     </div>
 
                         <div>
-                            <div class="menu-view-hero menu-view-hero--icecream menu-view-hero--current" style="background-color: ${dto.bg_color};">
+                            <div class="menu-view-hero ${category_id eq 1?"menu-view-hero--icecream":""} menu-view-hero--current" style="background-color: ${dto.bg_color};">
 
                                 <img src="${pageContext.request.contextPath}${dto.img_path}" alt="${dto.product_name}" class="menu-view-hero__image">
                             </div>
@@ -108,7 +114,10 @@
             </article>
 
             <div class="menu-view__container">
-                                    <article class="menu-view-nutrition">
+            
+            
+            			<c:if test="${not empty dto.iceNutritionDTO}">
+            				            <article class="menu-view-nutrition">
                         <div class="menu-view-nutrition__container">
                             <h3 class="menu-view-nutrition__title">영양정보</h3>
 
@@ -145,7 +154,10 @@
                         </div>
 
                                             </article>
-                
+            				
+            			
+            			</c:if>
+                                        
                                     <article class="menu-view-content">
                         <div class="menu-view-content__container">
                             <div class="menu-view-content__content">

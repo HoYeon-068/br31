@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
-
-<!-- Mirrored from www.baskinrobbins.co.kr/store/map.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 00:53:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,14 +21,6 @@
 <meta property="og:image" content="${pageContext.request.contextPath}/resources/images/common/img_share.png">
 <meta property="og:type" content="website">
 
-<script>
-    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
-        window.location = 'microsoft-edge:' + window.location;
-        setTimeout(function () {
-            window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
-        }, 13);
-    }
-</script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
@@ -346,7 +336,35 @@
 </div>
 <jsp:include page="/views/layout/footer.jsp" />
 
+<script>
+async function searchStores() {
+    const keyword = $("store-name").val(); // 검색어 가져오기
+    const apiUrl = `/api/stores?query=${encodeURIComponent(keyword)}`;
+
+    try {
+        // 1. Fetch를 이용한 비동기 요청
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) throw new Error('네트워크 응답에 문제가 있습니다.');
+
+        // 2. 응답 데이터를 JSON으로 변환
+        const stores = await response.json(); 
+
+        // 3. 지도 마커와 리스트 초기화 후 업데이트
+        updateMap(stores);    // 지도를 업데이트하는 별도 함수
+        renderList(stores);   // 리스트를 업데이트하는 별도 함수
+
+    } catch (error) {
+        console.error('매장 정보를 가져오는데 실패했습니다:', error);
+        alert('검색 중 오류가 발생했습니다.');
+    }
+}
+</script>
+
+
 </body>
 
-<!-- Mirrored from www.baskinrobbins.co.kr/store/map.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 00:53:47 GMT -->
+
+
+
 </html>

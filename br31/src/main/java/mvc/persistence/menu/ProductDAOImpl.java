@@ -22,6 +22,7 @@ public class ProductDAOImpl implements ProductDAO{
 	private ProductDTO vo = null;
 	private MenuListDTO menuListVo=null;
 	private MenuViewDTO menuViewDTO=null;
+	private IngredientDTO ingredientDTO=null;
 	
 	// 1. 생성자 DI 
 	public ProductDAOImpl() {
@@ -44,16 +45,18 @@ public class ProductDAOImpl implements ProductDAO{
 
 	@Override
 	public ProductDTO selectOne(int product_num) throws SQLException {
-		String sql = "SELECT * \r\n"
-				+ "FROM \"products\"\r\n"
-				+" WHERE \"products_id\"=?";
+		String sql = "SELECT * " +
+	             "FROM \"products\" p " +
+	             "LEFT JOIN \"category\" c " +
+	             "ON p.\"category_id\" = c.\"category_id\" " +
+	             "WHERE \"products_id\" = ?";
 
 		
 		
 
 		int products_id,category_id,price;
 		String product_name, english_name, sub_title,description
-		,product_status,img_path,bg_color,span_color,poster_path;
+		,product_status,img_path,bg_color,span_color,poster_path,category_name;
 		Date release_date;
 
 		try {			
@@ -66,6 +69,7 @@ public class ProductDAOImpl implements ProductDAO{
 					// seq, title, writer, email, writedate, readed
 					products_id = rs.getInt("products_id");
 					category_id = rs.getInt("category_id");
+					category_name=rs.getString("category_name");
 					price = rs.getInt("price");
 					product_name = rs.getString("product_name");
 					english_name = rs.getString("english_name");
@@ -81,6 +85,7 @@ public class ProductDAOImpl implements ProductDAO{
 					vo = new ProductDTO().builder()
 							.products_id(products_id)
 							.category_id(category_id)
+							.category_name(category_name)
 							.price(price)
 							.product_name(product_name)
 							.english_name(english_name)
@@ -119,30 +124,30 @@ public class ProductDAOImpl implements ProductDAO{
 		
 		System.out.println(category);
 		
-		String sql = 
-			    "SELECT " +
-			    "    p.\"products_id\", " +
-			    "    p.\"product_name\", " +
-			    "    p.\"sub_title\", " +
-			    "    p.\"img_path\", " +
-			    "    p.\"bg_color\", " +
-			    "    p.\"span_color\", " +
-			    "    T.\"tags\" " +
-			    "FROM \"products\" p " +
-			    "LEFT JOIN ( " +
-			    "    SELECT " +
-			    "        \"products_id\", " +
-			    "        LISTAGG('#' || \"tag\", ' ') WITHIN GROUP (ORDER BY \"tag\") AS \"tags\" " +
-			    "    FROM (SELECT DISTINCT \"products_id\", \"tag\" FROM \"product_tag\") " +
-			    "    GROUP BY \"products_id\" " +
-			    ") T ON p.\"products_id\" = T.\"products_id\" " +
-			    "WHERE p.\"category_id\" = ?"+
+		String sql = "SELECT " +
+	             "    p.\"products_id\", " +
+	             "    p.\"product_name\", " +
+	             "    c.\"category_name\", " +
+	             "    p.\"sub_title\", " +
+	             "    p.\"img_path\", " +             "    p.\"bg_color\", " +
+	             "    p.\"span_color\", " +
+	             "    T.\"tags\" " +
+	             "FROM \"products\" p " +
+	             "LEFT JOIN \"category\" c ON p.\"category_id\" = c.\"category_id\" " +
+	             "LEFT JOIN ( " +
+	             "    SELECT " +
+	             "        \"products_id\", " +
+	             "        LISTAGG('#' || \"tag\", ' ') WITHIN GROUP (ORDER BY \"tag\") AS \"tags\" " +
+	             "    FROM (SELECT DISTINCT \"products_id\", \"tag\" FROM \"product_tag\") " +
+	             "    GROUP BY \"products_id\" " +
+	             ") T ON p.\"products_id\" = T.\"products_id\" " +
+	             "WHERE p.\"category_id\" = ?"+
 			    condition;
 
 		ArrayList<MenuListDTO> list = null;
 
 		int products_id;
-		String product_name,sub_title,img_path,bg_color,tags,span_color; 
+		String product_name,sub_title,img_path,bg_color,tags,span_color,category_name; 
 		
 		
 		int category_id=0;
@@ -185,6 +190,7 @@ public class ProductDAOImpl implements ProductDAO{
 					// seq, title, writer, email, writedate, readed
 					products_id = rs.getInt("products_id");
 					product_name = rs.getString("product_name");
+					category_name=rs.getString("category_name");
 					sub_title = rs.getString("sub_title");
 					img_path = rs.getString("img_path");
 					bg_color = rs.getString("bg_color");
@@ -194,6 +200,7 @@ public class ProductDAOImpl implements ProductDAO{
 					menuListVo = new MenuListDTO().builder()
 							.products_id(products_id)
 							.product_name(product_name)
+							.category_name(category_name)
 							.sub_title(sub_title)
 							.img_path(img_path)
 							.bg_color(bg_color)
@@ -222,49 +229,48 @@ public class ProductDAOImpl implements ProductDAO{
 		return list;
 	}
 	@Override
-	public List<IngredientDTO> selectIngredient(int products_id) throws SQLException {
+	public List<IngredientDTO> selectIngredient(int seq) throws SQLException {
 		
-		String sql =
-			    "SELECT * " +
-			    "FROM \"ingredient\" i " +
-			    "RIGHT JOIN \"ingredient_products\" p " +
-			    "ON i.\"ingredient_id\" = p.\"ingredient_id\"";
+		String sql = "SELECT * " +
+	             "FROM \"ingredient\" i " +
+	             "RIGHT JOIN \"ingredient_products\" p " +
+	             "ON i.\"ingredient_id\" = p.\"ingredient_id\" " +
+	             "WHERE \"products_id\" = ?";
 
 		ArrayList<IngredientDTO> list = null;
 
-		int products_id;
-		String product_name,sub_title,img_path,bg_color,tags,span_color; 
+		int ingredient_products_id,products_id,ingredient_id;
+		String ingredient_name,img_path;
 		
 		
 		
 		try {			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, category_id);
+			pstmt.setInt(1, seq);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				list = new ArrayList<IngredientDTO>();
 				do {
 					// seq, title, writer, email, writedate, readed
+					ingredient_products_id = rs.getInt("ingredient_products_id");
 					products_id = rs.getInt("products_id");
-					product_name = rs.getString("product_name");
-					sub_title = rs.getString("sub_title");
+					ingredient_id = rs.getInt("ingredient_id");
+					
+					ingredient_name = rs.getString("ingredient_name");
 					img_path = rs.getString("img_path");
-					bg_color = rs.getString("bg_color");
-					tags = rs.getString("tags");
-					span_color=rs.getString("span_color");
+					
+					
 
-					menuListVo = new MenuListDTO().builder()
+					ingredientDTO = new IngredientDTO().builder()
+							.ingredient_products_id(ingredient_products_id)
 							.products_id(products_id)
-							.product_name(product_name)
-							.sub_title(sub_title)
+							.ingredient_id(ingredient_id)
+							.ingredient_name(ingredient_name)
 							.img_path(img_path)
-							.bg_color(bg_color)
-							.tags(tags)
-							.span_color(span_color)
 							.build();
 
-					list.add(menuListVo);
+					list.add(ingredientDTO);
 
 				} while (rs.next());
 

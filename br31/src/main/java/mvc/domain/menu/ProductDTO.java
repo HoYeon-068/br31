@@ -16,6 +16,7 @@ public class ProductDTO {
 	
 	private int products_id;
 	private int category_id;
+	private String category_name;
 	private String product_name;
 	private String english_name;
 	private String sub_title;

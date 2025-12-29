@@ -1,6 +1,8 @@
 package mvc.command.menu;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +11,7 @@ import com.util.ConnectionProvider;
 
 import mvc.command.CommandHandler;
 import mvc.domain.menu.IceNutritionDTO;
+import mvc.domain.menu.IngredientDTO;
 import mvc.domain.menu.MenuViewDTO;
 import mvc.domain.menu.ProductDTO;
 import mvc.persistence.menu.IceNutritionDAO;
@@ -35,10 +38,12 @@ public class ViewHandler implements CommandHandler{
 		try {
 			iceNutritionDTO = iceN_dao.select(seq);
 			productDTO=product_dao.selectOne(seq);
+			List<IngredientDTO> list=product_dao.selectIngredient(seq);
 			
 			menuViewDTO= MenuViewDTO.builder()
 						 .products_id(productDTO.getProducts_id())
 						 .category_id(productDTO.getCategory_id())
+						 .category_name(productDTO.getCategory_name())
 						 .product_name(productDTO.getProduct_name())
 						 .english_name(productDTO.getEnglish_name())
 						 .price(productDTO.getPrice())
@@ -47,6 +52,7 @@ public class ViewHandler implements CommandHandler{
 						 .img_path(productDTO.getImg_path())
 						 .bg_color(productDTO.getBg_color())
 						 .iceNutritionDTO(iceNutritionDTO)
+						 .ingredientDTO(list)
 						 .build();
 			
 		} catch (Exception e) {

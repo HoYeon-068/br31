@@ -123,7 +123,7 @@
                 
                 
                 <c:forEach items="${list}" var="vo">
-                	<li class="menu-list__item menu-list__item--icecream" style="--menu-list-color: ${vo.bg_color}">
+                	<li class="menu-list__item menu-list__item--${vo.category_name}" style="--menu-list-color: ${vo.bg_color}">
                         <a href="${pageContext.request.contextPath}/menu/view.do?seq=${vo.products_id}" class="menu-list__link">
                             <img src="${pageContext.request.contextPath}${vo.img_path}" alt="골든 프랄린 버터" class="menu-list__image">
                             <span class="menu-list__hash" style="color:${vo.span_color}">

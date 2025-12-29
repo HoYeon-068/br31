@@ -50,7 +50,7 @@
 
 <div class="profile-line">
   <img class="profile-thumb"
-       src="${pageContext.request.contextPath}/resources/images/menu/icon_size_c_5.jpg"
+       src=""
        alt="profile">
 
   <label class="profile-change" for="profileFile">프로필 사진 변경</label>
@@ -82,7 +82,7 @@
     <div class="row">
       <div class="lab">이름</div>
       <div class="ctrl">
-        <input type="text" placeholder="이름을 입력해 주세요" />
+        <input type="text" placeholder="" disabled="disabled" />
       </div>
     </div>
 
@@ -115,6 +115,7 @@
           	}
           %>
         </select>
+        <button type="button" class="subbtn">중복확인</button>
         
         <!--  이메일 직접 입력용 input 구현 필요!!  -->
         

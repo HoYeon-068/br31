@@ -49,49 +49,49 @@
     <ul class="page-menu__list">
         <!-- 현재 페이지인 경우 page-menu__item--active 추가-->
         <li class="page-menu__item page-menu__item--active">
-            <a href="fom.html" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/fom.do" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">이달의 맛</span>
                 </div>
             </a>
         </li>
         <li class="page-menu__item ">
-            <a href="lista9a4.html?category=A" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=A" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">아이스크림</span>
                 </div>
             </a>
         </li>
         <li class="page-menu__item ">
-            <a href="list22cf.html?category=F" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=B" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">프리팩</span>
                 </div>
             </a>
         </li>
         <li class="page-menu__item ">
-            <a href="list9c26.html?category=B" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=C" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">아이스크림케이크</span>
                 </div>
             </a>
         </li>
         <li class="page-menu__item ">
-            <a href="listab3a.html?category=E" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=D" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">디저트</span>
                 </div>
             </a>
         </li>
         <li class="page-menu__item ">
-            <a href="list_subcategoryd7a1.html?category=C" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=E" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">음료</span>
                 </div>
             </a>
         </li>
         <li class="page-menu__item ">
-            <a href="list_subcategoryfd8a.html?category=D" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=F" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">커피</span>
                 </div>
@@ -120,31 +120,36 @@
 
                 <div class="menu-fom__box">
                     <header class="menu-fom__header">
-                        <p class="menu-fom__title menu-fom__title--en">GOLDEN PRALINE BUTTER</p>
+                        <p class="menu-fom__title menu-fom__title--en">${dto.productDTO.english_name}</p>
 
                         <h3 class="menu-fom__title">
-                            골든 프랄린 버터                        </h3>
+                            ${dto.productDTO.product_name}                        </h3>
 
                         <p class="menu-fom__text">
-                            프랑스 이즈니 생 메르 버터의 풍미가 가득한 버터 아이스크림과 달콤한 프랄린 슈가 리본의 만남                        </p>
+                            ${dto.productDTO.description}                       </p>
                     </header>
 
                     <ul class="menu-fom-menu">
-                                            <li class="menu-fom-menu__item">
-                            <img src="${pageContext.request.contextPath}/resources/images/upload/product/composition/22ba5bb699cbb5752f1e1de5cae20bae.png" class="menu-fom-menu__image" alt="버터">
-                            <p class="menu-fom-menu__text">버터</p>
+                    
+                    		<c:forEach items="${dto.ingredientDTO}" var="vo">
+                    			<li class="menu-fom-menu__item">
+                            <img src="${pageContext.request.contextPath}${vo.img_path}" class="menu-fom-menu__image" alt="${vo.ingredient_name}">
+                            <p class="menu-fom-menu__text">${vo.ingredient_name}</p>
                         </li>
+                    		</c:forEach>
+                    	
+                                            
                                         </ul>
                 </div>
 
                 <div class="menu-fom__content">
-                    <img src="${pageContext.request.contextPath}/resources/images/upload/product/monthBest/4571219865f969b7ed5a2693f71addf5.png" alt="프랑스 이즈니 생 메르 버터의 풍미가 가득한 버터 아이스크림과 달콤한 프랄린 슈가 리본의 만남" class="menu-fom__image">
+                    <img src="${pageContext.request.contextPath}${dto.monthlyFlavorDTO.poster_path}" alt="${dto.productDTO.description}" class="menu-fom__image">
                 </div>
 
                                 <br><br><br><br>
 
                 <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
-                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Kv8RIGJ4OMA?si=I8hvkmgTHpUqQJtW" 
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="${dto.monthlyFlavorDTO.youtube_path}" 
                     title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>                
@@ -163,11 +168,11 @@
                     <div class="swiper">
                         <div class="swiper-wrapper">
                                                 <div class="swiper-slide">
-                                <a href="view599c.html?seq=834" class="menu-fom-new__link">
+                                <a href="${pageContext.request.contextPath}/menu/view.do?seq=${dto.productDTO.products_id}" class="menu-fom-new__link">
                                     <div class="menu-fom-new__frame">
-                                        <img src="${pageContext.request.contextPath}/resources/images/upload/product/monthBest/newProduct/9bca3b5e9cc74fa0f98e3f154a7d091d.png" class="menu-fom-new__image" alt="">
+                                        <img src="${pageContext.request.contextPath}${dto.monthlyFlavorDTO.img_path}" class="menu-fom-new__image" alt="${dto.productDTO.description}">
                                     </div>
-                                    <h5 class="menu-fom-new__name">골든 프랄린 버터</h5>
+                                    <h5 class="menu-fom-new__name">${dto.productDTO.product_name}</h5>
 <!--                                    <p class="menu-fom-new__text">-->
 <!--                                        <span class="menu-fom-new__price menu-fom-new__price--origin">--><!--원</span>-->
 <!--                                        <strong class="menu-fom-new__price menu-fom-new__price--dc">--><!--원</strong>-->

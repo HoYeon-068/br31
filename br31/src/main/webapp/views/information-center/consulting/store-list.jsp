@@ -38,78 +38,7 @@
 
 <jsp:include page="/views/layout/header.jsp" />
 <div class="site-container">
-    <nav class="page-menu">
-        <ul class="page-menu__list">
-            <!--            현재 페이지인 경우 page-menu__item--active 추가-->
-            <li class="page-menu__item">
-                <a href="../store-offer/offer.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">신규 직영점 입점제의</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item page-menu__item--active">
-                <a href="br.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">점포개설문의</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <div id="content" class="consulting-store-list">
-        <header class="page-header">
-            <div class="page-header__container">
-                <div class="page-header__content">
-                    <h2 class="page-header__title">
-                        점포개설문의
-                    </h2>
-                </div>
-
-                <div class="page-header__content">
-                    <p class="page-header__text">
-                        30년 넘게 사랑받아온 배스킨라빈스의 브랜드 파워와<br>
-                        노하우로 안정적인 창업 기회를 제공합니다.
-                </div>
-            </div>
-        </header>
-
-        <nav class="page-tab">
-            <ul class="page-tab__list">
-                <!-- 현재 페이지인 경우 page-tab__item--active 추가 -->
-                <li class="page-tab__item">
-                    <a href="br.html" class="page-tab__link">
-                        <span class="page-tab__text">BR시스템</span>
-                    </a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="process.html" class="page-tab__link">
-                        <span class="page-tab__text">창업절차</span>
-                    </a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="condition.html" class="page-tab__link">
-                        <span class="page-tab__text">창업조건</span>
-                    </a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="counsel.html" class="page-tab__link">
-                        <span class="page-tab__text">상담안내</span>
-                    </a>
-                </li>
-                <li class="page-tab__item page-tab__item--active">
-                    <a href="store-list.html" class="page-tab__link">
-                        <span class="page-tab__text">신규후보매장</span>
-                    </a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="faq.html" class="page-tab__link">
-                        <span class="page-tab__text">창업FAQ</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <jsp:include page="../consulting/layout/consulting_header.jsp" /> 
 
         <section class="consulting-store-list__container">
             <div id="list" class="consulting-store-list__content">

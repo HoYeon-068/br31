@@ -46,16 +46,8 @@ public class MonthlyFlavorDAOImpl implements MonthlyFlavorDAO{
 	             "WHERE ROWNUM = 1";
 		
 		
-		String psql = "SELECT * " +
-	             "FROM \"products\" p " +
-	             "LEFT JOIN \"category\" c " +
-	             "ON p.\"category_id\" = c.\"category_id\" " +
-	             "WHERE \"products_id\" = ?";
-		
-		
 		int monthly_flavor_id,products_id;
-		String poster_path,youtube_path;
-		ProductDTO productDTO;
+		String poster_path,youtube_path,img_path;
 		
 
 		try {			
@@ -68,7 +60,16 @@ public class MonthlyFlavorDAOImpl implements MonthlyFlavorDAO{
 				poster_path = rs.getString("poster_path");
 				youtube_path = rs.getString("youtube_path");
 				products_id=rs.getInt("products_id");
-					
+				img_path=rs.getString("img_path");
+				
+				vo=MonthlyFlavorDTO.builder()
+						.monthly_flavor_id(monthly_flavor_id)
+						.poster_path(poster_path)
+						.youtube_path(youtube_path)
+						.products_id(products_id)
+						.img_path(img_path)
+						.build();
+				
 			}
 
 		} catch (SQLException e) { 
@@ -80,32 +81,7 @@ public class MonthlyFlavorDAOImpl implements MonthlyFlavorDAO{
 			} catch (SQLException e) { 
 				e.printStackTrace();
 			}
-		} 
-		
-		
-		try {			
-			pstmt = conn.prepareStatement(psql);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-					// seq, title, writer, email, writedate, readed
-				monthly_flavor_id = rs.getInt("monthly_flavor_id");
-				poster_path = rs.getString("poster_path");
-				youtube_path = rs.getString("youtube_path");
-				products_id=rs.getInt("products_id");
-					
-			}
-
-		} catch (SQLException e) { 
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) { 
-				e.printStackTrace();
-			}
-		} 
+		}
 		
 
 		return vo;

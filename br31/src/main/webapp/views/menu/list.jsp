@@ -44,7 +44,7 @@
     <ul class="page-menu__list">
         <!-- 현재 페이지인 경우 page-menu__item--active 추가-->
         <li class="page-menu__item ">
-            <a href="fom.html" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/fom.do" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">이달의 맛</span>
                 </div>

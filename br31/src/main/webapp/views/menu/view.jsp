@@ -158,7 +158,9 @@
             			
             			</c:if>
                                         
-                                    <article class="menu-view-content">
+                                        
+                         <c:if test="${dto.category_name=='icecream'}">
+                         	 <article class="menu-view-content">
                         <div class="menu-view-content__container">
                             <div class="menu-view-content__content">
                                 <p style="text-align&#58; center&#59;"><img alt="" src="${pageContext.request.contextPath}/resources/images/upload/ckeditor/6a07c45312d30139d9baa250a3a4c4a7.png" /></p>                            </div>
@@ -268,6 +270,8 @@
                             </div>
                         </div>
                     </article>
+                         </c:if>
+                                   
                             </div>
         </section>
     </div>

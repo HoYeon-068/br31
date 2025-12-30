@@ -336,30 +336,7 @@
 </div>
 <jsp:include page="/views/layout/footer.jsp" />
 
-<script>
-async function searchStores() {
-    const keyword = $("store-name").val(); // 검색어 가져오기
-    const apiUrl = `/api/stores?query=${encodeURIComponent(keyword)}`;
 
-    try {
-        // 1. Fetch를 이용한 비동기 요청
-        const response = await fetch(apiUrl);
-        
-        if (!response.ok) throw new Error('네트워크 응답에 문제가 있습니다.');
-
-        // 2. 응답 데이터를 JSON으로 변환
-        const stores = await response.json(); 
-
-        // 3. 지도 마커와 리스트 초기화 후 업데이트
-        updateMap(stores);    // 지도를 업데이트하는 별도 함수
-        renderList(stores);   // 리스트를 업데이트하는 별도 함수
-
-    } catch (error) {
-        console.error('매장 정보를 가져오는데 실패했습니다:', error);
-        alert('검색 중 오류가 발생했습니다.');
-    }
-}
-</script>
 
 
 </body>

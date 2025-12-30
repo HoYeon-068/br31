@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -37,7 +39,10 @@
         <div class="board-list__content">
             <div class="board-list__table-wrap">
 
-                <p class="board-list__total">총 <strong>397</strong>건</p>
+                <p class="board-list__total">
+    총 <strong>${totalCount}</strong>건
+</p>
+
 
                 <table class="board-list__table">
                     <colgroup>
@@ -46,17 +51,51 @@
                         <col width="80px">
                     </colgroup>
                     <tbody>
-                        <tr class="board-list__table-list">
-                            <td class="board-list__table-number">397</td>
-                            <td class="board-list__table-title">
-                                <a href="view.do">
-                                    SPC 배스킨라빈스, 전국 매장에서 만나는 미니 ‘쁘띠 케이크’ 출시
-                                </a>
-                            </td>
-                            <td class="board-list__table-date">2025.12.19</td>
-                        </tr>
-                    </tbody>
+<c:forEach var="dto" items="${list}">
+    <tr class="board-list__table-list">
+        <td class="board-list__table-number">
+            ${dto.pr_no}
+        </td>
+        <td class="board-list__table-title">
+            <a href="${pageContext.request.contextPath}/press/view.do?pr_id=${dto.pr_id}">
+                ${dto.title}
+            </a>
+        </td>
+        <td class="board-list__table-date">
+            ${dto.reg_date}
+        </td>
+    </tr>
+</c:forEach>
+</tbody>
+
                 </table>
+  <div class="paging">
+
+    <!-- 이전 블록 -->
+    <c:if test="${startPage > 1}">
+        <a href="${pageContext.request.contextPath}/press/list.do?page=${startPage - 1}">
+            &lt;
+        </a>
+    </c:if>
+
+    <!-- 페이지 번호 -->
+    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+        <a href="${pageContext.request.contextPath}/press/list.do?page=${i}"
+           class="${i == currentPage ? 'active' : ''}">
+            ${i}
+        </a>
+    </c:forEach>
+
+    <!-- 다음 블록 -->
+    <c:if test="${endPage < totalPage}">
+        <a href="${pageContext.request.contextPath}/press/list.do?page=${endPage + 1}">
+            &gt;
+        </a>
+    </c:if>
+
+</div>
+
+                
 
             </div>
         </div>

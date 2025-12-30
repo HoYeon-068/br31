@@ -1,4 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,14 +25,14 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item page-menu__item--active">
-                <a href="list.do" class="page-menu__link">
+               <a href="${pageContext.request.contextPath}/notice/list.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">공지사항</span>
                     </div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="../press/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/press/list.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">보도자료</span>
                     </div>
@@ -56,7 +60,11 @@
         <div class="board-list__content">
             <div class="board-list__table-wrap">
 
-                <p class="board-list__total">총 <strong>34</strong>건</p>
+             <p class="board-list__total">
+    총 <strong>${totalCount}</strong>건
+
+</p>
+
 
                 <table class="board-list__table">
                     <colgroup>
@@ -65,15 +73,34 @@
                         <col width="80px">
                     </colgroup>
                     <tbody>
-                        <tr class="board-list__table-list">
-                            <td class="board-list__table-number">33</td>
-                            <td class="board-list__table-title">
-                                <a href="view.do">민생회복 소비쿠폰 사용안내</a>
-                            </td>
-                            <td class="board-list__table-date">2025.07.17</td>
-                        </tr>
-                    </tbody>
+						<c:forEach var="dto" items="${list}">
+    					<tr class="board-list__table-list">
+        				<td class="board-list__table-number">
+           							${dto.NOTICE_NO}
+        				</td>
+        				<td class="board-list__table-title">
+            			<a href="${pageContext.request.contextPath}/notice/view.do?NOTICE_ID=${dto.NOTICE_ID}">
+    ${dto.TITLE}
+</a>
+
+        				</td>
+					        <td class="board-list__table-date">
+					            ${dto.REG_DATE}
+					        </td>
+    </tr>
+</c:forEach>
+</tbody>
+
                 </table>
+                <div class="paging">
+    <c:forEach var="i" begin="1" end="${totalPage}">
+        <a href="${pageContext.request.contextPath}/notice/list.do?page=${i}"
+           class="${i == currentPage ? 'active' : ''}">
+            ${i}
+        </a>
+    </c:forEach>
+</div>
+                
 
             </div>
         </div>

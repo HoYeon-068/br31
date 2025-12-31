@@ -8,46 +8,69 @@ import java.util.List;
 
 import com.util.ConnectionProvider;
 import com.util.JdbcUtil;
-
 import mvc.domain.search.ProductDTO;
 
 public class ProductDAO {
 
-    /**
-     * 상품 검색 리스트
-     * - 검색어 길이 무관
-     * - 검색어 없으면 전체 조회
-     */
+    /* =======================
+     *  상품 검색
+     * ======================= */
     public List<ProductDTO> search(String keyword) {
 
         List<ProductDTO> list = new ArrayList<>();
+
+        if (keyword == null) keyword = "";
+        keyword = keyword.trim();
 
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        if (keyword == null) keyword = "";
-
-        String sql =
-        	    "SELECT products_id, category_id, product_name, " +
-        	    "       description, product_status, img_path, img_s_path, bg_color, " +
-        	    "       poster_path, price, release_date " +
-        	    "FROM \"products\" " +
-        	    "WHERE product_status = 'Y' " +
-        	    "AND product_name LIKE '%' || ? || '%' " +
-        	    "ORDER BY product_name";
-        
-        
-     
-
-
         try {
             conn = ConnectionProvider.getConnection();
-            pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, keyword);
-         
-           
+            System.out.println("### ProductDAO FINAL VERSION");
+            System.out.println("### keyword = [" + keyword + "]");
+            System.out.println("### DB USER = " + conn.getMetaData().getUserName());
+
+            String sql;
+
+            if (keyword.isEmpty()) {
+
+                sql =
+                    "SELECT " +
+                    "  \"products_id\", \"category_id\", \"product_name\", \"english_name\", \"sub_title\", " +
+                    "  \"description\", \"product_status\", \"img_path\", \"bg_color\", \"span_color\", " +
+                    "  \"poster_path\", \"price\", \"release_date\" " +
+                    "FROM \"products\" " +
+                    "WHERE \"product_status\" = '판매중' " +
+                    "ORDER BY \"product_name\"";
+
+                pstmt = conn.prepareStatement(sql);
+
+            } else {
+
+                sql =
+                    "SELECT " +
+                    "  \"products_id\", \"category_id\", \"product_name\", \"english_name\", \"sub_title\", " +
+                    "  \"description\", \"product_status\", \"img_path\", \"bg_color\", \"span_color\", " +
+                    "  \"poster_path\", \"price\", \"release_date\" " +
+                    "FROM \"products\" " +
+                    "WHERE \"product_status\" = '판매중' " +
+                    "AND ( " +
+                    "  NVL(\"product_name\", '')  LIKE '%' || ? || '%' " +
+                    "  OR NVL(\"english_name\", '') LIKE '%' || ? || '%' " +
+                    "  OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' " +
+                    ") " +
+                    "ORDER BY \"product_name\"";
+
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, keyword);
+                pstmt.setString(2, keyword);
+                pstmt.setString(3, keyword);
+            }
+
+            System.out.println("### EXEC SQL >>> " + sql);
 
             rs = pstmt.executeQuery();
 
@@ -56,17 +79,19 @@ public class ProductDAO {
                 dto.setProductsId(rs.getInt("products_id"));
                 dto.setCategoryId(rs.getInt("category_id"));
                 dto.setProductName(rs.getString("product_name"));
+                dto.setEnglishName(rs.getString("english_name"));
+                dto.setSubTitle(rs.getString("sub_title"));
                 dto.setDescription(rs.getString("description"));
                 dto.setProductStatus(rs.getString("product_status"));
                 dto.setImgPath(rs.getString("img_path"));
-                dto.setImgSPath(rs.getString("img_s_path"));
                 dto.setBgColor(rs.getString("bg_color"));
                 dto.setPosterPath(rs.getString("poster_path"));
                 dto.setPrice(rs.getInt("price"));
                 dto.setReleaseDate(rs.getDate("release_date"));
-
                 list.add(dto);
             }
+
+            System.out.println("### search result size = " + list.size());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,47 +104,55 @@ public class ProductDAO {
         return list;
     }
 
-    /**
-     * 검색 결과 총 개수
-     */
+    /* =======================
+     *  검색 결과 개수
+     * ======================= */
     public int getTotalCount(String keyword) {
+
+        if (keyword == null) keyword = "";
+        keyword = keyword.trim();
 
         int count = 0;
 
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        String sql;
 
-        if (keyword == null) keyword = "";
+        if (keyword.isEmpty()) {
+            sql =
+                "SELECT COUNT(*) " +
+                "FROM \"products\" " +
+                "WHERE \"product_status\" = '판매중'";
+        } else {
+            sql =
+                "SELECT COUNT(*) " +
+                "FROM \"products\" " +
+                "WHERE \"product_status\" = '판매중' " +
+                "AND ( " +
+                "  NVL(\"product_name\", '')  LIKE '%' || ? || '%' " +
+                "  OR NVL(\"english_name\", '') LIKE '%' || ? || '%' " +
+                "  OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' " +
+                ")";
+        }
 
-        String sql =
-        	    "SELECT COUNT(*) " +
-        	    "FROM \"products\" " +
-        	    "WHERE product_status = 'Y' " +
-        	    "AND product_name LIKE '%' || ? || '%'";
+        try (
+            Connection conn = ConnectionProvider.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)
+        ) {
 
-
-
-        try {
-            conn = ConnectionProvider.getConnection();
-            pstmt = conn.prepareStatement(sql);
-
-            pstmt.setString(1, keyword);
-       
-          
-
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                count = rs.getInt(1);
+            if (!keyword.isEmpty()) {
+                pstmt.setString(1, keyword);
+                pstmt.setString(2, keyword);
+                pstmt.setString(3, keyword);
             }
+
+            System.out.println("### EXEC COUNT SQL >>> " + sql);
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) count = rs.getInt(1);
+
+            System.out.println("### totalCount = " + count);
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JdbcUtil.close(rs);
-            JdbcUtil.close(pstmt);
-            JdbcUtil.close(conn);
         }
 
         return count;

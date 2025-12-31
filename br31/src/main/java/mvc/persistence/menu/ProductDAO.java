@@ -17,6 +17,6 @@ public interface ProductDAO {
 	List<MenuListDTO> selectList(String category) throws SQLException;
 	
 	// 주재료 테이블에 관한 컬럼들을 조회
-	public List<IngredientDTO> selectIngredient(int products_id) throws SQLException;
+	List<IngredientDTO> selectIngredient(int products_id) throws SQLException;
 	
 }

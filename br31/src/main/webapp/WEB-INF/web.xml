@@ -35,6 +35,24 @@
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+      <servlet-name>ajaxControllerUsingURI</servlet-name>
+      <servlet-class>mvc.controller.AjaxControllerUsingURI</servlet-class>
+      <init-param>
+         <param-name>configFile</param-name>
+         <param-value>
+                /WEB-INF/ajaxCommandHandlerURI.properties
+            </param-value>
+      </init-param>
+      <load-on-startup>2</load-on-startup>
+   </servlet>
+
+   <servlet-mapping>
+      <servlet-name>ajaxControllerUsingURI</servlet-name>
+      <url-pattern>*.ajax</url-pattern>
+   </servlet-mapping>
+  
+  
   
 <filter>
 	<description>인코딩 필터</description>  

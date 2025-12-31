@@ -9,8 +9,8 @@ public class ProcessHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("CateringHandler");
-		return "/views/information-center/consulting/br.jsp";
+		System.out.println("ProcessHandler");
+		return "/views/information-center/consulting/process.jsp";
 	}
 	
 }

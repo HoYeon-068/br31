@@ -3,7 +3,7 @@
     <div class="site-header__container">
         <div class="site-header__content">
             <h1 class="site-header-logo">
-                <a href="${pageContext.request.contextPath}/index.html" class="site-header-logo__link">
+                <a href="${pageContext.request.contextPath}/index.jsp" class="site-header-logo__link">
                     <span class="site-header-logo__text">Baskin Robbins</span>
                 </a>
             </h1>
@@ -11,7 +11,7 @@
             <nav class="site-menu">
                 <ul class="site-menu__list">
                     <li class="site-menu__item">
-                        <a href="${pageContext.request.contextPath}/menu/lista9a4.html?category=A" class="site-menu__link">Menu</a>
+                        <a href="${pageContext.request.contextPath}/menu/list.do?category=A" class="site-menu__link">Menu</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">

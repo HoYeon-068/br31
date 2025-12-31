@@ -37,7 +37,10 @@
         <div class="search__container">
 
           
-            <form action="list.do" method="get" class="search-form">
+          <form action="${pageContext.request.contextPath}/search/list.do"
+      method="get"
+      class="search-form">
+
                 <div class="search-form__container">
                     <label class="search-form__label">
                         <input type="text"
@@ -94,15 +97,16 @@
                     <ul class="menu-list__list">
 
                         <c:forEach var="dto" items="${list}">
-                            <li class="menu-list__item"
-                                style="--menu-list-color:${dto.color}">
-                                <a href="#" class="menu-list__link">
-                                    <img src="${pageContext.request.contextPath}${dto.imagePath}"
-                                         class="menu-list__image" alt="">
-                                    <span class="menu-list__hash">${dto.hashTag}</span>
-                                </a>
-                                <strong class="menu-list__title">${dto.name}</strong>
-                            </li>
+                         <li class="menu-list__item"
+    style="--menu-list-color:${dto.bgColor}">
+    <a href="#" class="menu-list__link">
+        <img src="${pageContext.request.contextPath}${dto.imgPath}"
+             class="menu-list__image" alt="">
+
+    </a>
+    <strong class="menu-list__title">${dto.productName}</strong>
+</li>
+
                         </c:forEach>
 
                         <c:if test="${empty list}">

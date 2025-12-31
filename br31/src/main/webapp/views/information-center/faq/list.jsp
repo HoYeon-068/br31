@@ -16,26 +16,21 @@
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
 <style>
-.faq-list__answer { display:none; }
-.faq-list__item.is-open .faq-list__answer { display:block; }
-/* FAQ 답변이 부모에 의해 잘리는 문제 해결 */
-.faq-list__item {
-  height: auto;
-  overflow: visible;
-}
-
-.faq-list__answer {
-  overflow: visible;
-}
-
+/* FAQ 아이템 기본 */
 .faq-list__item {
   position: relative;
+  overflow: visible;
 }
 
+/* 답변 영역 (슬라이딩 핵심) */
 .faq-list__answer {
+  overflow: hidden;
+  max-height: 0;
   margin-top: 16px;
   line-height: 1.6;
+  transition: max-height 0.35s ease;
 }
+
 
 
 </style>
@@ -171,14 +166,25 @@ document.querySelectorAll(".faq-list__title").forEach(btn => {
   btn.addEventListener("click", function () {
 
     const currentItem = this.closest(".faq-list__item");
+    const currentAnswer = currentItem.querySelector(".faq-list__answer");
 
-    document.querySelectorAll(".faq-list__item.is-open").forEach(item => {
+    // 다른 FAQ 닫기
+    document.querySelectorAll(".faq-list__item").forEach(item => {
       if (item !== currentItem) {
         item.classList.remove("is-open");
+        const answer = item.querySelector(".faq-list__answer");
+        answer.style.maxHeight = null;
       }
     });
 
-    currentItem.classList.toggle("is-open");
+    // 현재 FAQ 토글
+    if (currentItem.classList.contains("is-open")) {
+      currentItem.classList.remove("is-open");
+      currentAnswer.style.maxHeight = null;
+    } else {
+      currentItem.classList.add("is-open");
+      currentAnswer.style.maxHeight = currentAnswer.scrollHeight + "px";
+    }
   });
 });
 </script>

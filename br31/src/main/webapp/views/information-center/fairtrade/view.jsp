@@ -19,7 +19,7 @@
 <jsp:include page="/views/layout/header.jsp" />
 
 <div class="site-container">
-
+ 
   
     <nav class="page-menu">
         <ul class="page-menu__list">

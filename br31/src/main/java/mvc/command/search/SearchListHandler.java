@@ -25,10 +25,29 @@ public class SearchListHandler implements CommandHandler {
         // 2. 디버그 로그 (지금 단계에선 유지)
         System.out.println("### HANDLER keyword >>> [" + keyword + "]");
 
-        // 3. DAO 호출
+     // 3. category 파라미터 수신
+     // categoryId 파라미터 수신 (숫자 기반)
+        String categoryIdStr = request.getParameter("categoryId");
+        Integer categoryId = null;
+
+        if (categoryIdStr != null && !categoryIdStr.isEmpty()) {
+            categoryId = Integer.parseInt(categoryIdStr);
+        }
+
+
+        // 4. DAO 호출 (분기)
         ProductDAO dao = new ProductDAO();
-        List<ProductDTO> list = dao.search(keyword);
-        int totalCount = dao.getTotalCount(keyword);
+        List<ProductDTO> list;
+        int totalCount;
+
+        if (categoryId == null) {
+            list = dao.search(keyword);
+            totalCount = dao.getTotalCount(keyword);
+        } else {
+            list = dao.search(keyword, categoryId);
+            totalCount = dao.getTotalCount(keyword, categoryId);
+        }
+
 
         // 4. 결과 확인용 로그 (중요)
         System.out.println("### search result size = " + list.size());

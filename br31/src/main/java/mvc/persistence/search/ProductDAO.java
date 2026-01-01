@@ -103,6 +103,85 @@ public class ProductDAO {
 
         return list;
     }
+    
+    public List<ProductDTO> search(String keyword, Integer categoryId) {
+
+        List<ProductDTO> list = new ArrayList<>();
+
+        if (keyword == null) keyword = "";
+        keyword = keyword.trim();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConnectionProvider.getConnection();
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("SELECT ");
+            sql.append("  \"products_id\", \"category_id\", \"product_name\", \"english_name\", \"sub_title\", ");
+            sql.append("  \"description\", \"product_status\", \"img_path\", \"bg_color\", \"span_color\", ");
+            sql.append("  \"poster_path\", \"price\", \"release_date\" ");
+            sql.append("FROM \"products\" ");
+            sql.append("WHERE \"product_status\" = '판매중' ");
+
+            if (!keyword.isEmpty()) {
+                sql.append("AND ( ");
+                sql.append("  NVL(\"product_name\", '')  LIKE '%' || ? || '%' ");
+                sql.append("  OR NVL(\"english_name\", '') LIKE '%' || ? || '%' ");
+                sql.append("  OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' ");
+                sql.append(") ");
+            }
+
+            if (categoryId != null) {
+                sql.append("AND \"category_id\" = ? ");
+            }
+
+            sql.append("ORDER BY \"product_name\"");
+
+            pstmt = conn.prepareStatement(sql.toString());
+
+            int idx = 1;
+            if (!keyword.isEmpty()) {
+                pstmt.setString(idx++, keyword);
+                pstmt.setString(idx++, keyword);
+                pstmt.setString(idx++, keyword);
+            }
+            if (categoryId != null) {
+                pstmt.setInt(idx++, categoryId);
+            }
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ProductDTO dto = new ProductDTO();
+                dto.setProductsId(rs.getInt("products_id"));
+                dto.setCategoryId(rs.getInt("category_id"));
+                dto.setProductName(rs.getString("product_name"));
+                dto.setEnglishName(rs.getString("english_name"));
+                dto.setSubTitle(rs.getString("sub_title"));
+                dto.setDescription(rs.getString("description"));
+                dto.setProductStatus(rs.getString("product_status"));
+                dto.setImgPath(rs.getString("img_path"));
+                dto.setBgColor(rs.getString("bg_color"));
+                dto.setPosterPath(rs.getString("poster_path"));
+                dto.setPrice(rs.getInt("price"));
+                dto.setReleaseDate(rs.getDate("release_date"));
+                list.add(dto);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+            JdbcUtil.close(conn);
+        }
+
+        return list;
+    }
+
 
     /* =======================
      *  검색 결과 개수
@@ -157,4 +236,57 @@ public class ProductDAO {
 
         return count;
     }
+    
+    public int getTotalCount(String keyword, Integer categoryId) {
+
+        if (keyword == null) keyword = "";
+        keyword = keyword.trim();
+
+        int count = 0;
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT COUNT(*) ");
+        sql.append("FROM \"products\" ");
+        sql.append("WHERE \"product_status\" = '판매중' ");
+
+        if (!keyword.isEmpty()) {
+            sql.append("AND ( ");
+            sql.append("  NVL(\"product_name\", '')  LIKE '%' || ? || '%' ");
+            sql.append("  OR NVL(\"english_name\", '') LIKE '%' || ? || '%' ");
+            sql.append("  OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' ");
+            sql.append(") ");
+        }
+
+        if (categoryId != null) {
+            sql.append("AND \"category_id\" = ? ");
+        }
+
+        try (
+            Connection conn = ConnectionProvider.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql.toString())
+        ) {
+
+            int idx = 1;
+
+            if (!keyword.isEmpty()) {
+                pstmt.setString(idx++, keyword);
+                pstmt.setString(idx++, keyword);
+                pstmt.setString(idx++, keyword);
+            }
+
+            if (categoryId != null) {
+                pstmt.setInt(idx++, categoryId);
+            }
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) count = rs.getInt(1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+
+    
 }

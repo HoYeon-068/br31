@@ -14,32 +14,78 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
      <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+	
+	<style>
+/* ===== 게시판 검색 ===== */
+.board-search {
+    margin: 60px auto 40px;
+    max-width: 720px;
+    width: 100%;
+}
+
+.board-search__inner {
+    position: relative;
+    border-bottom: 2px solid #000;
+}
+
+.board-search__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 44px 10px 0;
+    background: transparent;
+}
+
+.board-search__input::placeholder {
+    color: #aaa;
+}
+
+.board-search__button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 39px;
+    height: 39px;
+    transform: translateY(-50%);
+    border: none;
+    background: url(${pageContext.request.contextPath}/resources/images/information-center/btn_search.png)
+                no-repeat center center / auto 39px;
+    cursor: pointer;
+}
+
+.board-search__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 44px 10px 0;
+    background: transparent;
+    text-align: center;        /* 🔴 핵심 */
+}
+
+/* placeholder도 가운데 */
+.board-search__input::placeholder {
+    color: #aaa;
+    text-align: center;        /* 🔴 핵심 */
+}
+
+
+</style>
+	
+	
 </head>
 
 <body>
 
 <jsp:include page="/views/layout/header.jsp" />
 
+
+
 <div class="site-container">
 
-    <nav class="page-menu">
-        <ul class="page-menu__list">
-            <li class="page-menu__item page-menu__item--active">
-               <a href="${pageContext.request.contextPath}/notice/list.do" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">공지사항</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/press/list.do" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">보도자료</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<jsp:include page="/views/information-center/_customerMenu.jsp" />
+
 
     <section id="content" class="notice-list board-list">
 
@@ -56,6 +102,24 @@
                 </div>
             </div>
         </header>
+        
+<form action="${pageContext.request.contextPath}/notice/list.do"
+      method="get"
+      class="board-search"
+      onsubmit="return submitNoticeSearch(this);">
+
+    <input type="hidden" name="source" value="notice">
+
+    <div class="board-search__inner">
+        <input type="text"
+               name="keyword"
+               class="board-search__input"
+               placeholder="검색어를 입력해주세요"
+               value="${keyword}">
+        <button type="submit" class="board-search__button"></button>
+    </div>
+</form>
+
 
         <div class="board-list__content">
             <div class="board-list__table-wrap">
@@ -109,6 +173,20 @@
 </div>
 
 <jsp:include page="/views/layout/footer.jsp" />
+
+<script>
+function submitNoticeSearch(form) {
+    if (form.keyword.value.trim() !== "") {
+        form.action = "${pageContext.request.contextPath}/search/board.do";
+        form.insertAdjacentHTML(
+            "beforeend",
+            '<input type="hidden" name="source" value="notice">'
+        );
+    }
+    return true;
+}
+</script>
+
 
 </body>
 </html>

@@ -127,7 +127,7 @@
                                 </p>
                             </div>
                             <div>
-                                <a href="${pageContext.request.contextPath}/consulting/create.do"
+                                <a href="${pageContext.request.contextPath}/inquiry/create.do"
                                    class="customer-list__faq--link">1:1문의하기</a>
                                 <a href="${pageContext.request.contextPath}/consulting/myvoc_list.do"
                                    class="customer-list__faq--link">문의내역 보기</a>

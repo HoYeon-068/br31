@@ -63,140 +63,169 @@
             <span class="required-text">* 은 필수 입력 항목입니다.</span>
         </h3>
 
-        <form class="voc-form">
+<form class="voc-form"
+      action="${pageContext.request.contextPath}/inquiry/create.do"
+      method="post"
+      onsubmit="return confirm('VOC를 등록하시겠습니까?');">
 
-            <!-- 상담유형 -->
-            <div class="form-row">
-                <div class="form-label">상담유형 <span class="req">*</span></div>
-                <div class="form-field btn-group">
-                    <button type="button">칭찬</button>
-                    <button type="button">불만</button>
-                    <button type="button">문의</button>
-                    <button type="button">제안</button>
-                    <button type="button">제보</button>
-                </div>
-            </div>
+    <!-- ===== hidden fields (버튼 값 전달용) ===== -->
+    <input type="hidden" name="counsel_type" id="counselType">
+    <input type="hidden" name="detail_type" id="detailType">
 
-            <!-- 내용유형 -->
-            <div class="form-row">
-                <div class="form-label">내용유형 <span class="req">*</span></div>
-                <div class="form-field btn-group">
-                    <button type="button">제품</button>
-                    <button type="button">모바일쿠폰</button>
-                    <button type="button">인적서비스</button>
-                    <button type="button">점포서비스</button>
-                    <button type="button">이벤트</button>
-                    <button type="button">HP카드</button>
-                    <button type="button">기타</button>
-                </div>
-            </div>
+    <!-- 상담유형 -->
+    <div class="form-row">
+        <div class="form-label">상담유형 <span class="req">*</span></div>
+        <div class="form-field btn-group">
+            <button type="button" onclick="setCounsel('칭찬')">칭찬</button>
+            <button type="button" onclick="setCounsel('불만')">불만</button>
+            <button type="button" onclick="setCounsel('문의')">문의</button>
+            <button type="button" onclick="setCounsel('제안')">제안</button>
+            <button type="button" onclick="setCounsel('제보')">제보</button>
+        </div>
+    </div>
 
-            <!-- 제목 -->
-            <div class="form-row">
-                <div class="form-label">제목 <span class="req">*</span></div>
-                <div class="form-field">
-                    <input type="text">
-                </div>
-            </div>
+    <!-- 내용유형 -->
+    <div class="form-row">
+        <div class="form-label">내용유형 <span class="req">*</span></div>
+        <div class="form-field btn-group">
+            <button type="button" onclick="setDetail('제품')">제품</button>
+            <button type="button" onclick="setDetail('모바일쿠폰')">모바일쿠폰</button>
+            <button type="button" onclick="setDetail('인적서비스')">인적서비스</button>
+            <button type="button" onclick="setDetail('점포서비스')">점포서비스</button>
+            <button type="button" onclick="setDetail('이벤트')">이벤트</button>
+            <button type="button" onclick="setDetail('HP카드')">HP카드</button>
+            <button type="button" onclick="setDetail('기타')">기타</button>
+        </div>
+    </div>
 
-            <!-- 발생일시 -->
-            <div class="form-row">
-                <div class="form-label">발생일시 <span class="req">*</span></div>
-                <div class="form-field inline">
-                    <input type="date">
-                    <select><option>20</option></select> 시
-                    <select><option>23</option></select> 분경
-                </div>
-            </div>
+    <!-- 제목 -->
+    <div class="form-row">
+        <div class="form-label">제목 <span class="req">*</span></div>
+        <div class="form-field">
+            <input type="text" name="title" required>
+        </div>
+    </div>
 
-            <!-- 매장 -->
-            <div class="form-row">
-                <div class="form-label">매장</div>
-                <div class="form-field inline">
-                    <input type="text">
-                    <button type="button" class="btn-dark">매장찾기</button>
-                </div>
-            </div>
+    <!-- 발생일시 -->
+    <div class="form-row">
+        <div class="form-label">발생일시 <span class="req">*</span></div>
+        <div class="form-field inline">
+            <input type="date" name="occur_date" required>
+            <select name="occur_hour">
+                <% for(int i=0;i<24;i++){ %>
+                <option value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select> 시
+            <select name="occur_min">
+                <% for(int i=0;i<60;i+=5){ %>
+                <option value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select> 분경
+        </div>
+    </div>
 
-            <!-- 내용 -->
-            <div class="form-row">
-                <div class="form-label">내용 <span class="req">*</span></div>
-                <div class="form-field">
-                    <textarea></textarea>
-                    <p class="warning-text">
-                        욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
-                        반복적인 비난성 글, 거짓 정보 등의 내용은
-                        임의 삭제될 수 있으며, 답변 회신이 불가할 수 있습니다.
-                    </p>
-                </div>
-            </div>
+    <!-- 매장 (선택) -->
+    <div class="form-row">
+        <div class="form-label">매장</div>
+        <div class="form-field inline">
+            <input type="text" name="store_name">
+            <button type="button" class="btn-dark">매장찾기</button>
+        </div>
+    </div>
 
-            <!-- 파일 -->
-            <div class="form-row">
-                <div class="form-label">파일첨부</div>
-                <div class="form-field">
-                    <input type="file">
-                    <p class="file-info">
-                        각 파일당 최대 10MB<br>
-                        jpg, jpeg, gif, png, bmp, ppt, pptx, xls, xlsx, doc, docx, pdf
-                    </p>
-                </div>
-            </div>
+    <!-- 내용 -->
+    <div class="form-row">
+        <div class="form-label">내용 <span class="req">*</span></div>
+        <div class="form-field">
+            <textarea name="content" required></textarea>
+            <p class="warning-text">
+                욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
+                반복적인 비난성 글, 거짓 정보 등의 내용은
+                임의 삭제될 수 있으며, 답변 회신이 불가할 수 있습니다.
+            </p>
+        </div>
+    </div>
 
-            <!-- 이름 -->
-            <div class="form-row">
-                <div class="form-label">이름 <span class="req">*</span></div>
-                <div class="form-field">
-                    <input type="text">
-                </div>
-            </div>
+    <!-- 파일첨부 (UI만 유지, 서버 처리 안 함) -->
+    <div class="form-row">
+        <div class="form-label">파일첨부</div>
+        <div class="form-field">
+            <input type="file" disabled>
+            <p class="file-info">
+                각 파일당 최대 10MB<br>
+                jpg, jpeg, gif, png, bmp, ppt, pptx, xls, xlsx, doc, docx, pdf
+            </p>
+        </div>
+    </div>
 
-            <!-- 전화번호 -->
-            <div class="form-row">
-                <div class="form-label">전화번호</div>
-                <div class="form-field inline">
-                    <input type="text" size="4"> -
-                    <input type="text" size="4"> -
-                    <input type="text" size="4">
-                </div>
-            </div>
+    <!-- 이름 -->
+    <div class="form-row">
+        <div class="form-label">이름 <span class="req">*</span></div>
+        <div class="form-field">
+            <input type="text" name="name" required>
+        </div>
+    </div>
 
-            <!-- 이메일 -->
-            <div class="form-row">
-                <div class="form-label">이메일 <span class="req">*</span></div>
-                <div class="form-field inline">
-                    <input type="text"> @
-                    <input type="text">
-                    <select>
-                        <option>직접입력</option>
-                        <option>naver.com</option>
-                        <option>gmail.com</option>
-                    </select>
-                </div>
-            </div>
+    <!-- 전화번호 (선택) -->
+    <div class="form-row">
+        <div class="form-label">전화번호</div>
+        <div class="form-field inline">
+            <input type="text" name="phone1" size="4"> -
+            <input type="text" name="phone2" size="4"> -
+            <input type="text" name="phone3" size="4">
+        </div>
+    </div>
 
-            <!-- 비밀번호 -->
-            <div class="form-row">
-                <div class="form-label">비밀번호 <span class="req">*</span></div>
-                <div class="form-field">
-                    <input type="password">
-                </div>
-            </div>
+    <!-- 이메일 -->
+    <div class="form-row">
+        <div class="form-label">이메일 <span class="req">*</span></div>
+        <div class="form-field inline">
+            <input type="text" name="email_id" required> @
+            <input type="text" name="email_domain" required>
+            <select onchange="setEmailDomain(this.value)">
+                <option value="">직접입력</option>
+                <option value="naver.com">naver.com</option>
+                <option value="gmail.com">gmail.com</option>
+            </select>
+        </div>
+    </div>
 
-            <!-- 비밀번호 확인 -->
-            <div class="form-row">
-                <div class="form-label">비밀번호 확인 <span class="req">*</span></div>
-                <div class="form-field">
-                    <input type="password">
-                </div>
-            </div>
+    <!-- 비밀번호 -->
+    <div class="form-row">
+        <div class="form-label">비밀번호 <span class="req">*</span></div>
+        <div class="form-field">
+            <input type="password" name="post_pw" required>
+        </div>
+    </div>
 
-            <!-- 제출 -->
-            <div class="voc-submit">
-                <button type="submit">접수하기</button>
-            </div>
+    <!-- 비밀번호 확인 -->
+    <div class="form-row">
+        <div class="form-label">비밀번호 확인 <span class="req">*</span></div>
+        <div class="form-field">
+            <input type="password" name="post_pw_confirm" required>
+        </div>
+    </div>
 
-        </form>
+    <!-- 제출 -->
+    <div class="voc-submit">
+        <button type="submit">접수하기</button>
+    </div>
+</form>
+
+<script>
+function setCounsel(value){
+    document.getElementById('counselType').value = value;
+}
+function setDetail(value){
+    document.getElementById('detailType').value = value;
+}
+function setEmailDomain(value){
+    if(value){
+        document.querySelector('input[name=email_domain]').value = value;
+    }
+}
+</script>
+
     </section>
 
 </div>

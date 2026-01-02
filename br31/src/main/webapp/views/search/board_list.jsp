@@ -52,6 +52,41 @@
                         no-repeat center center / auto 39px;
             cursor: pointer;
         }
+        
+        /* ===== 검색 결과 리스트 깨짐 방지 (board_list.jsp 전용) ===== */
+
+/* 테이블이 내용 길이에 밀려서 화면을 확장하지 못하게 고정 */
+.board-list__table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* colgroup이 있어도 브라우저가 늘리려는 걸 막기 위해 */
+.board-list__table-number,
+.board-list__table-date {
+    white-space: nowrap;
+}
+
+/* 제목 셀: 폭을 넘기지 않도록 */
+.board-list__table-title {
+    overflow: hidden;
+}
+
+/* 제목 링크: 한 줄 말줄임 (레이아웃 깨짐 방지 핵심) */
+.board-list__table-title a {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 혹시 긴 영문/특수문자 연속(띄어쓰기 없는 경우) 대비 */
+.board-list__table-title a {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+        
     </style>
 </head>
 
@@ -61,30 +96,55 @@
 
 <div class="site-container">
 
-    <!-- 고객센터 공통 메뉴 -->
+
     <jsp:include page="/views/information-center/_customerMenu.jsp" />
 
-    <section id="content" class="notice-list board-list">
+<section id="content"
+    class="board-list ${param.source eq 'press' ? 'press-list' : 'notice-list'}">
 
-        <!-- 페이지 헤더 -->
-        <header class="page-header">
-            <div class="page-header__container">
+
+ <header class="page-header">
+    <div class="page-header__container">
+
+        <c:choose>
+
+            
+            <c:when test="${param.source eq 'notice'}">
                 <div class="page-header__content">
-                    <h2 class="page-header__title">검색 결과</h2>
+                    <h2 class="page-header__title">공지사항</h2>
                 </div>
                 <div class="page-header__content">
                     <p class="page-header__text">
-                        입력하신 검색어에 대한<br>
-                        공지사항 및 보도자료 검색 결과입니다.
+                        배스킨라빈스의 신제품 안내, 신규 CF 등<br>
+                        다양한 소식을 알려드립니다.
                     </p>
                 </div>
-            </div>
-        </header>
+            </c:when>
+
+           
+            <c:when test="${param.source eq 'press'}">
+                <div class="page-header__content">
+                    <h2 class="page-header__title">보도자료</h2>
+                </div>
+                <div class="page-header__content">
+                    <p class="page-header__text">
+                        배스킨라빈스의 보도자료들을<br>
+                        모아 보여드립니다.
+                    </p>
+                </div>
+            </c:when>
+
+        </c:choose>
+
+    </div>
+</header>
+
 
         <!-- 검색 폼 -->
         <form action="${pageContext.request.contextPath}/search/board.do"
               method="get"
               class="board-search">
+              <input type="hidden" name="source" value="${param.source}">
             <div class="board-search__inner">
                 <input type="text"
                        name="keyword"

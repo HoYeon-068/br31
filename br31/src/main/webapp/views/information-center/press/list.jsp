@@ -75,19 +75,23 @@
         </header>
 
         <!-- 검색 -->
-        <form action="${pageContext.request.contextPath}/search/board.do"
-              method="get"
-              class="board-search">
-            <input type="hidden" name="source" value="press">
-            <div class="board-search__inner">
-                <input type="text"
-                       name="keyword"
-                       class="board-search__input"
-                       placeholder="검색어를 입력해주세요"
-                       value="${keyword}">
-                <button type="submit" class="board-search__button"></button>
-            </div>
-        </form>
+  <form action="${pageContext.request.contextPath}/press/list.do"
+      method="get"
+      class="board-search"
+      onsubmit="return submitPressSearch(this);">
+
+    <input type="hidden" name="source" value="press">
+
+    <div class="board-search__inner">
+        <input type="text"
+               name="keyword"
+               class="board-search__input"
+               placeholder="검색어를 입력해주세요"
+               value="${keyword}">
+        <button type="submit" class="board-search__button"></button>
+    </div>
+</form>
+
 
         <div class="board-list__content">
             <div class="board-list__table-wrap">
@@ -163,6 +167,16 @@
 </div>
 
 <jsp:include page="/views/layout/footer.jsp" />
+
+<script>
+function submitPressSearch(form) {
+    if (form.keyword.value.trim() !== "") {
+        form.action = "${pageContext.request.contextPath}/search/board.do";
+    }
+    return true;
+}
+</script>
+
 
 </body>
 </html>

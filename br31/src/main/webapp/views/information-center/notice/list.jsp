@@ -156,14 +156,50 @@
 </tbody>
 
                 </table>
-                <div class="paging">
-    <c:forEach var="i" begin="1" end="${totalPage}">
-        <a href="${pageContext.request.contextPath}/notice/list.do?page=${i}"
-           class="${i == currentPage ? 'active' : ''}">
-            ${i}
+<ul class="pagination">
+
+    <!-- 이전 -->
+    <li class="pagination__item pagination__item--icon pagination__item--prev
+        ${currentPage == 1 ? 'pagination__item--disabled' : ''}">
+        <a href="${pageContext.request.contextPath}/notice/list.do?page=${currentPage - 1}"
+           class="pagination__link">
+            <span class="pagination__name">이전</span>
         </a>
+    </li>
+
+    <!-- 페이지 번호 -->
+    <c:forEach var="i" begin="1" end="${totalPage}">
+        <li class="pagination__item
+            ${i == currentPage ? 'pagination__item--current' : ''}">
+            
+            <c:choose>
+                <c:when test="${i == currentPage}">
+                    <strong class="pagination__link">
+                        <span class="pagination__name">${i}</span>
+                    </strong>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/notice/list.do?page=${i}"
+                       class="pagination__link">
+                        <span class="pagination__name">${i}</span>
+                    </a>
+                </c:otherwise>
+            </c:choose>
+
+        </li>
     </c:forEach>
-</div>
+
+    <!-- 다음 -->
+    <li class="pagination__item pagination__item--icon pagination__item--next
+        ${currentPage == totalPage ? 'pagination__item--disabled' : ''}">
+        <a href="${pageContext.request.contextPath}/notice/list.do?page=${currentPage + 1}"
+           class="pagination__link">
+            <span class="pagination__name">다음</span>
+        </a>
+    </li>
+
+</ul>
+
                 
 
             </div>

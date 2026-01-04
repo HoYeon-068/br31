@@ -47,6 +47,8 @@ public class PressListHandler implements CommandHandler {
 	    request.setAttribute("totalPage", totalPage);     // 전체 페이지 수
 	    request.setAttribute("startPage", startPage);
 	    request.setAttribute("endPage", endPage);
+	    request.setAttribute("blockSize", blockSize);
+
 
 	    return "/views/information-center/press/list.jsp";
 	}

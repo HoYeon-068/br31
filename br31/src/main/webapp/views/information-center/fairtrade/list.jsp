@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -93,7 +95,7 @@
 
           
             <div class="board-list__table-wrap">
-                <p class="board-list__total">총 <strong>3</strong>건</p>
+         
 
                 <table class="board-list__table">
                     <colgroup>
@@ -103,29 +105,21 @@
                     </colgroup>
                     <tbody>
 
-                        <tr class="board-list__table-list">
-                            <td class="board-list__table-number">3</td>
-                            <td class="board-list__table-title">
-                                <a href="view.do">공정거래 자율준수 편람 e-book</a>
-                            </td>
-                            <td class="board-list__table-date">2025.09.01</td>
-                        </tr>
-
-                        <tr class="board-list__table-list">
-                            <td class="board-list__table-number">2</td>
-                            <td class="board-list__table-title">
-                                <a href="view.do">공정거래 자율준수 프로그램(CP) 도입 선포식 개최</a>
-                            </td>
-                            <td class="board-list__table-date">2024.09.30</td>
-                        </tr>
-
-                        <tr class="board-list__table-list">
-                            <td class="board-list__table-number">1</td>
-                            <td class="board-list__table-title">
-                                <a href="view.do">공정거래 자율준수 프로그램(CP) 도입 선언문</a>
-                            </td>
-                            <td class="board-list__table-date">2024.09.30</td>
-                        </tr>
+                     <c:forEach var="dto" items="${list}">
+<tr class="board-list__table-list">
+    <td class="board-list__table-number">
+        ${dto.noticeNo}
+    </td>
+    <td class="board-list__table-title">
+        <a href="view.do?noticeId=${dto.noticeId}">
+            ${dto.title}
+        </a>
+    </td>
+    <td class="board-list__table-date">
+        <fmt:formatDate value="${dto.regDate}" pattern="yyyy.MM.dd"/>
+    </td>
+</tr>
+</c:forEach>
 
                     </tbody>
                 </table>
@@ -134,9 +128,10 @@
             <!-- 하단 배너 (프론트 단계에서는 그대로 유지) -->
             <div style="text-align:center; margin-top:40px;">
                 <a href="https://www.brkoreacompliance.com/" target="_blank">
-                    <img
-                        src="${pageContext.request.contextPath}/resources/images/fairtrade_btn.png"
-                        alt="CP 홈페이지 바로가기">
+                   <img
+    src="${pageContext.request.contextPath}/resources/images/upload/fairtrade/fairtrade_btn.png"
+    alt="CP 홈페이지 바로가기">
+
                 </a>
             </div>
 

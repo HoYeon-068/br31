@@ -107,22 +107,25 @@
     </div>
 
     <!-- 발생일시 -->
-    <div class="form-row">
-        <div class="form-label">발생일시 <span class="req">*</span></div>
-        <div class="form-field inline">
-            <input type="date" name="occur_date" required>
-            <select name="occur_hour">
-                <% for(int i=0;i<24;i++){ %>
-                <option value="<%=i%>"><%=i%></option>
-                <% } %>
-            </select> 시
-            <select name="occur_min">
-                <% for(int i=0;i<60;i+=5){ %>
-                <option value="<%=i%>"><%=i%></option>
-                <% } %>
-            </select> 분경
-        </div>
+<div class="form-row">
+    <div class="form-label">발생일시 <span class="req">*</span></div>
+    <div class="form-field inline">
+        <input type="date" name="occur_date" class="inputDate" required>
+
+        <select name="occur_hour" class="selStyle2">
+            <% for(int i=0;i<24;i++){ %>
+            <option value="<%=i%>"><%=i%></option>
+            <% } %>
+        </select> 시
+
+        <select name="occur_min" class="selStyle2">
+            <% for(int i=0;i<60;i+=5){ %>
+            <option value="<%=i%>"><%=i%></option>
+            <% } %>
+        </select> 분경
     </div>
+</div>
+
 
     <!-- 매장 (선택) -->
     <div class="form-row">
@@ -137,32 +140,34 @@
     <div class="form-row">
         <div class="form-label">내용 <span class="req">*</span></div>
         <div class="form-field">
-            <textarea name="content" required></textarea>
-            <p class="warning-text">
-                욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
-                반복적인 비난성 글, 거짓 정보 등의 내용은
-                임의 삭제될 수 있으며, 답변 회신이 불가할 수 있습니다.
-            </p>
+        <textarea name="content" required
+placeholder="욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
+반복적인 비난성 글, 거짓 정보 등의 내용은
+임의 삭제될 수 있으며, 답변 회신이 불가할 수 있습니다."></textarea>
         </div>
     </div>
 
     <!-- 파일첨부 (UI만 유지, 서버 처리 안 함) -->
-    <div class="form-row">
-        <div class="form-label">파일첨부</div>
-        <div class="form-field">
-            <input type="file" disabled>
-            <p class="file-info">
-                각 파일당 최대 10MB<br>
-                jpg, jpeg, gif, png, bmp, ppt, pptx, xls, xlsx, doc, docx, pdf
-            </p>
+   <div class="form-row">
+    <div class="form-label">파일첨부</div>
+    <div class="form-field">
+        <div class="fileDiv">
+            <label for="attachFile" id="fileLabel">파일을 선택해주세요</label>
+            <input type="file" id="attachFile" name="attachFile" onchange="onFileChange(this)">
         </div>
+        <p class="file-info">
+            각 파일당 최대 10MB<br>
+            jpg, jpeg, gif, png, bmp, ppt, pptx, xls, xlsx, doc, docx, pdf
+        </p>
     </div>
+</div>
+
 
     <!-- 이름 -->
     <div class="form-row">
         <div class="form-label">이름 <span class="req">*</span></div>
         <div class="form-field">
-            <input type="text" name="name" required>
+            <input type="text" name="name" class="inputText" required>
         </div>
     </div>
 
@@ -170,9 +175,9 @@
     <div class="form-row">
         <div class="form-label">전화번호</div>
         <div class="form-field inline">
-            <input type="text" name="phone1" size="4"> -
-            <input type="text" name="phone2" size="4"> -
-            <input type="text" name="phone3" size="4">
+        <input type="text" name="phone1" class="inputText" style="width:80px">
+<input type="text" name="phone2" class="inputText" style="width:80px">
+<input type="text" name="phone3" class="inputText" style="width:80px">
         </div>
     </div>
 
@@ -180,8 +185,8 @@
     <div class="form-row">
         <div class="form-label">이메일 <span class="req">*</span></div>
         <div class="form-field inline">
-            <input type="text" name="email_id" required> @
-            <input type="text" name="email_domain" required>
+          <input type="text" name="email_id" class="inputText" required>
+<input type="text" name="email_domain" class="inputText" required>
             <select onchange="setEmailDomain(this.value)">
                 <option value="">직접입력</option>
                 <option value="naver.com">naver.com</option>
@@ -194,7 +199,7 @@
     <div class="form-row">
         <div class="form-label">비밀번호 <span class="req">*</span></div>
         <div class="form-field">
-            <input type="password" name="post_pw" required>
+          <input type="password" name="post_pw" class="inputText" required>
         </div>
     </div>
 
@@ -202,7 +207,7 @@
     <div class="form-row">
         <div class="form-label">비밀번호 확인 <span class="req">*</span></div>
         <div class="form-field">
-            <input type="password" name="post_pw_confirm" required>
+       <input type="password" name="post_pw_confirm" class="inputText" required>
         </div>
     </div>
 
@@ -213,15 +218,38 @@
 </form>
 
 <script>
+
 function setCounsel(value){
     document.getElementById('counselType').value = value;
+    setActiveButton(event.target);
 }
+
 function setDetail(value){
     document.getElementById('detailType').value = value;
+    setActiveButton(event.target);
 }
+
+function setActiveButton(clickedBtn){
+    const group = clickedBtn.closest('.btn-group');
+    const buttons = group.querySelectorAll('button');
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+    clickedBtn.classList.add('active');
+}
+
+
 function setEmailDomain(value){
     if(value){
         document.querySelector('input[name=email_domain]').value = value;
+    }
+}
+
+function onFileChange(input){
+    const label = document.getElementById('fileLabel');
+    if(input.files.length > 0){
+        label.textContent = input.files[0].name;
+        label.style.backgroundImage = 'none';
+        label.style.color = '#333';
     }
 }
 </script>

@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mvc.domain.menu.ProductDTO;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +22,7 @@ public class UserDTO {
 	private String gender;
 	private Date birth;
 	private String nickname;
+	private String profile_img_path;
 	
 
 }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header class="site-header">
     <div class="site-header__container">
         <div class="site-header__content">
@@ -223,18 +224,37 @@
 
                     <nav class="site-user-menu__content dropdown-menu">
                         <ul class="site-user-menu__list">
-                                                            <li class="site-user-menu__item">
-                                    <!--                                <a href="/login/login.php" class="site-user-menu__link">Login</a>-->
-                                    <a href="#" onclick="document.loginForm.submit();" class="site-user-menu__link">Login</a>
-                                </li>
-                                <li class="site-user-menu__item">
-                                    <a href="https://www.happypointcard.com/page/join/index.spc" target="_blank" class="site-user-menu__link">Join</a>
-                                </li>
-                            
-
-                            <li class="site-user-menu__item">
-                                <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
-                            </li>
+                        		<c:choose>
+                        		<%--  로그인 상태--%>
+    	                    		<c:when test="${not empty sessionScope.loginUser}">
+		                                <li class="site-user-menu__item">
+		                                    <a href="${pageContext.request.contextPath}/login/logout.do" class="site-user-menu__link">Logout</a>
+		                                </li>
+		                                <li class="site-user-menu__item">
+		                                    <a href="${pageContext.request.contextPath}/mypage/mypage.do" target="_blank" class="site-user-menu__link">My Page</a>
+		                                </li>
+		                            
+		
+			                            <li class="site-user-menu__item">
+			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
+			                            </li>
+	                        		</c:when>
+	                        		<%--  로그아웃 상태--%>
+	                        		<c:otherwise>
+		                                <li class="site-user-menu__item">
+		                                    <a href="${pageContext.request.contextPath}/login/login.do" class="site-user-menu__link">Login</a>
+		                                </li>
+		                                <li class="site-user-menu__item">
+		                                    <a href="${pageContext.request.contextPath}/join/join.do" target="_blank" class="site-user-menu__link">Join</a>
+		                                </li>
+		                            
+		
+			                            <li class="site-user-menu__item">
+			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
+			                            </li>
+	                        		
+	                        		</c:otherwise>
+                        		</c:choose>
                         </ul>
                     </nav>
                 </div>

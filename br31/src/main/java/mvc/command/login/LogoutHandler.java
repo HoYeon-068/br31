@@ -2,6 +2,7 @@ package mvc.command.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mvc.command.CommandHandler;
 
@@ -9,8 +10,12 @@ public class LogoutHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		HttpSession session = request.getSession(false);
+	      if (session != null) {
+	         session.invalidate();
+	      }
+	      response.sendRedirect(request.getContextPath() + "/story/history.do");
+	      return null;
 	}
 
 }

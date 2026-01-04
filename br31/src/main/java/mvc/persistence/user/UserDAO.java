@@ -14,25 +14,30 @@ public interface UserDAO  {
 	
 	
 	// 아이디 찾기
-	String findUserIdByPhone(String name, String phone);
-	String findUserIdByEmail(String name, String email);
+	String findUserIdByPhone(String name, String phone) throws SQLException;
+	String findUserIdByEmail(String name, String email) throws SQLException;
 
 	// 비밀번호 재발급
-	int resetPwd(String userId, String tempPwd );
+	int resetPwd(String userId, String tempPwd ) throws SQLException;
 
 
 
 	// 중복 체크
-	boolean existsByUserId(String userId);
-	boolean existsByNickname(String nickname);
-	boolean existsByEmail(String email);
+	boolean existsByUserId(String userId) throws SQLException;
+	boolean existsByNickname(String nickname) throws SQLException;
+	boolean existsByEmail(String email) throws SQLException;
 
 	// 회원가입
-	int insert(UserDTO user);
-
+	int insert(UserDTO user) throws SQLException;
+	int insertUserTermsBatch(String userId, int[] termsIds) throws SQLException;
+	
 	// 마이페이지
-	UserDTO selectByUserId(String userId);
-	int updateProfile(UserDTO user);
-	int updatePassword(String userId, String newPwd);
+	UserDTO selectByUserId(String userId) throws SQLException;
+	boolean checkPassword(String userId, String oldPwd) throws Exception;
+    int updatePassword(String userId, String newPwd) throws Exception;
+    boolean isNicknameAvailable(String myUserId, String nickname) throws Exception;
+    boolean isEmailAvailable(String myUserId, String email) throws Exception;
+    int updateProfile(String userId, String nickname, String email, String phoneNo, String profileImgPath) throws Exception;
+
 
 }

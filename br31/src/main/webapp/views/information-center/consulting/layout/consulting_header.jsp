@@ -3,14 +3,14 @@
         <ul class="page-menu__list">
             <!--            현재 페이지인 경우 page-menu__item--active 추가-->
             <li class="page-menu__item">
-                <a href="../store-offer/offer.html" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/information-center/store-offer/offer.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">신규 직영점 입점제의</span>
                     </div>
                 </a>
             </li>
             <li class="page-menu__item page-menu__item--active">
-                <a href="br.html" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/information-center/consulting/br.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">점포개설문의</span>
                     </div>
@@ -43,32 +43,32 @@
         <nav class="page-tab">
             <ul class="page-tab__list">
                 <!-- 현재 페이지인 경우 page-tab__item--active 추가 -->
-                <li class="page-tab__item page-tab__item--active">
+                <li class="page-tab__item ${activeMenu eq 'br'?'page-tab__item--active':'' }">
                     <a href="${pageContext.request.contextPath}/information-center/consulting/br.do" class="page-tab__link">
                         <span class="page-tab__text">BR시스템</span>
                     </a>
                 </li>
-                <li class="page-tab__item">
+                <li class="page-tab__item ${activeMenu eq 'process'?'page-tab__item--active':'' }">
                     <a href="${pageContext.request.contextPath}/information-center/consulting/process.do" class="page-tab__link">
                         <span class="page-tab__text">창업절차</span>
                     </a>
                 </li>
-                <li class="page-tab__item">
+                <li class="page-tab__item ${activeMenu eq 'condition'?'page-tab__item--active':'' }">
                     <a href="${pageContext.request.contextPath}/information-center/consulting/condition.do" class="page-tab__link">
                         <span class="page-tab__text">창업조건</span>
                     </a>
                 </li>
-                <li class="page-tab__item">
+                <li class="page-tab__item ${activeMenu eq 'counsel'?'page-tab__item--active':'' }">
                     <a href="${pageContext.request.contextPath}/information-center/consulting/counsel.do" class="page-tab__link">
                         <span class="page-tab__text">상담안내</span>
                     </a>
                 </li>
-                <li class="page-tab__item">
+                <li class="page-tab__item ${activeMenu eq 'store-list'?'page-tab__item--active':'' }">
                     <a href="${pageContext.request.contextPath}/information-center/consulting/store-list.do" class="page-tab__link">
                         <span class="page-tab__text">신규후보매장</span>
                     </a>
                 </li>
-                <li class="page-tab__item">
+                <li class="page-tab__item ${activeMenu eq 'faq'?'page-tab__item--active':'' }">
                     <a href="${pageContext.request.contextPath}/information-center/consulting/faq.do" class="page-tab__link">
                         <span class="page-tab__text">창업FAQ </span>
                     </a>

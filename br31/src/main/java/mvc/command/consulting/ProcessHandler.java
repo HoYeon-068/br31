@@ -10,6 +10,8 @@ public class ProcessHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ProcessHandler");
+		
+		request.setAttribute("activeMenu", "process");
 		return "/views/information-center/consulting/process.jsp";
 	}
 	

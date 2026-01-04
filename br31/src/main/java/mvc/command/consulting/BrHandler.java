@@ -12,11 +12,8 @@ public class BrHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BrHandler");
 		
-		String a="aaaa";
 		
-		
-		System.out.println(a.substring(a.length()));
-		
+		request.setAttribute("activeMenu", "br");
 		return "/views/information-center/consulting/br.jsp";
 	}
 	

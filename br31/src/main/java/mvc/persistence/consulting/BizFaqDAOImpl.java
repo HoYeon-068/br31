@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import mvc.domain.consulting.BizFaqDTO;
@@ -46,9 +47,9 @@ public class BizFaqDAOImpl implements BizFaqDAO{
 
 		ArrayList<BizFaqDTO> list = null;
 
-		int products_id;
-		String product_name,sub_title,img_path,bg_color,tags,span_color,category_name; 
-		
+		int biz_faq_id;
+		String question,answer;
+		Date reg_date;
 		
 		
 		
@@ -60,20 +61,20 @@ public class BizFaqDAOImpl implements BizFaqDAO{
 				list = new ArrayList<BizFaqDTO>();
 				do {
 					// seq, title, writer, email, writedate, readed
-					products_id = rs.getInt("products_id");
-					product_name = rs.getString("product_name");
-					category_name=rs.getString("category_name");
-					sub_title = rs.getString("sub_title");
-					img_path = rs.getString("img_path");
-					bg_color = rs.getString("bg_color");
-					tags = rs.getString("tags");
-					span_color=rs.getString("span_color");
+					biz_faq_id = rs.getInt("biz_faq_id");
+					question = rs.getString("question");
+					answer=rs.getString("answer");
+					reg_date=rs.getDate("reg_date");
 
 					vo = new BizFaqDTO().builder()
-							.biz_faq_id()
+							.biz_faq_id(biz_faq_id)
+							.question(question)
+							.answer(answer)
+							.reg_date(reg_date)
+							.build();
 
 					list.add(vo);
-
+					System.out.println(question);
 				} while (rs.next());
 
 			}

@@ -1,18 +1,18 @@
-package mvc.command.consulting;
+package mvc.command.store_offer;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mvc.command.CommandHandler;
 
-public class ConditionHandler implements CommandHandler{
+public class StoreOfferHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ConditionHandler");
+		System.out.println("StoreOfferHandler");
 		
-		request.setAttribute("activeMenu", "condition");
-		return "/views/information-center/consulting/condition.jsp";
+		return "/views/information-center/store-offer/offer.jsp";
 	}
 	
 }

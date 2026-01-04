@@ -10,6 +10,8 @@ public class CounselHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("CounselHandler");
+		
+		request.setAttribute("activeMenu", "counsel");
 		return "/views/information-center/consulting/counsel.jsp";
 	}
 	

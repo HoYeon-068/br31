@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
 
-<script type="module" src="https://bks0c7yrb0.execute-api.ap-northeast-2.amazonaws.com/v1/api/fontstream/djs/?sid=gAAAAABk3G1_eyGB8FmZaMXgewjzvKQwe0I-4Kj9Xj-dKpNnUlp_rsk4w6Z_0UeYWyfihX4Dle9eu9HBqxj-2haSIR5ke8aarBIUuDqDVOLuImctKnYplmDTPSV-Bfn2TzQR4jSr7yknqw7gbTlj_xE3x62PMBY9Y3jC5rjtwuoBrWb2FaAY21Z2idAGvnk9xlfgI9CdciJwW6IGsijBsI592KNSqOLc9CQ4zV1Jziva1IN_NNxkzeG_pkU7_0TogufO4qTNTYRr" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
@@ -215,6 +215,20 @@
                     <p class="store-map-list__result">검색결과 <span class="store-map-list__point-color"></span>개</p>
                     <div class="store-map-list__container">
                         <ul class="store-map-list__list">
+                        <li class="store-map-list__item">
+                        <a href="#" role="button" type="button" data-info="{&quot;store_type&quot;:&quot;B&quot;,&quot;store_type_name&quot;:&quot;BR 100flavor&quot;,&quot;store_code&quot;:&quot;61230&quot;,&quot;direct_div&quot;:&quot;Y&quot;,&quot;store_name&quot;:&quot;SPC스퀘어&quot;,&quot;local_no&quot;:&quot;02-565-1012&quot;,&quot;open_date&quot;:&quot;2022-04-29&quot;,&quot;operation_time&quot;:&quot;AM 10~PM 11&quot;,&quot;latitude&quot;:37.4943827585735,&quot;longitude&quot;:127.029802084664,&quot;addr_zipcode&quot;:&quot;AM 10~PM 11&quot;,&quot;addr_si&quot;:&quot;서울특별시&quot;,&quot;addr_gugun&quot;:&quot;강남구&quot;,&quot;addr_road&quot;:&quot;역삼동 831-23 2층&quot;,&quot;addr_detail&quot;:&quot;&quot;,&quot;service_info&quot;:&quot;주차, 배달, 픽업, 취식여부, 해피스테이션, 가챠머신, KT제휴, SKT제휴, LG U+제휴, 맛보기&quot;,&quot;distance&quot;:442.57112232945,&quot;index&quot;:0,&quot;seq&quot;:1}" class="store-map-list__button">
+                            <div class="store-map-list__box">
+                                <h3 class="store-map-list__title">SPC스퀘어</h3>
+                                <address class="store-map-list__address">서울특별시 강남구 역삼동 831-23 2층 </address>
+                                <dl class="store-map-list__content">
+                                <dt class="store-map-list__name">연락처</dt>
+                                <dd class="store-map-list__text">02-565-1012</dd>
+                                <dt class="store-map-list__name">운영시간</dt>
+                                <dd class="store-map-list__text">AM 10~PM 11</dd>
+                                </dl>
+                            </div>
+                        </a>
+                    </li>
                         </ul>
                     </div>
                 </div>
@@ -339,9 +353,88 @@
 
 
 
+ <script>
+ 
+ function makeStoreLi(store, index) {
+
+	    const dataInfo = {
+	        store_type: store.storeType,
+	        store_name: store.storeName,
+	        local_no: store.storeTel,
+	        open_date: store.openDate,
+	        operation_time: store.businessHours,
+	        latitude: store.latitude,
+	        longitude: store.longitude,
+	        addr_si: store.sido,
+	        addr_gugun: store.sigungu,
+	        addr_road: store.street,
+	        addr_detail: store.addressDetail,
+	        index: index
+	    };
+
+	    return `
+	    <li class="store-map-list__item">
+	        <a href="#"
+	           role="button"
+	           type="button"
+	           data-info='${JSON.stringify(dataInfo)}'
+	           class="store-map-list__button">
+
+	            <div class="store-map-list__box">
+	                <h3 class="store-map-list__title">${store.storeName}</h3>
+	                <address class="store-map-list__address">
+	                    ${store.sido} ${store.sigungu} ${store.street} ${store.addressDetail || ""}
+	                </address>
+
+	                <dl class="store-map-list__content">
+	                    <dt class="store-map-list__name">연락처</dt>
+	                    <dd class="store-map-list__text">${store.storeTel}</dd>
+
+	                    <dt class="store-map-list__name">운영시간</dt>
+	                    <dd class="store-map-list__text">${store.businessHours}</dd>
+	                </dl>
+	            </div>
+	        </a>
+	    </li>
+	    `;
+	}
+ 
+ 
+ 
+ 
+ 
+	   $("button.store-map__submit").on("click", function (){
+		     //var params = $("form").serialize();		// ?memberid=admin
+		     //var params = null;
+		     //params = "memberid="+$("#id").val();   
+			 $('.store-map-list__list').empty();
+		     const contextPath = "${pageContext.request.contextPath}";
+		     
+		     $.ajax({
+				 url:contextPath+"/store/mapSearch.ajax" , 
+				 dataType:"json",
+				 type:"GET",
+				 //data: params,
+				 cache:false ,
+				 //                              {  "count":1 } 
+				 success: function ( data,  textStatus, jqXHR ){
+					 
+					 $.each(data, function (index, store) {
+						 $('.store-map-list__list').append(makeStoreLi(store, index));
+					    });
+					 
+				 },
+				 error:function (){
+					 alert("에러~~~ ");
+				 }
+				 
+			 });
+		     
+		     
+		     
+		     
+	  }); 
+	</script>
 </body>
-
-
-
 
 </html>

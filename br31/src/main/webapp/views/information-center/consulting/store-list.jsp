@@ -120,111 +120,58 @@
                         </tr>
                         </thead>
                         <tbody>
-                                                <tr>
-                            <td><span class="top">TOP</span></td>
-                            <td>서울</td>
+                        <c:forEach items="${list}" var="vo">
+                        	<tr>
+                            <%-- <td><span class="top">${list.newStoreBoardId}</span></td> --%>
+                            <td><span>${vo.newStoreBoardId}</span></td>
+                            <td>${vo.sido}</td>
                             <td>
-                                <a href="store-viewca5b.html?seq=3&amp;findword=&amp;page=1">서울시 동대문구 제기동역 인근 오피스, 주거지역 복합 상권</a>
+                                <a href="store-view.do?seq=${vo.newStoreBoardId}&currentPage=${pvo.currentPage}">${vo.marketArea}</a>
                             </td>
-                            <td>전은수</td>
-                            <td>2025-11-04</td>
-                            <td>4661</td>
-                        </tr>
-                                                <tr>
-                            <td><span >23</span></td>
-                            <td>강원특별자치도</td>
-                            <td>
-                                <a href="store-view4c10.html?seq=25&amp;findword=&amp;page=1">춘천시 퇴계동의 ´행촌로´와 ´춘추로´ 사거리 인근 &#40;남춘천 방면&#41;</a>
-                            </td>
-                            <td>곽영민</td>
-                            <td>2025-11-18</td>
-                            <td>104</td>
-                        </tr>
-                                                <tr>
-                            <td><span >22</span></td>
-                            <td>서울</td>
-                            <td>
-                                <a href="store-view6a37.html?seq=24&amp;findword=&amp;page=1">군자역 5 / 6 / 7 / 8 번 출구 인근</a>
-                            </td>
-                            <td>곽영민</td>
-                            <td>2025-11-18</td>
-                            <td>164</td>
-                        </tr>
-                                                <tr>
-                            <td><span >21</span></td>
-                            <td>강원특별자치도</td>
-                            <td>
-                                <a href="store-view3aac.html?seq=23&amp;findword=&amp;page=1">원주시 흥업면 흥업사거리 중심상권</a>
-                            </td>
-                            <td>전은수</td>
-                            <td>2025-11-10</td>
-                            <td>153</td>
-                        </tr>
-                                                <tr>
-                            <td><span >20</span></td>
-                            <td>서울</td>
-                            <td>
-                                <a href="store-viewa95b.html?seq=22&amp;findword=&amp;page=1">서울시 중랑구 신내동 봉화산역&#40;6호선&#41; 고밀도주거 추천상권</a>
-                            </td>
-                            <td>전은수</td>
-                            <td>2025-11-06</td>
-                            <td>8999</td>
-                        </tr>
-                                                <tr>
-                            <td><span >19</span></td>
-                            <td>전남</td>
-                            <td>
-                                <a href="store-view9ee2.html?seq=21&amp;findword=&amp;page=1">전남 순천시 도심 중앙시장 대로변</a>
-                            </td>
-                            <td>이정민</td>
-                            <td>2025-11-04</td>
-                            <td>12700</td>
-                        </tr>
-                                                <tr>
-                            <td><span >18</span></td>
-                            <td>전남</td>
-                            <td>
-                                <a href="store-viewcd55.html?seq=20&amp;findword=&amp;page=1">전남 여수시 엑스포역 인근 아파트를 배후로 하는 주거지역 상권</a>
-                            </td>
-                            <td>이정민</td>
-                            <td>2025-11-04</td>
-                            <td>12678</td>
-                        </tr>
-                                                <tr>
-                            <td><span >17</span></td>
-                            <td>경북</td>
-                            <td>
-                                <a href="store-viewcbe7.html?seq=19&amp;findword=&amp;page=1">경주보문로 주변 상권</a>
-                            </td>
-                            <td>이상민</td>
-                            <td>2025-11-04</td>
-                            <td>12684</td>
-                        </tr>
-                                                <tr>
-                            <td><span >16</span></td>
-                            <td>경북</td>
-                            <td>
-                                <a href="store-viewc448.html?seq=18&amp;findword=&amp;page=1">경북 영주시 메인 상권으로 휴천동, 하망동 주변상권</a>
-                            </td>
-                            <td>이상민</td>
-                            <td>2025-11-04</td>
-                            <td>12682</td>
-                        </tr>
-                                                <tr>
-                            <td><span >15</span></td>
-                            <td>경북</td>
-                            <td>
-                                <a href="store-view4a72.html?seq=17&amp;findword=&amp;page=1">경북 경산시 임당역 인근 임당지구 재개발 상권</a>
-                            </td>
-                            <td>이상민</td>
-                            <td>2025-11-04</td>
-                            <td>12723</td>
-                        </tr>
-                                                </tbody>
+                            <td>${vo.currentBusiness}</td>
+                            <td>${vo.createdAt}</td>
+                            <td>${vo.viewCount}</td>
+                       		</tr>
+                        </c:forEach>                                                </tbody>
                     </table>
+                    
+                    
+                    
 
-                    <ul class='pagination'>
-<li class='pagination__item pagination__item--icon pagination__item--prev pagination__item--disabled'>
+                     <ul class='pagination'>
+                     
+                      <li class='pagination__item pagination__item--icon pagination__item--prev pagination__item--disabled'>
+    <a href='store-list0293.html?page=1&amp;findword=' class='pagination__link'>
+        <span class='pagination__name'>
+            이전
+        </span>
+    </a>
+</li>
+                     <c:forEach begin="${ pvo.start }" end="${ pvo.end }" step="1" var="i">
+              
+              <c:choose>
+                <c:when test="${ pvo.currentPage eq i }">
+                   
+                   <li class='pagination__item pagination__item--current' aria-current='page'>
+    <strong class='pagination__link'>
+        <span class='pagination__name'>${ i }</span>
+    </strong>
+</li>
+                </c:when>
+                <c:otherwise>
+                  <li class='pagination__item'>
+    <a href='store-list.do?currentPage=${i}' class='pagination__link'>
+        <span class='pagination__name'>${ i }</span>
+    </a>
+</li>
+                </c:otherwise>
+              </c:choose> 
+              
+            </c:forEach>
+                     
+                     
+                     
+ <!-- <li class='pagination__item pagination__item--icon pagination__item--prev pagination__item--disabled'>
     <a href='store-list0293.html?page=1&amp;findword=' class='pagination__link'>
         <span class='pagination__name'>
             이전
@@ -249,7 +196,7 @@
 3
         </span>
     </a>
-</li>
+</li> -->
 <li class='pagination__item pagination__item--icon pagination__item--next pagination__item--disabled'>
     <a href='#' class='pagination__link'>
         <span class='pagination__name'>
@@ -258,7 +205,7 @@
             </div>
         </section>
     </div>
-</div>
+</div> 
 <jsp:include page="/views/layout/footer.jsp" />
 
 </body>

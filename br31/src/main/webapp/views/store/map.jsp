@@ -25,12 +25,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sdk1659.js?appkey=8c71dfbb0129b7e25a985c72328e967b"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sdk1659.js?appkey=8c71dfbb0129b7e25a985c72328e967b"></script>
 </head>
 <body id="baskinrobbins-store-map" class="baskinrobbins-store-map">
 
@@ -353,88 +353,174 @@
 
 
 
- <script>
- 
- function makeStoreLi(store, index) {
+<script>
+/* ===============================
+   기본 변수
+================================ */
+var contextPath = "${pageContext.request.contextPath}";
+var map = null;
+var markers = [];
 
-	    const dataInfo = {
-	        store_type: store.storeType,
-	        store_name: store.storeName,
-	        local_no: store.storeTel,
-	        open_date: store.openDate,
-	        operation_time: store.businessHours,
-	        latitude: store.latitude,
-	        longitude: store.longitude,
-	        addr_si: store.sido,
-	        addr_gugun: store.sigungu,
-	        addr_road: store.street,
-	        addr_detail: store.addressDetail,
-	        index: index
-	    };
+/* ===============================
+   매장 타입 정규화
+================================ */
+function normalizeStoreType(type) {
+  if (!type) return "BR 31";
+  if (type.includes("100")) return "100 FLAVOR";
+  return "BR 31";
+}
 
-	    return `
-	    <li class="store-map-list__item">
-	        <a href="#"
-	           role="button"
-	           type="button"
-	           data-info='${JSON.stringify(dataInfo)}'
-	           class="store-map-list__button">
+/* ===============================
+   타입별 마커 아이콘 경로
+   ★ 파일명은 네 실제 리소스에 맞게 수정
+================================ */
+var markerIconMap = {
+  "BR 31": contextPath + "/resources/images/store/map/icon_map_marker_default.png",
+  "100 FLAVOR": contextPath + "/resources/images/store/map/icon_map_marker_flavors.png"
+};
 
-	            <div class="store-map-list__box">
-	                <h3 class="store-map-list__title">${store.storeName}</h3>
-	                <address class="store-map-list__address">
-	                    ${store.sido} ${store.sigungu} ${store.street} ${store.addressDetail || ""}
-	                </address>
+/* ===============================
+   MarkerImage 생성
+================================ */
+function makeMarkerImage(src) {
+  var size = new kakao.maps.Size(137, 106);
+  var offset = new kakao.maps.Point(36, 106);
+  return new kakao.maps.MarkerImage(src, size, { offset: offset });
+}
 
-	                <dl class="store-map-list__content">
-	                    <dt class="store-map-list__name">연락처</dt>
-	                    <dd class="store-map-list__text">${store.storeTel}</dd>
+/* ===============================
+   기존 마커 제거
+================================ */
+function clearMarkers() {
+  markers.forEach(function(m) {
+    m.setMap(null);
+  });
+  markers = [];
+}
 
-	                    <dt class="store-map-list__name">운영시간</dt>
-	                    <dd class="store-map-list__text">${store.businessHours}</dd>
-	                </dl>
-	            </div>
-	        </a>
-	    </li>
-	    `;
-	}
- 
- 
- 
- 
- 
-	   $("button.store-map__submit").on("click", function (){
-		     //var params = $("form").serialize();		// ?memberid=admin
-		     //var params = null;
-		     //params = "memberid="+$("#id").val();   
-			 $('.store-map-list__list').empty();
-		     const contextPath = "${pageContext.request.contextPath}";
-		     
-		     $.ajax({
-				 url:contextPath+"/store/mapSearch.ajax" , 
-				 dataType:"json",
-				 type:"GET",
-				 //data: params,
-				 cache:false ,
-				 //                              {  "count":1 } 
-				 success: function ( data,  textStatus, jqXHR ){
-					 
-					 $.each(data, function (index, store) {
-						 $('.store-map-list__list').append(makeStoreLi(store, index));
-					    });
-					 
-				 },
-				 error:function (){
-					 alert("에러~~~ ");
-				 }
-				 
-			 });
-		     
-		     
-		     
-		     
-	  }); 
-	</script>
+/* ===============================
+   지도 초기화 (1회)
+================================ */
+$(function () {
+  var container = document.getElementById("store-map-field");
+  if (container && kakao.maps) {
+    map = new kakao.maps.Map(container, {
+      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      level: 6
+    });
+  }
+});
+
+/* ===============================
+   검색 버튼 클릭
+================================ */
+$("button.store-map__submit").on("click", function (e) {
+  e.preventDefault();
+
+  $(".store-map-list__list").empty();
+
+  $.ajax({
+    url: contextPath + "/store/mapSearch.ajax",
+    type: "GET",
+    dataType: "json",
+    cache: false,
+
+    success: function (data) {
+      console.log("응답 데이터:", data);
+
+      if (!Array.isArray(data)) return;
+
+      $("span.store-map-list__point-color").text(data.length);
+
+      clearMarkers();
+
+      $.each(data, function (index, store) {
+
+        /* ===== 값 정리 ===== */
+        var storeType = normalizeStoreType(store.storeType);
+        var iconSrc = markerIconMap[storeType];
+
+        var addrDetail = (store.addressDetail === "null" || store.addressDetail == null)
+                          ? "" : store.addressDetail;
+
+        /* ===== data-info ===== */
+        var info = {
+          index: index,
+          latitude: store.latitude,
+          longitude: store.longitude
+        };
+
+        var encodedInfo = encodeURIComponent(JSON.stringify(info));
+
+        /* ===== 리스트 HTML ===== */
+        var li = ''
+          + '<li class="store-map-list__item">'
+          + '  <a href="#" role="button" class="store-map-list__button" data-info="' + encodedInfo + '">'
+          + '    <div class="store-map-list__box">'
+          + '      <h3 class="store-map-list__title">' + (store.storeName || "") + '</h3>'
+          + '      <address class="store-map-list__address">'
+          +        (store.sido || "") + ' ' + (store.sigungu || "") + ' '
+          +        (store.street || "") + ' ' + addrDetail
+          + '      </address>'
+          + '      <dl class="store-map-list__content">'
+          + '        <dt class="store-map-list__name">연락처</dt>'
+          + '        <dd class="store-map-list__text">' + (store.storeTel || "") + '</dd>'
+          + '        <dt class="store-map-list__name">운영시간</dt>'
+          + '        <dd class="store-map-list__text">' + (store.businessHours || "") + '</dd>'
+          + '      </dl>'
+          + '    </div>'
+          + '  </a>'
+          + '</li>';
+
+        $(".store-map-list__list").append(li);
+
+        /* ===== 마커 생성 ===== */
+        if (map && store.latitude && store.longitude) {
+          var position = new kakao.maps.LatLng(store.latitude, store.longitude);
+          var markerImg = makeMarkerImage(iconSrc);
+
+          var marker = new kakao.maps.Marker({
+            position: position,
+            image: markerImg
+          });
+
+          marker.setMap(map);
+          markers.push(marker);
+
+          /* 마커 클릭 → 지도 이동 */
+          kakao.maps.event.addListener(marker, "click", function () {
+            map.panTo(position);
+          });
+        }
+      });
+
+      /* 첫 매장으로 이동 */
+      if (map && data.length > 0) {
+        map.panTo(new kakao.maps.LatLng(data[0].latitude, data[0].longitude));
+      }
+    },
+
+    error: function () {
+      alert("에러~~~");
+    }
+  });
+});
+
+/* ===============================
+   리스트 클릭 → 지도 이동
+================================ */
+$(document).on("click", ".store-map-list__button", function (e) {
+  e.preventDefault();
+
+  var info = JSON.parse(decodeURIComponent($(this).attr("data-info")));
+
+  if (map && info.latitude && info.longitude) {
+    map.panTo(new kakao.maps.LatLng(info.latitude, info.longitude));
+  }
+});
+</script>
+
+
 </body>
 
 </html>

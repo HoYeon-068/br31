@@ -19,8 +19,12 @@ public class MapSearchHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 				System.out.println("> MapSearchHandler .... ");
 				
+				response.setCharacterEncoding("UTF-8");
+		        response.setContentType("application/json; charset=UTF-8");
+				
 				Connection conn = ConnectionProvider.getConnection();
 				StoreDAO dao=new StoreDAOImpl(conn); 
+				
 				
 				
 				try {

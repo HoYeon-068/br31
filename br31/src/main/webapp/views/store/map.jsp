@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
-
-<!-- Mirrored from www.baskinrobbins.co.kr/store/map.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 00:53:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,24 +21,16 @@
 <meta property="og:image" content="${pageContext.request.contextPath}/resources/images/common/img_share.png">
 <meta property="og:type" content="website">
 
-<script>
-    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
-        window.location = 'microsoft-edge:' + window.location;
-        setTimeout(function () {
-            window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
-        }, 13);
-    }
-</script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
 
-<script type="module" src="https://bks0c7yrb0.execute-api.ap-northeast-2.amazonaws.com/v1/api/fontstream/djs/?sid=gAAAAABk3G1_eyGB8FmZaMXgewjzvKQwe0I-4Kj9Xj-dKpNnUlp_rsk4w6Z_0UeYWyfihX4Dle9eu9HBqxj-2haSIR5ke8aarBIUuDqDVOLuImctKnYplmDTPSV-Bfn2TzQR4jSr7yknqw7gbTlj_xE3x62PMBY9Y3jC5rjtwuoBrWb2FaAY21Z2idAGvnk9xlfgI9CdciJwW6IGsijBsI592KNSqOLc9CQ4zV1Jziva1IN_NNxkzeG_pkU7_0TogufO4qTNTYRr" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sdk1659.js?appkey=8c71dfbb0129b7e25a985c72328e967b"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sdk1659.js?appkey=8c71dfbb0129b7e25a985c72328e967b"></script>
 </head>
 <body id="baskinrobbins-store-map" class="baskinrobbins-store-map">
 
@@ -102,7 +92,7 @@
 
         <div class="store-map__container">
             <div class="store-map__content">
-                <form action="https://www.baskinrobbins.co.kr/api/store-list.php" class="store-map-form" method="get">
+                <form action="${pageContext.request.contextPath}/views/api/store-list.jsp" class="store-map-form" method="get">
                     <fieldset class="store-map-form__fieldset">
                         <legend>매장 찾기</legend>
 
@@ -117,13 +107,13 @@
                                         <dt class="store-map-option__name">매장타입</dt>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="A">
+                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="BR31">
                                                 <span class="store-map-option__text">BR 31</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="B">
+                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="100flavor">
                                                 <span class="store-map-option__text">100flavor</span>
                                             </label>
                                         </dd>
@@ -132,65 +122,65 @@
                                         <dt class="store-map-option__name">제공 서비스</dt>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="A">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="주차">
                                                 <span class="store-map-option__text">주차</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="B">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="배달">
                                                 <span class="store-map-option__text">배달</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="C">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="픽업">
                                                 <span class="store-map-option__text">픽업</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="D">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="취식여부">
                                                 <span class="store-map-option__text">취식여부</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="E">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="해피스테이션">
                                                 <span class="store-map-option__text">해피스테이션</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="F">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="가챠머신">
                                                 <span class="store-map-option__text">가챠머신</span>
                                             </label>
                                         </dd>
 
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="I">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="KT 제휴">
                                                 <span class="store-map-option__text">KT 제휴</span>
                                             </label>
                                         </dd>
 
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="J">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="SKT 제휴">
                                                 <span class="store-map-option__text">SKT 제휴</span>
                                             </label>
                                         </dd>
                                         
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="K">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="LGU+ 제휴">
                                                 <span class="store-map-option__text">LGU+ 제휴</span>
                                             </label>
                                         </dd>
                                         
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="L">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="맛보기 제휴">
                                                 <span class="store-map-option__text">맛보기 제휴</span>
                                             </label>
                                         </dd>                                        
@@ -225,6 +215,20 @@
                     <p class="store-map-list__result">검색결과 <span class="store-map-list__point-color"></span>개</p>
                     <div class="store-map-list__container">
                         <ul class="store-map-list__list">
+                        <li class="store-map-list__item">
+                        <a href="#" role="button" type="button" data-info="{&quot;store_type&quot;:&quot;B&quot;,&quot;store_type_name&quot;:&quot;BR 100flavor&quot;,&quot;store_code&quot;:&quot;61230&quot;,&quot;direct_div&quot;:&quot;Y&quot;,&quot;store_name&quot;:&quot;SPC스퀘어&quot;,&quot;local_no&quot;:&quot;02-565-1012&quot;,&quot;open_date&quot;:&quot;2022-04-29&quot;,&quot;operation_time&quot;:&quot;AM 10~PM 11&quot;,&quot;latitude&quot;:37.4943827585735,&quot;longitude&quot;:127.029802084664,&quot;addr_zipcode&quot;:&quot;AM 10~PM 11&quot;,&quot;addr_si&quot;:&quot;서울특별시&quot;,&quot;addr_gugun&quot;:&quot;강남구&quot;,&quot;addr_road&quot;:&quot;역삼동 831-23 2층&quot;,&quot;addr_detail&quot;:&quot;&quot;,&quot;service_info&quot;:&quot;주차, 배달, 픽업, 취식여부, 해피스테이션, 가챠머신, KT제휴, SKT제휴, LG U+제휴, 맛보기&quot;,&quot;distance&quot;:442.57112232945,&quot;index&quot;:0,&quot;seq&quot;:1}" class="store-map-list__button">
+                            <div class="store-map-list__box">
+                                <h3 class="store-map-list__title">SPC스퀘어</h3>
+                                <address class="store-map-list__address">서울특별시 강남구 역삼동 831-23 2층 </address>
+                                <dl class="store-map-list__content">
+                                <dt class="store-map-list__name">연락처</dt>
+                                <dd class="store-map-list__text">02-565-1012</dd>
+                                <dt class="store-map-list__name">운영시간</dt>
+                                <dd class="store-map-list__text">AM 10~PM 11</dd>
+                                </dl>
+                            </div>
+                        </a>
+                    </li>
                         </ul>
                     </div>
                 </div>
@@ -346,7 +350,179 @@
 </div>
 <jsp:include page="/views/layout/footer.jsp" />
 
+
+
+
+<script>
+/* ===============================
+   기본 변수
+================================ */
+var contextPath = "${pageContext.request.contextPath}";
+var map = null;
+var markers = [];
+
+/* ===============================
+   매장 타입 정규화
+================================ */
+function normalizeStoreType(type) {
+  if (!type) return "BR 31";
+  if (type.includes("100")) return "100 FLAVOR";
+  return "BR 31";
+}
+
+/* ===============================
+   타입별 마커 아이콘 경로
+   ★ 파일명은 네 실제 리소스에 맞게 수정
+================================ */
+var markerIconMap = {
+  "BR 31": contextPath + "/resources/images/store/map/icon_map_marker_default.png",
+  "100 FLAVOR": contextPath + "/resources/images/store/map/icon_map_marker_flavors.png"
+};
+
+/* ===============================
+   MarkerImage 생성
+================================ */
+function makeMarkerImage(src) {
+  var size = new kakao.maps.Size(137, 106);
+  var offset = new kakao.maps.Point(36, 106);
+  return new kakao.maps.MarkerImage(src, size, { offset: offset });
+}
+
+/* ===============================
+   기존 마커 제거
+================================ */
+function clearMarkers() {
+  markers.forEach(function(m) {
+    m.setMap(null);
+  });
+  markers = [];
+}
+
+/* ===============================
+   지도 초기화 (1회)
+================================ */
+$(function () {
+  var container = document.getElementById("store-map-field");
+  if (container && kakao.maps) {
+    map = new kakao.maps.Map(container, {
+      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      level: 6
+    });
+  }
+});
+
+/* ===============================
+   검색 버튼 클릭
+================================ */
+$("button.store-map__submit").on("click", function (e) {
+  e.preventDefault();
+  var formData = $(".store-map-form").serialize();
+  console.log(formData);
+  $(".store-map-list__list").empty();
+
+  $.ajax({
+    url: contextPath + "/store/mapSearch.ajax",
+    type: "GET",
+    data: formData,
+    dataType: "json",
+    cache: false,
+
+    success: function (data) {
+      console.log("응답 데이터:", data);
+
+      if (!Array.isArray(data)) return;
+
+      $("span.store-map-list__point-color").text(data.length);
+
+      clearMarkers();
+
+      $.each(data, function (index, store) {
+
+        /* ===== 값 정리 ===== */
+        var storeType = normalizeStoreType(store.storeType);
+        var iconSrc = markerIconMap[storeType];
+
+        var addrDetail = (store.addressDetail === "null" || store.addressDetail == null)
+                          ? "" : store.addressDetail;
+
+        /* ===== data-info ===== */
+        var info = {
+          index: index,
+          latitude: store.latitude,
+          longitude: store.longitude
+        };
+
+        var encodedInfo = encodeURIComponent(JSON.stringify(info));
+
+        /* ===== 리스트 HTML ===== */
+        var li = ''
+          + '<li class="store-map-list__item">'
+          + '  <a href="#" role="button" class="store-map-list__button" data-info="' + encodedInfo + '">'
+          + '    <div class="store-map-list__box">'
+          + '      <h3 class="store-map-list__title">' + (store.storeName || "") + '</h3>'
+          + '      <address class="store-map-list__address">'
+          +        (store.sido || "") + ' ' + (store.sigungu || "") + ' '
+          +        (store.street || "") + ' ' + addrDetail
+          + '      </address>'
+          + '      <dl class="store-map-list__content">'
+          + '        <dt class="store-map-list__name">연락처</dt>'
+          + '        <dd class="store-map-list__text">' + (store.storeTel || "") + '</dd>'
+          + '        <dt class="store-map-list__name">운영시간</dt>'
+          + '        <dd class="store-map-list__text">' + (store.businessHours || "") + '</dd>'
+          + '      </dl>'
+          + '    </div>'
+          + '  </a>'
+          + '</li>';
+
+        $(".store-map-list__list").append(li);
+
+        /* ===== 마커 생성 ===== */
+        if (map && store.latitude && store.longitude) {
+          var position = new kakao.maps.LatLng(store.latitude, store.longitude);
+          var markerImg = makeMarkerImage(iconSrc);
+
+          var marker = new kakao.maps.Marker({
+            position: position,
+            image: markerImg
+          });
+
+          marker.setMap(map);
+          markers.push(marker);
+
+          /* 마커 클릭 → 지도 이동 */
+          kakao.maps.event.addListener(marker, "click", function () {
+            map.panTo(position);
+          });
+        }
+      });
+
+      /* 첫 매장으로 이동 */
+      if (map && data.length > 0) {
+        map.panTo(new kakao.maps.LatLng(data[0].latitude, data[0].longitude));
+      }
+    },
+
+    error: function () {
+      alert("에러~~~");
+    }
+  });
+});
+
+/* ===============================
+   리스트 클릭 → 지도 이동
+================================ */
+$(document).on("click", ".store-map-list__button", function (e) {
+  e.preventDefault();
+
+  var info = JSON.parse(decodeURIComponent($(this).attr("data-info")));
+
+  if (map && info.latitude && info.longitude) {
+    map.panTo(new kakao.maps.LatLng(info.latitude, info.longitude));
+  }
+});
+</script>
+
+
 </body>
 
-<!-- Mirrored from www.baskinrobbins.co.kr/store/map.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 00:53:47 GMT -->
 </html>

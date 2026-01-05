@@ -60,7 +60,7 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		HttpSession session = jrequest.getSession(false);
 		if (session != null) {
 
-			logonId = (String) session.getAttribute("auth");
+			logonId = (String) session.getAttribute("loginUserId");
 			if (logonId != null) {
 				isLogon = true;
 			}
@@ -73,7 +73,7 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 			String referer=jrequest.getRequestURI();
 			session.setAttribute("referer", referer);
 			// 로그인 하지 않고 글쓰기, 관리지 메뉴 사용 X -> 로그인페이지로 이동
-			String location = "/jspPro/days09/member/logon.jsp";
+			String location = jrequest.getContextPath() + "/login/login.do";
 			jresponse.sendRedirect(location);
 		}
 

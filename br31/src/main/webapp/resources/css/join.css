@@ -466,3 +466,68 @@ body{
 .profile-change:focus{
   outline: none;
 }
+
+/* 회원가입 중복 */
+.join-form .row .msg{
+  margin-top: 5px;
+  grid-column: 2 / 3;
+  justify-self: start;
+}
+
+.join-form .msg.error{ color:#e60023 !important; }
+.join-form .msg.success{ color:#008000 !important; }
+
+/* 비밀번호 영역만 세로로 */
+.ctrl.pw{
+  flex-direction: column;
+  align-items: stretch;  /* input 100% */
+  gap: 8px;
+}
+
+/* 휴대폰 오른쪽 영역을 한 덩어리로 */
+.phone-row .phone-wrap{
+  grid-column: 2 / 3;      /* 오른쪽 칸 고정 */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 인증번호 입력칸 너무 작지 않게 */
+.phone-row .verify input{
+  flex: 1;                 /* 버튼 빼고 남는 공간 다 먹기 */
+  min-width: 220px;        /* 너무 줄어들지 않게 */
+}
+
+/* 메시지도 오른쪽 아래로 */
+.join-form .row .msg{
+  grid-column: 2 / 3;
+  justify-self: start;
+}
+
+/* 비밀번호 줄은 라벨을 위로 붙이기 */
+.pw-row{
+  align-items: start;       /* row 전체 위 정렬 */
+}
+
+.pw-row .lab{
+  align-self: start;        /* 라벨도 위로 */
+  padding-top: 10px;        /* 첫 input과 높이 맞추기(취향) */
+}
+
+/* 비밀번호 컨트롤은 세로로 쌓기 */
+.ctrl.pw{
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.login-error {
+  display:block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #e60023;   /* 빨간색 */
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+

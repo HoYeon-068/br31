@@ -50,21 +50,21 @@
   
 
   <div class="fi-form">
-  <form id="phoneForm" class="find-form" action="">
+  <form id="phoneForm" class="find-form" method="post" action="${pageContext.request.contextPath}/login/pwdResetRequest.do">
 
     <div class="field">
       <label class="lab">아이디</label>
-      <input type="text" placeholder="아이디를 입력해 주세요" />
+      <input type="text" name="user_id" placeholder="아이디를 입력해 주세요" />
     </div>
 
     <div class="field">
       <label class="lab">이름</label>
-      <input type="text" placeholder="이름을 입력해 주세요" />
+      <input type="text" name="name" placeholder="이름을 입력해 주세요" />
     </div>
 
     <div class="field">
       <label class="lab">휴대폰 번호</label>
-      <input type="text" placeholder="휴대폰 번호를 입력해 주세요" />
+      <input type="text" name="phone_no" placeholder="휴대폰 번호를 입력해 주세요" />
     </div>
 
 

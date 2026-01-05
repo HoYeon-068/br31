@@ -44,13 +44,13 @@
   	
   
   <div class="jc-content">
-  	님의 회원가입이 <br>
+  	${name}님의 회원가입이 <br>
   	성공적으로 완료되었습니다
   </div>
   
   <div class="jc-btn">
-  	 <button type="button" class="jc-mainbtn">메인으로 이동</button>
-  	 <button type="button" class="jc-loginbtn">로그인</button>
+  	 <button type="button" class="jc-mainbtn" onclick="location.href='${pageContext.request.contextPath}/story/history.do'">메인으로 이동</button>
+  	 <button type="button" class="jc-loginbtn" onclick="location.href='${pageContext.request.contextPath}/login/login.do'">로그인</button>
   </div>
 	
 	

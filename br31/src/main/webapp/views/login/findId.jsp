@@ -53,15 +53,15 @@
 
   <div class="fi-form">
   <!-- 휴대폰번호로 찾기 -->
-  <form id="phoneForm" class="find-form" action="">
+  <form id="phoneForm" class="find-form" method="post" action="${pageContext.request.contextPath}/login/findIdPhone.do">
     <div class="field">
       <label class="lab">이름</label>
-      <input type="text" placeholder="이름을 입력해 주세요" />
+      <input type="text" name="name" placeholder="이름을 입력해 주세요" />
     </div>
 
     <div class="field">
       <label class="lab">휴대폰 번호</label>
-      <input type="text" placeholder="휴대폰 번호를 입력해 주세요" />
+      <input type="text" name="phone_no" placeholder="휴대폰 번호를 입력해 주세요" />
     </div>
 
     <button type="submit" class="check-btn">확인</button>
@@ -69,15 +69,15 @@
 
   
   <!-- 이메일로 찾기 -->
-  <form id="emailForm" class="find-form hidden" action="">
+  <form id="emailForm" class="find-form hidden" method="post" action="${pageContext.request.contextPath}/login/findIdEmail.do">
     <div class="field">
       <label class="lab">이름</label>
-      <input type="text" placeholder="이름을 입력해 주세요" />
+      <input type="text" name="name" placeholder="이름을 입력해 주세요" />
     </div>
 
     <div class="field">
       <label class="lab">이메일</label>
-      <input type="text" placeholder="이메일을 입력해 주세요" />
+      <input type="text" name="email" placeholder="이메일을 입력해 주세요" />
     </div>
 
     <button type="submit" class="check-btn">확인</button>
@@ -100,6 +100,5 @@
 	$("#"+target).removeClass("hidden"); /* #폼아이디 가져옴 */
   })
   </script>
-  console.log($)
   
   </body>

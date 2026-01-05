@@ -36,14 +36,8 @@ public class JoinHandler implements CommandHandler {
 
         String email = null;
         if (emailId != null && !emailId.isBlank() &&
-            emailDomain != null && !emailDomain.isBlank() &&
-            !"직접입력".equals(emailDomain)) {
+            emailDomain != null && !emailDomain.isBlank() ) {
             email = emailId + "@" + emailDomain;
-        } else if (emailId != null && !emailId.isBlank() &&
-                   emailDomain != null && !emailDomain.isBlank() &&
-                   "직접입력".equals(emailDomain)) {
-            // (직접입력 구현했을 때만 사용)
-            email = emailId; 
         }
 
         // 성별

@@ -35,6 +35,8 @@
 
 <body>
 <jsp:include page="/views/layout/header.jsp" />
+<div class="site-menu" style="display:none;"></div>
+<div class="site-footer-menu" style="display:none;"></div>
 
 <div class="page-title">
   <div class="title">프로필 수정</div>
@@ -42,14 +44,23 @@
 
 <div class="frame">
 
+
 <form class="join-form"
       action="${pageContext.request.contextPath}/mypage/profileEditSubmit.do"
-      method="post">
+      method="post" >
 
   <!-- 서버로 체크값 전달  -->
   <input type="hidden" id="nicknameChecked" name="nicknameChecked" value="false" />
   <input type="hidden" id="emailChecked"    name="emailChecked"    value="false" />
   <input type="hidden" id="phoneChecked"    name="phoneChecked"    value="false" />
+
+  <!-- 변경 전 값(값을 안 바꿨으면 중복확인/인증 없이 저장 가능하게) -->
+  <input type="hidden" id="originNickname" value="${loginUser.nickname}" />
+  <input type="hidden" id="originEmail"    value="${loginUser.email}" />
+  <input type="hidden" id="originPhone"    value="${loginUser.phone_no}" />
+
+  <!-- (안전장치) 서버에서 profile_img_path를 기대하는 경우 대비 -->
+  <input type="hidden" id="profile_img_path" name="profile_img_path" value="${loginUser.profile_img_path}" />
 
   <!-- ================== 프로필 이미지 ================== -->
   <div class="profile-line">
@@ -92,7 +103,7 @@
     </div>
   </div>
 
-  <!-- ================== 기본정보 ================== -->
+  <!-- ================== 아이디 ================== -->
   <div class="row">
     <div class="lab">아이디</div>
     <div class="ctrl">
@@ -100,21 +111,22 @@
       <input type="hidden" name="user_id" value="${loginUser.user_id}">
     </div>
   </div>
-
+<!-- ================== 비밀번호 ================== -->
   <div class="row">
     <div class="lab">비밀번호</div>
     <div class="ctrl">
-      <input type="password" name="oldPassword" placeholder="기존 비밀번호" />
+      <input type="password" name="oldPassword" placeholder="기존 비밀번호를 입력해주세요(필수)" />
     </div>
   </div>
 
   <div class="row">
     <div class="lab">새 비밀번호</div>
     <div class="ctrl">
-      <input type="password" name="newPassword" placeholder="새 비밀번호를 입력해주세요" />
+      <input type="password" name="newPassword" placeholder="새 비밀번호를 입력해주세요(선택)" />
     </div>
   </div>
 
+	<!-- ================== 이름 ================== -->
   <div class="row">
     <div class="lab">이름</div>
     <div class="ctrl">
@@ -178,69 +190,176 @@
       <span class="msg" id="phoneMsg"></span>
     </div>
   </div>
+  <c:if test="${not empty error}">
+	  <div style="color:red; margin:10px 0; text-align:center;">${error}</div>
+	</c:if>
 
   <div class="cta">
     <button type="submit" class="joinbtn">저장</button>
   </div>
 
 </form>
+
 </div>
 
-<!--  1) 비밀번호 변경 AJAX (기존 유지)-->
 <script>
-document.querySelector(".join-form").addEventListener("submit", async function(e){
-  const oldPwd = document.querySelector('input[name="oldPassword"]').value.trim();
-  const newPwd = document.querySelector('input[name="newPassword"]').value.trim();
+(() => {
+  const ctx = "${pageContext.request.contextPath}";
 
-  // 비번 둘 다 비어있으면 그냥 통과(비번 변경 안 함)
-  if(oldPwd === "" && newPwd === "") return;
-
-  // 둘 중 하나만 입력하면 막기
-  if(oldPwd === "" || newPwd === ""){
-    e.preventDefault();
-    alert("기존 비밀번호와 새 비밀번호를 모두 입력해주세요.");
-    return;
+  function setChecked(id, ok){
+    const el = document.getElementById(id);
+    if(el) el.value = ok ? "true" : "false";
   }
 
-  e.preventDefault(); // 일단 멈추고 AJAX로 비번 변경부터
-
-  const params = new URLSearchParams();
-  params.append("oldPassword", oldPwd);
-  params.append("newPassword", newPwd);
-
-  const res = await fetch("${pageContext.request.contextPath}/mypage/pwdChange.do", {
-    method: "POST",
-    headers: {"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"},
-    body: params.toString()
-  });
-
-  const text = await res.text();
-
-  if(text.trim() === "OK"){
-    this.submit(); // 비번 변경 성공 → 원래 form submit
-  }else if(text.trim() === "WRONG_OLD"){
-    alert("기존 비밀번호가 틀렸습니다.");
-  }else{
-    alert("비밀번호 변경 실패: " + text);
+  function formTextFetch(url, params){
+    return fetch(url, {
+      method: "POST",
+      headers: {"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"},
+      body: new URLSearchParams(params).toString()
+    }).then(r => r.text());
   }
-});
-</script>
 
-<!--2) 프로필 A/B 선택 시 썸네일 미리보기-->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const thumb = document.getElementById("profileThumb");
-  const radios = document.querySelectorAll('input[name="profile_img"]');
 
-  radios.forEach(r => {
-    r.addEventListener("change", () => {
-      if(!thumb) return;
-      if (r.value === "A") thumb.src = "${pageContext.request.contextPath}/resources/images/mypage/img_profile_1.png";
-      if (r.value === "B") thumb.src = "${pageContext.request.contextPath}/resources/images/mypage/img_profile_2.png";
+
+  /* =========================
+     2) 프로필 A/B 선택 미리보기
+  ========================= */
+  document.addEventListener("DOMContentLoaded", () => {
+    const thumb = document.getElementById("profileThumb");
+    const radios = document.querySelectorAll('input[name="profile_img"]');
+
+    radios.forEach(r => {
+      r.addEventListener("change", () => {
+        if(!thumb) return;
+        if (r.value === "A") thumb.src = ctx + "/resources/images/mypage/img_profile_1.png";
+        if (r.value === "B") thumb.src = ctx + "/resources/images/mypage/img_profile_2.png";
+      });
     });
   });
-});
+
+  /* =========================
+     3) 닉네임 중복확인
+     - 서버가 {"count":0/1} 반환
+  ========================= */
+  document.getElementById("btnNickCheck")?.addEventListener("click", async () => {
+    const nick = document.getElementById("nickname").value.trim();
+    if(!nick){
+      alert("닉네임을 입력해주세요.");
+      return;
+    }
+
+    const raw = await formTextFetch(ctx + "/mypage/nicknameCheck.do", { nickname: nick });
+    let data;
+    try { data = JSON.parse(raw); }
+    catch(e){
+      console.log("nicknameCheck raw=", raw);
+      alert("닉네임 중복확인 응답이 JSON이 아닙니다(콘솔 확인).");
+      return;
+    }
+
+    if(Number(data.count) === 0){
+      alert("사용 가능한 닉네임입니다.");
+      setChecked("nicknameChecked", true);
+    }else{
+      alert("이미 사용 중인 닉네임입니다.");
+      setChecked("nicknameChecked", false);
+    }
+  });
+
+  document.getElementById("nickname")?.addEventListener("input", () => {
+    setChecked("nicknameChecked", false);
+  });
+
+  /* =========================
+     4) 이메일 중복확인
+  ========================= */
+  document.getElementById("btnEmailCheck")?.addEventListener("click", async () => {
+    const id = document.getElementById("email_id").value.trim();
+    const domain = document.getElementById("email_domain").value.trim();
+
+    if(!id || !domain){
+      alert("이메일 아이디와 도메인을 선택해주세요.");
+      return;
+    }
+
+    const email = id + "@" + domain;
+
+    const raw = await formTextFetch(ctx + "/mypage/emailCheck.do", { email });
+    console.log("emailCheck raw=", raw);
+
+    let data;
+    try { data = JSON.parse(raw); }
+    catch(e){
+      alert("이메일 중복확인 응답이 JSON이 아닙니다(콘솔 확인).");
+      return;
+    }
+
+    if(Number(data.count) === 0){
+      alert("사용 가능한 이메일입니다.");
+      setChecked("emailChecked", true);
+    }else{
+      alert("이미 사용 중인 이메일입니다.");
+      setChecked("emailChecked", false);
+    }
+  });
+
+  document.getElementById("email_id")?.addEventListener("input", () => {
+    setChecked("emailChecked", false);
+  });
+  document.getElementById("email_domain")?.addEventListener("change", () => {
+    setChecked("emailChecked", false);
+  });
+
+  /* =========================
+     5) 휴대폰 인증(발송/확인)
+  ========================= */
+  document.getElementById("btnPhoneSend")?.addEventListener("click", async () => {
+    const phone = document.getElementById("phone_no").value.trim();
+    if(!phone){
+      alert("휴대폰 번호를 입력해주세요.");
+      return;
+    }
+
+    const text = (await formTextFetch(ctx + "/mypage/phoneSendCode.do", { phone_no: phone })).trim();
+
+    if(text === "SENT"){
+      document.getElementById("phoneMsg").textContent = "인증번호를 발송했습니다. (5분 이내 입력)";
+      setChecked("phoneChecked", false);
+    }else{
+      document.getElementById("phoneMsg").textContent = "발송 실패: " + text;
+      setChecked("phoneChecked", false);
+    }
+  });
+
+  document.getElementById("btnPhoneVerify")?.addEventListener("click", async () => {
+    const phone = document.getElementById("phone_no").value.trim();
+    const code  = document.getElementById("phone_code").value.trim();
+
+    if(!phone || !code){
+      alert("휴대폰 번호와 인증번호를 입력해주세요.");
+      return;
+    }
+
+    const text = (await formTextFetch(ctx + "/mypage/phoneVerifyCode.do", { phone_no: phone, code })).trim();
+
+    if(text === "OK"){
+      document.getElementById("phoneMsg").textContent = "휴대폰 인증 완료";
+      setChecked("phoneChecked", true);
+    }else{
+      document.getElementById("phoneMsg").textContent = "인증 실패";
+      setChecked("phoneChecked", false);
+    }
+  });
+
+  document.getElementById("phone_no")?.addEventListener("input", () => {
+    setChecked("phoneChecked", false);
+    document.getElementById("phoneMsg").textContent = "";
+  });
+
+})();
 </script>
+
+
 
 </body>
 </html>

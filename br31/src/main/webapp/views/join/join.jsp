@@ -203,29 +203,29 @@
         <label class="trow">
           <input type="checkbox" name="terms_ids" value="1"/>
           <span>이용약관 동의 (필수)</span>
-          <a href="#" class="tlink">약관보기 &gt;</a>
+          <a href="https://www.happypointcard.com/page/customer/term.spc" class="tlink" target="_blank">약관보기 &gt;</a>
         </label>
 
         <label class="trow">
           <input type="checkbox" name="terms_ids" value="2"/>
           <span>개인정보 수집·이용 동의 (필수)</span>
-          <a href="#" class="tlink">약관보기 &gt;</a>
+          <a href="https://www.happypointcard.com/page/customer/term.spc?no=2" class="tlink" target="_blank">약관보기 &gt;</a>
         </label>
 
         <label class="trow">
           <input type="checkbox" name="terms_ids" value="3"/>
           <span>마케팅 광고 활용을 위한 수집 및 이용 동의 (선택)</span>
-          <a href="#" class="tlink">약관보기 &gt;</a>
+          <a href="https://www.happypointcard.com/page/customer/term.spc?no=6" class="tlink" target="_blank" >약관보기 &gt;</a>
         </label>
 
-        <label class="trow">
+        <label class="trow event">
           <input type="checkbox" />
           <span>이벤트 등 프로모션 정보 수신 동의 (선택)</span>
         </label>
 
         <div class="t-sub">
-          <label><input type="checkbox" name="terms_ids" value="5"/> SMS</label>
-          <label><input type="checkbox" name="terms_ids" value="6"/> 이메일</label>
+          <label class="event2"><input type="checkbox" name="terms_ids" value="5"/> SMS</label>
+          <label class="event2"><input type="checkbox" name="terms_ids" value="6"/> 이메일</label>
         </div>
 
         <label class="trow">
@@ -554,6 +554,18 @@ $(function () {
     const checkedCount = $(".terms-box .tlist input[type='checkbox']:checked").length;
     $(".terms-box .all input[type='checkbox']").prop("checked", total === checkedCount);
   });
+  
+  // 이벤트 등 프로모션 정보 수신 동의 (선택) SMS 이메일
+  $(".event input[type='checkbox']").on("change", function () {
+	    const checked = $(this).is(":checked");
+	    $(".event2 input[type='checkbox']").prop("checked", checked);
+	  });
+  
+  $(".event2 input[type='checkbox']").on("change", function () {
+	    const total = $(".event2 input[type='checkbox']").length;
+	    const checkedCount = $(".event2 input[type='checkbox']:checked").length;
+	    $(".event input[type='checkbox']").prop("checked", total === checkedCount);
+	  });
 
   // 9) 가입 submit 최종 검증
   $(".join-form").on("submit", function () {

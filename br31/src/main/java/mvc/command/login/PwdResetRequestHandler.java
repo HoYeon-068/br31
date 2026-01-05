@@ -4,8 +4,12 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mvc.command.CommandHandler;
+import mvc.domain.user.UserDTO;
+import mvc.persistence.user.UserDAO;
+import mvc.persistence.user.UserDAOImpl;
 import mvc.service.user.UserService;
 
 public class PwdResetRequestHandler implements CommandHandler {
@@ -28,11 +32,13 @@ public class PwdResetRequestHandler implements CommandHandler {
         int result = userService.resetPassword(userId, tempPwd);
 
         if (result == 1) {
-            // 실제 메일 전송 대신 (팀플용)
+            // 실제 메일 전송 대신 
             System.out.println("[임시비밀번호] " + userId + " => " + tempPwd);
 
+            UserDTO user = userService.getUserById(userId);
+            request.setAttribute("name", user.getName());
             request.setAttribute("tempPwd", tempPwd);
-            return "/views/login/pwdResetResult.jsp";
+            return "/views/login/pwdChangeResult.jsp";
         }
 
         request.setAttribute("message", "비밀번호 재발급 실패(아이디 확인)");

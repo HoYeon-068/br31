@@ -2,8 +2,10 @@ package mvc.command.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mvc.command.CommandHandler;
+import mvc.domain.user.UserDTO;
 import mvc.service.user.UserService;
 
 public class FindIdPhoneHandler implements CommandHandler {
@@ -18,7 +20,11 @@ public class FindIdPhoneHandler implements CommandHandler {
 
         String userId = userService.findUserIdByPhone(name, phone);
 
+
+
         if (userId != null) {
+        	UserDTO user = userService.getUserById(userId);
+            request.setAttribute("name", user.getName());
             request.setAttribute("foundUserId", userId);
             return "/views/login/findIdResult.jsp";
         }

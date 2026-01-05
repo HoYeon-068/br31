@@ -62,10 +62,6 @@ public class UserService {
                     conn.rollback();
                     return 0;
                 }
-            } else {
-                // 필수약관이 반드시 필요하면 여기서 rollback 처리
-                // conn.rollback();
-                // return 0;
             }
 
             conn.commit(); // 전부 성공
@@ -151,5 +147,22 @@ public class UserService {
         } finally {
             if (conn != null) conn.close();
         }
+    }
+    
+    
+    public UserDTO getUserById(String userId) throws Exception {
+    	Connection conn = null;
+
+        try {
+            conn = ConnectionProvider.getConnection();
+
+            
+            return new UserDAOImpl(conn).selectByUserId(userId);
+
+
+        } finally {
+            if (conn != null) conn.close();
+        }
+    	
     }
 }

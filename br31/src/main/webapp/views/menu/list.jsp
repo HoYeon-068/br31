@@ -32,7 +32,7 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body id="baskinrobbins-menu" class="baskinrobbins-menu">
 
@@ -44,49 +44,49 @@
     <ul class="page-menu__list">
         <!-- 현재 페이지인 경우 page-menu__item--active 추가-->
         <li class="page-menu__item ">
-            <a href="fom.html" class="page-menu__link">
+            <a href="${pageContext.request.contextPath}/menu/fom.do" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">이달의 맛</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item page-menu__item--active">
-            <a href="lista9a4.html?category=A" class="page-menu__link">
+        <li class="page-menu__item ${category=='A'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=A" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">아이스크림</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list22cf.html?category=F" class="page-menu__link">
+        <li class="page-menu__item ${category=='B'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=B" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">프리팩</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list9c26.html?category=B" class="page-menu__link">
+        <li class="page-menu__item ${category=='C'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=C" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">아이스크림케이크</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="listab3a.html?category=E" class="page-menu__link">
+        <li class="page-menu__item ${category=='D'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=D" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">디저트</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list_subcategoryd7a1.html?category=C" class="page-menu__link">
+        <li class="page-menu__item ${category=='E'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=E" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">음료</span>
                 </div>
             </a>
         </li>
-        <li class="page-menu__item ">
-            <a href="list_subcategoryfd8a.html?category=D" class="page-menu__link">
+        <li class="page-menu__item ${category=='F'?'page-menu__item--active':''}">
+            <a href="${pageContext.request.contextPath}/menu/list.do?category=F" class="page-menu__link">
                 <div class="page-menu__box">
                     <span class="page-menu__name">커피</span>
                 </div>
@@ -99,11 +99,11 @@
             <div class="page-header__container">
                 <div class="page-header__content">
                     <h2 class="page-header__title">
-                        Ice Cream                    </h2>
+                        ${title}                   </h2>
                 </div>
                 <div class="page-header__content">
                     <p class="page-header__text">
-                        한 입에 물면 달콤하게 사르르 녹는 아이스크림.<br/>당신이 어떤 기분이든 그 아이스크림을 따라 당신의 기분은 아마 달콤해졌을 거예요.                    </p>
+                        ${description}</p>
                 </div>
             </div>
         </header>
@@ -111,7 +111,42 @@
         <div>
             <div class="menu-list">
                 <ul class="menu-list__list">
-						<!-- 반복 -->
+                
+                <%--              <li class="menu-list__item menu-list__item--fom menu-list__item--icecream" style="--menu-list-color: #F2C06E">
+                        <a href="view599c.html?seq=834" class="menu-list__link">
+                            <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-list__image">
+                            <span class="menu-list__hash" style="color:#5f3728">
+                            #버터아이스크림 #프랄린슈가                             </span>
+                        </a>
+                        <strong class="menu-list__title">골든 프랄린 버터</strong>
+                    </li> --%>
+                
+                
+                <c:forEach items="${list}" var="vo">
+                	<li class="menu-list__item menu-list__item--${vo.category_name}" style="--menu-list-color: ${vo.bg_color}">
+                        <a href="${pageContext.request.contextPath}/menu/view.do?seq=${vo.products_id}" class="menu-list__link">
+                            <img src="${pageContext.request.contextPath}${vo.img_path}" alt="골든 프랄린 버터" class="menu-list__image">
+                            <span class="menu-list__hash" style="color:${vo.span_color}">
+                            ${vo.tags}                         </span>
+                        </a>
+                        <strong class="menu-list__title">${vo.product_name}</strong>
+                    </li>
+                </c:forEach>
+                
+                
+                
+					
+					<%--              <li class="menu-list__item menu-list__item--fom menu-list__item--icecream" style="--menu-list-color: #F2C06E">
+                        <a href="view599c.html?seq=834" class="menu-list__link">
+                            <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-list__image">
+                            <span class="menu-list__hash" style="color:#5f3728">
+                            #버터아이스크림 #프랄린슈가                             </span>
+                        </a>
+                        <strong class="menu-list__title">골든 프랄린 버터</strong>
+                    </li> --%>
+					
+					
+					<%-- 
                                     <li class="menu-list__item menu-list__item--fom menu-list__item--icecream" style="--menu-list-color: #F2C06E">
                         <a href="view599c.html?seq=834" class="menu-list__link">
                             <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-list__image">
@@ -120,7 +155,11 @@
                         </a>
                         <strong class="menu-list__title">골든 프랄린 버터</strong>
                     </li>
-					<!-- 반복 -->
+					
+					
+					
+					
+					
                                     <li class="menu-list__item menu-list__item--new menu-list__item--icecream" style="--menu-list-color: #623924">
                         <a href="view9dc3.html?seq=840" class="menu-list__link">
                             <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/d1c5862f5649eb3de61e7cc150999d18.png" alt="초코포키해♥" class="menu-list__image">
@@ -399,7 +438,7 @@
                         </a>
 
                         <strong class="menu-list__title">바닐라</strong>
-                    </li>
+                    </li> --%>
                                 </ul>
             </div>
         </div>
@@ -408,6 +447,11 @@
 </section>
 
 <jsp:include page="/views/layout/footer.jsp" />
+
+
+<script>
+	$("")
+</script>
 
 </body>
 

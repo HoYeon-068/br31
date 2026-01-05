@@ -42,31 +42,42 @@
 <div class="site-container">
     <div id="content" class="menu-view">
         <section>
-                        <article class="menu-view-top menu-view-top--icecream">
+                        <article class="menu-view-top menu-view-top--${dto.category_name}">
                 <div class="menu-view-top__container">
                     <div class="menu-view-top__content menu-view-top__content--center">
                         <div class="menu-view-top__box">
                             <header class="menu-view-header">
                                 <div class="menu-view-header__container">
                                     <div class="menu-view-header__content">
-                                        <p class="menu-view-header__category">ICECREAM</p>
+                                        <p class="menu-view-header__category">${dto.category_name}</p>
                                         <h2 class="menu-view-header__title">
                                             <span class="menu-view-header__title--en">
-                                                DEAR CHOCO Pocky                                            </span>
+                                                ${dto.english_name}                                            </span>
                                             <span class="menu-view-header__title--ko">
-                                                초코포키해♥                                            </span>
+                                                ${dto.product_name}                                            </span>
                                         </h2>
                                         <p class="menu-view-header__text">
-                                            진한 달콤함의 초콜릿 &amp; 초콜릿 쿠키 맛 아이스크림 속 포키의 맛과 식감을 담은 초코 프레첼 스틱이 쏙쏙!                                        </p>
+                                            ${dto.description}                                        </p>
+                                            
+                                            <c:if test="${dto.price !=0}">
+                                            <p class="menu-view-header__price">
+                                            ${dto.price}원                                        </p>                                            
+                                            </c:if>
                                                                             </div>
                                 </div>
                             </header>
                                                             <div class="menu-view-ingredients">
                                     <ul class="menu-view-ingredients__list">
-                                                                                    <li class="menu-view-ingredients__item">
-                                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/composition/b58a1b891c11d9bb499d123605d26af6.png" alt="포키" class="menu-view-ingredients__image">
-                                                <span class="menu-view-ingredients__name">포키</span>
+                                    	<c:forEach items="${dto.ingredientDTO}" var="vo">
+                                    		<li class="menu-view-ingredients__item">
+                                                <img src="${pageContext.request.contextPath}${vo.img_path}" alt="${vo.ingredient_name}" class="menu-view-ingredients__image">
+                                                <span class="menu-view-ingredients__name">${vo.ingredient_name}</span>
                                             </li>
+                                    	</c:forEach>
+                                    
+                                    
+                                    
+                                            
                                                                                 </ul>
                                 </div>
                             
@@ -74,9 +85,9 @@
                                                     </div>
 
                         <div>
-                            <div class="menu-view-hero menu-view-hero--icecream menu-view-hero--current" style="background-color: #623924;">
+                            <div class="menu-view-hero ${category_id eq 1?"menu-view-hero--icecream":""} menu-view-hero--current" style="background-color: ${dto.bg_color};">
 
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/d1c5862f5649eb3de61e7cc150999d18.png" alt="초코포키해♥" class="menu-view-hero__image">
+                                <img src="${pageContext.request.contextPath}${dto.img_path}" alt="${dto.product_name}" class="menu-view-hero__image">
                             </div>
                         </div>
                     </div>
@@ -103,45 +114,53 @@
             </article>
 
             <div class="menu-view__container">
-                                    <article class="menu-view-nutrition">
+            
+            
+            			<c:if test="${not empty dto.iceNutritionDTO}">
+            				            <article class="menu-view-nutrition">
                         <div class="menu-view-nutrition__container">
                             <h3 class="menu-view-nutrition__title">영양정보</h3>
 
                             <dl class="menu-view-nutrition__content">
                                 <div class="menu-view-nutrition__item">
                                     <dt class="menu-view-nutrition__name">1회 제공량(g)</dt>
-                                    <dd class="menu-view-nutrition__text">115</dd>
+                                    <dd class="menu-view-nutrition__text">${dto.iceNutritionDTO.serving_size}</dd>
                                 </div>
                                 <div class="menu-view-nutrition__item">
                                     <dt class="menu-view-nutrition__name">열량(kcal)</dt>
-                                    <dd class="menu-view-nutrition__text">313</dd>
+                                    <dd class="menu-view-nutrition__text">${dto.iceNutritionDTO.calories}</dd>
                                 </div>
                                 <div class="menu-view-nutrition__item">
                                     <dt class="menu-view-nutrition__name">당류(g)</dt>
-                                    <dd class="menu-view-nutrition__text" style="">27</dd>
+                                    <dd class="menu-view-nutrition__text" style="">${dto.iceNutritionDTO.sugar}</dd>
                                 </div>
                                 <div class="menu-view-nutrition__item">
                                     <dt class="menu-view-nutrition__name">단백질(g)</dt>
-                                    <dd class="menu-view-nutrition__text">4</dd>
+                                    <dd class="menu-view-nutrition__text">${dto.iceNutritionDTO.protein}</dd>
                                 </div>
                                 <div class="menu-view-nutrition__item">
                                     <dt class="menu-view-nutrition__name">포화지방(g)</dt>
-                                    <dd class="menu-view-nutrition__text">9</dd>
+                                    <dd class="menu-view-nutrition__text">${dto.iceNutritionDTO.saturated_fat}</dd>
                                 </div>
                                 <div class="menu-view-nutrition__item">
                                     <dt class="menu-view-nutrition__name">나트륨(mg)</dt>
-                                    <dd class="menu-view-nutrition__text">208</dd>
+                                    <dd class="menu-view-nutrition__text">${dto.iceNutritionDTO.sodium}</dd>
                                 </div>
                                                                 <div class="menu-view-nutrition__item">
                                     <dt class="menu-view-nutrition__name">알레르기 성분</dt>
-                                    <dd class="menu-view-nutrition__text">우유, 대두, 밀, 땅콩 </dd>
+                                    <dd class="menu-view-nutrition__text">${dto.iceNutritionDTO.allergens}</dd>
                                 </div>
                             </dl>
                         </div>
 
                                             </article>
-                
-                                    <article class="menu-view-content">
+            				
+            			
+            			</c:if>
+                                        
+                                        
+                         <c:if test="${dto.category_name=='icecream'}">
+                         	 <article class="menu-view-content">
                         <div class="menu-view-content__container">
                             <div class="menu-view-content__content">
                                 <p style="text-align&#58; center&#59;"><img alt="" src="${pageContext.request.contextPath}/resources/images/upload/ckeditor/6a07c45312d30139d9baa250a3a4c4a7.png" /></p>                            </div>
@@ -251,6 +270,8 @@
                             </div>
                         </div>
                     </article>
+                         </c:if>
+                                   
                             </div>
         </section>
     </div>

@@ -24,6 +24,7 @@
 <meta property="og:type" content="website">
 
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sdk1659.js?appkey=8c71dfbb0129b7e25a985c72328e967b"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
@@ -31,7 +32,6 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-
 
 </head>
 <body id="baskinrobbins-information-center-consulting-store-view" class="baskinrobbins-information-center-consulting-store-view">
@@ -129,49 +129,49 @@
                     <tbody>
                     <tr>
                         <th>담당자</th>
-                        <td>채상욱</td>
+                        <td>${dto.currentBusiness}</td>
                         <th>연락처</th>
-                        <td>042-365-0283</td>
+                        <td>수정예정</td>
                     </tr>
                     <tr>
                         <th>지역상세</th>
-                        <td>충남 청양군</td>
+                        <td>${dto.sido} ${dto.sigungu}</td>
                         <th>현재 업종</th>
                         <td>-</td>
                     </tr>
                     <tr>
                         <th>상권 &amp; 입지</th>
-                        <td colspan="3">충남청양 시내버스 터미널 인근에 있는 추천물건</td>
+                        <td colspan="3">${dto.marketArea}</td>
                     </tr>
                     <tr>
                         <th>해당 층</th>
-                        <td>1층</td>
+                        <td>${dto.floor}</td>
                         <th>면적</th>
-                        <td>약20평</td>
+                        <td>${dto.area}</td>
                     </tr>
                     <tr>
                         <th>지도</th>
                         <td colspan="3">
                                                             <!-- 지도 api -->
-                                <input type="hidden" value="126.79795725883" class="lat">
-                                <input type="hidden" value="36.4535860421092" class="lng">
+                                <input type="hidden" value="${dto.latitude}" class="lat">
+                                <input type="hidden" value="${dto.longitude}" class="lng">
                                                                         <div class="map"></div>
                                                                                     </td>
                     </tr>
                     <tr>
                         <th>권리금</th>
-                        <td>-</td>
+                        <td>${dto.keyMoney}</td>
                         <th>보증금</th>
-                        <td>5천만</td>
+                        <td>${dto.deposit}</td>
                     </tr>
                     <tr>
                         <th>임대료</th>
-                        <td colspan="3">150만</td>
+                        <td colspan="3">${dto.rentalFee}</td>
                     </tr>
                     <tr>
                         <th>설명</th>
                         <td colspan="3">
-                            충남청양 시내버스 터미널 인근에 있는 추천물건입니다. 항아리 독립상권으로 지역거주자 및 인근출퇴근 용이하면 좋습니다. 자세한사항 담당자 연락 부탁드립니다.                        </td>
+                            ${dto.description}</td>
                     </tr>
                     </tbody>
                 </table>

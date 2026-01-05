@@ -12,10 +12,10 @@ public class PressViewHandler implements CommandHandler {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        int pr_id = Integer.parseInt(request.getParameter("pr_id"));
+        int id = Integer.parseInt(request.getParameter("id")); // 🔥 통일
 
         PressDAO dao = new PressDAO();
-        PressDTO dto = dao.selectOne(pr_id);
+        PressDTO dto = dao.selectOne(id); // pr_id 기준
 
         request.setAttribute("dto", dto);
 

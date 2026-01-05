@@ -12,14 +12,13 @@ public class NoticeViewHandler implements CommandHandler {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        int NOTICE_ID = Integer.parseInt(request.getParameter("NOTICE_ID"));
+        int id = Integer.parseInt(request.getParameter("id")); // 🔥 통일
 
         NoticeDAO dao = new NoticeDAO();
-        NoticeDTO dto = dao.selectOne(NOTICE_ID);
+        NoticeDTO dto = dao.selectOne(id); // NOTICE_ID 기준
 
         request.setAttribute("dto", dto);
 
         return "/views/information-center/notice/view.jsp";
-
     }
 }

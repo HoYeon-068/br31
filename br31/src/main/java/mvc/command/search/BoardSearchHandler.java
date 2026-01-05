@@ -27,6 +27,8 @@ public class BoardSearchHandler implements CommandHandler {
 
         BoardSearchDAO dao = new BoardSearchDAO();
         List<BoardSearchDTO> list;
+        
+        
 
         // 🔴 검색어 없을 때: 각 게시판 단독 조회
         if (keyword.isEmpty()) {
@@ -40,6 +42,21 @@ public class BoardSearchHandler implements CommandHandler {
         else {
             list = dao.searchAll(keyword);
         }
+        
+        String contextPath = request.getContextPath();
+
+        for (BoardSearchDTO dto : list) {
+            if ("NOTICE".equals(dto.getType())) {
+                dto.setViewUrl(
+                    contextPath + "/notice/view.do?id=" + dto.getId()
+                );
+            } else if ("PRESS".equals(dto.getType())) {
+                dto.setViewUrl(
+                    contextPath + "/press/view.do?id=" + dto.getId()
+                );
+            }
+        }
+
 
         // 🔴 JSP 호환용 세팅 (둘 다 넣음)
         request.setAttribute("searchList", list);

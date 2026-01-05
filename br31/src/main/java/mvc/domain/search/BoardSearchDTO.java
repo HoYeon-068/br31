@@ -59,4 +59,15 @@ public class BoardSearchDTO {
     public void setRegDate(Date regDate) {
         this.regDate = regDate;
     }
+    
+    private String viewUrl;
+
+    public String getViewUrl() {
+        return viewUrl;
+    }
+
+    public void setViewUrl(String viewUrl) {
+        this.viewUrl = viewUrl;
+    }
+
 }

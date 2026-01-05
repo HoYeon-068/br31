@@ -106,35 +106,11 @@
  <header class="page-header">
     <div class="page-header__container">
 
-        <c:choose>
-
-            
-            <c:when test="${param.source eq 'notice'}">
-                <div class="page-header__content">
-                    <h2 class="page-header__title">공지사항</h2>
-                </div>
-                <div class="page-header__content">
-                    <p class="page-header__text">
-                        배스킨라빈스의 신제품 안내, 신규 CF 등<br>
-                        다양한 소식을 알려드립니다.
-                    </p>
-                </div>
-            </c:when>
-
-           
-            <c:when test="${param.source eq 'press'}">
-                <div class="page-header__content">
-                    <h2 class="page-header__title">보도자료</h2>
-                </div>
-                <div class="page-header__content">
-                    <p class="page-header__text">
-                        배스킨라빈스의 보도자료들을<br>
-                        모아 보여드립니다.
-                    </p>
-                </div>
-            </c:when>
-
-        </c:choose>
+ <td class="board-list__table-title">
+    <a href="${dto.viewUrl}">
+        ${dto.title}
+    </a>
+</td>
 
     </div>
 </header>

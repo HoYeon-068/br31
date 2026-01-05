@@ -25,18 +25,12 @@
     <meta property="og:image" content="${pageContext.request.contextPath}/resources/images/common/img_share.png">
     <meta property="og:type" content="website">
 
-    <!-- CSS/JS (프로젝트 리소스 경로에 맞춰 수정) -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
     <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
-    <style>
-        /* 기존 html은 span에 background-image가 inline으로 박혀있어서,
-           contextPath 적용을 위해 JS로 바꿀 수도 있는데,
-           지금은 JSTL로 데이터 뿌리는 형태를 가정하고 그대로 둠.
-           (아래 본문에서 url에 contextPath 붙여서 해결) */
-    </style>
+
 </head>
 
 <body id="baskinrobbins-play-myflavor-list" class="baskinrobbins-play-myflavor-list">

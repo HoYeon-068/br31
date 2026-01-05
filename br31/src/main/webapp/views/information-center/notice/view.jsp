@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,6 +12,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
      <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+	<style>
+	.board-view__content img {
+    display: block;
+    margin: 0 auto;
+}
+</style>
+	
 </head>
 
 <body id="baskinrobbins-notice"
@@ -34,29 +43,20 @@
 
             <!-- 제목 / 날짜 -->
             <header class="board-view__header">
-                <h3 class="board-view__title">
-                    민생회복 소비쿠폰 사용안내
-                </h3>
-                <p class="board-view__date">2025.07.17</p>
+             <h3 class="board-view__title">${dto.TITLE}</h3>
+                <p class="board-view__date">${dto.REG_DATE}</p>
             </header>
 
-            <div class="board-view__container">
-                <div class="board-view__content">
+ <div class="board-view__container">
+    <div class="board-view__content">
+        <c:out value="${dto.CONTENT}" escapeXml="false"/>
+    </div>
+</div>
 
-                    <!-- ✅ 이미지 경로: 기존에 실제로 존재하던 경로 유지 -->
-                    <p style="text-align:center;">
-                        <img
-                            src="${pageContext.request.contextPath}/resources/images/upload/ckeditor/415406dd385bb4cb55dea023f7440267.png"
-                            alt="">
-                    </p>
+<p class="board-view__back">
+    <a href="list.do">목록</a>
+</p>
 
-                </div>
-            </div>
-
-            
-            <p class="board-view__back">
-                <a href="list.do">목록</a>
-            </p>
 
         </article>
 

@@ -10844,25 +10844,25 @@ ul.recipe-view-order__list+.recipe-view-order__name,ol.recipe-view-order__list+.
   background-position:35px center
 }
 .customer-list__faq--item:nth-of-type(1) {
-  background-image:url(../images/information-center/customer/icon_faq_1.png);
+  background-image:url(../images/information-center/consulting/icon_faq_1.png);
   background-size:70px auto
 }
 .customer-list__faq--item:nth-of-type(2) {
-  background-image:url(../images/information-center/customer/icon_faq_2.png);
+  background-image:url(../images/information-center/consulting/icon_faq_2.png);
   background-size:61px auto
 }
 .customer-list__faq--item:nth-of-type(2) .customer-list__faq--text:nth-of-type(1) {
   padding-bottom:14px
 }
 .customer-list__faq--item:nth-of-type(3) {
-  background-image:url(../images/information-center/customer/icon_faq_3.png);
+  background-image:url(../images/information-center/consulting/icon_faq_3.png);
   background-size:54px auto
 }
 .customer-list__faq--item:nth-of-type(3) .customer-list__faq--link {
   width:168px
 }
 .customer-list__faq--item:nth-of-type(4) {
-  background-image:url(../images/information-center/customer/icon_faq_4.png);
+  background-image:url(../images/information-center/consulting/icon_faq_4.png);
   background-size:76px auto;
   background-position:20px center
 }

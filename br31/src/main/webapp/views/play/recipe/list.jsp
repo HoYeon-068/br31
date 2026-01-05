@@ -46,22 +46,22 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -84,155 +84,101 @@
 
         <!-- 탭 -->
         <nav class="page-tab">
-            <ul class="page-tab__list">
-                <!-- ✅ 아래는 하드코딩 버전(원본 유지). 실제로는 request param으로 active 처리하면 됨 -->
-                <li class="page-tab__item page-tab__item--active">
-                    <a href="list.jsp?category=ALL" class="page-tab__link"><span class="page-tab__text">전체</span></a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="list.jsp?category=A" class="page-tab__link"><span class="page-tab__text">셰프 &amp; 파티시에</span></a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="list.jsp?category=B" class="page-tab__link"><span class="page-tab__text">바리스타 &amp; 바텐더</span></a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="list.jsp?category=C" class="page-tab__link"><span class="page-tab__text">아티스트</span></a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="list.jsp?category=D" class="page-tab__link"><span class="page-tab__text">인플루언서</span></a>
-                </li>
-            </ul>
-        </nav>
+		  <ul class="page-tab__list">
+		    <li class="page-tab__item ${category eq 'ALL' ? 'page-tab__item--active' : ''}">
+		      <a href="list.do?category=ALL&page=1" class="page-tab__link"><span class="page-tab__text">전체</span></a>
+		    </li>
+		
+		    <li class="page-tab__item ${category eq '1' ? 'page-tab__item--active' : ''}">
+		      <a href="list.do?category=1&page=1" class="page-tab__link"><span class="page-tab__text">셰프 &amp; 파티시에</span></a>
+		    </li>
+		
+		    <li class="page-tab__item ${category eq '2' ? 'page-tab__item--active' : ''}">
+		      <a href="list.do?category=2&page=1" class="page-tab__link"><span class="page-tab__text">바리스타 &amp; 바텐더</span></a>
+		    </li>
+		
+		    <li class="page-tab__item ${category eq '3' ? 'page-tab__item--active' : ''}">
+		      <a href="list.do?category=3&page=1" class="page-tab__link"><span class="page-tab__text">아티스트</span></a>
+		    </li>
+		
+		    <li class="page-tab__item ${category eq '4' ? 'page-tab__item--active' : ''}">
+		      <a href="list.do?category=4&page=1" class="page-tab__link"><span class="page-tab__text">인플루언서</span></a>
+		    </li>
+		  </ul>
+		</nav>
+
 
         <div class="recipe-list-list card-list">
             <ul class="card-list__list">
 
-                <!-- ✅ 지금은 원본 HTML을 그대로 옮김(나중에 DB 리스트로 c:forEach 돌리면 됨) -->
-                <li class="card-list__item">
-                    <a href="view.jsp?seq=78&category=ALL&page=1" class="card-list__link">
-                        <div class="card-list__box">
-                            <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/brRecipe/adbe005b20b5e56a263206c52b523b3d.jpg"
-                                 alt="Roasted Strawberry Pavlova"
-                                 class="recipe-list-list__image">
-                        </div>
-                        <div class="card-list__content">
-                            <p class="recipe-list-list__category">아티스트</p>
-                            <h3 class="recipe-list-list__title">AI Artist Inspired by Ice Cream</h3>
-                            <p class="recipe-list-list__text">AI 아티스트가 그린 아이스크림 나라</p>
-                        </div>
-                    </a>
-                </li>
+			  <c:if test="${empty list}">
+			    <li class="card-list__item">
+			      <div class="card-list__content">
+			        <p class="recipe-list-list__text">등록된 레시피가 없습니다.</p>
+			      </div>
+			    </li>
+			  </c:if>
+			
+			  <c:forEach items="${list}" var="dto">
+			    <li class="card-list__item">
+			      <a href="view.do?recipeId=${dto.recipeId}&category=${category}&page=${pageVO.currentPage}" class="card-list__link">
+			        <div class="card-list__box">
+			          <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/brRecipe/${dto.thumbnail}"
+			               alt="${dto.title}"
+			               class="recipe-list-list__image">
+			        </div>
+			
+			        <div class="card-list__content">
+			          <p class="recipe-list-list__category">${dto.categoryName}</p>
+			          <h3 class="recipe-list-list__title">${dto.title}</h3>
+			          <p class="recipe-list-list__text">${dto.subTitle}</p>
+			        </div>
+			      </a>
+			    </li>
+			  </c:forEach>
+			
+			</ul>
 
-                <li class="card-list__item">
-                    <a href="view.jsp?seq=77&category=ALL&page=1" class="card-list__link">
-                        <div class="card-list__box">
-                            <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/brRecipe/0382a9fe97c0d26c325791fd192c1a07.jpg"
-                                 alt="Roasted Strawberry Pavlova"
-                                 class="recipe-list-list__image">
-                        </div>
-                        <div class="card-list__content">
-                            <p class="recipe-list-list__category">아티스트</p>
-                            <h3 class="recipe-list-list__title">Metaverse Ice Cream</h3>
-                            <p class="recipe-list-list__text">메타버스 아이스크림</p>
-                        </div>
-                    </a>
-                </li>
 
-                <li class="card-list__item">
-                    <a href="view.jsp?seq=75&category=ALL&page=1" class="card-list__link">
-                        <div class="card-list__box">
-                            <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/brRecipe/45fe5c525fba0ae0a32631513a356ff4.jpg"
-                                 alt="Roasted Strawberry Pavlova"
-                                 class="recipe-list-list__image">
-                        </div>
-                        <div class="card-list__content">
-                            <p class="recipe-list-list__category">아티스트</p>
-                            <h3 class="recipe-list-list__title">Dancing with Ice Cream</h3>
-                            <p class="recipe-list-list__text">아이스크림과 함께 춤을</p>
-                        </div>
-                    </a>
-                </li>
+            <!-- pagination  -->
+           <nav>
+			  <ul class="pagination">
+			
+			    <!-- 이전 -->
+			    <li class="pagination__item pagination__item--icon pagination__item--prev ${pageVO.prev ? '' : 'pagination__item--disabled'}">
+			      <a href="list.do?category=${category}&page=${pageVO.start - 1}" class="pagination__link">
+			        <span class="pagination__name">이전</span>
+			      </a>
+			    </li>
+			
+			    <!-- 페이지 번호 -->
+			    <c:forEach var="i" begin="${pageVO.start}" end="${pageVO.end}">
+			      <c:choose>
+			        <c:when test="${i == pageVO.currentPage}">
+			          <li class="pagination__item pagination__item--current" aria-current="page">
+			            <strong class="pagination__link"><span class="pagination__name">${i}</span></strong>
+			          </li>
+			        </c:when>
+			        <c:otherwise>
+			          <li class="pagination__item">
+			            <a href="list.do?category=${category}&page=${i}" class="pagination__link">
+			              <span class="pagination__name">${i}</span>
+			            </a>
+			          </li>
+			        </c:otherwise>
+			      </c:choose>
+			    </c:forEach>
+			
+			    <!-- 다음 -->
+			    <li class="pagination__item pagination__item--icon pagination__item--next ${pageVO.next ? '' : 'pagination__item--disabled'}">
+			      <a href="list.do?category=${category}&page=${pageVO.end + 1}" class="pagination__link">
+			        <span class="pagination__name">다음</span>
+			      </a>
+			    </li>
+			
+			  </ul>
+			</nav>
 
-                <li class="card-list__item">
-                    <a href="view.jsp?seq=74&category=ALL&page=1" class="card-list__link">
-                        <div class="card-list__box">
-                            <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/brRecipe/b7cb1900c370ab198dfa57529ed439bd.jpg"
-                                 alt="Roasted Strawberry Pavlova"
-                                 class="recipe-list-list__image">
-                        </div>
-                        <div class="card-list__content">
-                            <p class="recipe-list-list__category">아티스트</p>
-                            <h3 class="recipe-list-list__title">Ice Cream Flower</h3>
-                            <p class="recipe-list-list__text">꽃으로 표현한 아이스크림</p>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="card-list__item">
-                    <a href="view.jsp?seq=73&category=ALL&page=1" class="card-list__link">
-                        <div class="card-list__box">
-                            <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/brRecipe/e108fd4c14d42a9f4752751dc0036a14.jpg"
-                                 alt="Roasted Strawberry Pavlova"
-                                 class="recipe-list-list__image">
-                        </div>
-                        <div class="card-list__content">
-                            <p class="recipe-list-list__category">아티스트</p>
-                            <h3 class="recipe-list-list__title">A Spring Garden</h3>
-                            <p class="recipe-list-list__text">봄의 정원</p>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="card-list__item">
-                    <a href="view.jsp?seq=72&category=ALL&page=1" class="card-list__link">
-                        <div class="card-list__box">
-                            <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/brRecipe/f460ce24f202b3a40822b3998f040998.jpg"
-                                 alt="Roasted Strawberry Pavlova"
-                                 class="recipe-list-list__image">
-                        </div>
-                        <div class="card-list__content">
-                            <p class="recipe-list-list__category">아티스트</p>
-                            <h3 class="recipe-list-list__title">Sweet Devil Sprites</h3>
-                            <p class="recipe-list-list__text">아이스크림 속 작은 악마들</p>
-                        </div>
-                    </a>
-                </li>
-
-            </ul>
-
-            <!-- pagination (원본 html 유지 + php -> jsp) -->
-            <nav>
-                <ul class="pagination">
-                    <li class="pagination__item pagination__item--icon pagination__item--prev pagination__item--disabled">
-                        <a href="?category=ALL&page=1" class="pagination__link">
-                            <span class="pagination__name">이전</span>
-                        </a>
-                    </li>
-
-                    <li class="pagination__item pagination__item--current" aria-current="page">
-                        <strong class="pagination__link"><span class="pagination__name">1</span></strong>
-                    </li>
-
-                    <li class="pagination__item">
-                        <a href="?category=ALL&page=2" class="pagination__link"><span class="pagination__name">2</span></a>
-                    </li>
-                    <li class="pagination__item">
-                        <a href="?category=ALL&page=3" class="pagination__link"><span class="pagination__name">3</span></a>
-                    </li>
-                    <li class="pagination__item">
-                        <a href="?category=ALL&page=4" class="pagination__link"><span class="pagination__name">4</span></a>
-                    </li>
-                    <li class="pagination__item">
-                        <a href="?category=ALL&page=5" class="pagination__link"><span class="pagination__name">5</span></a>
-                    </li>
-
-                    <li class="pagination__item pagination__item--icon pagination__item--next">
-                        <a href="?category=ALL&page=6" class="pagination__link">
-                            <span class="pagination__name">다음</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
 
     </div>

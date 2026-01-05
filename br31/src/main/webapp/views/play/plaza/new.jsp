@@ -56,7 +56,7 @@
     <nav class="page-menu">
       <ul class="page-menu__list">
         <li class="page-menu__item">
-          <a href="${pageContext.request.contextPath}/play/event/list.jsp" class="page-menu__link">
+          <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
             <div class="page-menu__box">
               <span class="page-menu__name">이벤트</span>
             </div>
@@ -64,7 +64,7 @@
         </li>
 
         <li class="page-menu__item page-menu__item--active">
-          <a href="${pageContext.request.contextPath}/play/plaza/list.jsp" class="page-menu__link">
+          <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
             <div class="page-menu__box">
               <span class="page-menu__name">배라광장</span>
             </div>
@@ -72,7 +72,7 @@
         </li>
 
         <li class="page-menu__item">
-          <a href="${pageContext.request.contextPath}/play/recipe/list.jsp" class="page-menu__link">
+          <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
             <div class="page-menu__box">
               <span class="page-menu__name">BR 레시피</span>
             </div>
@@ -80,7 +80,7 @@
         </li>
 
         <li class="page-menu__item">
-          <a href="${pageContext.request.contextPath}/play/myflavor/list.jsp" class="page-menu__link">
+          <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
             <div class="page-menu__box">
               <span class="page-menu__name">마이플레이버 리스트</span>
             </div>
@@ -109,10 +109,9 @@
 
             <!-- ✅ 주말 룰: action도 일단 jsp로만 치환 (나중에 컨트롤러로 갈아끼우기) -->
             <form name="frm"
-                  action="${pageContext.request.contextPath}/play/plaza/new-collabo-register-proc.jsp"
-                  class="plaza-form form"
-                  method="post"
-                  enctype="multipart/form-data">
+			      action="${pageContext.request.contextPath}/play/plaza/new.do"
+			      method="POST"
+			      enctype="multipart/form-data">
 
               <input type="hidden" name="csrf_token" value="MTc2NjMwODc0N2IwMzIxYWJjMWMzOWIyNDVhZDhjMTU4YzYwN2NmY2U0ZThiNzg4NWVlZmNiOWFlZmFkNDlhNDEzYzYxMWEwYjQxOThjNTFkM2ZhMjFkMWFj" />
               <input type="hidden" name="category" value="A" />
@@ -214,15 +213,15 @@
                       <dl class="plaza-form-field__content plaza-form-field__content--top">
                         <div class="plaza-form-field__item">
                           <dt class="plaza-form-field__name form__name">이름</dt>
-                          <dd class="plaza-form-field__area">최현아</dd>
+                          <dd class="plaza-form-field__area">${sessionScope.loginUser.name}</dd>
                         </div>
                         <div class="plaza-form-field__item">
                           <dt class="plaza-form-field__name form__name">연락처</dt>
-                          <dd class="plaza-form-field__area">01086143009</dd>
+                          <dd class="plaza-form-field__area">${sessionScope.loginUser.phoneNo}</dd>
                         </div>
                         <div class="plaza-form-field__item">
                           <dt class="plaza-form-field__name form__name">이메일</dt>
-                          <dd class="plaza-form-field__area">hac0627@naver.com</dd>
+                          <dd class="plaza-form-field__area">${sessionScope.loginUser.email}</dd>
                         </div>
                       </dl>
                     </div>
@@ -324,7 +323,7 @@
                   </div>
 
                   <div class="plaza-form-buttons">
-                    <a href="${pageContext.request.contextPath}/views/play/plaza/list.jsp" class="plaza-form-buttons__cancel">취소</a>
+                    <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="plaza-form-buttons__cancel">취소</a>
                     <button type="submit" class="plaza-form-buttons__submit">등록</button>
                   </div>
                 </div>

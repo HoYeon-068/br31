@@ -44,22 +44,22 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -85,16 +85,10 @@
         <section class="myflavor-register__container">
             <h3 class="myflavor-register__title">마이플레이버 리스트 만들기</h3>
 
-            <!-- register-proc.php -> 너희 등록 처리 서블릿/컨트롤러로 변경 -->
             <form class="myflavor-register__form myflavor-form"
                   method="post"
-                  action="${pageContext.request.contextPath}/api/myflavor/register">
-
-                <%-- ✅ (선택) CSRF: 스프링 시큐리티면 아래처럼 사용
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                --%>
-
-                <!-- 맛 갯수 -->
+                  action="${pageContext.request.contextPath}/views/play/myflavor/register.do">
+                  
                 <fieldset class="myflavor-form__field myflavor-form__field--size">
                     <legend class="myflavor-form__title">맛 갯수</legend>
 
@@ -128,14 +122,11 @@
                     </div>
                 </fieldset>
 
-                <!-- 아이스크림 조합 -->
                 <fieldset class="myflavor-form__field myflavor-form__field--flavor">
                     <legend class="myflavor-form__title">아이스크림 조합</legend>
 
                     <div class="myflavor-form__content myflavor-flavor">
                         <ul>
-                            <%-- ✅ 서버에서 내려주는 전체 플레이버 목록을 쓰는 게 정석:
-                                 List<Flavor> flavors (id, name, imgPath) --%>
                             <c:choose>
                                 <c:when test="${not empty flavors}">
                                     <c:forEach var="f" items="${flavors}">
@@ -149,7 +140,6 @@
                                     </c:forEach>
                                 </c:when>
                                 <c:otherwise>
-                                    <%-- 원본 샘플: /upload 경로에 contextPath만 붙여서 살림 --%>
                                     <li>
 									  <label>
 									    <input type="checkbox" name="productSeq" value="863">
@@ -162,13 +152,6 @@
 									    <input type="checkbox" name="productSeq" value="862">
 									    <span style="background-image: url('${pageContext.request.contextPath}/resources/images/upload/product/main/005a8b9dab143458191930812c1a5561.png')"></span>
 									    <span>초콜릿 쿠키 스모어</span>
-									  </label>
-									</li>
-									<li>
-									  <label>
-									    <input type="checkbox" name="productSeq" value="844">
-									    <span style="background-image: url('${pageContext.request.contextPath}/resources/images/upload/product/main/78e1bc4d9030b09cd169ce91c75fcdbc.png')"></span>
-									    <span>아이스 죠리퐁</span>
 									  </label>
 									</li>
 									<li>
@@ -407,7 +390,6 @@
                     <div class="myflavor-form__content">
                         <div class="myflavor-select">
                             <ul>
-                                <%-- ✅ 서버 tags 목록으로 교체 가능 --%>
                                 <c:choose>
                                     <c:when test="${not empty tags}">
                                         <c:forEach var="t" items="${tags}">

@@ -43,22 +43,22 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -93,7 +93,7 @@
                             </p>
                             <h3 class="plaza-list-nav__title">내가 만드는 아이스크림</h3>
                             <div class="plaza-list-nav__buttons">
-                                <a href="${pageContext.request.contextPath}/views/play/plaza/new.jsp" class="plaza-list-nav__link">
+                                <a href="${pageContext.request.contextPath}/views/play/plaza/new.do" class="plaza-list-nav__link">
                                     만들어주세요
                                 </a>
                             </div>
@@ -110,7 +110,7 @@
                             </p>
                             <h3 class="plaza-list-nav__title">중소기업 콜라보레이션</h3>
                             <div class="plaza-list-nav__buttons">
-                                <a href="${pageContext.request.contextPath}/views/play/plaza/collabo.jsp" class="plaza-list-nav__link">
+                                <a href="${pageContext.request.contextPath}/views/play/plaza/collabo.do" class="plaza-list-nav__link">
                                     우리와 함께해요
                                 </a>
                             </div>
@@ -127,7 +127,7 @@
                             </p>
                             <h3 class="plaza-list-nav__title">점포개설 문의</h3>
                             <div class="plaza-list-nav__buttons">
-                                <a href="${pageContext.request.contextPath}/views/play/plaza/consulting.jsp" class="plaza-list-nav__link">
+                                <a href="${pageContext.request.contextPath}/views/play/plaza/consulting.do" class="plaza-list-nav__link">
                                     동행을 희망해요
                                 </a>
                                 <a href="${pageContext.request.contextPath}/information-center/consulting/br.html"
@@ -141,21 +141,20 @@
             </ul>
         </nav>
 
-        <!-- 탭 -->
         <nav class="page-tab">
             <ul class="page-tab__list">
-                <li class="page-tab__item page-tab__item--active">
-                    <a href="list.jsp?category=ALL" class="page-tab__link">
+                <li class="page-tab__item ${param.category == null || param.category == 'ALL' ? 'page-tab__item--active' : ''}">
+                    <a href="${pageContext.request.contextPath}/views/play/plaza/list.do?category=ALL" class="page-tab__link">
                         <span class="page-tab__text">ALL</span>
                     </a>
                 </li>
-                <li class="page-tab__item">
-                    <a href="list.jsp?category=A" class="page-tab__link">
+                <li class="page-tab__item ${param.category == '1' ? 'page-tab__item--active' : ''}">
+                    <a href="${pageContext.request.contextPath}/views/play/plaza/list.do?category=1" class="page-tab__link">
                         <span class="page-tab__text">NEW</span>
                     </a>
                 </li>
-                <li class="page-tab__item">
-                    <a href="list.jsp?category=B" class="page-tab__link">
+                <li class="page-tab__item ${param.category == '2' ? 'page-tab__item--active' : ''}">
+                    <a href="${pageContext.request.contextPath}/views/play/plaza/list.do?category=2" class="page-tab__link">
                         <span class="page-tab__text">COLLABO</span>
                     </a>
                 </li>
@@ -167,31 +166,54 @@
             <div class="plaza-list-list">
                 <ul class="plaza-list-list__list">
 
-                    <!-- ✅ 지금은 HTML 더미 그대로 두고, 나중에 c:forEach로 바꾸면 됨 -->
-                    <li class="plaza-list-list__item plaza-list-list__item--new">
-                        <div class="plaza-list-list__header">
-                            <h4 class="plaza-list-list__title">허니치즈트랩 재출시</h4>
-                            <p class="plaza-list-list__category">NEW</p>
-                        </div>
-                        <p class="plaza-list-list__text">
-                            매년 겨울마다 출시되었던 저의 최애아이스크림 허니치즈트랩이 이번년도 겨울엔 나오지 않았어요...
-                        </p>
-                        <p class="plaza-list-list__name">eas****님</p>
+                    <c:choose>
+                        <c:when test="${empty list}">
+                            <li class="plaza-list-list__item">
+                                <div class="plaza-list-list__header">
+                                    <h4 class="plaza-list-list__title">등록된 글이 없습니다.</h4>
+                                </div>
+                                <p class="plaza-list-list__text">첫 글을 남겨주세요!</p>
+                            </li>
+                        </c:when>
 
-                        <div class="plaza-list-list__container">
-                            <div class="plaza-list-like">
-                                <button type="button" class="plaza-list-like__button" data-seq="25">
-                                    <span class="plaza-list-like__text">추천</span>
-                                </button>
-                            </div>
+                        <c:otherwise>
+                            <c:forEach items="${list}" var="p">
+                                <li class="plaza-list-list__item plaza-list-list__item--new">
+                                    <div class="plaza-list-list__header">
+                                        <h4 class="plaza-list-list__title">${p.title}</h4>
 
-                            <a href="view.jsp?seq=25&page=1&category=ALL" class="plaza-list-list__link">
-                                자세히 보기
-                            </a>
-                        </div>
-                    </li>
+                                        <p class="plaza-list-list__category">
+                                          <c:choose>
+				                                <c:when test="${p.plazaCategoryId == 1}">NEW</c:when>
+				                                <c:otherwise>COLLABO</c:otherwise>
+				                           </c:choose>
+                                            
+                                        </p>
+                                    </div>
 
-                    <!-- 이하 동일 패턴... 필요하면 더미 다 넣어서 정리해줄게 -->
+                                    <p class="plaza-list-list__text">
+                                        ${p.content}
+                                    </p>
+
+                                    <p class="plaza-list-list__name">${p.userId}님</p>
+
+                                    <div class="plaza-list-list__container">
+                                        <div class="plaza-list-like">
+                                            <button type="button" class="plaza-list-like__button" data-seq="${p.plazaId}">
+                                                <span class="plaza-list-like__text">추천</span>
+                                            </button>
+                                        </div>
+
+                                        <a href="${pageContext.request.contextPath}/views/play/plaza/view.do?seq=${p.plazaId}"
+                                           class="plaza-list-list__link">
+                                            자세히 보기
+                                        </a>
+                                    </div>
+                                </li>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+
                 </ul>
             </div>
         </div>

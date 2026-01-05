@@ -52,25 +52,25 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
 
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
 
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
 
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -101,17 +101,14 @@
                 <span>내맘대로 추천하는</span>
                 <strong>나만의 <em>맛조합</em> 만들기</strong>
 
-                <!-- register.php -> jsp/서블릿 경로로 변경 -->
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/register.jsp">참여하기</a>
+                <a href="${pageContext.request.contextPath}/views/play/myflavor/register.do">참여하기</a>
             </p>
         </aside>
 
         <!-- 필터 폼 -->
-        <!-- action="/api/my-flavor-list.php" -> 너희 서블릿(또는 컨트롤러)로 변경 -->
         <form class="myflavor-list__form myflavor-form"
               method="get"
-              action="${pageContext.request.contextPath}/api/myflavor/list">
-            <!-- 예: /api/myflavor/list?tag=...&flavor=... -->
+              action="${pageContext.request.contextPath}/views/play/myflavor/list.do">
 
             <!-- 맛 태그 -->
             <fieldset class="myflavor-form__field myflavor-form__field--tag">
@@ -119,7 +116,6 @@
 
                 <div class="myflavor-form__content myflavor-select">
                     <ul>
-                        <%-- ✅ 서버에서 tags를 내려준다고 가정: List<String> tags --%>
                         <c:choose>
                             <c:when test="${not empty tags}">
                                 <c:forEach var="t" items="${tags}">
@@ -132,7 +128,6 @@
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
-                                <!-- 원본 샘플 1개 -->
                                 <li>
                                     <label>
                                         <input type="checkbox" name="tag" value="특이한 맛들을 모아서">
@@ -151,9 +146,6 @@
 
                 <div class="myflavor-form__content myflavor-flavor">
                     <ul>
-                        <%-- ✅ 서버에서 인기플레이버를 내려준다고 가정:
-                             List<Flavor> popularFlavors
-                             flavor.id, flavor.name, flavor.imgPath (/upload/...) --%>
                         <c:choose>
                             <c:when test="${not empty popularFlavors}">
                                 <c:forEach var="f" items="${popularFlavors}">
@@ -167,7 +159,6 @@
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
-                                <!-- 원본 샘플 그대로(이미지 경로에 contextPath만 붙임) -->
                                 <li>
                                     <label>
                                         <input type="checkbox" name="flavor" value="17">
@@ -245,7 +236,6 @@
 
             <div class="myflavor-flavorlist">
                 <ul>
-                    <%-- ✅ 서버에서 리스트 내려준다고 가정: List<MyFlavor> myFlavorList --%>
                     <c:if test="${not empty myFlavorList}">
                         <c:forEach var="item" items="${myFlavorList}">
                             <li>
@@ -264,7 +254,6 @@
 
             <nav>
                 <ul class="pagination">
-                    <%-- 페이지네이션은 너 프로젝트 방식대로 (startPage/endPage/hasPrev/hasNext 등) 붙이면 됨 --%>
                 </ul>
             </nav>
         </section>
@@ -274,6 +263,7 @@
 
 <!-- FOOTER -->
 <jsp:include page="/views/layout/footer.jsp" />
+
 
 </body>
 </html>

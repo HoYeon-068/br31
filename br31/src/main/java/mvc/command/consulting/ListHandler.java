@@ -27,6 +27,8 @@ public class ListHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ListHandler");
 		
+		String loc=request.getParameter("findword")==null?"":request.getParameter("findword");
+		
 		try {
 			this.currentPage = Integer.parseInt( request.getParameter("currentPage" ) );			
 		} catch (Exception e) {
@@ -50,9 +52,14 @@ public class ListHandler implements CommandHandler{
 		
 		try {
 			//list = dao.select();
+			if (loc.equals("")) {
+				pvo = new PageVO(currentPage, numberPerPage, numberOfPageBlock);				
+			}else {
+				
+				pvo = new PageVO(currentPage, numberPerPage, numberOfPageBlock,loc);				
+			}
 			
-			pvo = new PageVO(currentPage, numberPerPage, numberOfPageBlock);
-			list = dao.select(this.currentPage, this.numberPerPage); // 페이징 처리 O
+			list = dao.select(this.currentPage, this.numberPerPage,loc); // 페이징 처리 O
 		} catch (Exception e) {
 			System.out.println("> consulting ListHandler.process() Exception...");
 			e.printStackTrace();

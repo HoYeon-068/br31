@@ -37,7 +37,6 @@ public class NewStoreBoardDAOImpl implements NewStoreBoardDAO{
 	public List<NewStoreBoardDTO> select() throws SQLException {
 		String sql = "SELECT * FROM \"new_store_board\"";
 
-
 		ArrayList<NewStoreBoardDTO> list = null;
 
 		int newStoreBoardId, viewCount, isDeleted;
@@ -54,6 +53,7 @@ public class NewStoreBoardDAOImpl implements NewStoreBoardDAO{
 		
 		try {			
 			pstmt = conn.prepareStatement(sql);
+			
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -123,12 +123,15 @@ public class NewStoreBoardDAOImpl implements NewStoreBoardDAO{
 	}
 	
 	@Override
-	public List<NewStoreBoardDTO> select(int currentPage, int numberPerPage) throws SQLException {
+	public List<NewStoreBoardDTO> select(int currentPage, int numberPerPage, String loc) throws SQLException {
 		String sql =
 			    "SELECT * FROM ( " +
 			    "  SELECT ROWNUM rnum, A.* FROM ( " +
-			    "    SELECT * FROM \"new_store_board\" " +
-			    "    ORDER BY \"new_store_board_id\" DESC " +
+			    "    SELECT * FROM \"new_store_board\" ";
+		if(!loc.equals("")){
+			sql+=" WHERE \"sido\" = ? ";
+		}
+			 sql+=   "    ORDER BY \"new_store_board_id\" DESC " +
 			    "  ) A WHERE ROWNUM <= ? " +
 			    ") WHERE rnum >= ?";
 		
@@ -150,14 +153,20 @@ public class NewStoreBoardDAOImpl implements NewStoreBoardDAO{
 		
 		
 		
-		try {			
+		try {
+			int index=1;
+			
 			pstmt = conn.prepareStatement(sql);
 			
+			if(!loc.equals("")){
+				pstmt.setString(index++, loc);
+			}
+			
 			// ? end
-			pstmt.setInt(1, end);
+			pstmt.setInt(index++, end);
 			
 			// ? start
-			pstmt.setInt(2, start);
+			pstmt.setInt(index++, start);
 			
 			rs = pstmt.executeQuery();
 
@@ -340,6 +349,95 @@ public class NewStoreBoardDAOImpl implements NewStoreBoardDAO{
 		} 
 
 		return vo;
+	}
+	@Override
+	public int getTotalPages(int numberPerPage, String loc) throws SQLException {
+		String sql = "SELECT CEIL(COUNT(*)/?)"
+				+ " FROM \"new_store_board\""
+				+ " WHERE \"sido\"= ? ";              
+
+		int totalPages = 0;	 
+
+		try {			
+			pstmt = conn.prepareStatement(sql); 
+			pstmt.setInt(1, numberPerPage); 
+			pstmt.setString(2, loc);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				totalPages = rs.getInt(1);
+			}
+
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) { 
+				e.printStackTrace();
+			}
+		} 
+
+		return totalPages;
+	}
+	@Override
+	public int getTotalNum(String loc) throws SQLException {
+		String sql = "SELECT COUNT(*)"
+				+ " FROM \"new_store_board\""
+				+ " WHERE \"sido\"= ? ";              
+
+		int totalNum = 0;	 
+
+		try {			
+			pstmt = conn.prepareStatement(sql); 
+			pstmt.setString(1, loc);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				totalNum = rs.getInt(1);
+			}
+
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) { 
+				e.printStackTrace();
+			}
+		} 
+
+		return totalNum;
+	}
+	@Override
+	public int getTotalNum() throws SQLException {
+		String sql = "SELECT COUNT(*)"
+				+ " FROM \"new_store_board\"";              
+
+		int totalNum = 0;	 
+
+		try {			
+			pstmt = conn.prepareStatement(sql); 
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				totalNum = rs.getInt(1);
+			}
+
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) { 
+				e.printStackTrace();
+			}
+		} 
+
+		return totalNum;
 	}
 	
 

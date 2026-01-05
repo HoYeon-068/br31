@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -45,68 +46,69 @@
                 <h3>
                     정밀한 상권 분석을 통해<br>
                     성공 가능성이 높은 점포를 안내해드립니다.
+                    ${param.findword}
                 </h3>
                 <nav>
                     <ul>
-                        <li class="active">
-                            <a href="store-list.html">전국</a>
+                        <li ${empty param.findword ? 'class="active"' : ''}>
+                            <a href="store-list.do">전국</a>
                         </li>
-                                                    <li >
-                                <a href="store-list5132.html?findword=%ec%84%9c%ec%9a%b8">서울</a>
+                                                    <li ${param.findword eq '서울'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=서울">서울</a>
                             </li>
-                                                    <li >
-                                <a href="store-listab1b.html?findword=%ea%b2%bd%ea%b8%b0">경기</a>
+                                                    <li ${param.findword eq '경기'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=경기">경기</a>
                             </li>
-                                                    <li >
-                                <a href="store-list9922.html?findword=%ec%9d%b8%ec%b2%9c">인천</a>
+                                                    <li ${param.findword eq '인천'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=인천">인천</a>
                             </li>
-                                                    <li >
-                                <a href="store-list750d.html?findword=%ea%b0%95%ec%9b%90%ed%8a%b9%eb%b3%84%ec%9e%90%ec%b9%98%eb%8f%84">강원</a>
+                                                    <li ${param.findword eq '강원'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=강원">강원</a>
                             </li>
-                                                    <li >
-                                <a href="store-lista659.html?findword=%ec%b6%a9%eb%b6%81">충북</a>
+                                                    <li ${param.findword eq '충북'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=충북">충북</a>
                             </li>
-                                                    <li >
-                                <a href="store-listc470.html?findword=%ec%b6%a9%eb%82%a8">충남</a>
+                                                    <li ${param.findword eq '충남'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=충남">충남</a>
                             </li>
-                                                    <li >
-                                <a href="store-list4f4a.html?findword=%eb%8c%80%ec%a0%84">대전</a>
+                                                    <li ${param.findword eq '대전'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=대전">대전</a>
                             </li>
-                                                    <li >
-                                <a href="store-list3e52.html?findword=%ec%84%b8%ec%a2%85%ed%8a%b9%eb%b3%84%ec%9e%90%ec%b9%98%ec%8b%9c">세종</a>
+                                                    <li ${param.findword eq '세종'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=세종">세종</a>
                             </li>
-                                                    <li >
-                                <a href="store-list928c.html?findword=%ec%a0%84%eb%b6%81">전북</a>
+                                                    <li ${param.findword eq '전북'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=전북">전북</a>
                             </li>
-                                                    <li >
-                                <a href="store-list1c8c.html?findword=%ec%a0%84%eb%82%a8">전남</a>
+                                                    <li ${param.findword eq '전남'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=전남">전남</a>
                             </li>
-                                                    <li >
-                                <a href="store-listbb15.html?findword=%ea%b4%91%ec%a3%bc">광주</a>
+                                                    <li ${param.findword eq '광주'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=광주">광주</a>
                             </li>
-                                                    <li >
-                                <a href="store-list1504.html?findword=%ea%b2%bd%eb%b6%81">경북</a>
+                                                    <li ${param.findword eq '경북'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=경북">경북</a>
                             </li>
-                                                    <li >
-                                <a href="store-list4ee4.html?findword=%ea%b2%bd%eb%82%a8">경남</a>
+                                                    <li ${param.findword eq '경남'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=경남">경남</a>
                             </li>
-                                                    <li >
-                                <a href="store-listfc6f.html?findword=%eb%8c%80%ea%b5%ac">대구</a>
+                                                    <li ${param.findword eq '대구'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=대구">대구</a>
                             </li>
-                                                    <li >
-                                <a href="store-listd890.html?findword=%ec%9a%b8%ec%82%b0">울산</a>
+                                                    <li ${param.findword eq '울산'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=울산">울산</a>
                             </li>
-                                                    <li >
-                                <a href="store-liste3dd.html?findword=%eb%b6%80%ec%82%b0">부산</a>
+                                                    <li ${param.findword eq '부산'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=부산">부산</a>
                             </li>
-                                                    <li >
-                                <a href="store-listb745.html?findword=%ec%a0%9c%ec%a3%bc%ed%8a%b9%eb%b3%84%ec%9e%90%ec%b9%98%eb%8f%84">제주</a>
+                            <li ${param.findword eq '제주'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=제주">제주</a>
                             </li>
                                             </ul>
                 </nav>
 
                 <div class="consulting-store-list__box">
-                    <p>총 <span>24</span> 건</p>
+                    <p>총 <span>${pvo.totalNum}</span> 건</p>
 
                     <table>
                         <thead>
@@ -120,7 +122,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${list}" var="vo">
+                        
+                        <c:choose>
+        <c:when test="${ empty list }">
+          <tr>
+            <td colspan="6">등록된 게시글이 없습니다.</td>
+          </tr>
+        </c:when>
+        <c:otherwise>
+         <c:forEach items="${list}" var="vo">
                         	<tr>
                             <%-- <td><span class="top">${list.newStoreBoardId}</span></td> --%>
                             <td><span>${vo.newStoreBoardId}</span></td>
@@ -132,7 +142,14 @@
                             <td>${vo.createdAt}</td>
                             <td>${vo.viewCount}</td>
                        		</tr>
-                        </c:forEach>                                                </tbody>
+                        </c:forEach>           
+        </c:otherwise>
+      </c:choose> 
+                        
+                        
+                        
+                        
+                                                             </tbody>
                     </table>
                     
                     

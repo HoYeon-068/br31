@@ -21,14 +21,26 @@ public class MapSearchHandler implements CommandHandler{
 				
 				response.setCharacterEncoding("UTF-8");
 		        response.setContentType("application/json; charset=UTF-8");
-				
+		        String[] services = request.getParameterValues("service_info");
+		        
+		        for (int i = 0; i < services.length; i++) {
+					System.out.println(services[i]);
+				}
+		        
 				Connection conn = ConnectionProvider.getConnection();
 				StoreDAO dao=new StoreDAOImpl(conn); 
 				
-				
+				String json;
 				
 				try {
-					String json = dao.select();
+					
+					if (services==null) {
+						json = dao.select();
+						
+					}else {
+						json = dao.select(services);
+					}
+					
 					return json;
 				} catch ( Exception e) {
 					System.out.println("ajax 오류");

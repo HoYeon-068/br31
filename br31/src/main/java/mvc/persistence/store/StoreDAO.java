@@ -10,4 +10,7 @@ public interface StoreDAO {
 	
 	//최대 100개까지 조회
 	String select() throws SQLException;
+	
+	String select(String[] service_info) throws SQLException;
+	
 }

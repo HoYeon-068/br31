@@ -107,13 +107,13 @@
                                         <dt class="store-map-option__name">매장타입</dt>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="A">
+                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="BR31">
                                                 <span class="store-map-option__text">BR 31</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="B">
+                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="100flavor">
                                                 <span class="store-map-option__text">100flavor</span>
                                             </label>
                                         </dd>
@@ -122,65 +122,65 @@
                                         <dt class="store-map-option__name">제공 서비스</dt>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="A">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="주차">
                                                 <span class="store-map-option__text">주차</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="B">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="배달">
                                                 <span class="store-map-option__text">배달</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="C">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="픽업">
                                                 <span class="store-map-option__text">픽업</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="D">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="취식여부">
                                                 <span class="store-map-option__text">취식여부</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="E">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="해피스테이션">
                                                 <span class="store-map-option__text">해피스테이션</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="F">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="가챠머신">
                                                 <span class="store-map-option__text">가챠머신</span>
                                             </label>
                                         </dd>
 
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="I">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="KT 제휴">
                                                 <span class="store-map-option__text">KT 제휴</span>
                                             </label>
                                         </dd>
 
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="J">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="SKT 제휴">
                                                 <span class="store-map-option__text">SKT 제휴</span>
                                             </label>
                                         </dd>
                                         
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="K">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="LGU+ 제휴">
                                                 <span class="store-map-option__text">LGU+ 제휴</span>
                                             </label>
                                         </dd>
                                         
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="L">
+                                                <input type="checkbox" class="store-map-option__input" name="service_info" value="맛보기 제휴">
                                                 <span class="store-map-option__text">맛보기 제휴</span>
                                             </label>
                                         </dd>                                        
@@ -416,12 +416,14 @@ $(function () {
 ================================ */
 $("button.store-map__submit").on("click", function (e) {
   e.preventDefault();
-
+  var formData = $(".store-map-form").serialize();
+  console.log(formData);
   $(".store-map-list__list").empty();
 
   $.ajax({
     url: contextPath + "/store/mapSearch.ajax",
     type: "GET",
+    data: formData,
     dataType: "json",
     cache: false,
 

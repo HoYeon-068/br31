@@ -12,7 +12,7 @@ public class ProcessHandler implements CommandHandler{
 		System.out.println("ProcessHandler");
 		
 		request.setAttribute("activeMenu", "process");
-		return "/views/information-center/consulting/process.jsp";
+		return "/WEB-INF/views/information-center/consulting/process.jsp";
 	}
 	
 }

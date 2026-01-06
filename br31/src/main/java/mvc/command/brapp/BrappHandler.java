@@ -10,7 +10,7 @@ public class BrappHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		return "/views/brapp/brapp.jsp";
+		return "/WEB-INF/views/brapp/brapp.jsp";
 		
 		
 	}

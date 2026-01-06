@@ -12,7 +12,7 @@ public class CounselHandler implements CommandHandler{
 		System.out.println("CounselHandler");
 		
 		request.setAttribute("activeMenu", "counsel");
-		return "/views/information-center/consulting/counsel.jsp";
+		return "/WEB-INF/views/information-center/consulting/counsel.jsp";
 	}
 	
 }

@@ -11,7 +11,7 @@ public class WorkShopHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println("WorkShopHandler");
-		return "/views/store/workshop.jsp";
+		return "/WEB-INF/views/store/workshop.jsp";
 	}
 	
 }

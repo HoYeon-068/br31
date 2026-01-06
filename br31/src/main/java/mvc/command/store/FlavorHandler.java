@@ -11,7 +11,7 @@ public class FlavorHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println("FlavorHandler");
-		return "/views/store/flavor.jsp";
+		return "/WEB-INF/views/store/flavor.jsp";
 	}
 	
 }

@@ -37,7 +37,7 @@
 
 <div class="skipnav"><a href="#content">본문 영역으로 바로가기</a></div>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 
 <section class="site-container">
@@ -288,7 +288,7 @@
     </div>
 </section>
 
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 </body>
 </html>

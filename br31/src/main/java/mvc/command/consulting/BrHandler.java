@@ -14,7 +14,7 @@ public class BrHandler implements CommandHandler{
 		
 		
 		request.setAttribute("activeMenu", "br");
-		return "/views/information-center/consulting/br.jsp";
+		return "/WEB-INF/views/information-center/consulting/br.jsp";
 	}
 	
 }

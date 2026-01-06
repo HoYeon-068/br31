@@ -10,7 +10,7 @@ public class MapHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MapHandler");
-		return "/views/store/map.jsp";
+		return "/WEB-INF/views/store/map.jsp";
 	}
 	
 }

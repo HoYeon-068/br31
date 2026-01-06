@@ -64,7 +64,7 @@ public class ViewHandler implements CommandHandler{
 		
 		request.setAttribute("dto", menuViewDTO);
 		
-		return "/views/menu/view.jsp";
+		return "/WEB-INF/views/menu/view.jsp";
 	}
 
 }

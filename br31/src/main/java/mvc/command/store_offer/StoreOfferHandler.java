@@ -12,7 +12,7 @@ public class StoreOfferHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("StoreOfferHandler");
 		
-		return "/views/information-center/store-offer/offer.jsp";
+		return "/WEB-INF/views/information-center/store-offer/offer.jsp";
 	}
 	
 }

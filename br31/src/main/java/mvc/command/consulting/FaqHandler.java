@@ -42,7 +42,7 @@ public class FaqHandler implements CommandHandler{
 		request.setAttribute("list", list);
 		request.setAttribute("activeMenu", "faq");
 		
-		return "/views/information-center/consulting/faq.jsp";
+		return "/WEB-INF/views/information-center/consulting/faq.jsp";
 	}
 	
 }

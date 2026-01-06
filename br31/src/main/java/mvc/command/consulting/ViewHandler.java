@@ -38,7 +38,7 @@ public class ViewHandler implements CommandHandler{
 		}
 		
 		request.setAttribute("dto", dto);
-		return "/views/information-center/consulting/store-view.jsp";
+		return "/WEB-INF/views/information-center/consulting/store-view.jsp";
 	}
 	
 }

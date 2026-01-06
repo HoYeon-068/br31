@@ -57,7 +57,7 @@ public class FomHandler implements CommandHandler{
 		
 		request.setAttribute("dto", fomViewDTO);
 		
-		return "/views/menu/fom.jsp";
+		return "/WEB-INF/views/menu/fom.jsp";
 	}
 	
 }

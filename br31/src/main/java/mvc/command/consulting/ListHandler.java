@@ -71,7 +71,7 @@ public class ListHandler implements CommandHandler{
 		request.setAttribute("list", list);
 		request.setAttribute("pvo", pvo);
 		
-		return "/views/information-center/consulting/store-list.jsp";
+		return "/WEB-INF/views/information-center/consulting/store-list.jsp";
 	}
 	
 }

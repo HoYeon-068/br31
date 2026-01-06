@@ -89,7 +89,7 @@ public class ListHandler implements CommandHandler{
 		request.setAttribute("title", title);
 		request.setAttribute("category", category);
 		request.setAttribute("description", description);
-		String location=category.equals("E")||category.equals("F")?"/views/menu/list_subcategory.jsp":"/views/menu/list.jsp";
+		String location=category.equals("E")||category.equals("F")?"/WEB-INF/views/menu/list_subcategory.jsp":"/WEB-INF/views/menu/list.jsp";
 		return location;
 	}
 

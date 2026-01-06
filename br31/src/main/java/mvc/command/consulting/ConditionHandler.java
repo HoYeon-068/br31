@@ -12,7 +12,7 @@ public class ConditionHandler implements CommandHandler{
 		System.out.println("ConditionHandler");
 		
 		request.setAttribute("activeMenu", "condition");
-		return "/views/information-center/consulting/condition.jsp";
+		return "/WEB-INF/views/information-center/consulting/condition.jsp";
 	}
 	
 }

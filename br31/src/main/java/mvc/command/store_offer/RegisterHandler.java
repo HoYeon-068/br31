@@ -18,11 +18,11 @@ public class RegisterHandler implements CommandHandler{
 			//String offerId = request.getParameter("offerId");
 			//request.setAttribute("offerId", offerId);
 			
-			return "/views/information-center/store-offer/register.jsp";
+			return "/WEB-INF/views/information-center/store-offer/register.jsp";
 			
 		} else if (requestMethod.equals("POST") ){
 		
-			return "/views/information-center/store-offer/offer.jsp";
+			return "/WEB-INF/views/information-center/store-offer/offer.jsp";
 		}
 		
 		return null;

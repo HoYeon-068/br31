@@ -41,7 +41,7 @@
 
 <body>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
   <div class="page-title">
 	  <div class="title">회원가입</div>
@@ -244,7 +244,7 @@
   </form>
 
   </body>
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 <script>
 /* join.js 
@@ -324,6 +324,10 @@ $(function () {
     setMsg($("#pwMsg"), "비밀번호가 일치합니다.", "success");
     return true;
   }
+  
+  
+
+  
 
   // 2) 상태값(hidden) 초기화/무효화
   function invalidateIdCheck() {

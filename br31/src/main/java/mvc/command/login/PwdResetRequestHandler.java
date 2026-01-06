@@ -20,7 +20,7 @@ public class PwdResetRequestHandler implements CommandHandler {
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         if (request.getMethod().equalsIgnoreCase("GET")) {
-            return "/views/login/pwdReset.jsp";
+            return "/WEB-INF/views/login/pwdReset.jsp";
         }
 
         String userId = request.getParameter("user_id");
@@ -38,10 +38,10 @@ public class PwdResetRequestHandler implements CommandHandler {
             UserDTO user = userService.getUserById(userId);
             request.setAttribute("name", user.getName());
             request.setAttribute("tempPwd", tempPwd);
-            return "/views/login/pwdChangeResult.jsp";
+            return "/WEB-INF/views/login/pwdChangeResult.jsp";
         }
 
         request.setAttribute("message", "비밀번호 재발급 실패(아이디 확인)");
-        return "/views/login/pwdReset.jsp";
+        return "/WEB-INF/views/login/pwdReset.jsp";
     }
 }

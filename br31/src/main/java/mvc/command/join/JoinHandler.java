@@ -18,7 +18,7 @@ public class JoinHandler implements CommandHandler {
 
     	// GET이면 가입 폼
         if (request.getMethod().equalsIgnoreCase("GET")) {
-            return "/views/join/join.jsp";
+            return "/WEB-INF/views/join/join.jsp";
         }
 
         // POST면 가입 처리
@@ -86,10 +86,10 @@ public class JoinHandler implements CommandHandler {
 
         if (result == 1) {
         	request.setAttribute("name", user.getName());
-        	return "/views/join/joinComplete.jsp";
+        	return "/WEB-INF/views/join/joinComplete.jsp";
         }
 
         request.setAttribute("message", "회원가입에 실패했습니다. (중복이거나 DB 오류)");
-        return "/views/join/join.jsp";
+        return "/WEB-INF/views/join/join.jsp";
     }
 }

@@ -52,7 +52,7 @@ public class HistoryListHandler implements CommandHandler {
 		}
 		
 		
-		return "/views/story/history.jsp";
+		return "/WEB-INF/views/story/history.jsp";
 	}
 	
 	

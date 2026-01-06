@@ -39,7 +39,7 @@
 
 <body>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
   <div class="page-title">
 	  <div class="title">아이디 찾기</div>
@@ -84,7 +84,7 @@
   </form>
   </div>
   
-  <jsp:include page="/views/layout/footer.jsp" />
+  <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
   
   <script>
   const tabBtns = $(".tab-btn");

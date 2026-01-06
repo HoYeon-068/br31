@@ -10,6 +10,6 @@ public class FindIdHandler implements CommandHandler {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 화면만 띄움
-        return "/views/login/findId.jsp";
+        return "/WEB-INF/views/login/findId.jsp";
     }
 }

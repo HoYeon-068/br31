@@ -34,7 +34,7 @@
 </head>
 
 <body>
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <div class="site-menu" style="display:none;"></div>
 <div class="site-footer-menu" style="display:none;"></div>
 

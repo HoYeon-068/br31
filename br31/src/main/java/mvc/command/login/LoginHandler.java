@@ -25,7 +25,7 @@ public class LoginHandler implements CommandHandler {
                 request.setAttribute("redirectUrl", referer);
             }
 
-            return "/views/login/login.jsp";
+            return "/WEB-INF/views/login/login.jsp";
         }
 
         request.setCharacterEncoding("UTF-8");
@@ -40,7 +40,7 @@ public class LoginHandler implements CommandHandler {
             request.setAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
             request.setAttribute("redirectUrl", redirectUrl); // hidden 유지
             request.setAttribute("userId", userId);           // 아이디 유지(선택)
-            return "/views/login/login.jsp"; // forward
+            return "/WEB-INF/views/login/login.jsp"; // forward
         }
 
         // 로그인 성공

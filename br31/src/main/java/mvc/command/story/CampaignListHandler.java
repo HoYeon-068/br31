@@ -37,7 +37,7 @@ public class CampaignListHandler implements CommandHandler{
 			conn.close();
 		}
 		
-		return "/views/story/be-better.jsp";
+		return "/WEB-INF/views/story/be-better.jsp";
 	}
 
 }

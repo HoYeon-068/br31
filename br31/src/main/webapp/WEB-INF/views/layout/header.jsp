@@ -87,20 +87,20 @@
                         </div>
                     </li>
                     <li class="site-menu__item">
-                        <a href="${pageContext.request.contextPath}/story/story.html" class="site-menu__link">BR Story</a>
+                        <a href="${pageContext.request.contextPath}/story/story.do" class="site-menu__link">BR Story</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/story/story.html" class="site-menu-list__link">브랜드 스토리</a>
+                                            <a href="${pageContext.request.contextPath}/story/story.do" class="site-menu-list__link">브랜드 스토리</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/story/historybc5e.html?release_year=2025" class="site-menu-list__link">이달의 맛 히스토리</a>
+                                            <a href="${pageContext.request.contextPath}/story/history.do" class="site-menu-list__link">이달의 맛 히스토리</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/story/be-better.html" class="site-menu-list__link">Be Better</a>
+                                            <a href="${pageContext.request.contextPath}/story/be-better.do" class="site-menu-list__link">Be Better</a>
                                         </li>
                                     </ul>
 

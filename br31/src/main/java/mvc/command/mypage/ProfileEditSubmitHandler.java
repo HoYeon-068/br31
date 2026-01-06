@@ -84,12 +84,12 @@ public class ProfileEditSubmitHandler implements CommandHandler {
             if (!isEmpty(nickname) && !nickname.equals(loginUser.getNickname())) {
                 if (!"true".equalsIgnoreCase(nicknameChecked)) {
                     request.setAttribute("error", "닉네임 중복확인을 해주세요.");
-                    return "/views/mypage/profileEdit.jsp";
+                    return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
                 System.out.println("[ProfileEditSubmit] isNicknameAvailable...");
                 if (!dao.isNicknameAvailable(userId, nickname)) {
                     request.setAttribute("error", "이미 사용 중인 닉네임입니다.");
-                    return "/views/mypage/profileEdit.jsp";
+                    return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
             } else {
                 nickname = loginUser.getNickname();
@@ -99,12 +99,12 @@ public class ProfileEditSubmitHandler implements CommandHandler {
             if (!isEmpty(newEmail) && !newEmail.equals(loginUser.getEmail())) {
                 if (!"true".equalsIgnoreCase(emailChecked)) {
                     request.setAttribute("error", "이메일 중복확인을 해주세요.");
-                    return "/views/mypage/profileEdit.jsp";
+                    return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
                 System.out.println("[ProfileEditSubmit] isEmailAvailable...");
                 if (!dao.isEmailAvailable(userId, newEmail)) {
                     request.setAttribute("error", "이미 사용 중인 이메일입니다.");
-                    return "/views/mypage/profileEdit.jsp";
+                    return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
             } else {
                 newEmail = loginUser.getEmail();
@@ -123,11 +123,11 @@ public class ProfileEditSubmitHandler implements CommandHandler {
             if (phoneChanged) {
                 if (!"true".equalsIgnoreCase(phoneChecked)) {
                     request.setAttribute("error", "휴대폰 번호를 변경하셨다면 인증을 완료해야 합니다.");
-                    return "/views/mypage/profileEdit.jsp";
+                    return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
                 if (phoneAuthOk == null || phoneAuthOk != true) {
                     request.setAttribute("error", "휴대폰 인증이 완료되지 않았습니다.");
-                    return "/views/mypage/profileEdit.jsp";
+                    return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
             } else {
                 phoneNo = loginUser.getPhone_no(); // 그대로 유지
@@ -146,7 +146,7 @@ public class ProfileEditSubmitHandler implements CommandHandler {
                 boolean okOld = dao.checkPassword(userId, oldPwd);
                 if (!okOld) {
                     request.setAttribute("error", "기존 비밀번호가 올바르지 않습니다.");
-                    return "/views/mypage/profileEdit.jsp";
+                    return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
                 System.out.println("[ProfileEditSubmit] updatePassword...");
                 dao.updatePassword(userId, newPwd);
@@ -155,14 +155,14 @@ public class ProfileEditSubmitHandler implements CommandHandler {
             // 저장하려면 oldPwd 입력
             if (isEmpty(oldPwd)) {
                 request.setAttribute("error", "저장하려면 현재 비밀번호를 입력해야 합니다.");
-                return "/views/mypage/profileEdit.jsp";
+                return "/WEB-INF/views/mypage/profileEdit.jsp";
             }
             
             System.out.println("[ProfileEditSubmit] checkPassword(for save)...");
             boolean okCurrent = dao.checkPassword(userId, oldPwd);
             if (!okCurrent) {
                 request.setAttribute("error", "현재 비밀번호가 올바르지 않습니다.");
-                return "/views/mypage/profileEdit.jsp";
+                return "/WEB-INF/views/mypage/profileEdit.jsp";
             }
 
 

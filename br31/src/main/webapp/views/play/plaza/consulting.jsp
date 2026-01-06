@@ -46,22 +46,22 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -89,8 +89,7 @@
         <div class="plaza-consulting__container">
             <div class="plaza-consulting__content">
 
-                <!-- ✅ action php -> jsp로 변경 -->
-                <form name="frm" action="consulting-register-proc.jsp" method="POST" class="plaza-form form">
+                <form name="frm" action="${pageContext.request.contextPath}/views/play/plaza/consulting.do" method="POST" class="plaza-form form">
                     <input type="hidden" name="csrf_token"
                            value="MTc2NjMwOTU5OGIwMzIxYWJjMWMzOWIyNDVhZDhjMTU4YzYwN2NmY2U0ZThiNzg4NWUzZGMwYjQ1YjYyOGU5MzA0ZDA5MzM0YjQ1NDVhMmQ5ZTk1NzcwNGJj">
                     <input type="hidden" name="category" value="C">
@@ -122,12 +121,12 @@
 
                             <div class="plaza-form__box">
                                 <label class="form-radio">
-                                    <input type="radio" class="form-radio__input privacy" name="is_policy" value="Y">
+                                    <input type="radio" class="form-radio__input privacy" name="personalInfoConsent" value="1">
                                     <span class="form-radio__text">동의합니다</span>
                                 </label>
 
                                 <label class="form-radio">
-                                    <input type="radio" class="form-radio__input" name="is_policy" value="N">
+                                    <input type="radio" class="form-radio__input" name="personalInfoConsent" value="0">
                                     <span class="form-radio__text">동의하지 않습니다</span>
                                 </label>
                             </div>
@@ -152,7 +151,6 @@
                                             <div class="plaza-consulting-tel">
                                                 <div class="plaza-consulting-tel__content">
                                                     <div class="form-tel table__tel plaza-consulting-tel__item">
-                                                        <!-- ✅ 원본에 hidden name이 applicant_tel_2로만 잡혀있어서, 일단 그대로 둠 -->
                                                         <input type="hidden" name="applicant_tel_2">
                                                         <input type="text" class="form-tel__input" maxlength="3" name="contact_form_tel1">
                                                         <span class="form-tel__hypen"></span>
@@ -224,6 +222,7 @@
                                         <td class="table__area table__box">
                                             <select name="sido" class="dosi plaza-consulting__select plaza-consulting__select--long">
                                                 <option value="">도/시</option>
+                                                
                                             </select>
                                             <select name="gugun" class="gugun plaza-consulting__select plaza-consulting__select--long">
                                                 <option value="">구/군</option>
@@ -368,7 +367,6 @@
                                         가맹점 문의/점포개설에 대한 상담은 전화 및 팩스, 이메일 모두 가능합니다.
                                     </p>
 
-                                    <!-- 원본: /information-center/consulting/counsel.php -->
                                     <a href="${pageContext.request.contextPath}/information-center/consulting/counsel.jsp"
                                        target="_blank"
                                        class="plaza-consulting-info__button">
@@ -378,7 +376,7 @@
                             </div>
 
                             <div class="plaza-form-buttons">
-                                <a href="${pageContext.request.contextPath}/views/play/plaza/list.jsp" class="plaza-form-buttons__cancel">취소</a>
+                                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="plaza-form-buttons__cancel">취소</a>
                                 <button type="submit" class="plaza-form-buttons__submit">등록</button>
                             </div>
 
@@ -406,6 +404,66 @@
     </div>
 
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const $sido = document.querySelector("select[name='sido']");
+  const $gugun = document.querySelector("select[name='gugun']");
+
+  const SIDOS = [
+    { value: "서울", label: "서울" },
+    { value: "경기", label: "경기" },
+    { value: "강원", label: "강원특별자치도" },
+    { value: "부산", label: "부산" },
+    { value: "대구", label: "대구" },
+    { value: "인천", label: "인천" },
+    { value: "광주", label: "광주" },
+    { value: "대전", label: "대전" },
+    { value: "울산", label: "울산" },
+    { value: "세종", label: "세종특별자치시" },
+    { value: "충북", label: "충북" },
+    { value: "충남", label: "충남" },
+    { value: "전북", label: "전북" },
+    { value: "전남", label: "전남" },
+    { value: "경북", label: "경북" },
+    { value: "경남", label: "경남" },
+    { value: "제주", label: "제주특별자치도" }
+  ];
+
+  SIDOS.forEach(({value, label}) => {
+    const opt = document.createElement("option");
+    opt.value = value;
+    opt.textContent = label;
+    $sido.appendChild(opt);
+  });
+
+  function resetGugun() {
+    $gugun.innerHTML = '<option value="">구/군</option>';
+  }
+
+  $sido.addEventListener("change", function () {
+    const sido = this.value;
+    resetGugun();
+    if (!sido) return;
+
+    fetch("${pageContext.request.contextPath}/api/store-address.do?sido=" + encodeURIComponent(sido))
+      .then(res => res.json())
+      .then(data => {
+        if (!data.code) return;
+        data.result.list.forEach(item => {
+          const opt = document.createElement("option");
+          opt.value = item.address;
+          opt.textContent = item.address;
+          $gugun.appendChild(opt);
+        });
+      })
+      .catch(err => console.error("구/군 로딩 실패", err));
+  });
+});
+</script>
+
+
+
 
 <!-- FOOTER -->
 <jsp:include page="/views/layout/footer.jsp" />

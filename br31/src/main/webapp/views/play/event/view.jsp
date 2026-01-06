@@ -46,22 +46,22 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.jsp" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -100,7 +100,7 @@
             </div>
         </header>
 
-        <!-- 상세 내용 1 (상세 이미지) -->
+        <!-- 상세 내용 1 (상세 이미지) <--></-->
         <div class="event-view__content">
             <c:if test="${not empty dto.eventDetailImg}">
                 <p style="text-align: center;">
@@ -183,7 +183,7 @@
 
         <!-- 목록 버튼 -->
         <div class="event-view__box">
-            <a href="list.do?category=ALL" class="event-view__button event-view__button--black">목록</a>
+            <a href="list.do" class="event-view__button event-view__button--black">목록</a>
         </div>
 	
 	<c:if test="${not empty ongoingList}">

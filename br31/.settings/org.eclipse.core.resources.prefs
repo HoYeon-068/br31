@@ -1,8 +1,5 @@
 eclipse.preferences.version=1
-
-encoding//src/main/webapp/views/play/myflavor/register-complete.jsp=UTF-8
-
-encoding//src/main/webapp/views/information-center/consulting/myvoc-create.jsp=UTF-8
-encoding//src/main/webapp/views/information-center/consulting/myvoc_list.jsp=UTF-8
-
+encoding//src/main/webapp/WEB-INF/views/information-center/consulting/myvoc-create.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/information-center/consulting/myvoc_list.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/play/myflavor/register-complete.jsp=UTF-8
 encoding/<project>=UTF-8

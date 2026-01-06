@@ -132,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <form action="https://www.baskinrobbins.co.kr/information-center/store-offer/register.php" method="get" class="store-offer-offer__form">
+            <form action="${pageContext.request.contextPath}/information-center/store-offer/register.do" method="get" class="store-offer-offer__form">
                 <div>
                     <p>※ 상기 사항 확인하였으며, 신청에 동의합니다.</p>
 

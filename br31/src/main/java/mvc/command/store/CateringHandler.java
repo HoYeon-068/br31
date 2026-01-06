@@ -10,6 +10,8 @@ public class CateringHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("CateringHandler");
+		
+		request.setAttribute("activeMenu", "catering");
 		return "/WEB-INF/views/store/catering.jsp";
 	}
 	

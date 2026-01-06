@@ -5,15 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import mvc.command.CommandHandler;
 
-public class FlavorHandler implements CommandHandler{
+public class CateringOrderHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("CateringOrderHandler");
 		
-		System.out.println("FlavorHandler");
-		
-		request.setAttribute("activeMenu", "flavor");
-		return "/WEB-INF/views/store/flavor.jsp";
+		return "/WEB-INF/views/store/catering-order.jsp";
 	}
 	
 }

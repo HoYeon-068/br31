@@ -11,6 +11,8 @@ public class WorkShopHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println("WorkShopHandler");
+		
+		request.setAttribute("activeMenu", "workshop");
 		return "/WEB-INF/views/store/workshop.jsp";
 	}
 	

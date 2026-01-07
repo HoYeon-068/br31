@@ -13,7 +13,7 @@ public class CollaboHandler implements CommandHandler{
 		String requestMethod = request.getMethod();
 		
 		if (requestMethod.equals("GET")) {
-			return "/views/play/plaza/collabo.jsp";
+			return "/WEB-INF/views/play/plaza/collabo.jsp";
 		} else if (requestMethod.equals("POST")) {
 			
 		}

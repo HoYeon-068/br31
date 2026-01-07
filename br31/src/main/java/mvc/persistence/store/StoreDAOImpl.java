@@ -98,60 +98,87 @@ public class StoreDAOImpl implements StoreDAO{
 	}
 	
 	@Override
-	public String select(String[] service_info) throws SQLException {
+	public String select(
+	        String[] service_info,   // 서비스 체크박스 (AND 조건)
+	        String store_name,        // 매장명 검색
+	        String sido,              // 시/도
+	        String sigungu,           // 시/군/구
+	        String[] store_type       // 매장 타입 체크박스 (IN 조건)
+	) throws SQLException {
+
 	    System.out.println("진입 셀렉트");
 
 	    StringBuilder sql = new StringBuilder();
 
 	    sql.append(
 	        "SELECT * FROM ( " +
-	        "  SELECT " +
-	        "    s.\"store_id\", " +
-	        "    s.\"manager_id\", " +
-	        "    s.\"store_name\", " +
-	        "    s.\"store_type\", " +
-	        "    s.\"store_tel\", " +
-	        "    s.\"business_hours\", " +
-	        "    s.\"store_status\", " +
-	        "    s.\"sido\", " +
-	        "    s.\"sigungu\", " +
-	        "    s.\"street\", " +
-	        "    s.\"address_detail\", " +
-	        "    s.\"open_date\", " +
-	        "    s.\"latitude\", " +
-	        "    s.\"longitude\" " +
-	        "  FROM \"store\" s " +
-	        "  LEFT JOIN \"store_services\" ss ON s.\"store_id\" = ss.\"store_id\" " +
-	        "  LEFT JOIN \"services\" sv ON ss.\"services_id\" = sv.\"services_id\" "
+	        "  SELECT s.* " +
+	        "  FROM \"store\" s "
 	    );
+
+	    boolean hasWhere = false;
 
 	    // 🔹 서비스 AND 조건
 	    if (service_info != null && service_info.length > 0) {
-	        sql.append(" WHERE sv.\"service_name\" IN (");
+	        sql.append(
+	            " WHERE s.\"store_id\" IN ( " +
+	            "   SELECT ss.\"store_id\" " +
+	            "   FROM \"store_services\" ss " +
+	            "   JOIN \"services\" sv ON ss.\"services_id\" = sv.\"services_id\" " +
+	            "   WHERE sv.\"service_name\" IN ("
+	        );
+
 	        for (int i = 0; i < service_info.length; i++) {
 	            sql.append("?");
 	            if (i < service_info.length - 1) sql.append(",");
 	        }
-	        sql.append(") ");
 
 	        sql.append(
-	            " GROUP BY " +
-	            " s.\"store_id\", s.\"manager_id\", s.\"store_name\", s.\"store_type\", " +
-	            " s.\"store_tel\", s.\"business_hours\", s.\"store_status\", " +
-	            " s.\"sido\", s.\"sigungu\", s.\"street\", s.\"address_detail\", " +
-	            " s.\"open_date\", s.\"latitude\", s.\"longitude\" " +
-	            " HAVING COUNT(DISTINCT sv.\"service_name\") = ? "
+	            ") " +
+	            "   GROUP BY ss.\"store_id\" " +
+	            "   HAVING COUNT(DISTINCT sv.\"service_name\") = ? " +
+	            " ) "
 	        );
-	    } else {
-	        sql.append(
-	            " GROUP BY " +
-	            " s.\"store_id\", s.\"manager_id\", s.\"store_name\", s.\"store_type\", " +
-	            " s.\"store_tel\", s.\"business_hours\", s.\"store_status\", " +
-	            " s.\"sido\", s.\"sigungu\", s.\"street\", s.\"address_detail\", " +
-	            " s.\"open_date\", s.\"latitude\", s.\"longitude\" "
-	        );
+
+	        hasWhere = true;
 	    }
 
+	    // 🔹 매장명 검색
+	    if (store_name != null && !store_name.trim().isEmpty()) {
+	        sql.append(hasWhere ? " AND " : " WHERE ");
+	        sql.append(" s.\"store_name\" LIKE ? ");
+	        hasWhere = true;
+	    }
+
+	    // 🔹 시/도 검색
+	    if (sido != null && !sido.trim().isEmpty()) {
+	        sql.append(hasWhere ? " AND " : " WHERE ");
+	        sql.append(" s.\"sido\" LIKE ? ");
+	        hasWhere = true;
+	    }
+
+	    // 🔹 시/군/구 검색
+	    if (sigungu != null && !sigungu.trim().isEmpty()) {
+	        sql.append(hasWhere ? " AND " : " WHERE ");
+	        sql.append(" s.\"sigungu\" LIKE ? ");
+	        hasWhere = true;
+	    }
+
+	    // 🔹 매장 타입 체크박스 (OR 조건)
+	    if (store_type != null && store_type.length > 0) {
+	        sql.append(hasWhere ? " AND " : " WHERE ");
+	        sql.append(" s.\"store_type\" IN (");
+
+	        for (int i = 0; i < store_type.length; i++) {
+	            sql.append("?");
+	            if (i < store_type.length - 1) sql.append(",");
+	        }
+
+	        sql.append(") ");
+	        hasWhere = true;
+	    }
+
+	    // 🔹 정렬 + 100개 제한
 	    sql.append(
 	        " ORDER BY s.\"store_id\" " +
 	        ") WHERE ROWNUM <= 100"
@@ -163,13 +190,36 @@ public class StoreDAOImpl implements StoreDAO{
 	    try {
 	        pstmt = conn.prepareStatement(sql.toString());
 
-	        // 🔹 바인딩
 	        int idx = 1;
+
+	        // 🔹 서비스 바인딩
 	        if (service_info != null && service_info.length > 0) {
 	            for (String service : service_info) {
 	                pstmt.setString(idx++, service);
 	            }
-	            pstmt.setInt(idx, service_info.length); // HAVING COUNT
+	            pstmt.setInt(idx++, service_info.length);
+	        }
+
+	        // 🔹 매장명 바인딩
+	        if (store_name != null && !store_name.trim().isEmpty()) {
+	            pstmt.setString(idx++, "%" + store_name.trim() + "%");
+	        }
+
+	        // 🔹 시/도 바인딩
+	        if (sido != null && !sido.trim().isEmpty()) {
+	            pstmt.setString(idx++, "%" + sido.trim() + "%");
+	        }
+
+	        // 🔹 시/군/구 바인딩
+	        if (sigungu != null && !sigungu.trim().isEmpty()) {
+	            pstmt.setString(idx++, "%" + sigungu.trim() + "%");
+	        }
+
+	        // 🔹 매장 타입 바인딩
+	        if (store_type != null && store_type.length > 0) {
+	            for (String type : store_type) {
+	                pstmt.setString(idx++, type);
+	            }
 	        }
 
 	        rs = pstmt.executeQuery();
@@ -219,6 +269,9 @@ public class StoreDAOImpl implements StoreDAO{
 
 	    return json.toString();
 	}
+
+
+
 	private String safe(String s) {
 	    return s == null ? "" : s.replace("\"", "\\\"");
 	}

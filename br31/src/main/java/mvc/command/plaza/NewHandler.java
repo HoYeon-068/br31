@@ -14,7 +14,7 @@ public class NewHandler implements CommandHandler{
 		
 		if (requsetMethod.equals("GET")) {
 			
-			return "/views/play/plaza/new.jsp";
+			return "/WEB-INF/views/play/plaza/new.jsp";
 			
 		} else if (requsetMethod.equals("POST")) {
 			

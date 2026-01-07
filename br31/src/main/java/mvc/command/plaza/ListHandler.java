@@ -47,7 +47,7 @@ public class ListHandler implements CommandHandler{
 		}
 		
 		
-		return "/views/play/plaza/list.jsp";
+		return "/WEB-INF/views/play/plaza/list.jsp";
 	}
 
 }

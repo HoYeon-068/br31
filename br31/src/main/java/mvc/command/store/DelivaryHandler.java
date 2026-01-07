@@ -10,6 +10,8 @@ public class DelivaryHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("DelivaryHandler");
+		
+		request.setAttribute("activeMenu", "delivary");
 		return "/WEB-INF/views/store/delivary.jsp";
 	}
 	

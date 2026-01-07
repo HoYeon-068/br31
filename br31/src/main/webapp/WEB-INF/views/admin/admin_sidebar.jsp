@@ -5,7 +5,7 @@
 
   <ul class="nav flex-column">
     <li class="nav-item mb-2">
-      <a class="nav-link text-white" href="/admin/main.do">관리자 메인</a>
+      <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/main.do">관리자 메인</a>
     </li>
 
     <li class="nav-item mb-2">
@@ -14,7 +14,7 @@
       </a>
       <ul class="nav flex-column ms-3 submenu">
         <li class="nav-item">
-          <a class="nav-link text-white" href="/admin/product/list.do">상품 목록</a>
+          <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/main.do?view=productList">상품 목록</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="/admin/product/form.do">상품 등록</a>
@@ -27,7 +27,7 @@
     </li>
 
     <li class="nav-item mb-2">
-      <a class="nav-link text-white" href="/admin/faq/list.do">FAQ 관리</a>
+      <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/main.do?view=FAQList">FAQ 관리</a>
     </li>
 
     <li class="nav-item mb-2">

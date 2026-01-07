@@ -38,7 +38,7 @@
 </div>
 
 <!-- HEADER -->
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <!-- CONTENT -->
 <section class="site-container">
@@ -47,22 +47,22 @@
    <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -181,7 +181,7 @@
 </section>
 
 <!-- FOOTER -->
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 </body>
 </html>

@@ -21,11 +21,12 @@ public class MapSearchHandler implements CommandHandler{
 				
 				response.setCharacterEncoding("UTF-8");
 		        response.setContentType("application/json; charset=UTF-8");
-		        String[] services = request.getParameterValues("service_info");
 		        
-		        for (int i = 0; i < services.length; i++) {
-					System.out.println(services[i]);
-				}
+		        String[] services = request.getParameterValues("service_info");
+		        String store_name = request.getParameter("store_name");
+		        String sido=request.getParameter("sido");
+		        String sigungu=request.getParameter("gugun");
+		        String[] store_type=request.getParameterValues("store_type");
 		        
 				Connection conn = ConnectionProvider.getConnection();
 				StoreDAO dao=new StoreDAOImpl(conn); 
@@ -33,13 +34,8 @@ public class MapSearchHandler implements CommandHandler{
 				String json;
 				
 				try {
+						json = dao.select(services,store_name,sido,sigungu,store_type);
 					
-					if (services==null) {
-						json = dao.select();
-						
-					}else {
-						json = dao.select(services);
-					}
 					
 					return json;
 				} catch ( Exception e) {

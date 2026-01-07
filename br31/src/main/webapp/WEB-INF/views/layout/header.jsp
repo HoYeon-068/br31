@@ -153,14 +153,14 @@
 
 
                     <li class="site-menu__item">
-                        <a href="brapp.html" class="site-menu__link">배라앱</a>
+                        <a href="${pageContext.request.contextPath}/brapp/brapp.do" class="site-menu__link">배라앱</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="brapp.html" class="site-menu-list__link">배라앱 소개 및 다운로드</a>
+                                            <a href="${pageContext.request.contextPath}/brapp/brapp.do" class="site-menu-list__link">배라앱 소개 및 다운로드</a>
                                         </li>                                        
                                     </ul>
                                 </div>

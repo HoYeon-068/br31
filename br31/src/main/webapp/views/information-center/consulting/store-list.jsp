@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -38,146 +39,76 @@
 
 <jsp:include page="/views/layout/header.jsp" />
 <div class="site-container">
-    <nav class="page-menu">
-        <ul class="page-menu__list">
-            <!--            현재 페이지인 경우 page-menu__item--active 추가-->
-            <li class="page-menu__item">
-                <a href="../store-offer/offer.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">신규 직영점 입점제의</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item page-menu__item--active">
-                <a href="br.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">점포개설문의</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <div id="content" class="consulting-store-list">
-        <header class="page-header">
-            <div class="page-header__container">
-                <div class="page-header__content">
-                    <h2 class="page-header__title">
-                        점포개설문의
-                    </h2>
-                </div>
-
-                <div class="page-header__content">
-                    <p class="page-header__text">
-                        30년 넘게 사랑받아온 배스킨라빈스의 브랜드 파워와<br>
-                        노하우로 안정적인 창업 기회를 제공합니다.
-                </div>
-            </div>
-        </header>
-
-        <nav class="page-tab">
-            <ul class="page-tab__list">
-                <!-- 현재 페이지인 경우 page-tab__item--active 추가 -->
-                <li class="page-tab__item">
-                    <a href="br.html" class="page-tab__link">
-                        <span class="page-tab__text">BR시스템</span>
-                    </a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="process.html" class="page-tab__link">
-                        <span class="page-tab__text">창업절차</span>
-                    </a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="condition.html" class="page-tab__link">
-                        <span class="page-tab__text">창업조건</span>
-                    </a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="counsel.html" class="page-tab__link">
-                        <span class="page-tab__text">상담안내</span>
-                    </a>
-                </li>
-                <li class="page-tab__item page-tab__item--active">
-                    <a href="store-list.html" class="page-tab__link">
-                        <span class="page-tab__text">신규후보매장</span>
-                    </a>
-                </li>
-                <li class="page-tab__item">
-                    <a href="faq.html" class="page-tab__link">
-                        <span class="page-tab__text">창업FAQ</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <jsp:include page="../consulting/layout/consulting_header.jsp" /> 
 
         <section class="consulting-store-list__container">
             <div id="list" class="consulting-store-list__content">
                 <h3>
                     정밀한 상권 분석을 통해<br>
                     성공 가능성이 높은 점포를 안내해드립니다.
+                    ${param.findword}
                 </h3>
                 <nav>
                     <ul>
-                        <li class="active">
-                            <a href="store-list.html">전국</a>
+                        <li ${empty param.findword ? 'class="active"' : ''}>
+                            <a href="store-list.do">전국</a>
                         </li>
-                                                    <li >
-                                <a href="store-list5132.html?findword=%ec%84%9c%ec%9a%b8">서울</a>
+                                                    <li ${param.findword eq '서울'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=서울">서울</a>
                             </li>
-                                                    <li >
-                                <a href="store-listab1b.html?findword=%ea%b2%bd%ea%b8%b0">경기</a>
+                                                    <li ${param.findword eq '경기'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=경기">경기</a>
                             </li>
-                                                    <li >
-                                <a href="store-list9922.html?findword=%ec%9d%b8%ec%b2%9c">인천</a>
+                                                    <li ${param.findword eq '인천'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=인천">인천</a>
                             </li>
-                                                    <li >
-                                <a href="store-list750d.html?findword=%ea%b0%95%ec%9b%90%ed%8a%b9%eb%b3%84%ec%9e%90%ec%b9%98%eb%8f%84">강원</a>
+                                                    <li ${param.findword eq '강원'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=강원">강원</a>
                             </li>
-                                                    <li >
-                                <a href="store-lista659.html?findword=%ec%b6%a9%eb%b6%81">충북</a>
+                                                    <li ${param.findword eq '충북'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=충북">충북</a>
                             </li>
-                                                    <li >
-                                <a href="store-listc470.html?findword=%ec%b6%a9%eb%82%a8">충남</a>
+                                                    <li ${param.findword eq '충남'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=충남">충남</a>
                             </li>
-                                                    <li >
-                                <a href="store-list4f4a.html?findword=%eb%8c%80%ec%a0%84">대전</a>
+                                                    <li ${param.findword eq '대전'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=대전">대전</a>
                             </li>
-                                                    <li >
-                                <a href="store-list3e52.html?findword=%ec%84%b8%ec%a2%85%ed%8a%b9%eb%b3%84%ec%9e%90%ec%b9%98%ec%8b%9c">세종</a>
+                                                    <li ${param.findword eq '세종'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=세종">세종</a>
                             </li>
-                                                    <li >
-                                <a href="store-list928c.html?findword=%ec%a0%84%eb%b6%81">전북</a>
+                                                    <li ${param.findword eq '전북'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=전북">전북</a>
                             </li>
-                                                    <li >
-                                <a href="store-list1c8c.html?findword=%ec%a0%84%eb%82%a8">전남</a>
+                                                    <li ${param.findword eq '전남'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=전남">전남</a>
                             </li>
-                                                    <li >
-                                <a href="store-listbb15.html?findword=%ea%b4%91%ec%a3%bc">광주</a>
+                                                    <li ${param.findword eq '광주'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=광주">광주</a>
                             </li>
-                                                    <li >
-                                <a href="store-list1504.html?findword=%ea%b2%bd%eb%b6%81">경북</a>
+                                                    <li ${param.findword eq '경북'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=경북">경북</a>
                             </li>
-                                                    <li >
-                                <a href="store-list4ee4.html?findword=%ea%b2%bd%eb%82%a8">경남</a>
+                                                    <li ${param.findword eq '경남'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=경남">경남</a>
                             </li>
-                                                    <li >
-                                <a href="store-listfc6f.html?findword=%eb%8c%80%ea%b5%ac">대구</a>
+                                                    <li ${param.findword eq '대구'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=대구">대구</a>
                             </li>
-                                                    <li >
-                                <a href="store-listd890.html?findword=%ec%9a%b8%ec%82%b0">울산</a>
+                                                    <li ${param.findword eq '울산'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=울산">울산</a>
                             </li>
-                                                    <li >
-                                <a href="store-liste3dd.html?findword=%eb%b6%80%ec%82%b0">부산</a>
+                                                    <li ${param.findword eq '부산'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=부산">부산</a>
                             </li>
-                                                    <li >
-                                <a href="store-listb745.html?findword=%ec%a0%9c%ec%a3%bc%ed%8a%b9%eb%b3%84%ec%9e%90%ec%b9%98%eb%8f%84">제주</a>
+                            <li ${param.findword eq '제주'? 'class="active"' : ''}>
+                                <a href="store-list.do?findword=제주">제주</a>
                             </li>
                                             </ul>
                 </nav>
 
                 <div class="consulting-store-list__box">
-                    <p>총 <span>24</span> 건</p>
+                    <p>총 <span>${pvo.totalNum}</span> 건</p>
 
                     <table>
                         <thead>
@@ -191,111 +122,73 @@
                         </tr>
                         </thead>
                         <tbody>
-                                                <tr>
-                            <td><span class="top">TOP</span></td>
-                            <td>서울</td>
+                        
+                        <c:choose>
+        <c:when test="${ empty list }">
+          <tr>
+            <td colspan="6">등록된 게시글이 없습니다.</td>
+          </tr>
+        </c:when>
+        <c:otherwise>
+         <c:forEach items="${list}" var="vo">
+                        	<tr>
+                            <%-- <td><span class="top">${list.newStoreBoardId}</span></td> --%>
+                            <td><span>${vo.newStoreBoardId}</span></td>
+                            <td>${vo.sido}</td>
                             <td>
-                                <a href="store-viewca5b.html?seq=3&amp;findword=&amp;page=1">서울시 동대문구 제기동역 인근 오피스, 주거지역 복합 상권</a>
+                                <a href="store-view.do?seq=${vo.newStoreBoardId}&currentPage=${pvo.currentPage}">${vo.marketArea}</a>
                             </td>
-                            <td>전은수</td>
-                            <td>2025-11-04</td>
-                            <td>4661</td>
-                        </tr>
-                                                <tr>
-                            <td><span >23</span></td>
-                            <td>강원특별자치도</td>
-                            <td>
-                                <a href="store-view4c10.html?seq=25&amp;findword=&amp;page=1">춘천시 퇴계동의 ´행촌로´와 ´춘추로´ 사거리 인근 &#40;남춘천 방면&#41;</a>
-                            </td>
-                            <td>곽영민</td>
-                            <td>2025-11-18</td>
-                            <td>104</td>
-                        </tr>
-                                                <tr>
-                            <td><span >22</span></td>
-                            <td>서울</td>
-                            <td>
-                                <a href="store-view6a37.html?seq=24&amp;findword=&amp;page=1">군자역 5 / 6 / 7 / 8 번 출구 인근</a>
-                            </td>
-                            <td>곽영민</td>
-                            <td>2025-11-18</td>
-                            <td>164</td>
-                        </tr>
-                                                <tr>
-                            <td><span >21</span></td>
-                            <td>강원특별자치도</td>
-                            <td>
-                                <a href="store-view3aac.html?seq=23&amp;findword=&amp;page=1">원주시 흥업면 흥업사거리 중심상권</a>
-                            </td>
-                            <td>전은수</td>
-                            <td>2025-11-10</td>
-                            <td>153</td>
-                        </tr>
-                                                <tr>
-                            <td><span >20</span></td>
-                            <td>서울</td>
-                            <td>
-                                <a href="store-viewa95b.html?seq=22&amp;findword=&amp;page=1">서울시 중랑구 신내동 봉화산역&#40;6호선&#41; 고밀도주거 추천상권</a>
-                            </td>
-                            <td>전은수</td>
-                            <td>2025-11-06</td>
-                            <td>8999</td>
-                        </tr>
-                                                <tr>
-                            <td><span >19</span></td>
-                            <td>전남</td>
-                            <td>
-                                <a href="store-view9ee2.html?seq=21&amp;findword=&amp;page=1">전남 순천시 도심 중앙시장 대로변</a>
-                            </td>
-                            <td>이정민</td>
-                            <td>2025-11-04</td>
-                            <td>12700</td>
-                        </tr>
-                                                <tr>
-                            <td><span >18</span></td>
-                            <td>전남</td>
-                            <td>
-                                <a href="store-viewcd55.html?seq=20&amp;findword=&amp;page=1">전남 여수시 엑스포역 인근 아파트를 배후로 하는 주거지역 상권</a>
-                            </td>
-                            <td>이정민</td>
-                            <td>2025-11-04</td>
-                            <td>12678</td>
-                        </tr>
-                                                <tr>
-                            <td><span >17</span></td>
-                            <td>경북</td>
-                            <td>
-                                <a href="store-viewcbe7.html?seq=19&amp;findword=&amp;page=1">경주보문로 주변 상권</a>
-                            </td>
-                            <td>이상민</td>
-                            <td>2025-11-04</td>
-                            <td>12684</td>
-                        </tr>
-                                                <tr>
-                            <td><span >16</span></td>
-                            <td>경북</td>
-                            <td>
-                                <a href="store-viewc448.html?seq=18&amp;findword=&amp;page=1">경북 영주시 메인 상권으로 휴천동, 하망동 주변상권</a>
-                            </td>
-                            <td>이상민</td>
-                            <td>2025-11-04</td>
-                            <td>12682</td>
-                        </tr>
-                                                <tr>
-                            <td><span >15</span></td>
-                            <td>경북</td>
-                            <td>
-                                <a href="store-view4a72.html?seq=17&amp;findword=&amp;page=1">경북 경산시 임당역 인근 임당지구 재개발 상권</a>
-                            </td>
-                            <td>이상민</td>
-                            <td>2025-11-04</td>
-                            <td>12723</td>
-                        </tr>
-                                                </tbody>
+                            <td>${vo.currentBusiness}</td>
+                            <td>${vo.createdAt}</td>
+                            <td>${vo.viewCount}</td>
+                       		</tr>
+                        </c:forEach>           
+        </c:otherwise>
+      </c:choose> 
+                        
+                        
+                        
+                        
+                                                             </tbody>
                     </table>
+                    
+                    
+                    
 
-                    <ul class='pagination'>
-<li class='pagination__item pagination__item--icon pagination__item--prev pagination__item--disabled'>
+                     <ul class='pagination'>
+                     
+                      <li class='pagination__item pagination__item--icon pagination__item--prev pagination__item--disabled'>
+    <a href='store-list0293.html?page=1&amp;findword=' class='pagination__link'>
+        <span class='pagination__name'>
+            이전
+        </span>
+    </a>
+</li>
+                     <c:forEach begin="${ pvo.start }" end="${ pvo.end }" step="1" var="i">
+              
+              <c:choose>
+                <c:when test="${ pvo.currentPage eq i }">
+                   
+                   <li class='pagination__item pagination__item--current' aria-current='page'>
+    <strong class='pagination__link'>
+        <span class='pagination__name'>${ i }</span>
+    </strong>
+</li>
+                </c:when>
+                <c:otherwise>
+                  <li class='pagination__item'>
+    <a href='store-list.do?currentPage=${i}' class='pagination__link'>
+        <span class='pagination__name'>${ i }</span>
+    </a>
+</li>
+                </c:otherwise>
+              </c:choose> 
+              
+            </c:forEach>
+                     
+                     
+                     
+ <!-- <li class='pagination__item pagination__item--icon pagination__item--prev pagination__item--disabled'>
     <a href='store-list0293.html?page=1&amp;findword=' class='pagination__link'>
         <span class='pagination__name'>
             이전
@@ -320,7 +213,7 @@
 3
         </span>
     </a>
-</li>
+</li> -->
 <li class='pagination__item pagination__item--icon pagination__item--next pagination__item--disabled'>
     <a href='#' class='pagination__link'>
         <span class='pagination__name'>
@@ -329,7 +222,7 @@
             </div>
         </section>
     </div>
-</div>
+</div> 
 <jsp:include page="/views/layout/footer.jsp" />
 
 </body>

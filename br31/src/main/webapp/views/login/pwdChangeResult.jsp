@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <head>
 
 <meta charset="UTF-8">
@@ -43,14 +44,21 @@
   	
   
   <div class="jc-content">
-  	님의 임시 비밀번호는 <br>
-  	입니다 <br>
-  	로그인 후 비밀번호를 변경하세요
+  	<c:choose>
+		<c:when test="${not empty tempPwd }">
+		  	${name}님의 임시 비밀번호는 <br>
+		  	${tempPwd}입니다 <br>
+		  	로그인 후 비밀번호를 변경하세요
+		</c:when>
+		<c:otherwise>
+			입력하신 정보로 회원을 찾을 수 없습니다.
+		</c:otherwise>
+  	</c:choose>
   </div>
   
   <div class="jc-btn">
-  	 <button type="button" class="jc-mainbtn">메인으로 이동</button>
-  	 <button type="button" class="jc-loginbtn">로그인</button>
+  	 <button type="button" class="jc-mainbtn" onclick="location.href='${pageContext.request.contextPath}/story/history.do'">메인으로 이동</button>
+  	 <button type="button" class="jc-loginbtn" onclick="location.href='${pageContext.request.contextPath}/login/login.do'">로그인</button>
   </div>
 	
 	

@@ -36,6 +36,6 @@ public class ViewHandler implements CommandHandler {
             conn.close();
         }
 
-        return "/views/play/recipe/view.jsp";
+        return "/WEB-INF/views/play/recipe/view.jsp";
     }
 }

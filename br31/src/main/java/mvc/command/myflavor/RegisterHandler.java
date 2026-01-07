@@ -22,7 +22,7 @@ public class RegisterHandler implements CommandHandler{
 		
 		if (requestMethode.equals("GET")) {
 			System.out.println("> flavor.RegisterHandler....get()");
-			return "/views/play/myflavor/register.jsp";
+			return "/WEB-INF/views/play/myflavor/register.jsp";
 		} else if (requestMethode.equals("POST")) {
 			request.setCharacterEncoding("UTF-8");
 
@@ -32,7 +32,7 @@ public class RegisterHandler implements CommandHandler{
 
 	            if (size == null || title == null || productSeq == null) {
 	            	response.sendRedirect(request.getContextPath() +
-	                        "/views/play/myflavor/register.do?error=Y");
+	                        "/play/myflavor/register.do?error=Y");
 	                return null;
 	            }
 
@@ -57,7 +57,7 @@ public class RegisterHandler implements CommandHandler{
 	            session.setAttribute("MYFLAVOR_" + seq, dto);
 
 	            response.sendRedirect(request.getContextPath() +
-	                    "/views/play/myflavor/register-complete.jsp?seq=" + seq + "&register=Y");
+	                    "/play/myflavor/register-complete.do?seq=" + seq + "&register=Y");
 	            return null;
 		}
 		

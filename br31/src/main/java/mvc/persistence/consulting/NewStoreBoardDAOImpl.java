@@ -440,5 +440,89 @@ public class NewStoreBoardDAOImpl implements NewStoreBoardDAO{
 		return totalNum;
 	}
 	
+	
+	
+	@Override
+	public Integer getPrevId(String sido, int boardId) throws SQLException {
+
+	    StringBuilder sql = new StringBuilder();
+	    sql.append(
+	        "SELECT * FROM ( " +
+	        "   SELECT \"new_store_board_id\" " +
+	        "   FROM \"new_store_board\" " +
+	        "   WHERE \"is_deleted\" = 0 "
+	    );
+
+	    // sido 조건이 있을 때만 추가
+	    if (sido != null && !sido.isBlank()) {
+	        sql.append(" AND \"sido\" = ? ");
+	    }
+
+	    sql.append(
+	        "     AND \"new_store_board_id\" < ? " +
+	        "   ORDER BY \"new_store_board_id\" DESC " +
+	        ") WHERE ROWNUM = 1"
+	    );
+
+	    PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+
+	    int index = 1;
+
+	    if (sido != null && !sido.isBlank()) {
+	        pstmt.setString(index++, sido);
+	    }
+
+	    pstmt.setInt(index++, boardId);
+
+	    ResultSet rs = pstmt.executeQuery();
+
+	    if (rs.next()) {
+	        return rs.getInt("new_store_board_id");
+	    }
+	    return null;
+	}
+
+	
+	@Override
+	public Integer getNextId(String sido, int boardId) throws SQLException {
+
+	    StringBuilder sql = new StringBuilder();
+	    sql.append(
+	        "SELECT * FROM ( " +
+	        "   SELECT \"new_store_board_id\" " +
+	        "   FROM \"new_store_board\" " +
+	        "   WHERE \"is_deleted\" = 0 "
+	    );
+
+	    // sido 조건이 있을 때만 추가
+	    if (sido != null && !sido.isBlank()) {
+	        sql.append(" AND \"sido\" = ? ");
+	    }
+
+	    sql.append(
+	        "     AND \"new_store_board_id\" > ? " +
+	        "   ORDER BY \"new_store_board_id\" ASC " +
+	        ") WHERE ROWNUM = 1"
+	    );
+
+	    PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+
+	    int index = 1;
+
+	    if (sido != null && !sido.isBlank()) {
+	        pstmt.setString(index++, sido);
+	    }
+
+	    pstmt.setInt(index++, boardId);
+
+	    ResultSet rs = pstmt.executeQuery();
+
+	    if (rs.next()) {
+	        return rs.getInt("new_store_board_id");
+	    }
+	    return null;
+	}
+
+
 
 }

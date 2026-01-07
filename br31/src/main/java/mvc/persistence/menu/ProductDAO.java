@@ -19,4 +19,7 @@ public interface ProductDAO {
 	// 주재료 테이블에 관한 컬럼들을 조회
 	List<IngredientDTO> selectIngredient(int products_id) throws SQLException;
 	
+	ProductDTO getPrev(int categoryId, int productsId) throws SQLException;
+	
+	ProductDTO getNext(int categoryId, int productsId) throws SQLException;
 }

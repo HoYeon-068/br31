@@ -176,20 +176,6 @@
                     <p class="store-map-list__result">검색결과 <span class="store-map-list__point-color"></span>개</p>
                     <div class="store-map-list__container">
                         <ul class="store-map-list__list">
-                        <li class="store-map-list__item">
-                        <a href="#" role="button" type="button" data-info="{&quot;store_type&quot;:&quot;B&quot;,&quot;store_type_name&quot;:&quot;BR 100flavor&quot;,&quot;store_code&quot;:&quot;61230&quot;,&quot;direct_div&quot;:&quot;Y&quot;,&quot;store_name&quot;:&quot;SPC스퀘어&quot;,&quot;local_no&quot;:&quot;02-565-1012&quot;,&quot;open_date&quot;:&quot;2022-04-29&quot;,&quot;operation_time&quot;:&quot;AM 10~PM 11&quot;,&quot;latitude&quot;:37.4943827585735,&quot;longitude&quot;:127.029802084664,&quot;addr_zipcode&quot;:&quot;AM 10~PM 11&quot;,&quot;addr_si&quot;:&quot;서울특별시&quot;,&quot;addr_gugun&quot;:&quot;강남구&quot;,&quot;addr_road&quot;:&quot;역삼동 831-23 2층&quot;,&quot;addr_detail&quot;:&quot;&quot;,&quot;service_info&quot;:&quot;주차, 배달, 픽업, 취식여부, 해피스테이션, 가챠머신, KT제휴, SKT제휴, LG U+제휴, 맛보기&quot;,&quot;distance&quot;:442.57112232945,&quot;index&quot;:0,&quot;seq&quot;:1}" class="store-map-list__button">
-                            <div class="store-map-list__box">
-                                <h3 class="store-map-list__title">SPC스퀘어</h3>
-                                <address class="store-map-list__address">서울특별시 강남구 역삼동 831-23 2층 </address>
-                                <dl class="store-map-list__content">
-                                <dt class="store-map-list__name">연락처</dt>
-                                <dd class="store-map-list__text">02-565-1012</dd>
-                                <dt class="store-map-list__name">운영시간</dt>
-                                <dd class="store-map-list__text">AM 10~PM 11</dd>
-                                </dl>
-                            </div>
-                        </a>
-                    </li>
                         </ul>
                     </div>
                 </div>

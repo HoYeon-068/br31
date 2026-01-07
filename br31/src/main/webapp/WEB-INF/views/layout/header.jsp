@@ -4,7 +4,7 @@
     <div class="site-header__container">
         <div class="site-header__content">
             <h1 class="site-header-logo">
-                <a href="${pageContext.request.contextPath}/index.jsp" class="site-header-logo__link">
+                <a href="${pageContext.request.contextPath}/index.do" class="site-header-logo__link">
                     <span class="site-header-logo__text">Baskin Robbins</span>
                 </a>
             </h1>

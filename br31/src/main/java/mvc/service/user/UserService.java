@@ -37,7 +37,7 @@ public class UserService {
 
         try {
             conn = ConnectionProvider.getConnection();
-            conn.setAutoCommit(false); // ✅ 트랜잭션 시작
+            conn.setAutoCommit(false); 
 
             UserDAO dao = new UserDAOImpl(conn);
 
@@ -45,15 +45,19 @@ public class UserService {
             if (dao.existsByUserId(user.getUser_id())) return 0;
             if (dao.existsByNickname(user.getNickname())) return 0;
             if (dao.existsByEmail(user.getEmail())) return 0;
+            if (dao.existsByPhone(user.getPhone_no())) return 0;
+            
+            user.setPhone_no(user.getPhone_no().replaceAll("[^0-9]", ""));
 
-            // 2) user insert
+
+            // user insert
             int inserted = dao.insert(user);
             if (inserted != 1) {
                 conn.rollback();
                 return 0;
             }
 
-            // 3) 약관 insert (선택된 termsIds만)
+            // 약관 insert (선택된 termsIds만)
             if (termsIds != null && termsIds.length > 0) {
                 int cnt = dao.insertUserTermsBatch(user.getUser_id(), termsIds);
 
@@ -112,12 +116,22 @@ public class UserService {
         }
     }
     
+    public boolean isPhoneTaken(String phone) throws Exception {
+        try (Connection conn = ConnectionProvider.getConnection()) {
+            return new UserDAOImpl(conn).existsByPhone(phone);
+        }
+    }
+
+    
     
     public String findUserIdByPhone(String name, String phone) throws Exception {
         Connection conn = null;
         try {
             conn = ConnectionProvider.getConnection();
-            return new UserDAOImpl(conn).findUserIdByPhone(name, phone);
+            String normalizePhone = normalizePhone(phone);
+            
+            
+            return new UserDAOImpl(conn).findUserIdByPhone(name, normalizePhone);
         } finally {
             if (conn != null) conn.close();
         }
@@ -139,11 +153,18 @@ public class UserService {
         }
     }
 
-    public int resetPassword(String userId, String tempPwd) throws Exception {
+    public int resetPasswordByUserIdAndPhoneAndName(String userId, String tempPwd, String name, String phone) throws Exception {
         Connection conn = null;
         try {
             conn = ConnectionProvider.getConnection();
-            return new UserDAOImpl(conn).resetPwd(userId, tempPwd);
+            UserDAO dao = new UserDAOImpl(conn); 
+            String normalizePhone = normalizePhone(phone);
+            UserDTO user =  dao.selectByUserIdAndNameAndPhone(userId, name, normalizePhone);
+            
+            if(user == null) {
+            	return 0;
+            }
+            return dao.resetPwd(userId, tempPwd);
         } finally {
             if (conn != null) conn.close();
         }

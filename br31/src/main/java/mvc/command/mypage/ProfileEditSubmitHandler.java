@@ -71,12 +71,8 @@ public class ProfileEditSubmitHandler implements CommandHandler {
                 }
             }
 
-            System.out.println("[ProfileEditSubmit] before DB");
 
-            // ✅ 여기서부터 “어디서 멈추는지” 확인
-            System.out.println("[ProfileEditSubmit] getConnection...");
             conn = ConnectionProvider.getConnection();
-            System.out.println("[ProfileEditSubmit] gotConnection");
 
             UserDAO dao = new UserDAOImpl(conn);
 

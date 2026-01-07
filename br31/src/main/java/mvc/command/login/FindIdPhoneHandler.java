@@ -15,6 +15,10 @@ public class FindIdPhoneHandler implements CommandHandler {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+    	if (request.getMethod().equalsIgnoreCase("GET")) {
+    	    return "/WEB-INF/views/login/findId.jsp";
+    	}
+    	
         String name = request.getParameter("name");
         String phone = request.getParameter("phone_no");
 
@@ -29,7 +33,8 @@ public class FindIdPhoneHandler implements CommandHandler {
             return "/WEB-INF/views/login/findIdResult.jsp";
         }
 
-        request.setAttribute("message", "일치하는 회원 정보가 없습니다.");
+        request.setAttribute("activeTab", "phone");
+        request.setAttribute("pMessage", "일치하는 회원 정보가 없습니다.");
         return "/WEB-INF/views/login/findId.jsp";
     }
 }

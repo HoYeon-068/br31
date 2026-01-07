@@ -39,7 +39,6 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <section class="site-container">
-    <!-- 프로모션: event-view--play, 제휴: event-view--coalition -->
     <div id="content" class="login">
         <header class="page-header">
             <div class="page-header__container">
@@ -80,14 +79,14 @@
                     </form>
 
                     <div class="login__buttons">
-                        <a href="${pageContext.request.contextPath}/views/login/findId.jsp" class="login__link">아이디 찾기</a>
-                        <a href="${pageContext.request.contextPath}/views/login/pwdReset.jsp" target="_blank" class="login__link">비밀번호 재발급</a>
+                        <a href="${pageContext.request.contextPath}/login/findId.do" class="login__link">아이디 찾기</a>
+                        <a href="${pageContext.request.contextPath}/login/pwdResetRequest.do" target="_blank" class="login__link">비밀번호 재발급</a>
                     </div>
 
                     
 
                     <div class="login__buttons">
-                        <a href="${pageContext.request.contextPath}/views/join/join.jsp" target="_blank" class="login__button login__button--happy">
+                        <a href="${pageContext.request.contextPath}/join/join.do" target="_blank" class="login__button login__button--happy">
                             <span class="login__button-text">회원가입</span>
                         </a>
                     </div>

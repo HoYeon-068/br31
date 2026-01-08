@@ -181,14 +181,42 @@
                     </tbody>
                 </table>
                 <div class="pagination">
-                                        <a href="store-view5343.html?findword=&amp;seq=15">
+                <c:choose>
+    <c:when test="${empty nextNum}">
+        <a href="#none" onclick="alert('이전 데이터가 없습니다')">
+                                    
                                             <span>이전</span>
-                    </a>
+                                            </a>
+        
+    </c:when>
+    <c:otherwise>
+        <a href="${pageContext.request.contextPath}/information-center/consulting/store-view.do?findword=${param.findword}&seq=${nextNum}">
+                                            <span>이전</span>
+        </a>
+    </c:otherwise>
+</c:choose>
+                
+                
+                                        
 
-                    <a href="${pageContext.request.contextPath}/information-center/consulting/store-list.do">목록</a>
-                                        <a href="store-viewddea.html?findword=&amp;seq=13">
+                    <a href="${pageContext.request.contextPath}/information-center/consulting/store-list.do?findword=${param.findword}">목록</a>
+                    
+  <c:choose>
+    <c:when test="${empty prevNum}">
+        <a href="#none" onclick="alert('다음 데이터가 없습니다')">
+                                            <span>다음</span>
+        </a>
+    </c:when>
+    <c:otherwise>
+        <a href="${pageContext.request.contextPath}/information-center/consulting/store-view.do?findword=${param.findword}&seq=${prevNum}">
                         <span>다음</span>
                     </a>
+    </c:otherwise>
+</c:choose>                  
+                    
+                    
+                    
+                                        
                                     </div>
             </div>
         </section>

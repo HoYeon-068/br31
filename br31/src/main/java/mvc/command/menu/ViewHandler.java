@@ -31,6 +31,10 @@ public class ViewHandler implements CommandHandler{
 		MenuViewDTO menuViewDTO=null;
 		IceNutritionDTO iceNutritionDTO=null;
 		ProductDTO productDTO=null;
+		ProductDTO prevProductDTO=null;
+		ProductDTO nextProductDTO=null;
+		
+		
 		
 		int seq=Integer.parseInt(request.getParameter("seq"));
 		
@@ -55,6 +59,10 @@ public class ViewHandler implements CommandHandler{
 						 .ingredientDTO(list)
 						 .build();
 			
+			prevProductDTO=product_dao.getPrev(menuViewDTO.getCategory_id(), menuViewDTO.getProducts_id());
+			nextProductDTO=product_dao.getNext(menuViewDTO.getCategory_id(), menuViewDTO.getProducts_id());
+			
+			
 		} catch (Exception e) {
 			System.out.println("> menu ViewHandler.process() Exception...");
 			e.printStackTrace();
@@ -63,6 +71,8 @@ public class ViewHandler implements CommandHandler{
 		}
 		
 		request.setAttribute("dto", menuViewDTO);
+		request.setAttribute("prevDTO", prevProductDTO);
+		request.setAttribute("nextDTO", nextProductDTO);
 		
 		return "/WEB-INF/views/menu/view.jsp";
 	}

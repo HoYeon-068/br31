@@ -15,6 +15,7 @@ public class ProductDTO {
     private String imgSPath;
     private String bgColor;
     private String posterPath;
+    private String tags;   
     private int price;
     private Date releaseDate;
 
@@ -108,4 +109,13 @@ public class ProductDTO {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+    
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
 }

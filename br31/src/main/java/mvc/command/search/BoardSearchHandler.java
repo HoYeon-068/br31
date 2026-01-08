@@ -65,7 +65,7 @@ public class BoardSearchHandler implements CommandHandler {
         request.setAttribute("keyword", keyword);
 
         // 🔴 검색 결과 전용 페이지
-        return "/views/search/board_list.jsp";
+        return "/WEB-INF/views/search/board_list.jsp";
 
     }
 }

@@ -21,15 +21,15 @@
             </a>
         </li>
 
-        <li class="page-menu__item">
-            <a href="https://www.kca.go.kr/ccm/certSystemOutlineView.do"
-               target="_blank"
-               class="page-menu__link">
-                <div class="page-menu__box">
-                    <span class="page-menu__name">소비자중심경영(CCM)</span>
-                </div>
-            </a>
-        </li>
+     <li class="page-menu__item">
+    <a href="${pageContext.request.contextPath}/customer/ccm.do"
+       class="page-menu__link">
+        <div class="page-menu__box">
+            <span class="page-menu__name">소비자중심경영(CCM)</span>
+        </div>
+    </a>
+</li>
+
 
         <li class="page-menu__item">
             <a href="${pageContext.request.contextPath}/notice/list.do"
@@ -59,14 +59,7 @@
            
         </li>
         
-        <li class="page-menu__item">
-    <a href="${pageContext.request.contextPath}/inquiry/create.do"
-       class="page-menu__link">
-        <div class="page-menu__box">
-            <span class="page-menu__name">1:1 문의하기</span>
-        </div>
-    </a>
-</li>
+  
         
 
     </ul>

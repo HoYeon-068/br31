@@ -16,42 +16,42 @@
 <body id="baskinrobbins-ccm"
       class="baskinrobbins-ccm">
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <div class="site-container">
 
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item">
-                <a href="list.do" class="page-menu__link">
+               <a href="${pageContext.request.contextPath}/customer/list.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">고객센터</span>
                     </div>
                 </a>
             </li>
             <li class="page-menu__item page-menu__item--active">
-                <a href="ccm.do" class="page-menu__link">
+              <a href="${pageContext.request.contextPath}/customer/ccm.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">소비자중심경영(CCM)</span>
                     </div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="../notice/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/notice/list.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">공지사항</span>
                     </div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="../press/list.do" class="page-menu__link">
+               <a href="${pageContext.request.contextPath}/press/list.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">보도자료</span>
                     </div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="../fairtrade/list.do" class="page-menu__link">
+               <a href="${pageContext.request.contextPath}/fairtrade/list.do" class="page-menu__link">
                     <div class="page-menu__box">
                         <span class="page-menu__name">공정거래자율준수</span>
                     </div>
@@ -133,7 +133,7 @@
     </div>
 </div>
 
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 </body>
 </html>

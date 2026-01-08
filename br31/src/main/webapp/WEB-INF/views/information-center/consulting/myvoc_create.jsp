@@ -67,6 +67,10 @@
       action="${pageContext.request.contextPath}/inquiry/create.do"
       method="post"
       onsubmit="return confirm('VOC를 등록하시겠습니까?');">
+      
+        <c:if test="${not empty error}">
+        <p class="error-text">${error}</p>
+    </c:if>
 
     <!-- ===== hidden fields (버튼 값 전달용) ===== -->
     <input type="hidden" name="counsel_type" id="counselType">
@@ -102,7 +106,7 @@
     <div class="form-row">
         <div class="form-label">제목 <span class="req">*</span></div>
         <div class="form-field">
-            <input type="text" name="title" required>
+            <input type="text" class="inputText" name="title" required>
         </div>
     </div>
 
@@ -119,7 +123,7 @@
         </select> 시
 
         <select name="occur_min" class="selStyle2">
-            <% for(int i=0;i<60;i+=5){ %>
+            <% for(int i=0;i<60;i+=1){ %>
             <option value="<%=i%>"><%=i%></option>
             <% } %>
         </select> 분경
@@ -131,7 +135,7 @@
     <div class="form-row">
         <div class="form-label">매장</div>
         <div class="form-field inline">
-            <input type="text" name="store_name">
+            <input type="hidden" name="store_id">
             <button type="button" class="btn-dark">매장찾기</button>
         </div>
     </div>
@@ -167,7 +171,12 @@ placeholder="욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
     <div class="form-row">
         <div class="form-label">이름 <span class="req">*</span></div>
         <div class="form-field">
-            <input type="text" name="name" class="inputText" required>
+           <input type="text"
+       class="inputText"
+       name="name"
+       placeholder="이름을 입력해주세요"
+       required>
+
         </div>
     </div>
 
@@ -176,8 +185,10 @@ placeholder="욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
         <div class="form-label">전화번호</div>
         <div class="form-field inline">
         <input type="text" name="phone1" class="inputText" style="width:80px">
-<input type="text" name="phone2" class="inputText" style="width:80px">
-<input type="text" name="phone3" class="inputText" style="width:80px">
+        <span class="dash">-</span>
+		<input type="text" name="phone2" class="inputText" style="width:80px">
+		<span class="dash">-</span>
+		<input type="text" name="phone3" class="inputText" style="width:80px">
         </div>
     </div>
 
@@ -185,7 +196,12 @@ placeholder="욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
     <div class="form-row">
         <div class="form-label">이메일 <span class="req">*</span></div>
         <div class="form-field inline">
-          <input type="text" name="email_id" class="inputText" required>
+          <input type="text"
+       class="inputText"
+       name="email_id"
+       placeholder="이메일 주소"
+       required>
+       <span class="at">@</span>
 <input type="text" name="email_domain" class="inputText" required>
             <select onchange="setEmailDomain(this.value)">
                 <option value="">직접입력</option>
@@ -199,7 +215,12 @@ placeholder="욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
     <div class="form-row">
         <div class="form-label">비밀번호 <span class="req">*</span></div>
         <div class="form-field">
-          <input type="password" name="post_pw" class="inputText" required>
+    <input type="password"
+       class="inputText"
+       name="post_pw"
+       placeholder="비밀번호를 입력해주세요"
+       required>
+
         </div>
     </div>
 
@@ -207,7 +228,12 @@ placeholder="욕설, 비방, 타인의 명예를 훼손하는 글과 자료,
     <div class="form-row">
         <div class="form-label">비밀번호 확인 <span class="req">*</span></div>
         <div class="form-field">
-       <input type="password" name="post_pw_confirm" class="inputText" required>
+     <input type="password"
+       class="inputText"
+       name="post_pw_confirm"
+       placeholder="비밀번호를 한번 더 입력해주세요"
+       required>
+
         </div>
     </div>
 

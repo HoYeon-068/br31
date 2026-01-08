@@ -11,6 +11,6 @@ public class CustomerListHandler implements CommandHandler {
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         // 고객센터 메인은 데이터 처리 없음
-        return "/views/information-center/customer/list.jsp";
+        return "/WEB-INF/views/information-center/customer/list.jsp";
     }
 }

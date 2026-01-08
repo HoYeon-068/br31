@@ -47,19 +47,22 @@ public class ProfileEditSubmitHandler implements CommandHandler {
 
             String profileImg  = trim(request.getParameter("profile_img"));
 
-            String nicknameChecked = trim(request.getParameter("nicknameChecked"));
-            String emailChecked    = trim(request.getParameter("emailChecked"));
-            String phoneChecked    = trim(request.getParameter("phoneChecked"));
-
-            Boolean phoneAuthOk = (Boolean) session.getAttribute("MYPAGE_PHONE_AUTH_OK");
-
-            String newEmail = null;
-            if (!isEmpty(emailId) && !isEmpty(emailDomain)) {
-                newEmail = emailId + "@" + emailDomain;
+            // ✅ 저장하려면 현재 비밀번호 입력 + 검증만 통과하면 됨
+            if (isEmpty(oldPwd)) {
+                request.setAttribute("error", "저장하려면 현재 비밀번호를 입력해야 합니다.");
+                return "/WEB-INF/views/mypage/profileEdit.jsp";
             }
 
-            
+            conn = ConnectionProvider.getConnection();
+            UserDAO dao = new UserDAOImpl(conn);
 
+            boolean okCurrent = dao.checkPassword(userId, oldPwd);
+            if (!okCurrent) {
+                request.setAttribute("error", "현재 비밀번호가 올바르지 않습니다.");
+                return "/WEB-INF/views/mypage/profileEdit.jsp";
+            }
+
+            // ✅ 프로필 이미지 경로 결정
             String profilePathToSave = loginUser.getProfile_img_path();
             if ("A".equalsIgnoreCase(profileImg)) {
                 profilePathToSave = "/resources/images/mypage/img_profile_1.png";
@@ -71,107 +74,72 @@ public class ProfileEditSubmitHandler implements CommandHandler {
                 }
             }
 
-
-            conn = ConnectionProvider.getConnection();
-
-            UserDAO dao = new UserDAOImpl(conn);
-
-            // 닉네임 변경 체크
-            if (!isEmpty(nickname) && !nickname.equals(loginUser.getNickname())) {
-                if (!"true".equalsIgnoreCase(nicknameChecked)) {
-                    request.setAttribute("error", "닉네임 중복확인을 해주세요.");
-                    return "/WEB-INF/views/mypage/profileEdit.jsp";
-                }
-                System.out.println("[ProfileEditSubmit] isNicknameAvailable...");
+            // ✅ 닉네임: 비어있으면 기존 유지, 변경되면 서버에서 중복만 자동 검사
+            if (isEmpty(nickname)) {
+                nickname = loginUser.getNickname();
+            }
+            if (isEmpty(nickname)) {
+                // 세션이 비정상인 경우 방어적으로 DB에서 재조회
+                UserDTO dbUser = dao.selectByUserId(userId);
+                nickname = dbUser.getNickname();
+            }
+            if (isEmpty(nickname)) {
+                request.setAttribute("error", "닉네임 값이 비어있습니다. 다시 시도해주세요.");
+                return "/WEB-INF/views/mypage/profileEdit.jsp";
+            }
+            if (!nickname.equals(loginUser.getNickname())) {
                 if (!dao.isNicknameAvailable(userId, nickname)) {
                     request.setAttribute("error", "이미 사용 중인 닉네임입니다.");
                     return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
-            } else {
-                nickname = loginUser.getNickname();
             }
 
-            // 이메일 변경 체크
-            if (!isEmpty(newEmail) && !newEmail.equals(loginUser.getEmail())) {
-                if (!"true".equalsIgnoreCase(emailChecked)) {
-                    request.setAttribute("error", "이메일 중복확인을 해주세요.");
-                    return "/WEB-INF/views/mypage/profileEdit.jsp";
-                }
-                System.out.println("[ProfileEditSubmit] isEmailAvailable...");
+            // ✅ 이메일: 입력이 불완전하면 기존 유지, 변경되면 서버에서 중복만 자동 검사
+            String newEmail;
+            if (!isEmpty(emailId) && !isEmpty(emailDomain)) {
+                newEmail = emailId + "@" + emailDomain;
+            } else {
+                newEmail = loginUser.getEmail();
+            }
+            if (!newEmail.equals(loginUser.getEmail())) {
                 if (!dao.isEmailAvailable(userId, newEmail)) {
                     request.setAttribute("error", "이미 사용 중인 이메일입니다.");
                     return "/WEB-INF/views/mypage/profileEdit.jsp";
                 }
-            } else {
-                newEmail = loginUser.getEmail();
             }
 
-            // 휴대폰 변경 체크
+            // ✅ 휴대폰: 비어있으면 기존 유지, 변경되면 인증 강제 없이 저장 가능
+            // (중복체크가 필요하면 DAO에 isPhoneAvailable 같은 메서드를 추가해서 여기서 검사)
             String originPhone = loginUser.getPhone_no();
-            String curPhone = phoneNo;
-
-            // 비교를 안전하게 (하이픈 제거)
             String oPhone = originPhone == null ? "" : originPhone.replace("-", "").trim();
-            String cPhone = curPhone == null ? "" : curPhone.replace("-", "").trim();
+            String cPhone = phoneNo == null ? "" : phoneNo.replace("-", "").trim();
 
-            boolean phoneChanged = !isEmpty(cPhone) && !cPhone.equals(oPhone);
-
-            if (phoneChanged) {
-                if (!"true".equalsIgnoreCase(phoneChecked)) {
-                    request.setAttribute("error", "휴대폰 번호를 변경하셨다면 인증을 완료해야 합니다.");
-                    return "/WEB-INF/views/mypage/profileEdit.jsp";
-                }
-                if (phoneAuthOk == null || phoneAuthOk != true) {
-                    request.setAttribute("error", "휴대폰 인증이 완료되지 않았습니다.");
-                    return "/WEB-INF/views/mypage/profileEdit.jsp";
-                }
+            if (isEmpty(cPhone)) {
+                phoneNo = loginUser.getPhone_no();
             } else {
-                phoneNo = loginUser.getPhone_no(); // 그대로 유지
+                // 입력값을 저장할 때는 원본 형태(하이픈 포함/미포함)는 정책에 맞춰 통일 가능
+                // 여기서는 입력값 그대로 저장
+                // boolean phoneChanged = !cPhone.equals(oPhone);
+                // phoneChanged여도 인증 강제 없음
             }
 
-
-            // 비밀번호 변경
-            boolean wantChangePwd =  !isEmpty(newPwd);
+            // ✅ 새 비밀번호가 있으면 변경 (현재 비밀번호 검증 통과했으니 바로 변경)
+            boolean wantChangePwd = !isEmpty(newPwd);
             if (wantChangePwd) {
                 dao.updatePassword(userId, newPwd);
             }
-            
-            
-            if (wantChangePwd) {
-                System.out.println("[ProfileEditSubmit] checkPassword...");
-                boolean okOld = dao.checkPassword(userId, oldPwd);
-                if (!okOld) {
-                    request.setAttribute("error", "기존 비밀번호가 올바르지 않습니다.");
-                    return "/WEB-INF/views/mypage/profileEdit.jsp";
-                }
-                System.out.println("[ProfileEditSubmit] updatePassword...");
-                dao.updatePassword(userId, newPwd);
-            }
-            
-            // 저장하려면 oldPwd 입력
-            if (isEmpty(oldPwd)) {
-                request.setAttribute("error", "저장하려면 현재 비밀번호를 입력해야 합니다.");
-                return "/WEB-INF/views/mypage/profileEdit.jsp";
-            }
-            
-            System.out.println("[ProfileEditSubmit] checkPassword(for save)...");
-            boolean okCurrent = dao.checkPassword(userId, oldPwd);
-            if (!okCurrent) {
-                request.setAttribute("error", "현재 비밀번호가 올바르지 않습니다.");
-                return "/WEB-INF/views/mypage/profileEdit.jsp";
-            }
 
+            // ✅ 최종 프로필 업데이트
+            dao.updateProfile(userId, nickname, newEmail, phoneNo, profilePathToSave);
 
-            int updated = dao.updateProfile(userId, nickname, newEmail, phoneNo, profilePathToSave);
-
+            // ✅ 세션 갱신
             UserDTO refreshed = dao.selectByUserId(userId);
-
             session.setAttribute("loginUser", refreshed);
 
+            // ✅ 휴대폰 인증 관련 세션값은 남아있어도 무방하지만, 정리해도 됨
             session.removeAttribute("MYPAGE_PHONE_AUTH_OK");
             session.removeAttribute("MYPAGE_PHONE_AUTH_PHONE");
             session.removeAttribute("MYPAGE_PHONE_AUTH_CODE");
-
 
             response.sendRedirect(request.getContextPath() + "/mypage/mypage.do");
             return null;

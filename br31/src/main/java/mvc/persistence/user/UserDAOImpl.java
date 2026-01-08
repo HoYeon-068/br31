@@ -362,7 +362,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int updateProfile(String userId, String nickname, String email, String phoneNo, String profileImgPath) throws SQLException {
 	    String sql = "UPDATE \"user\" "
-	               + "SET \"nickname\"=?, \"email\"=?, \"phone_no\"=?, \"profile_img_path\"=? "
+	               + "SET \"nickname\"=NVL(?, \"nickname\"), \"email\"=NVL(?, \"email\"), \"phone_no\"=NVL(?, \"phone_no\"), \"profile_img_path\"=NVL(?, \"profile_img_path\") "
 	               + "WHERE \"user_id\"=?";
 	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 	        pstmt.setString(1, nickname);

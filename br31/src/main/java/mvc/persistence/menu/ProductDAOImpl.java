@@ -291,5 +291,122 @@ public class ProductDAOImpl implements ProductDAO{
 		return list;
 	}
 	
+	@Override
+	public ProductDTO getPrev(int categoryId, int productsId) throws SQLException {
+
+	    String sql;
+
+	    if (categoryId == 2 || categoryId == 3) {
+	        sql =
+	            "SELECT * FROM ( " +
+	            "   SELECT * " +
+	            "   FROM \"products\" " +
+	            "   WHERE \"category_id\" IN (2, 3) " +
+	            "     AND \"products_id\" < ? " +
+	            "   ORDER BY \"products_id\" DESC " +
+	            ") WHERE ROWNUM = 1";
+	    } else {
+	        sql =
+	            "SELECT * FROM ( " +
+	            "   SELECT * " +
+	            "   FROM \"products\" " +
+	            "   WHERE \"category_id\" = ? " +
+	            "     AND \"products_id\" < ? " +
+	            "   ORDER BY \"products_id\" DESC " +
+	            ") WHERE ROWNUM = 1";
+	    }
+
+	    PreparedStatement pstmt = conn.prepareStatement(sql);
+
+	    if (categoryId == 2 || categoryId == 3) {
+	        pstmt.setInt(1, productsId);
+	    } else {
+	        pstmt.setInt(1, categoryId);
+	        pstmt.setInt(2, productsId);
+	    }
+
+	    ResultSet rs = pstmt.executeQuery();
+
+	    if (rs.next()) {
+	        return ProductDTO.builder()
+	            .products_id(rs.getInt("products_id"))
+	            .category_id(rs.getInt("category_id"))
+	            .product_name(rs.getString("product_name"))
+	            .english_name(rs.getString("english_name"))
+	            .sub_title(rs.getString("sub_title"))
+	            .description(rs.getString("description"))
+	            .product_status(rs.getString("product_status"))
+	            .img_path(rs.getString("img_path"))
+	            .bg_color(rs.getString("bg_color"))
+	            .span_color(rs.getString("span_color"))
+	            .poster_path(rs.getString("poster_path"))
+	            .price(rs.getInt("price"))
+	            .release_date(rs.getDate("release_date"))
+	            .build();
+	    }
+
+	    return null;
+	}
+
+	
+	@Override
+	public ProductDTO getNext(int categoryId, int productsId) throws SQLException {
+
+	    String sql;
+
+	    if (categoryId == 2 || categoryId == 3) {
+	        sql =
+	            "SELECT * FROM ( " +
+	            "   SELECT * " +
+	            "   FROM \"products\" " +
+	            "   WHERE \"category_id\" IN (2, 3) " +
+	            "     AND \"products_id\" > ? " +
+	            "   ORDER BY \"products_id\" ASC " +
+	            ") WHERE ROWNUM = 1";
+	    } else {
+	        sql =
+	            "SELECT * FROM ( " +
+	            "   SELECT * " +
+	            "   FROM \"products\" " +
+	            "   WHERE \"category_id\" = ? " +
+	            "     AND \"products_id\" > ? " +
+	            "   ORDER BY \"products_id\" ASC " +
+	            ") WHERE ROWNUM = 1";
+	    }
+
+	    PreparedStatement pstmt = conn.prepareStatement(sql);
+
+	    if (categoryId == 2 || categoryId == 3) {
+	        pstmt.setInt(1, productsId);
+	    } else {
+	        pstmt.setInt(1, categoryId);
+	        pstmt.setInt(2, productsId);
+	    }
+
+	    ResultSet rs = pstmt.executeQuery();
+
+	    if (rs.next()) {
+	        return ProductDTO.builder()
+	            .products_id(rs.getInt("products_id"))
+	            .category_id(rs.getInt("category_id"))
+	            .product_name(rs.getString("product_name"))
+	            .english_name(rs.getString("english_name"))
+	            .sub_title(rs.getString("sub_title"))
+	            .description(rs.getString("description"))
+	            .product_status(rs.getString("product_status"))
+	            .img_path(rs.getString("img_path"))
+	            .bg_color(rs.getString("bg_color"))
+	            .span_color(rs.getString("span_color"))
+	            .poster_path(rs.getString("poster_path"))
+	            .price(rs.getInt("price"))
+	            .release_date(rs.getDate("release_date"))
+	            .build();
+	    }
+
+	    return null;
+	}
+
+
+
 	
 }

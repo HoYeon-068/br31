@@ -9,7 +9,6 @@ import com.util.ConnectionProvider;
 
 import mvc.command.CommandHandler;
 import mvc.domain.consulting.NewStoreBoardDTO;
-import mvc.domain.consulting.PageVO;
 import mvc.persistence.consulting.NewStoreBoardDAO;
 import mvc.persistence.consulting.NewStoreBoardDAOImpl;
 
@@ -24,12 +23,19 @@ public class ViewHandler implements CommandHandler{
 		
 		NewStoreBoardDTO dto=null;
 		
+		Integer nextNum=null;
+		Integer prevNum=null;
+		
 		int seq=Integer.parseInt(request.getParameter("seq"));
 		
+		String sido=request.getParameter("findword");
 		
 		try {
 			//list = dao.select();
 			dto=dao.selectOne(seq);
+			nextNum=dao.getNextId(sido, seq);
+			prevNum=dao.getPrevId(sido, seq);
+			
 		} catch (Exception e) {
 			System.out.println("> consulting ListHandler.process() Exception...");
 			e.printStackTrace();
@@ -37,6 +43,10 @@ public class ViewHandler implements CommandHandler{
 			conn.close();
 		}
 		
+		request.setAttribute("nextNum", nextNum);
+		request.setAttribute("prevNum", prevNum);
+		
+		System.out.println(nextNum+" & "+prevNum);
 		request.setAttribute("dto", dto);
 		return "/WEB-INF/views/information-center/consulting/store-view.jsp";
 	}

@@ -16,7 +16,12 @@ public class InquiryCreateDTO {
     private String postPw;
     private Date regDate;            // DB SYSDATE
     private String userId;
+
+    // ✅ store_name ❌
+    // ✅ store_id ⭕
     private Long storeId;
+
+    /* ===== getter / setter ===== */
 
     public Long getInquiryId() {
         return inquiryId;

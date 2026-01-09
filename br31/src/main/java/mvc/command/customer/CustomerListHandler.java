@@ -10,7 +10,7 @@ public class CustomerListHandler implements CommandHandler {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        // 고객센터 메인은 데이터 처리 없음
+        
         return "/WEB-INF/views/information-center/customer/list.jsp";
     }
 }

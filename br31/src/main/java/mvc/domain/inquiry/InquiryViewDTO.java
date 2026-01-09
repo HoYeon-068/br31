@@ -14,6 +14,11 @@ public class InquiryViewDTO {
 
     private String content;   // 문의 내용
     private String answer;    // 관리자 답변 (nullable)
+    private Date answerDate;
+    private Long storeId;
+    private String storeName;
+
+
 
     /* ===== getter / setter ===== */
 
@@ -80,4 +85,28 @@ public class InquiryViewDTO {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+    
+    public Date getAnswerDate() {
+        return answerDate;
+    }
+
+    public void setAnswerDate(Date answerDate) {
+        this.answerDate = answerDate;
+    }
+    
+    public Long getStoreId() {
+        return storeId;
+    }
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+    
+
+public String getStoreName() {
+    return storeName;
+}
+public void setStoreName(String storeName) {
+    this.storeName = storeName;
+}
+
 }

@@ -10,7 +10,10 @@ public class InquiryListDTO {
     private String counselType;
     private String detailType;
     private String title;
-    private String status;      // 등록중 / 답변완료
+
+    private String answer;      // 관리자 답변 (null이면 접수중)
+
+    /* ===== getter / setter ===== */
 
     public Long getInquiryId() {
         return inquiryId;
@@ -54,10 +57,10 @@ public class InquiryListDTO {
         this.title = title;
     }
 
-    public String getStatus() {
-        return status;
+    public String getAnswer() {
+        return answer;
     }
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

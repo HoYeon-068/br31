@@ -17,13 +17,15 @@ public class InquiryCreateDAO {
 	    int result = 0;
 
 	    String sql =
-	        "INSERT INTO \"inquiry\" ( " +
-	        "  \"inquiry_id\", \"counsel_type\", \"detail_type\", \"title\", " +
-	        "  \"occur_date\", \"content\", \"name\", \"phone\", \"email\", " +
-	        "  \"post_pw\", \"reg_date\", \"user_id\", \"store_id\" " +
-	        ") VALUES ( " +
-	        "  inquiry_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ?, ? " +
-	        ")";
+	    	    "INSERT INTO \"inquiry\" ( " +
+	    	    "  \"inquiry_id\", \"counsel_type\", \"detail_type\", \"title\", " +
+	    	    "  \"occur_date\", \"content\", \"name\", \"phone\", \"email\", " +
+	    	    "  \"post_pw\", \"reg_date\", \"user_id\", \"store_id\" " +
+	    	    ") VALUES ( " +
+	    	    "  inquiry_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ?, ? " +
+	    	    ")";
+
+
 
 	    try {
 	        conn = ConnectionProvider.getConnection();
@@ -57,6 +59,7 @@ public class InquiryCreateDAO {
 	        pstmt.setString(9, dto.getPostPw());
 	        pstmt.setString(10, dto.getUserId());
 
+	      
 	        if (dto.getStoreId() != null) {
 	            pstmt.setLong(11, dto.getStoreId());
 	        } else {

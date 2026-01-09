@@ -20,6 +20,7 @@
     <div class="voc-create">
         <div class="voc-form">
 
+            <!-- 구분 / 분류 -->
             <div class="form-row">
                 <div class="form-label">구분</div>
                 <div class="form-field">${dto.counselType}</div>
@@ -28,18 +29,56 @@
                 <div class="form-field">${dto.detailType}</div>
             </div>
 
+            <!-- 제목 -->
             <div class="form-row title-row">
                 <div class="form-label">제목</div>
                 <div class="form-field">${dto.title}</div>
             </div>
 
+            <!-- 발생일시 + 처리일자 -->
+           <!-- 발생일시 -->
+<div class="form-row">
+    <div class="form-label">발생일시</div>
+    <div class="form-field">
+        <fmt:formatDate value="${dto.occurDate}" pattern="yyyy-MM-dd"/>
+    </div>
+</div>
+
+<!-- 처리일자 -->
+<div class="form-row">
+    <div class="form-label">처리일자</div>
+    <div class="form-field">
+        <span class="date-box">
+            <c:choose>
+                <c:when test="${empty dto.answerDate}">
+                  
+                </c:when>
+                <c:otherwise>
+                    <fmt:formatDate value="${dto.answerDate}" pattern="yyyy-MM-dd"/>
+                </c:otherwise>
+            </c:choose>
+        </span>
+    </div>
+</div>
+
+
+
+            <!-- 매장 (발생일시 바로 아래) -->
             <div class="form-row">
-                <div class="form-label">발생일시</div>
+                <div class="form-label">매장</div>
                 <div class="form-field">
-                    <fmt:formatDate value="${dto.occurDate}" pattern="yyyy-MM-dd"/>
+                    <c:choose>
+                        <c:when test="${empty dto.storeName}">
+                            
+                        </c:when>
+                        <c:otherwise>
+                            ${dto.storeName}
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
 
+            <!-- 내용 -->
             <div class="form-row">
                 <div class="form-label">내용</div>
                 <div class="form-field">
@@ -49,28 +88,28 @@
                 </div>
             </div>
 
+            <!-- 답변내용 -->
             <div class="form-row">
                 <div class="form-label">답변내용</div>
                 <div class="form-field">
-                    <c:choose>
-                        <c:when test="${empty dto.answer}">
-                            아직 답변이 등록되지 않았습니다.
-                        </c:when>
-                        <c:otherwise>
-                            <div class="voc-content">
+                    <div class="voc-answer-box">
+                        <c:choose>
+                            <c:when test="${empty dto.answer}">
+                            </c:when>
+                            <c:otherwise>
                                 <c:out value="${dto.answer}" escapeXml="false"/>
-                            </div>
-                        </c:otherwise>
-                    </c:choose>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="voc-submit">
-            <a href="${pageContext.request.contextPath}/inquiry/list.do">
-                <button type="button">목록</button>
-            </a>
+        <!-- 목록 버튼 -->
+        <div class="voc-submit voc-submit--right">
+            <a href="${pageContext.request.contextPath}/inquiry/list.do"
+               class="btn-list">목록</a>
         </div>
     </div>
 

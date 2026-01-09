@@ -135,8 +135,10 @@
     <div class="form-row">
         <div class="form-label">매장</div>
         <div class="form-field inline">
-            <input type="hidden" name="store_id">
-            <button type="button" class="btn-dark">매장찾기</button>
+           <input type="hidden" name="store_id" id="storeId">
+<button type="button" class="btn-dark" onclick="setDummyStore()">매장찾기</button>
+<span id="storeNameText" class="store-name-text"></span>
+
         </div>
     </div>
 
@@ -277,6 +279,12 @@ function onFileChange(input){
         label.style.backgroundImage = 'none';
         label.style.color = '#333';
     }
+}
+
+function setDummyStore() {
+    // 🔹 발표/시연용 더미 매장
+    document.getElementById("storeId").value = "1";
+    document.getElementById("storeNameText").innerText = "강남역점";
 }
 </script>
 

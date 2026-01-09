@@ -16,22 +16,20 @@ public class InquiryListDAO {
         List<InquiryListDTO> list = new ArrayList<>();
 
         String sql =
-            "SELECT " +
-            " i.\"inquiry_id\", " +
-            " i.\"reg_date\", " +
-            " i.\"occur_date\", " +
-            " i.\"counsel_type\", " +
-            " i.\"detail_type\", " +
-            " i.\"title\", " +
-            " CASE " +
-            "   WHEN a.\"inquiry_answer_id\" IS NULL THEN '등록중' " +
-            "   ELSE '답변완료' " +
-            " END AS status " +
-            "FROM \"inquiry\" i " +
-            "LEFT JOIN \"inquiry_answer\" a " +
-            "ON i.\"inquiry_id\" = a.\"inquiry_id\" " +
-            "WHERE i.\"user_id\" = ? " +
-            "ORDER BY i.\"reg_date\" DESC";
+        	    "SELECT " +
+        	    " i.\"inquiry_id\", " +
+        	    " i.\"reg_date\", " +
+        	    " i.\"occur_date\", " +
+        	    " i.\"counsel_type\", " +
+        	    " i.\"detail_type\", " +
+        	    " i.\"title\", " +
+        	    " a.\"answer\" " +                     // ✅ 답변만 조회
+        	    "FROM \"inquiry\" i " +
+        	    "LEFT JOIN \"inquiry_answer\" a " +
+        	    "ON i.\"inquiry_id\" = a.\"inquiry_id\" " +
+        	    "WHERE i.\"user_id\" = ? " +
+        	    "ORDER BY i.\"reg_date\" DESC";
+
 
         try (
             Connection conn = ConnectionProvider.getConnection();
@@ -41,15 +39,16 @@ public class InquiryListDAO {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    InquiryListDTO dto = new InquiryListDTO();
-                    dto.setInquiryId(rs.getLong("inquiry_id"));
-                    dto.setRegDate(rs.getTimestamp("reg_date"));
-                    dto.setOccurDate(rs.getTimestamp("occur_date"));
-                    dto.setCounselType(rs.getString("counsel_type"));
-                    dto.setDetailType(rs.getString("detail_type"));
-                    dto.setTitle(rs.getString("title"));
-                    dto.setStatus(rs.getString("status"));
-                    list.add(dto);
+                	InquiryListDTO dto = new InquiryListDTO();
+                	dto.setInquiryId(rs.getLong("inquiry_id"));
+                	dto.setRegDate(rs.getTimestamp("reg_date"));
+                	dto.setOccurDate(rs.getTimestamp("occur_date"));
+                	dto.setCounselType(rs.getString("counsel_type"));
+                	dto.setDetailType(rs.getString("detail_type"));
+                	dto.setTitle(rs.getString("title"));
+                	dto.setAnswer(rs.getString("answer"));    // ✅ 핵심
+                	list.add(dto);
+
                 }
             }
         }

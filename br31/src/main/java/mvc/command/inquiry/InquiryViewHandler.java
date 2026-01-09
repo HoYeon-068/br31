@@ -13,19 +13,20 @@ public class InquiryViewHandler implements CommandHandler {
     public String process(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        // 🔹 inquiry_id 파라미터
-        Long inquiryId = Long.parseLong(request.getParameter("inquiry_id"));
+        Long inquiryId =
+            Long.parseLong(request.getParameter("inquiry_id"));
 
         InquiryViewDAO dao = new InquiryViewDAO();
         InquiryViewDTO dto = dao.selectOne(inquiryId);
 
-        // 🔹 존재하지 않는 글 방어
         if (dto == null) {
-            return "redirect:/inquiry/list.do";
+            response.sendRedirect(
+                request.getContextPath() + "/inquiry/list.do"
+            );
+            return null;
         }
 
         request.setAttribute("dto", dto);
-
         return "/WEB-INF/views/information-center/consulting/myvoc_view.jsp";
     }
 }

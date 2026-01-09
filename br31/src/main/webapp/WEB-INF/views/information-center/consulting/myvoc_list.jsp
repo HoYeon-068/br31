@@ -68,7 +68,17 @@
                         ${dto.title}
                     </a>
                 </td>
-                <td>${dto.status}</td>
+                <td>
+    <c:choose>
+        <c:when test="${empty dto.answer}">
+            등록중
+        </c:when>
+        <c:otherwise>
+            답변완료
+        </c:otherwise>
+    </c:choose>
+</td>
+
             </tr>
         </c:forEach>
     </c:otherwise>

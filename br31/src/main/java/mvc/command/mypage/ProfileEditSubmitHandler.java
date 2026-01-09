@@ -47,7 +47,7 @@ public class ProfileEditSubmitHandler implements CommandHandler {
 
             String profileImg  = trim(request.getParameter("profile_img"));
 
-            // ✅ 저장하려면 현재 비밀번호 입력 + 검증만 통과하면 됨
+            // 저장하려면 현재 비밀번호 입력 + 검증만 통과하면 됨
             if (isEmpty(oldPwd)) {
                 request.setAttribute("error", "저장하려면 현재 비밀번호를 입력해야 합니다.");
                 return "/WEB-INF/views/mypage/profileEdit.jsp";
@@ -62,7 +62,7 @@ public class ProfileEditSubmitHandler implements CommandHandler {
                 return "/WEB-INF/views/mypage/profileEdit.jsp";
             }
 
-            // ✅ 프로필 이미지 경로 결정
+            // 프로필 이미지 경로 결정
             String profilePathToSave = loginUser.getProfile_img_path();
             if ("A".equalsIgnoreCase(profileImg)) {
                 profilePathToSave = "/resources/images/mypage/img_profile_1.png";
@@ -74,7 +74,7 @@ public class ProfileEditSubmitHandler implements CommandHandler {
                 }
             }
 
-            // ✅ 닉네임: 비어있으면 기존 유지, 변경되면 서버에서 중복만 자동 검사
+            // 닉네임: 비어있으면 기존 유지, 변경되면 서버에서 중복만 자동 검사
             if (isEmpty(nickname)) {
                 nickname = loginUser.getNickname();
             }
@@ -94,7 +94,7 @@ public class ProfileEditSubmitHandler implements CommandHandler {
                 }
             }
 
-            // ✅ 이메일: 입력이 불완전하면 기존 유지, 변경되면 서버에서 중복만 자동 검사
+            // 이메일: 입력이 불완전하면 기존 유지, 변경되면 서버에서 중복만 자동 검사
             String newEmail;
             if (!isEmpty(emailId) && !isEmpty(emailDomain)) {
                 newEmail = emailId + "@" + emailDomain;
@@ -108,8 +108,7 @@ public class ProfileEditSubmitHandler implements CommandHandler {
                 }
             }
 
-            // ✅ 휴대폰: 비어있으면 기존 유지, 변경되면 인증 강제 없이 저장 가능
-            // (중복체크가 필요하면 DAO에 isPhoneAvailable 같은 메서드를 추가해서 여기서 검사)
+            // 휴대폰: 비어있으면 기존 유지, 변경되면 인증 강제 없이 저장 가능
             String originPhone = loginUser.getPhone_no();
             String oPhone = originPhone == null ? "" : originPhone.replace("-", "").trim();
             String cPhone = phoneNo == null ? "" : phoneNo.replace("-", "").trim();
@@ -117,26 +116,22 @@ public class ProfileEditSubmitHandler implements CommandHandler {
             if (isEmpty(cPhone)) {
                 phoneNo = loginUser.getPhone_no();
             } else {
-                // 입력값을 저장할 때는 원본 형태(하이픈 포함/미포함)는 정책에 맞춰 통일 가능
-                // 여기서는 입력값 그대로 저장
-                // boolean phoneChanged = !cPhone.equals(oPhone);
-                // phoneChanged여도 인증 강제 없음
             }
 
-            // ✅ 새 비밀번호가 있으면 변경 (현재 비밀번호 검증 통과했으니 바로 변경)
+            // 새 비밀번호가 있으면 변경 (현재 비밀번호 검증 통과했으니 바로 변경)
             boolean wantChangePwd = !isEmpty(newPwd);
             if (wantChangePwd) {
                 dao.updatePassword(userId, newPwd);
             }
 
-            // ✅ 최종 프로필 업데이트
+            // 최종 프로필 업데이트
             dao.updateProfile(userId, nickname, newEmail, phoneNo, profilePathToSave);
 
-            // ✅ 세션 갱신
+            // 세션 갱신
             UserDTO refreshed = dao.selectByUserId(userId);
             session.setAttribute("loginUser", refreshed);
 
-            // ✅ 휴대폰 인증 관련 세션값은 남아있어도 무방하지만, 정리해도 됨
+            // 휴대폰 인증 관련 세션값은 남아있어도 무방하지만, 정리해도 됨
             session.removeAttribute("MYPAGE_PHONE_AUTH_OK");
             session.removeAttribute("MYPAGE_PHONE_AUTH_PHONE");
             session.removeAttribute("MYPAGE_PHONE_AUTH_CODE");

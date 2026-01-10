@@ -38,7 +38,7 @@
 <div class="skipnav"><a href="#content">본문 영역으로 바로가기</a></div>
 
 <!-- HEADER -->
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <section class="site-container">
 
@@ -46,22 +46,22 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -89,7 +89,7 @@
         <div class="plaza-consulting__container">
             <div class="plaza-consulting__content">
 
-                <form name="frm" action="${pageContext.request.contextPath}/views/play/plaza/consulting.do" method="POST" class="plaza-form form">
+                <form name="frm" action="${pageContext.request.contextPath}/play/plaza/consulting.do" method="POST" class="plaza-form form">
                     <input type="hidden" name="csrf_token"
                            value="MTc2NjMwOTU5OGIwMzIxYWJjMWMzOWIyNDVhZDhjMTU4YzYwN2NmY2U0ZThiNzg4NWUzZGMwYjQ1YjYyOGU5MzA0ZDA5MzM0YjQ1NDVhMmQ5ZTk1NzcwNGJj">
                     <input type="hidden" name="category" value="C">
@@ -376,7 +376,7 @@
                             </div>
 
                             <div class="plaza-form-buttons">
-                                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="plaza-form-buttons__cancel">취소</a>
+                                <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="plaza-form-buttons__cancel">취소</a>
                                 <button type="submit" class="plaza-form-buttons__submit">등록</button>
                             </div>
 
@@ -466,7 +466,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <!-- FOOTER -->
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 </body>
 </html>

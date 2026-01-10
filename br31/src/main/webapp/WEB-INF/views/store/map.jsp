@@ -38,46 +38,7 @@
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <div class="site-container">
-    <nav class="page-menu">
-        <ul class="page-menu__list">
-            <!--            현재 페이지인 경우 page-menu__item--active 추가-->
-            <li class="page-menu__item page-menu__item--active">
-                <a href="map.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">매장 찾기</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="flavor.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">100 flavor</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="workshop.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">Workshop</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="delivary.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">배달주문</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="catering.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">단체주문</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <jsp:include page="../store/layout/store_header.jsp" /> 
 
     <section id="content" class="store-map">
         <header class="page-header">
@@ -107,13 +68,13 @@
                                         <dt class="store-map-option__name">매장타입</dt>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="BR31">
+                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="BR 31">
                                                 <span class="store-map-option__text">BR 31</span>
                                             </label>
                                         </dd>
                                         <dd class="store-map-option__area">
                                             <label class="store-map-option__label">
-                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="100flavor">
+                                                <input type="checkbox" class="store-map-option__input" name="store_type" value="BR 100flavor">
                                                 <span class="store-map-option__text">100flavor</span>
                                             </label>
                                         </dd>
@@ -215,20 +176,6 @@
                     <p class="store-map-list__result">검색결과 <span class="store-map-list__point-color"></span>개</p>
                     <div class="store-map-list__container">
                         <ul class="store-map-list__list">
-                        <li class="store-map-list__item">
-                        <a href="#" role="button" type="button" data-info="{&quot;store_type&quot;:&quot;B&quot;,&quot;store_type_name&quot;:&quot;BR 100flavor&quot;,&quot;store_code&quot;:&quot;61230&quot;,&quot;direct_div&quot;:&quot;Y&quot;,&quot;store_name&quot;:&quot;SPC스퀘어&quot;,&quot;local_no&quot;:&quot;02-565-1012&quot;,&quot;open_date&quot;:&quot;2022-04-29&quot;,&quot;operation_time&quot;:&quot;AM 10~PM 11&quot;,&quot;latitude&quot;:37.4943827585735,&quot;longitude&quot;:127.029802084664,&quot;addr_zipcode&quot;:&quot;AM 10~PM 11&quot;,&quot;addr_si&quot;:&quot;서울특별시&quot;,&quot;addr_gugun&quot;:&quot;강남구&quot;,&quot;addr_road&quot;:&quot;역삼동 831-23 2층&quot;,&quot;addr_detail&quot;:&quot;&quot;,&quot;service_info&quot;:&quot;주차, 배달, 픽업, 취식여부, 해피스테이션, 가챠머신, KT제휴, SKT제휴, LG U+제휴, 맛보기&quot;,&quot;distance&quot;:442.57112232945,&quot;index&quot;:0,&quot;seq&quot;:1}" class="store-map-list__button">
-                            <div class="store-map-list__box">
-                                <h3 class="store-map-list__title">SPC스퀘어</h3>
-                                <address class="store-map-list__address">서울특별시 강남구 역삼동 831-23 2층 </address>
-                                <dl class="store-map-list__content">
-                                <dt class="store-map-list__name">연락처</dt>
-                                <dd class="store-map-list__text">02-565-1012</dd>
-                                <dt class="store-map-list__name">운영시간</dt>
-                                <dd class="store-map-list__text">AM 10~PM 11</dd>
-                                </dl>
-                            </div>
-                        </a>
-                    </li>
                         </ul>
                     </div>
                 </div>
@@ -522,6 +469,156 @@ $(document).on("click", ".store-map-list__button", function (e) {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const $sido = document.querySelector("select[name='sido']");
+  const $gugun = document.querySelector("select[name='gugun']");
+
+  const SIDOS = [
+    { value: "서울", label: "서울" },
+    { value: "경기", label: "경기" },
+    { value: "강원", label: "강원특별자치도" },
+    { value: "부산", label: "부산" },
+    { value: "대구", label: "대구" },
+    { value: "인천", label: "인천" },
+    { value: "광주", label: "광주" },
+    { value: "대전", label: "대전" },
+    { value: "울산", label: "울산" },
+    { value: "세종", label: "세종특별자치시" },
+    { value: "충북", label: "충북" },
+    { value: "충남", label: "충남" },
+    { value: "전북", label: "전북" },
+    { value: "전남", label: "전남" },
+    { value: "경북", label: "경북" },
+    { value: "경남", label: "경남" },
+    { value: "제주", label: "제주특별자치도" }
+  ];
+
+  SIDOS.forEach(({value, label}) => {
+    const opt = document.createElement("option");
+    opt.value = value;
+    opt.textContent = label;
+    $sido.appendChild(opt);
+  });
+
+  function resetGugun() {
+    $gugun.innerHTML = '<option value="">구/군</option>';
+  }
+
+  $sido.addEventListener("change", function () {
+    const sido = this.value;
+    resetGugun();
+    if (!sido) return;
+
+    fetch("${pageContext.request.contextPath}/api/store-address.do?sido=" + encodeURIComponent(sido))
+      .then(res => res.json())
+      .then(data => {
+        if (!data.code) return;
+        data.result.list.forEach(item => {
+          const opt = document.createElement("option");
+          opt.value = item.address;
+          opt.textContent = item.address;
+          $gugun.appendChild(opt);
+        });
+      })
+      .catch(err => console.error("구/군 로딩 실패", err));
+  });
+});
+</script>
+<script>
+$(document).ready(function () {
+	var formData = $(".store-map-form").serialize();
+	  console.log(formData);
+	  $(".store-map-list__list").empty();
+
+	  $.ajax({
+	    url: contextPath + "/store/mapSearch.ajax",
+	    type: "GET",
+	    data: formData,
+	    dataType: "json",
+	    cache: false,
+
+	    success: function (data) {
+	      console.log("응답 데이터:", data);
+
+	      if (!Array.isArray(data)) return;
+
+	      $("span.store-map-list__point-color").text(data.length);
+
+	      clearMarkers();
+
+	      $.each(data, function (index, store) {
+
+	        /* ===== 값 정리 ===== */
+	        var storeType = normalizeStoreType(store.storeType);
+	        var iconSrc = markerIconMap[storeType];
+
+	        var addrDetail = (store.addressDetail === "null" || store.addressDetail == null)
+	                          ? "" : store.addressDetail;
+
+	        /* ===== data-info ===== */
+	        var info = {
+	          index: index,
+	          latitude: store.latitude,
+	          longitude: store.longitude
+	        };
+
+	        var encodedInfo = encodeURIComponent(JSON.stringify(info));
+
+	        /* ===== 리스트 HTML ===== */
+	        var li = ''
+	          + '<li class="store-map-list__item">'
+	          + '  <a href="#" role="button" class="store-map-list__button" data-info="' + encodedInfo + '">'
+	          + '    <div class="store-map-list__box">'
+	          + '      <h3 class="store-map-list__title">' + (store.storeName || "") + '</h3>'
+	          + '      <address class="store-map-list__address">'
+	          +        (store.sido || "") + ' ' + (store.sigungu || "") + ' '
+	          +        (store.street || "") + ' ' + addrDetail
+	          + '      </address>'
+	          + '      <dl class="store-map-list__content">'
+	          + '        <dt class="store-map-list__name">연락처</dt>'
+	          + '        <dd class="store-map-list__text">' + (store.storeTel || "") + '</dd>'
+	          + '        <dt class="store-map-list__name">운영시간</dt>'
+	          + '        <dd class="store-map-list__text">' + (store.businessHours || "") + '</dd>'
+	          + '      </dl>'
+	          + '    </div>'
+	          + '  </a>'
+	          + '</li>';
+
+	        $(".store-map-list__list").append(li);
+
+	        /* ===== 마커 생성 ===== */
+	        if (map && store.latitude && store.longitude) {
+	          var position = new kakao.maps.LatLng(store.latitude, store.longitude);
+	          var markerImg = makeMarkerImage(iconSrc);
+
+	          var marker = new kakao.maps.Marker({
+	            position: position,
+	            image: markerImg
+	          });
+
+	          marker.setMap(map);
+	          markers.push(marker);
+
+	          /* 마커 클릭 → 지도 이동 */
+	          kakao.maps.event.addListener(marker, "click", function () {
+	            map.panTo(position);
+	          });
+	        }
+	      });
+
+	      /* 첫 매장으로 이동 */
+	      if (map && data.length > 0) {
+	        map.panTo(new kakao.maps.LatLng(data[0].latitude, data[0].longitude));
+	      }
+	    },
+
+	    error: function () {
+	      alert("에러~~~");
+	    }
+	  });
+});
+</script>
 
 </body>
 

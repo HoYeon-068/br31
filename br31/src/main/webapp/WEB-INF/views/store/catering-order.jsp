@@ -22,6 +22,7 @@
 <meta property="og:image" content="${pageContext.request.contextPath}/resources/images/common/img_share.png">
 <meta property="og:type" content="website">
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sdk1659.js?appkey=8c71dfbb0129b7e25a985c72328e967b"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
@@ -37,46 +38,7 @@
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <div class="site-container">
-    <nav class="page-menu">
-        <ul class="page-menu__list">
-            <!--            현재 페이지인 경우 page-menu__item--active 추가-->
-            <li class="page-menu__item">
-                <a href="map.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">매장 찾기</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="flavor.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">100 flavor</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="workshop.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">Workshop</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="delivary.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">배달주문</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item page-menu__item--active">
-                <a href="catering.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">단체주문</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <jsp:include page="../store/layout/store_header.jsp" /> 
 
     <div class="store-catering-order">
         <div id="content" class="store-catering-order__container">

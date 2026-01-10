@@ -41,46 +41,7 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <div class="site-container">
-    <nav class="page-menu">
-        <ul class="page-menu__list">
-            <!--            현재 페이지인 경우 page-menu__item--active 추가-->
-            <li class="page-menu__item">
-                <a href="map.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">매장 찾기</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item page-menu__item--active">
-                <a href="flavor.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">100 flavor</span>
-                    </div>
-                </a>
-            </li>
-						<li class="page-menu__item">
-                <a href="workshop.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">Workshop</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="delivary.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">배달주문</span>
-                    </div>
-                </a>
-            </li>
-            <li class="page-menu__item">
-                <a href="catering.html" class="page-menu__link">
-                    <div class="page-menu__box">
-                        <span class="page-menu__name">단체주문</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <jsp:include page="../store/layout/store_header.jsp" /> 
 
 	<div class="content">
 		<header class="page-header">

@@ -26,6 +26,7 @@ public interface UserDAO  {
 	boolean existsByUserId(String userId) throws SQLException;
 	boolean existsByNickname(String nickname) throws SQLException;
 	boolean existsByEmail(String email) throws SQLException;
+	boolean existsByPhone(String phone) throws SQLException;
 
 	// 회원가입
 	int insert(UserDTO user) throws SQLException;
@@ -33,6 +34,7 @@ public interface UserDAO  {
 	
 	// 마이페이지
 	UserDTO selectByUserId(String userId) throws SQLException;
+	UserDTO selectByUserIdAndNameAndPhone(String userId, String email, String name) throws SQLException;
 	boolean checkPassword(String userId, String oldPwd) throws Exception;
     int updatePassword(String userId, String newPwd) throws Exception;
     boolean isNicknameAvailable(String myUserId, String nickname) throws Exception;

@@ -21,7 +21,7 @@ public class ConsultingHandler implements CommandHandler {
         String requestMethod = request.getMethod();
 
         if ("GET".equalsIgnoreCase(requestMethod)) {
-            return "/views/play/plaza/consulting.jsp";
+            return "/WEB-INF/views/play/plaza/consulting.jsp";
         } else if ("POST".equalsIgnoreCase(requestMethod)) {
 
             request.setCharacterEncoding("UTF-8");
@@ -94,12 +94,12 @@ public class ConsultingHandler implements CommandHandler {
                 int rowCount = dao.insertConsulting(dto);
 
                 if (rowCount == 1) {
-                    response.sendRedirect(request.getContextPath() + "/views/play/plaza/list.do");
+                    response.sendRedirect(request.getContextPath() + "/play/plaza/list.do");
                     return null; 
                 } else {
                     request.setAttribute("error", "등록에 실패했습니다. 다시 시도해주세요.");
                     request.setAttribute("dto", dto);
-                    return "/views/play/plaza/consulting.jsp";
+                    return "/play/plaza/consulting.do";
                 }
 
             } finally {

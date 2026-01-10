@@ -54,7 +54,7 @@ public class ListHandler implements CommandHandler{
 			conn.close();
 		}
 		
-		return "/views/play/event/list.jsp";
+		return "/WEB-INF/views/play/event/list.jsp";
 	}
 	
 }

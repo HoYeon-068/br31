@@ -4,7 +4,7 @@
     <div class="site-header__container">
         <div class="site-header__content">
             <h1 class="site-header-logo">
-                <a href="${pageContext.request.contextPath}/index.jsp" class="site-header-logo__link">
+                <a href="${pageContext.request.contextPath}/index.do" class="site-header-logo__link">
                     <span class="site-header-logo__text">Baskin Robbins</span>
                 </a>
             </h1>
@@ -46,21 +46,21 @@
                         </div>
                     </li>
                     <li class="site-menu__item">
-                        <a href="${pageContext.request.contextPath}/play/event/list.html" class="site-menu__link">BR Play</a>
+                        <a href="${pageContext.request.contextPath}/play/event/list.do" class="site-menu__link">BR Play</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/play/event/list.html" class="site-menu-list__link">이벤트</a>
+                                            <a href="${pageContext.request.contextPath}/play/event/list.do" class="site-menu-list__link">이벤트</a>
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/event/lista9a4.html?category=A" class="site-menu-sub__link">프로모션</a>
+                                                    <a href="${pageContext.request.contextPath}/play/event/lista9a4.do?category=1" class="site-menu-sub__link">프로모션</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/event/listd7a1.html?category=C" class="site-menu-sub__link">제휴혜택</a>
+                                                    <a href="${pageContext.request.contextPath}/play/event/listd7a1.do?category=2" class="site-menu-sub__link">제휴혜택</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -69,13 +69,13 @@
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/plaza/list.html" class="site-menu-sub__link">배라광장</a>
+                                                    <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="site-menu-sub__link">배라광장</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/recipe/list.html" class="site-menu-sub__link">BR레시피</a>
+                                                    <a href="${pageContext.request.contextPath}/play/recipe/list.do" class="site-menu-sub__link">BR레시피</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/myflavor/list.html" class="site-menu-sub__link">마이플레이버리스트</a>
+                                                    <a href="${pageContext.request.contextPath}/play/myflavor/list.do" class="site-menu-sub__link">마이플레이버리스트</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -153,14 +153,14 @@
 
 
                     <li class="site-menu__item">
-                        <a href="brapp.html" class="site-menu__link">배라앱</a>
+                        <a href="${pageContext.request.contextPath}/brapp/brapp.do" class="site-menu__link">배라앱</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="brapp.html" class="site-menu-list__link">배라앱 소개 및 다운로드</a>
+                                            <a href="${pageContext.request.contextPath}/brapp/brapp.do" class="site-menu-list__link">배라앱 소개 및 다운로드</a>
                                         </li>                                        
                                     </ul>
                                 </div>

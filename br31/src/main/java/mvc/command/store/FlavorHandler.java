@@ -11,6 +11,8 @@ public class FlavorHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		System.out.println("FlavorHandler");
+		
+		request.setAttribute("activeMenu", "flavor");
 		return "/WEB-INF/views/store/flavor.jsp";
 	}
 	

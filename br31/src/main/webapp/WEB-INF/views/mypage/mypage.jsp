@@ -37,7 +37,6 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <section class="site-container">
-    <!-- 프로모션: event-view--play, 제휴: event-view--coalition -->
     <div id="content" class="mypage">
         <header class="page-header">
             <div class="page-header__container">

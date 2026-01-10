@@ -17,22 +17,28 @@ public class LoginHandler implements CommandHandler {
 
         if (request.getMethod().equalsIgnoreCase("GET")) {
             String referer = request.getHeader("Referer");
+            System.out.println("[LOGIN GET] referer = " + referer);
 
             // 로그인/회원가입 페이지 referer면 제외
             if (referer != null &&
-                !referer.contains("/login/login.do") &&
-                !referer.contains("/join")) {
-                request.setAttribute("redirectUrl", referer);
+                !referer.contains( request.getContextPath()+"/login/") &&
+                !referer.contains( request.getContextPath()+ "/join")) {
+            	
+            	request.setAttribute("redirectUrl", referer);
             }
-
             return "/WEB-INF/views/login/login.jsp";
         }
+        
+
 
         request.setCharacterEncoding("UTF-8");
 
         String userId = request.getParameter("user_id");
         String password = request.getParameter("password");
         String redirectUrl = request.getParameter("redirectUrl");
+
+        System.out.println("[LOGIN POST] redirectUrl(param) = " + redirectUrl);
+        System.out.println("[LOGIN POST] contextPath = " + request.getContextPath());
 
         UserDTO loginUser = userService.login(userId, password);
 
@@ -48,7 +54,10 @@ public class LoginHandler implements CommandHandler {
         session.setAttribute("loginUser", loginUser);
 
         // redirectUrl 없으면 기본 이동
-        if (redirectUrl == null || redirectUrl.isBlank()) {
+        if (redirectUrl == null || redirectUrl.isBlank() 
+        		|| "/".equals(redirectUrl)
+                || request.getContextPath().equals(redirectUrl)
+                || (request.getContextPath() + "/").equals(redirectUrl)) {
             response.sendRedirect(request.getContextPath() + "/story/history.do");
             return null;
         }

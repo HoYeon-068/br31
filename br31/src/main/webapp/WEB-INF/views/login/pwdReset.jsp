@@ -67,6 +67,9 @@
       <input type="text" name="phone_no" placeholder="휴대폰 번호를 입력해 주세요" />
     </div>
 
+	<c:if test="${not empty message}">
+	  <div class="errorMsg">${message}</div>
+	</c:if>    
 
     <button type="submit" class="check-btn">확인</button>
   </form>

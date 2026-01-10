@@ -530,4 +530,12 @@ body{
   line-height: 1.2;
 }
 
+/* 비밀번호 재발급 오류 */
+.errorMsg {
+	color : #e60023;
+	margin: 12px 0;
+    padding: 10px 12px;
+    font-size: 15px;
+	
+}
 

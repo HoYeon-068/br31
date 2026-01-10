@@ -33,6 +33,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
+
+
 </head>
 <body id="baskinrobbins-information-center-consulting-store-view" class="baskinrobbins-information-center-consulting-store-view">
 
@@ -155,8 +157,11 @@
                                                             <!-- 지도 api -->
                                 <input type="hidden" value="${dto.latitude}" class="lat">
                                 <input type="hidden" value="${dto.longitude}" class="lng">
-                                                                        <div class="map"></div>
+                                
+                                <div class="map_p" style="width:100%; height:400px;"></div>
                                                                                     </td>
+                               
+                                                                        
                     </tr>
                     <tr>
                         <th>권리금</th>
@@ -176,14 +181,42 @@
                     </tbody>
                 </table>
                 <div class="pagination">
-                                        <a href="store-view5343.html?findword=&amp;seq=15">
+                <c:choose>
+    <c:when test="${empty nextNum}">
+        <a href="#none" onclick="alert('이전 데이터가 없습니다')">
+                                    
                                             <span>이전</span>
-                    </a>
+                                            </a>
+        
+    </c:when>
+    <c:otherwise>
+        <a href="${pageContext.request.contextPath}/information-center/consulting/store-view.do?findword=${param.findword}&seq=${nextNum}">
+                                            <span>이전</span>
+        </a>
+    </c:otherwise>
+</c:choose>
+                
+                
+                                        
 
-                    <a href="store-list5aff.html?findword=&amp;page=2">목록</a>
-                                        <a href="store-viewddea.html?findword=&amp;seq=13">
+                    <a href="${pageContext.request.contextPath}/information-center/consulting/store-list.do?findword=${param.findword}">목록</a>
+                    
+  <c:choose>
+    <c:when test="${empty prevNum}">
+        <a href="#none" onclick="alert('다음 데이터가 없습니다')">
+                                            <span>다음</span>
+        </a>
+    </c:when>
+    <c:otherwise>
+        <a href="${pageContext.request.contextPath}/information-center/consulting/store-view.do?findword=${param.findword}&seq=${prevNum}">
                         <span>다음</span>
                     </a>
+    </c:otherwise>
+</c:choose>                  
+                    
+                    
+                    
+                                        
                                     </div>
             </div>
         </section>
@@ -194,5 +227,43 @@
 
 </body>
 
+<script type="text/javascript">
+    // window.kakao.maps.load()를 통해 API가 완전히 로드된 후 실행되도록 보장합니다.
+    window.onload = function() {
+        if (typeof kakao !== 'undefined' && kakao.maps) {
+            kakao.maps.load(function() {
+                var latVal = parseFloat(document.querySelector('.lat').value);
+                var lngVal = parseFloat(document.querySelector('.lng').value);
+
+                // 1. 지도를 담을 영역
+                var mapContainer = document.querySelector('.map_p'); 
+                
+                // 2. 지도 옵션 설정
+                var mapOption = { 
+                    center: new kakao.maps.LatLng(latVal, lngVal), 
+                    level: 3 
+                };
+
+                // 3. 지도 생성
+                var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+                // 4. 마커 생성
+                var markerPosition  = new kakao.maps.LatLng(latVal, lngVal); 
+                var marker = new kakao.maps.Marker({
+                    position: markerPosition
+                });
+
+                // 5. 마커 표시
+                marker.setMap(map);
+
+                // 6. (중요) 지도가 작게 나오거나 깨질 경우를 대비해 크기 재조정
+                map.relayout();
+                map.setCenter(new kakao.maps.LatLng(latVal, lngVal));
+            });
+        } else {
+            console.error("Kakao Maps SDK가 로드되지 않았습니다. appkey를 확인하세요.");
+        }
+    };
+</script>
 <!-- Mirrored from www.baskinrobbins.co.kr/information-center/consulting/store-view.php?seq=14&findword=&page=2 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 01:00:34 GMT -->
 </html>

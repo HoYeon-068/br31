@@ -49,14 +49,14 @@
   <div class="skipnav"><a href="#content">본문 영역으로 바로가기</a></div>
 
   <!-- ✅ 공통 헤더 include -->
-  <jsp:include page="/views/layout/header.jsp" />
+  <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
   <section class="site-container">
     <!-- page-menu는 페이지 본문에서 1번만 -->
     <nav class="page-menu">
       <ul class="page-menu__list">
         <li class="page-menu__item">
-          <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
+          <a href="${pageContext.request.contextPath}/play/event/list.do" class="page-menu__link">
             <div class="page-menu__box">
               <span class="page-menu__name">이벤트</span>
             </div>
@@ -64,7 +64,7 @@
         </li>
 
         <li class="page-menu__item page-menu__item--active">
-          <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
+          <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="page-menu__link">
             <div class="page-menu__box">
               <span class="page-menu__name">배라광장</span>
             </div>
@@ -72,7 +72,7 @@
         </li>
 
         <li class="page-menu__item">
-          <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
+          <a href="${pageContext.request.contextPath}/play/recipe/list.do" class="page-menu__link">
             <div class="page-menu__box">
               <span class="page-menu__name">BR 레시피</span>
             </div>
@@ -80,7 +80,7 @@
         </li>
 
         <li class="page-menu__item">
-          <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
+          <a href="${pageContext.request.contextPath}/play/myflavor/list.do" class="page-menu__link">
             <div class="page-menu__box">
               <span class="page-menu__name">마이플레이버 리스트</span>
             </div>
@@ -107,7 +107,6 @@
         <div class="plaza-new__container">
           <div class="plaza-new__content plaza-new__content--active">
 
-            <!-- ✅ 주말 룰: action도 일단 jsp로만 치환 (나중에 컨트롤러로 갈아끼우기) -->
             <form name="frm"
 			      action="${pageContext.request.contextPath}/play/plaza/new.do"
 			      method="POST"
@@ -323,7 +322,7 @@
                   </div>
 
                   <div class="plaza-form-buttons">
-                    <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="plaza-form-buttons__cancel">취소</a>
+                    <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="plaza-form-buttons__cancel">취소</a>
                     <button type="submit" class="plaza-form-buttons__submit">등록</button>
                   </div>
                 </div>
@@ -337,7 +336,6 @@
     </div>
   </section>
 
-  <!-- ✅ 공통 푸터 include -->
-  <jsp:include page="/views/layout/footer.jsp" />
+  <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 </body>
 </html>

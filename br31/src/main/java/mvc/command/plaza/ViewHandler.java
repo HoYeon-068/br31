@@ -32,7 +32,7 @@ public class ViewHandler implements CommandHandler{
 			conn.close();
 		}
 		
-		return "/views/play/plaza/view.jsp";
+		return "/WEB-INF/views/play/plaza/view.jsp";
 		
 	}
 

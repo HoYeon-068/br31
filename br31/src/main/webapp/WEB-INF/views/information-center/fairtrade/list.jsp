@@ -111,7 +111,8 @@
         ${dto.noticeNo}
     </td>
     <td class="board-list__table-title">
-        <a href="view.do?noticeId=${dto.noticeId}">
+        <a href="${pageContext.request.contextPath}/fairtrade/view.do?noticeId=${dto.noticeId}">
+
             ${dto.title}
         </a>
     </td>

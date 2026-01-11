@@ -81,8 +81,18 @@ public class InquiryCreateHandler implements CommandHandler {
         dto.setName(request.getParameter("name"));
         dto.setPostPw(postPw);
 
-        /* 비회원 시연 */
-        dto.setUserId("GUEST");
+        /* 회원 / 비회원 구분 */
+        Object loginObj = request.getSession().getAttribute("loginUser");
+
+        if (loginObj != null) {
+            mvc.domain.user.UserDTO loginUser =
+                (mvc.domain.user.UserDTO) loginObj;
+
+            dto.setUserId(loginUser.getUser_id()); // 로그인 사용자
+        } else {
+            dto.setUserId("GUEST"); // 비회원 시연
+        }
+
 
         /* 🔹 매장 (시연용 store_id) */
         String storeIdParam = request.getParameter("store_id");

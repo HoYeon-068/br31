@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
 /* 상품 이미지 썸네일 스타일 */
@@ -47,20 +48,23 @@
 
         <tbody>
           <!-- 상품 1 : 판매중 -->
-          <tr>
-            <td>1</td>
+          
+          
+          <c:forEach items="${list}" var="vo">
+          	<tr>
+            <td>${vo.products_id}</td>
             <td>
               <div class="product-thumb">
-                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/78e1bc4d9030b09cd169ce91c75fcdbc.png" alt="쉐이크">
+                <img src="${pageContext.request.contextPath}${vo.img_path}" alt="${vo.product_name}">
               </div>
             </td>
-            <td>쉐이크 커피</td>
-            <td>음료</td>
-            <td>2025-01-05</td>
+            <td>${vo.product_name}</td>
+            <td>${vo.category_name}</td>
+            <td>${vo.release_date}</td>
             <td>
               <div class="btn-group btn-group-sm" role="group">
-                <button type="button" class="btn btn-success">판매중</button>
-                <button type="button" class="btn btn-outline-secondary">판매중지</button>
+                <button type="button" class="btn btn${vo.product_status == '판매중'?'':'-outline'}-success">판매중</button>
+                <button type="button" class="btn btn${vo.product_status != '판매중'?'':'-outline'}-secondary">판매중지</button>
               </div>
             </td>
             <td>
@@ -71,59 +75,9 @@
               </a>
             </td>
           </tr>
-
-          <!-- 상품 2 : 판매중지 -->
-          <tr>
-            <td>2</td>
-            <td>
-              <div class="product-thumb">
-                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/d5eed9e28c9bbb38bdf5c23a3bdfb936.png" alt="아이스크림">
-              </div>
-            </td>
-            <td>초콜릿 칩</td>
-            <td>아이스크림</td>
-            <td>2025-01-03</td>
-            <td>
-              <div class="btn-group btn-group-sm" role="group">
-                <button type="button" class="btn btn-outline-success">판매중</button>
-                <button type="button" class="btn btn-secondary"
-                onclick="return confirm('정말 판매중지?');">판매중지</button>
-              </div>
-            </td>
-            <td>
-              <a href="#" class="btn btn-outline-secondary btn-sm">수정</a>
-              <a href="#" class="btn btn-outline-danger btn-sm"
-                 onclick="return confirm('정말 삭제하시겠습니까?');">
-                삭제
-              </a>
-            </td>
-          </tr>
-
-          <!-- 상품 3 : 판매중 -->
-          <tr>
-            <td>3</td>
-            <td>
-              <div class="product-thumb">
-                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/78e1bc4d9030b09cd169ce91c75fcdbc.png" alt="아이스 경단">
-              </div>
-            </td>
-            <td>아이스 흑임자 경단</td>
-            <td>디저트</td>
-            <td>2024-12-28</td>
-            <td>
-              <div class="btn-group btn-group-sm" role="group">
-                <button type="button" class="btn btn-success">판매중</button>
-                <button type="button" class="btn btn-outline-secondary">판매중지</button>
-              </div>
-            </td>
-            <td>
-              <a href="#" class="btn btn-outline-secondary btn-sm">수정</a>
-              <a href="#" class="btn btn-outline-danger btn-sm"
-                 onclick="return confirm('정말 삭제하시겠습니까?');">
-                삭제
-              </a>
-            </td>
-          </tr>
+          
+          </c:forEach>
+       
         </tbody>
 
       </table>

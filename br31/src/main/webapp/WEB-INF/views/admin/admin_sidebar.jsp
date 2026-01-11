@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<nav class="col-md-2 bg-dark text-white vh-100 p-3">
+<nav class="col-md-2 bg-dark text-white min-vh-100 p-3">
   <h5 class="mb-4">ADMIN</h5>
 
   <ul class="nav flex-column">
@@ -17,7 +17,7 @@
           <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/main.do?view=productList">상품 목록</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="/admin/product/form.do">상품 등록</a>
+          <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/product/write.do">상품 등록</a>
         </li>
       </ul>
     </li>

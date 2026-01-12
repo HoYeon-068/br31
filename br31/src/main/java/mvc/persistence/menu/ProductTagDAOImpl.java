@@ -85,5 +85,35 @@ public class ProductTagDAOImpl implements ProductTagDAO{
 
 		return list;
 	}
+	@Override
+	public int insert(int products_id, String tag) throws SQLException {
+		String sql = "INSERT INTO \"product_tag\" "
+		           + "VALUES (product_tag_seq.NEXTVAL,?,?)";
+		
+		
+		
+
+		int rowCount = 0;
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, products_id);
+			pstmt.setString(2, tag);
+
+			rowCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+			} catch (SQLException e) { 
+				e.printStackTrace();
+			}
+		} 
+
+		return rowCount;
+	}
 	
 }

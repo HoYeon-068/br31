@@ -594,6 +594,33 @@ public class ProductDAOImpl implements ProductDAO{
 
 		return products_id;
 	}
+	@Override
+	public int getProductsCount() throws SQLException {
+		String sql = "SELECT count(*) FROM \"products\"";
+		Integer count=null;
+		
+		
+		try {			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				count=rs.getInt(1);
+			}
+
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) { 
+				e.printStackTrace();
+			}
+		} 
+
+		return count;
+	}
 
 	
 }

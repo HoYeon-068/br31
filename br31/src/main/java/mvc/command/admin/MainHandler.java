@@ -59,6 +59,9 @@ public class MainHandler implements CommandHandler{
 			    break;
 		  default:
 		    //contentPage = "/WEB-INF/views/admin/dashboard.jsp";
+			ProductDAO pdao = new ProductDAOImpl(conn);
+			int productsCount=pdao.getProductsCount();
+			request.setAttribute("productsCount", productsCount);
 		    break;
 		    
 		}

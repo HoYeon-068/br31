@@ -126,8 +126,9 @@
             <div class="menu-view__container">
             
             
-            			<c:if test="${not empty dto.iceNutritionDTO}">
+            			
             				            <article class="menu-view-nutrition">
+            				            <c:if test="${not empty dto.iceNutritionDTO}">
                         <div class="menu-view-nutrition__container">
                             <h3 class="menu-view-nutrition__title">영양정보</h3>
 
@@ -163,10 +164,10 @@
                             </dl>
                         </div>
 
+            			</c:if>
                                             </article>
             				
             			
-            			</c:if>
                                         
                                         
                          <c:if test="${dto.poster_path!=''}">

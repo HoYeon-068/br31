@@ -31,4 +31,6 @@ public interface ProductDAO {
 	//방금 생성된 상품의 id값 가져오기
 	Integer getProductSeqNum() throws SQLException;
 	
+	//상품의 총 개수를 가져옴
+	int getProductsCount() throws SQLException;
 }

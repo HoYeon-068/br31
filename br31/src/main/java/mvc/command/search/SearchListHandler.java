@@ -59,6 +59,6 @@ public class SearchListHandler implements CommandHandler {
         request.setAttribute("keyword", keyword); // 검색어 유지용
 
         // 6. 포워딩
-        return "/views/search/list.jsp";
+        return "/WEB-INF/views/search/list.jsp";
     }
 }

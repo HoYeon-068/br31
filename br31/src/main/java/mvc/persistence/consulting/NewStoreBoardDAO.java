@@ -28,4 +28,10 @@ public interface NewStoreBoardDAO {
 	
 	int getTotalNum() throws SQLException;
 	
+	
+	//이전 글번호 가져오기
+	Integer getPrevId(String sido, int boardId) throws SQLException;
+	
+	//다음 글번호 가져오기
+	Integer getNextId(String sido, int boardId) throws SQLException;
 }

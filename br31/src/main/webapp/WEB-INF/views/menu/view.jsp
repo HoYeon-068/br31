@@ -92,32 +92,43 @@
                         </div>
                     </div>
 
-                                            <a href="view599c.html?seq=834" class="menu-view-top__link menu-view-top__link--prev">
-                            <span class="menu-view-top__text">골든 프랄린 버터</span>
+
+						<c:if test="${not empty prevDTO}">
+							<a href="${pageContext.request.contextPath}/menu/view.do?seq=${prevDTO.products_id}" class="menu-view-top__link menu-view-top__link--prev">
+                            <span class="menu-view-top__text">${prevDTO.product_name}</span>
                         </a>
                         <div class="menu-view-top__content menu-view-top__content--left">
                             <!-- 관리자: 이전 컨텐츠 컬러값  -->
-                            <div class="menu-view-hero menu-view-hero--left" style="background-color: #F2C06E">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/a60ae4b0c3ef4628b2ca3adb0c3f5b6b.png" alt="골든 프랄린 버터" class="menu-view-hero__image">
+                            <div class="menu-view-hero menu-view-hero--left" style="background-color: ${prevDTO.bg_color}">
+                                <img src="${pageContext.request.contextPath}${prevDTO.img_path}" alt="${prevDTO.product_name}" class="menu-view-hero__image">
                             </div>
                         </div>
-                                                <a href="view565c.html?seq=803" class="menu-view-top__link menu-view-top__link--next">
-                            <span class="menu-view-top__text">말차다미아</span>
+						</c:if>
+
+                                            
+                        <c:if test="${not empty nextDTO}">
+                        	<a href="${pageContext.request.contextPath}/menu/view.do?seq=${nextDTO.products_id}" class="menu-view-top__link menu-view-top__link--next">
+                            <span class="menu-view-top__text">${nextDTO.product_name}</span>
                         </a>
                         <div class="menu-view-top__content menu-view-top__content--right">
                             <!-- 관리자: 이전 컨텐츠 컬러값  -->
-                            <div class="menu-view-hero menu-view-hero--right" style="background-color:#9ca759">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/product/main/196edabde017591708905ad0f489257e.png" alt="말차다미아" class="menu-view-hero__image">
+                            <div class="menu-view-hero menu-view-hero--right" style="background-color:${nextDTO.bg_color}">
+                                <img src="${pageContext.request.contextPath}${nextDTO.img_path}" alt="${nextDTO.product_name}" class="menu-view-hero__image">
                             </div>
                         </div>
+                        </c:if>
+                        
+                        
+                                                
                                         </div>
             </article>
 
             <div class="menu-view__container">
             
             
-            			<c:if test="${not empty dto.iceNutritionDTO}">
+            			
             				            <article class="menu-view-nutrition">
+            				            <c:if test="${not empty dto.iceNutritionDTO}">
                         <div class="menu-view-nutrition__container">
                             <h3 class="menu-view-nutrition__title">영양정보</h3>
 
@@ -153,10 +164,10 @@
                             </dl>
                         </div>
 
+            			</c:if>
                                             </article>
             				
             			
-            			</c:if>
                                         
                                         
                          <c:if test="${dto.poster_path!=''}">

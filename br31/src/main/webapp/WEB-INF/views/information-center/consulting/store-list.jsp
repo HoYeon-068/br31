@@ -136,7 +136,7 @@
                             <td><span>${vo.newStoreBoardId}</span></td>
                             <td>${vo.sido}</td>
                             <td>
-                                <a href="store-view.do?seq=${vo.newStoreBoardId}&currentPage=${pvo.currentPage}">${vo.marketArea}</a>
+                                <a href="store-view.do?seq=${vo.newStoreBoardId}&currentPage=${pvo.currentPage}&findword=${param.findword}">${vo.marketArea}</a>
                             </td>
                             <td>${vo.currentBusiness}</td>
                             <td>${vo.createdAt}</td>
@@ -215,7 +215,7 @@
     </a>
 </li> -->
 <li class='pagination__item pagination__item--icon pagination__item--next pagination__item--disabled'>
-    <a href='#' class='pagination__link'>
+    <a href='{pageContext.request.contextPath}' class='pagination__link'>
         <span class='pagination__name'>
             다음        </span>    </a></li></ul>
                 </div>

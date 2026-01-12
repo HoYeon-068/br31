@@ -2,9 +2,9 @@ package mvc.domain.inquiry;
 
 import java.util.Date;
 
-public class InquiryDTO {
+public class InquiryCreateDTO {
 
-    private long inquiryId;
+    private Long inquiryId;          // PK
     private String counselType;
     private String detailType;
     private String title;
@@ -14,14 +14,19 @@ public class InquiryDTO {
     private String phone;
     private String email;
     private String postPw;
-    private Date regDate;
+    private Date regDate;            // DB SYSDATE
     private String userId;
+
+    // ✅ store_name ❌
+    // ✅ store_id ⭕
     private Long storeId;
 
-    public long getInquiryId() {
+    /* ===== getter / setter ===== */
+
+    public Long getInquiryId() {
         return inquiryId;
     }
-    public void setInquiryId(long inquiryId) {
+    public void setInquiryId(Long inquiryId) {
         this.inquiryId = inquiryId;
     }
 

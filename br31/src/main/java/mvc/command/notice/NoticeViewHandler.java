@@ -19,6 +19,6 @@ public class NoticeViewHandler implements CommandHandler {
 
         request.setAttribute("dto", dto);
 
-        return "/views/information-center/notice/view.jsp";
+        return "/WEB-INF/views/information-center/notice/view.jsp";
     }
 }

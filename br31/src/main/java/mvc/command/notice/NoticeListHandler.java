@@ -36,7 +36,7 @@ public class NoticeListHandler implements CommandHandler {
 	    request.setAttribute("currentPage", currentPage);
 	    request.setAttribute("totalPage", totalPage);
 
-	    return "/views/information-center/notice/list.jsp";
+	    return "/WEB-INF/views/information-center/notice/list.jsp";
 	}
 
 }

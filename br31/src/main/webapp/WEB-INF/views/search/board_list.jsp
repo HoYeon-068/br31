@@ -86,34 +86,61 @@
     word-break: break-word;
     overflow-wrap: anywhere;
 }
+
         
     </style>
 </head>
 
 <body>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <div class="site-container">
 
 
-    <jsp:include page="/views/information-center/_customerMenu.jsp" />
+    <jsp:include page="/WEB-INF/views/information-center/_customerMenu.jsp" />
 
 <section id="content"
     class="board-list ${param.source eq 'press' ? 'press-list' : 'notice-list'}">
 
 
- <header class="page-header">
+<header class="page-header">
     <div class="page-header__container">
 
- <td class="board-list__table-title">
-    <a href="${dto.viewUrl}">
-        ${dto.title}
-    </a>
-</td>
+        <!-- 타이틀 영역 -->
+        <div class="page-header__content">
+            <h2 class="page-header__title">
+                <c:choose>
+                    <c:when test="${param.source eq 'press'}">
+                        보도자료
+                    </c:when>
+                    <c:otherwise>
+                        공지사항
+                    </c:otherwise>
+                </c:choose>
+            </h2>
+        </div>
+
+        <!-- 설명 문구 영역 -->
+        <div class="page-header__content">
+            <p class="page-header__text">
+                <c:choose>
+                    <c:when test="${param.source eq 'press'}">
+                        배스킨라빈스의 보도자료들을<br>
+                        모아 보여드립니다.
+                    </c:when>
+                    <c:otherwise>
+                        배스킨라빈스의 신제품 안내, 신규 CF 등<br>
+                        다양한 소식을 알려드립니다!
+                    </c:otherwise>
+                </c:choose>
+            </p>
+        </div>
 
     </div>
 </header>
+
+
 
 
         <!-- 검색 폼 -->
@@ -202,7 +229,7 @@
     </section>
 </div>
 
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 </body>
 </html>

@@ -202,7 +202,7 @@ body{
   display: flex;
   justify-content: center;
   margin-top: 22px;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 .joinbtn{
   width: 260px;
@@ -528,6 +528,23 @@ body{
   color: #e60023;   /* 빨간색 */
   font-weight: 500;
   line-height: 1.2;
+}
+
+/* 비밀번호 재발급 오류 */
+.errorMsg {
+	color : #e60023;
+	margin: 12px 0;
+    padding: 10px 12px;
+    font-size: 15px;
+	
+}
+
+/* 탈퇴 */
+.delete-link{
+  display: flex;
+  justify-content: center;
+  margin-top: 3px;
+  margin-bottom: 100px;
 }
 
 

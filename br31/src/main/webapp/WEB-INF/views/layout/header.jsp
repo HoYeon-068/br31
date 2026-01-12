@@ -171,29 +171,29 @@
 
                     
                     <li class="site-menu__item site-menu__item--hidden">
-                        <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-menu__link">Information Center</a>
+                        <a href="${pageContext.request.contextPath}/information-center/customer/list.do" class="site-menu__link">Information Center</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-menu-list__link">고객센터</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/customer/list.do" class="site-menu-list__link">고객센터</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/customer/ccm.html" class="site-menu-list__link">소비자중심경영(CCM)</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/customer/ccm.do" class="site-menu-list__link">소비자중심경영(CCM)</a>
                                         </li>
                                         <li class="site-menu-list__item">
                                             <a href="${pageContext.request.contextPath}/information-center/praise/list.html" class="site-menu-list__link">칭찬점포</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/notice/list.html" class="site-menu-list__link">공지사항</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/notice/list.do" class="site-menu-list__link">공지사항</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/press/list.html" class="site-menu-list__link">보도자료</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/press/list.do" class="site-menu-list__link">보도자료</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/fairtrade/list.html" class="site-menu-list__link">공정거래자율준수</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/fairtrade/list.do" class="site-menu-list__link">공정거래자율준수</a>
                                         </li>                                        
                                     </ul>
 
@@ -236,7 +236,7 @@
 		                            
 		
 			                            <li class="site-user-menu__item">
-			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
+			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.do" class="site-user-menu__link">CS CENTER</a>
 			                            </li>
 	                        		</c:when>
 	                        		<%--  로그아웃 상태--%>
@@ -250,7 +250,7 @@
 		                            
 		
 			                            <li class="site-user-menu__item">
-			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
+			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.do" class="site-user-menu__link">CS CENTER</a>
 			                            </li>
 	                        		
 	                        		</c:otherwise>

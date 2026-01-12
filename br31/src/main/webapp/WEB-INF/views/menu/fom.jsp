@@ -104,7 +104,7 @@
             <div class="page-header__container">
                 <div class="page-header__content">
                     <h2 class="page-header__title">
-                        <span class="page-header__number">11월</span>
+                        <span class="page-header__number">1월</span>
                         이달의 맛
                     </h2>
                 </div>

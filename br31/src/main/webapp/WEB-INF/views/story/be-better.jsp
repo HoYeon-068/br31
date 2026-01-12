@@ -32,10 +32,10 @@
 
 
 <style>
-/* ✅ 체크박스 모달 핵심 */
+/* 체크박스 모달 핵심 */
 .modal-toggle { display:none; }
 
-/* ✅ wrap: 화면 전체 + 중앙정렬 */
+/*wrap: 화면 전체 + 중앙정렬 */
 .modal-wrap{
   display:none;
   position:fixed;
@@ -53,14 +53,14 @@
   justify-content:center;
 }
 
-/* ✅ dim: 항상 화면 전체 덮기 */
+/* dim: 항상 화면 전체 덮기 */
 .modal-dim{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,0.5);
 }
 
-/* ✅ modal box: 중앙에 뜨는 본문 */
+/*  modal box: 중앙에 뜨는 본문 */
 .modal-box{
   position:relative;
   width:900px;
@@ -74,7 +74,7 @@
   margin:0;                /* 중앙정렬에서 margin 불필요 */
 }
 
-/* ✅ 닫기 버튼 */
+/* 닫기 버튼 */
 .modal-close{
   position:absolute;
   right:16px;
@@ -93,7 +93,7 @@
   z-index:10;
 }
 
-/* ✅ 다른 CSS에서 ::before/::after로 아이콘 붙이면 겹칠 수 있어서 제거 */
+/* 다른 CSS에서 ::before/::after로 아이콘 붙이면 겹칠 수 있어서 제거 */
 .modal-close::before,
 .modal-close::after{
   content:none !important;
@@ -228,14 +228,14 @@
 
 
 
-/* ✅ 카드 전체 구조 정렬 */
+/* 카드 전체 구조 정렬 */
 .story-be-better-list__wrapper{
   display:flex;
   gap:32px;                 /* 이미지-텍스트 간격 */
   align-items:center;
 }
 
-/* ✅ 왼쪽 이미지 영역: 크게 + 고정 */
+/* 왼쪽 이미지 영역: 크게 + 고정 */
 .story-be-better-list__frame{
   width:300px;              /* ⭐ 크기 핵심 (260~320 조절 가능) */
   height:300px;             /* ⭐ 모두 동일한 정사각형 */
@@ -245,7 +245,7 @@
   overflow:hidden;
 }
 
-/* ✅ 이미지 꽉 채우기 */
+/* 이미지 꽉 채우기 */
 .story-be-better-list__frame .story-be-better-list__image{
   width:100%;
   height:100%;

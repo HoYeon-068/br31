@@ -15,15 +15,17 @@ public class FaqListHandler implements CommandHandler {
         int blockSize = 5;
 
         int currentPage = 1;
-        int categoryId = 0; // 0=전체 기본
+        int categoryId = 0; // 0 = 전체
+
         String cat = request.getParameter("category");
         if (cat != null && !cat.isBlank()) {
             categoryId = Integer.parseInt(cat);
         }
 
-
         String pageParam = request.getParameter("page");
-        if (pageParam != null) currentPage = Integer.parseInt(pageParam);
+        if (pageParam != null && !pageParam.isBlank()) {
+            currentPage = Integer.parseInt(pageParam);
+        }
 
         int startRow = (currentPage - 1) * pageSize + 1;
         int endRow = currentPage * pageSize;
@@ -34,9 +36,23 @@ public class FaqListHandler implements CommandHandler {
         int totalCount = dao.getTotalCount(categoryId);
         int totalPage = (int) Math.ceil((double) totalCount / pageSize);
 
+        // ===== 블록 계산 =====
         int startPage = ((currentPage - 1) / blockSize) * blockSize + 1;
         int endPage = Math.min(startPage + blockSize - 1, totalPage);
 
+        // ===== 이전 / 다음 블록 페이지 =====
+        Integer prevBlockPage = null;
+        Integer nextBlockPage = null;
+
+        if (startPage > 1) {
+            prevBlockPage = startPage - blockSize; // 예: 6 → 1
+        }
+
+        if (startPage + blockSize <= totalPage) {
+            nextBlockPage = startPage + blockSize; // 예: 1 → 6
+        }
+
+        // ===== request =====
         request.setAttribute("list", list);
         request.setAttribute("totalCount", totalCount);
         request.setAttribute("currentPage", currentPage);
@@ -44,7 +60,9 @@ public class FaqListHandler implements CommandHandler {
         request.setAttribute("startPage", startPage);
         request.setAttribute("endPage", endPage);
         request.setAttribute("categoryId", categoryId);
+        request.setAttribute("prevBlockPage", prevBlockPage);
+        request.setAttribute("nextBlockPage", nextBlockPage);
 
-        return "/views/information-center/faq/list.jsp";
+        return "/WEB-INF/views/information-center/faq/list.jsp";
     }
 }

@@ -84,6 +84,9 @@
   </filter>
   <filter-mapping>
     <filter-name>loginCheckFilter</filter-name>
+    <url-pattern>/play/myflavor/register.do</url-pattern>
+    <url-pattern>/play/plaza/collabo.do</url-pattern>
+    <url-pattern>/play/plaza/new.do</url-pattern>
     <url-pattern>/changePwd.do</url-pattern>
     <url-pattern>/article/write.do</url-pattern>
     <url-pattern>/article/modify.do</url-pattern>
@@ -91,4 +94,5 @@
   </filter-mapping>
 	
 	
+
 </web-app>

@@ -53,17 +53,17 @@
                     <div class="main-hero-list__content">
                         <ul class="main-hero-list__list">
                                                         <li class="main-hero-list__item">
-                                                                    <a href="play/event/view800d.html?seq=428" target='_self' class="main-hero-list__link">
+                                                                    <a href="play/event/view.do?seq=7" target='_self' class="main-hero-list__link">
                                         <img src="${pageContext.request.contextPath}/resources/images/upload/main/banner/ea53de187a1a3330c7eec5679f63a637.png" alt="" class="main-hero-list__image">
                                     </a>
                                                             </li>
                                                             <li class="main-hero-list__item">
-                                                                    <a href="play/event/view360b.html?seq=427" target='_self' class="main-hero-list__link">
+                                                                    <a href="play/event/view.do?seq=8" target='_self' class="main-hero-list__link">
                                         <img src="${pageContext.request.contextPath}/resources/images/upload/main/banner/4b18bd067af44ccecf7809adb3aa1e4b.png" alt="" class="main-hero-list__image">
                                     </a>
                                                             </li>
                                                             <li class="main-hero-list__item">
-                                                                    <a href="play/event/viewe0b6.html?seq=438" target='_self' class="main-hero-list__link">
+                                                                    <a href="play/event/view.do?seq=10" target='_self' class="main-hero-list__link">
                                         <img src="${pageContext.request.contextPath}/resources/images/upload/main/banner/b384fc1868507ac1f19a6eee4926635e.png" alt="" class="main-hero-list__image">
                                     </a>
                                                             </li>
@@ -95,161 +95,39 @@
             <div class="main-promotion__container">
                 <div class="swiper">
                     <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                            <a href="play/event/viewe0b6.html?seq=438" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/7d9230dfb8da0d88e774f809cd8a341d.png" alt="" class="main-promotion__image">
-                                </div>
+                      <c:forEach items="${ plist }" var="dto">
+	                       <div class="swiper-slide">
+	                            <a href="play/event/view.do?seq=${dto.eventId}&category=${dto.evtCategoryId}" class="main-promotion__link">
+	                                <div class="main-promotion__frame">
+	                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/${dto.imgPath}" alt="${dto.title}" class="main-promotion__image">
+	                                </div>
+	
+	                                <div class="main-promotion__content">
+	                                    <p class="main-promotion__date">
+	                                    <c:choose>
+										    <c:when test="${empty dto.startDate and empty dto.endDate}">
+										      상시 운영
+										    </c:when>
+										
+										    <c:when test="${not empty dto.startDate and empty dto.endDate}">
+										      ${dto.startDate} ~ 소진 시 까지
+										    </c:when>
+										
+										    <c:otherwise>
+										      ${dto.startDate} ~ ${dto.endDate}
+										    </c:otherwise>
+										  </c:choose>
+	                                    </p>
+	
+	                                    <p class="main-promotion__text">
+	                                        ${ dto.title }
+	                                    </p>
+	                                </div>
+	                            </a>
+	                        </div>
+                      </c:forEach>
 
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-11-28 ~ 소진 시 까지</p>
-
-                                    <p class="main-promotion__text">
-                                        파인트&#40;9,800원&#41; 이상 구매 시, 르세라핌 미니 셀피 SET 900원                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/view7d49.html?seq=437" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/f04a5f9b4383cb1d4b56d8626d7bd62c.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-11-24 ~ 2025-11-30</p>
-
-                                    <p class="main-promotion__text">
-                                        11월 배라위크! 레디팩 2&#43;2                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/view8302.html?seq=436" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/b8a1c48b0e4a9e2e512301db4425286c.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-11-19 ~ 2025-12-16</p>
-
-                                    <p class="main-promotion__text">
-                                        크리스마스 아이스크림 케이크 사전예약 최대 30&#37; 혜택!                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/view800d.html?seq=428" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/6c37e0ec06855a59b42ab74aec30a9aa.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-11-01 ~ 2025-11-30</p>
-
-                                    <p class="main-promotion__text">
-                                        11월 이달의 더블주니어! 이달의 맛 선택 시, 500원 추가하면 싱글레귤러를 더블주니어로 더블업!                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/view360b.html?seq=427" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/a1298e563c4bbaf1ce543d933b79c3ba.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-11-01 ~ 2025-11-26</p>
-
-                                    <p class="main-promotion__text">
-                                        11월 이달의 맛, 인스타그램에 사진을 올려주세요!                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/view1148.html?seq=396" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/8c4602593cd42afb7a33e3351eeca9f6.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-08-14 ~ 소진 시 까지</p>
-
-                                    <p class="main-promotion__text">
-                                        쿼터 이상 구매 시, 스머프 랜덤 키링 2,900원!                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/view6919.html?seq=385" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/0e55f845f27237246e26c604c219e7b6.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-07-22 ~ 소진 시 까지</p>
-
-                                    <p class="main-promotion__text">
-                                        모구모구 블라스트 1종 구매 시, 모구모구 PET 음료 1개 증정                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/view2f98.html?seq=380" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/0b4516c5dd11234d7a74eabcb64dcb08.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-07-21 ~ 소진 시 까지</p>
-
-                                    <p class="main-promotion__text">
-                                        민생회복 소비쿠폰 사용 가능                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/viewb2b1.html?seq=342" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/e5546c5856ce3916f7dab4326579054a.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">2025-05-01 ~ 소진 시 까지</p>
-
-                                    <p class="main-promotion__text">
-                                        해피볼 티니핑 요정 프린세스 랜덤 피규어                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/view68db.html?seq=99" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/0143a84def93d9c70ed42612fb8af488.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">상시 운영</p>
-
-                                    <p class="main-promotion__text">
-                                        워크샵 by 배스킨라빈스 그랜드 오픈                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                            <div class="swiper-slide">
-                            <a href="play/event/viewd9d9.html?seq=2" class="main-promotion__link">
-                                <div class="main-promotion__frame">
-                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/388539cae1fd5d2f219392ad712b21ff.png" alt="" class="main-promotion__image">
-                                </div>
-
-                                <div class="main-promotion__content">
-                                    <p class="main-promotion__date">상시 운영</p>
-
-                                    <p class="main-promotion__text">
-                                        1회용 컵 사용 줄이기 안내                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                                        </div>
+                      </div>
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
@@ -525,12 +403,12 @@
             <div class="main-play__container">
                 <ul class="main-play__list">
                                         <li class="main-play__item">
-                        <a href="play/myflavor/list.html" class="main-play__link">
+                        <a href="play/myflavor/list.do" class="main-play__link">
                             <img src="${pageContext.request.contextPath}/resources/images/upload/main/brplay/38ec45e00b62db0f26e4ee90ce889841.png" alt="MY FLAVOR LIST" class="main-play__image">
                         </a>
                     </li>
                                         <li class="main-play__item">
-                        <a href="play/plaza/list.html" class="main-play__link">
+                        <a href="play/plaza/list.do" class="main-play__link">
                             <img src="${pageContext.request.contextPath}/resources/images/upload/main/brplay/99847b6c140916bfe27eceea5c2ed9dc.png" alt="배묻배답" class="main-play__image">
                         </a>
                     </li>
@@ -617,84 +495,18 @@
         <div class="main-br-benefit__container">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                        <a href="play/event/view2bda.html?seq=439" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/e2828ebba4cca1bff2bd859847dfb380.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view876b.html?seq=403" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/af2e446544c96f2537e0f55bb99ba35b.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view0d33.html?seq=9" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/872ac902cefee2ecab1774466e203c6c.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view59a5.html?seq=10" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/02de337a0b96ddbc1500461cccc6801c.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/viewff16.html?seq=122" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/37ca9bacd1069187ca9c50f64eda5e3f.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view15ca.html?seq=314" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/feefab979b65d3197e6671326820c63d.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view950b.html?seq=309" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/051904573a6faab9482caafffa2d6bfc.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view7dc5.html?seq=253" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/8cd1cd1a26445abb0ad98fad3171582f.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view01ea.html?seq=25" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/cd99fb2f46c76c61090adc4c446f29c0.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view4dac.html?seq=11" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/c9b25ee4553b2ecfc6da305bdc5de276.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                        <div class="swiper-slide">
-                        <a href="play/event/view5a16.html?seq=7" class="main-br-benefit__link">
-                            <div class="main-br-benefit__frame">
-                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/8e5747a04cbeb6c854716c824d19ec27.png" alt="" class="main-br-benefit__image">
-                            </div>
-                        </a>
-                    </div>
-                                    </div>
+                
+                  <c:forEach items="${ blist }" var="dto">
+	                   <div class="swiper-slide">
+	                        <a href="play/event/view.do?seq=${dto.eventId}&category=${dto.evtCategoryId}" class="main-br-benefit__link">
+	                            <div class="main-br-benefit__frame">
+	                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/${dto.imgPath}" alt="${dto.title}" class="main-br-benefit__image">
+	                            </div>
+	                        </a>
+	                    </div>
+                  </c:forEach>
+                  
+                </div>
             </div>
         </div>
     </section>

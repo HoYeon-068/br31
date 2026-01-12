@@ -12,57 +12,65 @@ import mvc.command.CommandHandler;
 import mvc.domain.myflavor.FlavorDTO;
 import mvc.domain.myflavor.MyFlavorCatalog;
 import mvc.domain.myflavor.MyFlavorResultDTO;
+import mvc.domain.user.UserDTO;
 
 public class RegisterHandler implements CommandHandler{
 
-	@Override
-	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		String requestMethode = request.getMethod();
-		
-		if (requestMethode.equals("GET")) {
-			System.out.println("> flavor.RegisterHandler....get()");
-			return "/WEB-INF/views/play/myflavor/register.jsp";
-		} else if (requestMethode.equals("POST")) {
-			request.setCharacterEncoding("UTF-8");
+    @Override
+    public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-	            String size = request.getParameter("size");
-	            String title = request.getParameter("title");
-	            String[] productSeq = request.getParameterValues("productSeq");
+        String requestMethode = request.getMethod();
 
-	            if (size == null || title == null || productSeq == null) {
-	            	response.sendRedirect(request.getContextPath() +
-	                        "/play/myflavor/register.do?error=Y");
-	                return null;
-	            }
+        if (requestMethode.equals("GET")) {
+            System.out.println("> flavor.RegisterHandler....get()");
+            return "/WEB-INF/views/play/myflavor/register.jsp";
 
-	            int seq = ThreadLocalRandom.current().nextInt(1000, 9999);
+        } else if (requestMethode.equals("POST")) {
+            request.setCharacterEncoding("UTF-8");
 
-	            List<FlavorDTO> flavors = new ArrayList<>();
-	            for (String id : productSeq) {
-	                FlavorDTO f = MyFlavorCatalog.find(id);
-	                if (f != null) flavors.add(f);
-	            }
+            HttpSession session = request.getSession(false);
+            UserDTO loginUser = (session == null) ? null : (UserDTO) session.getAttribute("loginUser");
+            if (loginUser == null) {
+                response.sendRedirect(request.getContextPath() + "/login/login.do");
+                return null;
+            }
+            String writerUserId = loginUser.getUser_id();
 
-	            MyFlavorResultDTO dto = new MyFlavorResultDTO(
-	                    seq,
-	                    size,
-	                    title,
-	                    null,
-	                    "hac****", // 나중에 로그인한 ID로 바꿔주기
-	                    flavors
-	            );
+            String size = request.getParameter("size");
+            String title = request.getParameter("title");
+            String[] productSeq = request.getParameterValues("productSeq");
 
-	            HttpSession session = request.getSession();
-	            session.setAttribute("MYFLAVOR_" + seq, dto);
+            if (size == null || title == null || productSeq == null) {
+                response.sendRedirect(request.getContextPath() +
+                        "/play/myflavor/register.do?error=Y");
+                return null;
+            }
 
-	            response.sendRedirect(request.getContextPath() +
-	                    "/play/myflavor/register-complete.do?seq=" + seq + "&register=Y");
-	            return null;
-		}
-		
-		
-		return null;
-	}
+            int seq = ThreadLocalRandom.current().nextInt(1000, 9999);
 
+            List<FlavorDTO> flavors = new ArrayList<>();
+            for (String id : productSeq) {
+                FlavorDTO f = MyFlavorCatalog.find(id);
+                if (f != null) flavors.add(f);
+            }
+
+            MyFlavorResultDTO dto = new MyFlavorResultDTO(
+                    seq,
+                    size,
+                    title,
+                    null,
+                    writerUserId,
+                    flavors
+            );
+
+ 
+            session.setAttribute("MYFLAVOR_" + seq, dto);
+
+            response.sendRedirect(request.getContextPath() +
+                    "/play/myflavor/register-complete.do?seq=" + seq + "&register=Y");
+            return null;
+        }
+
+        return null;
+    }
 }

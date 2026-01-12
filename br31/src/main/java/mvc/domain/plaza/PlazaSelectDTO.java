@@ -15,6 +15,9 @@ public class PlazaSelectDTO {
 	private String content; // 내용
 	private String userId; // 회원ID
 	private int plazaCategoryId; // 카테고리ID
+	private int status; // 상태
+	
+	private boolean liked; // 좋아요
 }
 
 

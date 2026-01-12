@@ -16,4 +16,7 @@ public class PlazaViewDTO {
 	private String content;
 	private int isAuthorPublics;
 	private int plazaCategoryId;
+	private int status;
+	
+	private boolean liked; // 좋아요
 }

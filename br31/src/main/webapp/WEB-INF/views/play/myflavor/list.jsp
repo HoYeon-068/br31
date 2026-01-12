@@ -27,8 +27,11 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendors.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
-    <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+
+    
+<script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+
 
 
 </head>

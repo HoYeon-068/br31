@@ -99,9 +99,9 @@ public class UserDAOImpl implements UserDAO {
 	// 로그인
 	@Override
 	public UserDTO selectByIdAndPwd(String userId, String pwd) throws SQLException {
-		String sql = " SELECT \"user_id\", \"password\", \"name\", \"email\" "
-					+ " FROM \"user\" "
-					+ " WHERE \"user_id\" = ? AND \"password\" = ? ";
+		String sql = " SELECT \"user_id\", \"password\", \"name\", \"email\", \"phone_no\" "
+		           + " FROM \"user\" "
+		           + " WHERE \"user_id\" = ? AND \"password\" = ? ";
 		
 		String user_id, password, name, email;
 		
@@ -118,6 +118,7 @@ public class UserDAOImpl implements UserDAO {
 				loginUser.setUser_id(rs.getString("user_id"));
 				loginUser.setName(rs.getString("name"));
 				loginUser.setEmail(rs.getString("email"));
+				loginUser.setPhone_no(rs.getString("phone_no"));
 			}
 			
 		}finally {

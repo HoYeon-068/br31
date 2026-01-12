@@ -85,8 +85,7 @@
             <div class="plaza-collabo__container">
                 <div class="plaza-collabo__content">
 
-                    <!-- ✅ 주말 룰: action은 일단 jsp로만 치환 -->
-                    <form action="new-collabo-register-proc.jsp"
+                    <form action="${pageContext.request.contextPath}/play/plaza/collabo.do"
                           class="plaza-form form"
                           method="post"
                           enctype="multipart/form-data">
@@ -187,15 +186,15 @@
                                     <dl class="plaza-form-field__content plaza-form-field__content--left">
                                         <div class="plaza-form-field__item">
                                             <dt class="plaza-form-field__name form__name">이름</dt>
-                                            <dd class="plaza-form-field__area user-name">최현아</dd>
+                                            <dd class="plaza-form-field__area user-name">${sessionScope.loginUser.name}</dd>
                                         </div>
                                         <div class="plaza-form-field__item">
                                             <dt class="plaza-form-field__name form__name">이메일</dt>
-                                            <dd class="plaza-form-field__area user-email">hac0627@naver.com</dd>
+                                            <dd class="plaza-form-field__area user-email">${sessionScope.loginUser.email}</dd>
                                         </div>
                                         <div class="plaza-form-field__item">
                                             <dt class="plaza-form-field__name form__name">연락처</dt>
-                                            <dd class="plaza-form-field__area user-tel">01086143009</dd>
+                                            <dd class="plaza-form-field__area user-tel">${sessionScope.loginUser.phone_no}</dd>
                                         </div>
                                         <div class="plaza-form-field__item">
                                             <dt class="plaza-form-field__name form__name">회사명 공개</dt>

@@ -69,4 +69,26 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
+	
+	
+	
+	<filter>
+    <description>보안(인증+인가) 필터</description>
+    <filter-name>loginCheckFilter</filter-name>
+    <filter-class>com.filter.LoginCheckFilter</filter-class>
+    <init-param>
+      <description>인코딩 초기값</description>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginCheckFilter</filter-name>
+    <url-pattern>/play/myflavor/register.do</url-pattern>
+    <url-pattern>/play/plaza/collabo.do</url-pattern>
+    <url-pattern>/play/plaza/new.do</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+  
 </web-app>

@@ -216,7 +216,7 @@
                         </div>
                         <div class="plaza-form-field__item">
                           <dt class="plaza-form-field__name form__name">연락처</dt>
-                          <dd class="plaza-form-field__area">${sessionScope.loginUser.phoneNo}</dd>
+                          <dd class="plaza-form-field__area">${sessionScope.loginUser.phone_no}</dd>
                         </div>
                         <div class="plaza-form-field__item">
                           <dt class="plaza-form-field__name form__name">이메일</dt>

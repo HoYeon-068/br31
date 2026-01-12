@@ -199,7 +199,9 @@
 
                                     <div class="plaza-list-list__container">
                                         <div class="plaza-list-like">
-                                            <button type="button" class="plaza-list-like__button" data-seq="${p.plazaId}">
+                                            <button type="button"
+											        class="plaza-list-like__button ${p.liked ? 'plaza-list-like__button--active' : ''}"
+											        data-seq="${p.plazaId}">
                                                 <span class="plaza-list-like__text">추천</span>
                                             </button>
                                         </div>
@@ -223,6 +225,50 @@
 
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
+<script>
+  const contextPath = '${pageContext.request.contextPath}';
+
+  document.addEventListener('click', async (e) => {
+    const listBtn = e.target.closest('.plaza-list-like__button');
+    const viewBtn = e.target.closest('.plaza-view-control__like');
+    const btn = listBtn || viewBtn;
+    if (!btn) return;
+
+    const seq = btn.dataset.seq;
+    if (!seq) return;
+
+    try {
+      const url = contextPath + '/play/plaza/like.do';
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        body: 'seq=' + encodeURIComponent(seq)
+      });
+
+      const data = await res.json();
+
+      if (data.needLogin) {
+        alert('로그인 후 참여해주세요.');
+        location.href = contextPath + '/login/login.do';
+        return;
+      }
+
+      if (!data.success) return;
+
+      if (listBtn) {
+        btn.classList.toggle('plaza-list-like__button--active', data.liked);
+      }
+      if (viewBtn) {
+        btn.classList.toggle('plaza-view-control__like--active', data.liked);
+      }
+    } catch (err) {
+      console.log(err);
+      alert('통신 중 오류가 발생했습니다.');
+    }
+  });
+</script>
+
 
 </body>
 </html>

@@ -264,11 +264,7 @@ public class MyFlavorImageHandler implements CommandHandler {
         g.drawString(text, centerX - (w / 2), baselineY);
     }
 
-    /**
-     * ✅ maxLines 줄까지 "가운데 정렬"로 텍스트를 그린다.
-     * - 한국어(공백 없는 경우) 대응: 문자 단위로 줄바꿈
-     * - 마지막 줄은 말줄임(...) 처리
-     */
+
     private static void drawCenteredTextMaxLines(Graphics2D g, String text, int centerX, int baselineY, int maxWidth, int maxLines) {
         if (text == null) text = "";
         FontMetrics fm = g.getFontMetrics();

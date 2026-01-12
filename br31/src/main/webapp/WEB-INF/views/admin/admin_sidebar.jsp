@@ -33,5 +33,13 @@
     <li class="nav-item mb-2">
       <a class="nav-link text-white" href="/admin/inquiry/list.do">1:1 문의 관리</a>
     </li>
+    
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/consulting/list.do">점포 개설 문의 관리</a>
+    </li>
+    
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/plaza/list.do">BR광장 게시글 관리</a>
+    </li>
   </ul>
 </nav>

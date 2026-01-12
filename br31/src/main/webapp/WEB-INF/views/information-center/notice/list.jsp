@@ -78,13 +78,13 @@
 
 <body>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 
 
 <div class="site-container">
 
-<jsp:include page="/views/information-center/_customerMenu.jsp" />
+<jsp:include page="/WEB-INF/views/information-center/_customerMenu.jsp" />
 
 
     <section id="content" class="notice-list board-list">
@@ -143,7 +143,7 @@
            							${dto.NOTICE_NO}
         				</td>
         				<td class="board-list__table-title">
-            			<a href="${pageContext.request.contextPath}/notice/view.do?NOTICE_ID=${dto.NOTICE_ID}">
+            			<a href="${pageContext.request.contextPath}/notice/view.do?id=${dto.NOTICE_ID}">
     ${dto.TITLE}
 </a>
 
@@ -208,7 +208,7 @@
     </section>
 </div>
 
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 <script>
 function submitNoticeSearch(form) {

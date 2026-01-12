@@ -13,42 +13,8 @@
     <script src="${pageContext.request.contextPath}/resources/js/vendors.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 
-    <!-- 검색 페이지 전용 CSS (공통 파일 미수정) -->
+    
   <style>
-/* ===== 카테고리 탭 (원본처럼) ===== */
-.search-category {
-    display: flex;
-    gap: 6px;
-    margin: 30px 0 40px;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.search-category .category-btn {
-    padding: 12px 22px;
-    border: 1px solid #e5e5e5;
-    border-bottom: none;
-    border-radius: 12px 12px 0 0;
-    background: #f9f9f9;
-    font-size: 14px;
-    color: #999;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 90px;
-}
-
-.search-category .category-btn:hover {
-    color: #333;
-}
-
-/* 선택된 탭 */
-.search-category .category-btn.active {
-    background: #fff;
-    color: #000;
-    font-weight: 600;
-}
-
 /* ===== 검색 결과 그리드 ===== */
 .search-product-list {
     display: grid;
@@ -56,35 +22,108 @@
     gap: 30px;
 }
 
-/* 카드 전체 높이 통일 */
-.search-product-item {
-    text-align: center;
+.menu-list__item{
+    display: block;
 }
 
-.search-product-thumb {
+
+/* ===== 카드 링크 (hover 기준) ===== */
+.menu-list__link {
     position: relative;
-    width: 100%;
     height: 220px;
-    overflow: hidden;   /* 🔴 다시 hidden으로 */
 }
 
-.search-product-thumb img {
+
+/* hover 시 배경색 변경 */
+.menu-list__link:hover {
+    background: var(--menu-list-color);
+}
+
+/* ===== 해시태그 ===== */
+.menu-list__hash {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    right: 0;
+
+    margin: 0 auto;
+    width: 160px;
+
+    text-align: center;
+
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+
+    word-break: keep-all;
+    white-space: normal;
+
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+
+
+/* hover 시 해시태그 표시 */
+.menu-list__link:hover .menu-list__hash {
+    opacity: 1;
+}
+
+/* ===== 상품 이미지 ===== */
+.menu-list__image {
     position: absolute;
     left: 50%;
-    bottom: -30px;      /* 🔴 핵심: -100% ❌ */
+    bottom: -20px;   /* 기존 -30px → 완화 */
     transform: translateX(-50%);
     max-width: 85%;
-    height: auto;
 }
 
 
-/* 상품명 여백 조정 */
-.search-product-name {
-    margin-top: 14px;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.4;
+/* hover 시 이미지 내려오기 */
+.menu-list__link:hover .menu-list__image {
+    transform: translateX(-50%) translateY(40px);
 }
+
+
+
+.menu-list__title{
+    display: block !important;
+    min-width: 100%;
+    box-sizing: border-box;
+
+    margin-top: 20px;
+    padding: 0 20px;
+
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #999;
+    text-align: center;
+    font-family: var(--font-family-ko);
+
+    height: 3.2em;
+    overflow: hidden;
+
+    white-space: normal;
+    word-break: keep-all;
+}
+
+/* grid 아이템을 '늘려서(stretch)' 쓰게 강제 */
+.search-product-list { justify-items: stretch; }
+
+/* grid item(li) 자체 폭을 칸 전체로 강제 */
+.search-product-list > .menu-list__item { width: 100%; min-width: 0; }
+
+/* 제목도 칸 전체 폭으로 강제 (최우선 적용) */
+.search-product-list > .menu-list__item > .menu-list__title {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+
+
 
 </style>
 
@@ -92,7 +131,7 @@
 
 <body id="baskinrobbins-search" class="baskinrobbins-search">
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <div class="site-container">
 
@@ -202,44 +241,57 @@
 
         
 
-        <!-- 검색 결과 -->
-        <article class="search__content">
+   <!-- 검색 결과 -->
+<article class="search__content">
 
-            <c:choose>
-                <c:when test="${not empty list}">
-                    <ul class="search-product-list">
+    <c:choose>
+        <c:when test="${not empty list}">
+            <ul class="search-product-list">
 
-                        <c:forEach var="dto" items="${list}">
-                            <li class="search-product-item">
-                                <div class="search-product-thumb">
-                                    <img src="${pageContext.request.contextPath}${dto.imgPath}"
-     onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/no-image.png';"
-     alt="${dto.productName}">
-                                </div>
-                                <p class="search-product-name">
-                                    ${dto.productName}
-                                </p>
-                            </li>
-                        </c:forEach>
+                <c:forEach var="dto" items="${list}">
+                    <li class="menu-list__item"
+                        style="--menu-list-color: ${dto.bgColor};">
 
-                    </ul>
-                </c:when>
+                        <a href="${pageContext.request.contextPath}/menu/view.do?seq=${dto.productsId}"
+                           class="menu-list__link">
 
-                <c:otherwise>
-                    <div style="padding:40px; text-align:center;">
-                        검색 결과가 없습니다.
-                    </div>
-                </c:otherwise>
-            </c:choose>
+                            <span class="menu-list__hash">
+                                ${dto.tags}
+                            </span>
 
-        </article>
+                            <img src="${pageContext.request.contextPath}${dto.imgPath}"
+                                 alt="${dto.productName}"
+                                 class="menu-list__image"
+                                 onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/no-image.png';">
+
+                        </a>
+
+                        <strong class="menu-list__title">
+                            ${dto.productName}
+                        </strong>
+
+                    </li>
+                </c:forEach>
+
+            </ul>
+        </c:when>
+
+        <c:otherwise>
+            <div style="padding:40px; text-align:center;">
+                검색 결과가 없습니다.
+            </div>
+        </c:otherwise>
+    </c:choose>
+
+</article>
+
 
     </div>
 </section>
 
 </div>
 
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 </body>
 </html>

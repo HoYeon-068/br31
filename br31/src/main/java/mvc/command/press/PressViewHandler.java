@@ -19,6 +19,6 @@ public class PressViewHandler implements CommandHandler {
 
         request.setAttribute("dto", dto);
 
-        return "/views/information-center/press/view.jsp";
+        return "/WEB-INF/views/information-center/press/view.jsp";
     }
 }

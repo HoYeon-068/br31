@@ -27,6 +27,6 @@ public class FairTradeViewHandler implements CommandHandler {
 
         // 나머지는 일반 게시글
         request.setAttribute("dto", dto);
-        return "/views/information-center/fairtrade/view.jsp";
+        return "/WEB-INF/views/information-center/fairtrade/view.jsp";
     }
 }

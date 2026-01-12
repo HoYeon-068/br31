@@ -34,7 +34,7 @@ Connection conn = ConnectionProvider.getConnection();
 			conn.close();
 		}
 		
-		return "/views/story/story.jsp";
+		return "/WEB-INF/views/story/story.jsp";
 	}
 	
 }

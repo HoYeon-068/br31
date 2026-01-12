@@ -42,7 +42,7 @@
 
 <body>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
   <div class="page-title">
 	  <div class="title">비밀번호 재발급</div>
@@ -67,6 +67,9 @@
       <input type="text" name="phone_no" placeholder="휴대폰 번호를 입력해 주세요" />
     </div>
 
+	<c:if test="${not empty message}">
+	  <div class="errorMsg">${message}</div>
+	</c:if>    
 
     <button type="submit" class="check-btn">확인</button>
   </form>
@@ -74,7 +77,7 @@
   
   </div>
   
-  <jsp:include page="/views/layout/footer.jsp" />
+  <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
   
   
   </body>

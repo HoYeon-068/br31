@@ -55,7 +55,7 @@
 
 <div class="skipnav"><a href="#content">본문 영역으로 바로가기</a></div>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <div class="site-container">
     <nav class="page-menu">
@@ -175,7 +175,7 @@
     </section>
 </div>
 
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 
 <img src="https://t.co/1/i/adsct?bci=4&amp;dv=Etc%2FGMT-9%26ko-KR%2Cko%2Cen-US%2Cen%26Google%20Inc.%26Win32%26255%261920%261080%2624%2624%261920%261032%260%26na&amp;eci=3&amp;event=%7B%7D&amp;event_id=bad8a9ae-7b7a-4a20-a34a-0ba15a4df430&amp;integration=advertiser&amp;p_id=Twitter&amp;p_user_id=0&amp;pl_id=1daf11a8-c4d4-4813-a59f-3febb576d5b0&amp;pt=%EB%B0%B0%EC%8A%A4%ED%82%A8%EB%9D%BC%EB%B9%88%EC%8A%A4&amp;tw_document_href=https%3A%2F%2Fwww.baskinrobbins.co.kr%2Fstory%2Fstory.php&amp;tw_iframe_status=0&amp;txn_id=ogfh2&amp;type=javascript&amp;version=2.3.35" height="1" width="1" style="display: none;"><img src="https://analytics.twitter.com/1/i/adsct?bci=4&amp;dv=Etc%2FGMT-9%26ko-KR%2Cko%2Cen-US%2Cen%26Google%20Inc.%26Win32%26255%261920%261080%2624%2624%261920%261032%260%26na&amp;eci=3&amp;event=%7B%7D&amp;event_id=bad8a9ae-7b7a-4a20-a34a-0ba15a4df430&amp;integration=advertiser&amp;p_id=Twitter&amp;p_user_id=0&amp;pl_id=1daf11a8-c4d4-4813-a59f-3febb576d5b0&amp;pt=%EB%B0%B0%EC%8A%A4%ED%82%A8%EB%9D%BC%EB%B9%88%EC%8A%A4&amp;tw_document_href=https%3A%2F%2Fwww.baskinrobbins.co.kr%2Fstory%2Fstory.php&amp;tw_iframe_status=0&amp;txn_id=ogfh2&amp;type=javascript&amp;version=2.3.35" height="1" width="1" style="display: none;"></body></html>

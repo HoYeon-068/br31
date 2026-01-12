@@ -34,7 +34,7 @@
 </head>
 
 <body>
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <div class="site-menu" style="display:none;"></div>
 <div class="site-footer-menu" style="display:none;"></div>
 
@@ -59,10 +59,10 @@
   <input type="hidden" id="originEmail"    value="${loginUser.email}" />
   <input type="hidden" id="originPhone"    value="${loginUser.phone_no}" />
 
-  <!-- (안전장치) 서버에서 profile_img_path를 기대하는 경우 대비 -->
+  <!-- 서버에서 profile_img_path를 기대하는 경우 대비 -->
   <input type="hidden" id="profile_img_path" name="profile_img_path" value="${loginUser.profile_img_path}" />
 
-  <!-- ================== 프로필 이미지 ================== -->
+  <!-- 프로필 이미지 -->
   <div class="profile-line">
 
     <!-- 현재 프로필 썸네일(미리보기 대상) -->
@@ -103,7 +103,7 @@
     </div>
   </div>
 
-  <!-- ================== 아이디 ================== -->
+  <!-- 아이디 -->
   <div class="row">
     <div class="lab">아이디</div>
     <div class="ctrl">
@@ -111,7 +111,7 @@
       <input type="hidden" name="user_id" value="${loginUser.user_id}">
     </div>
   </div>
-<!-- ================== 비밀번호 ================== -->
+<!-- 비밀번호 -->
   <div class="row">
     <div class="lab">비밀번호</div>
     <div class="ctrl">
@@ -126,7 +126,7 @@
     </div>
   </div>
 
-	<!-- ================== 이름 ================== -->
+	<!-- 이름 -->
   <div class="row">
     <div class="lab">이름</div>
     <div class="ctrl">
@@ -135,7 +135,7 @@
     </div>
   </div>
 
-  <!-- ================== 닉네임 ================== -->
+  <!-- 닉네임 -->
   <div class="row">
     <div class="lab">닉네임</div>
     <div class="ctrl">
@@ -146,11 +146,10 @@
     </div>
   </div>
 
-  <!-- ================== 이메일 ================== -->
+  <!-- 이메일 -->
   <div class="row">
     <div class="lab">이메일</div>
     <div class="ctrl email">
-      <!-- 간단히 전체 이메일을 분해하지 않고, 사용자가 다시 선택하도록 두고 싶으면 value는 비워도 됨 -->
       <c:set var="emailFull" value="${loginUser.email}" />
       <c:set var="emailId" value="${fn:split(emailFull,'@')[0]}" />
       <c:set var="emailDomain" value="${fn:split(emailFull,'@')[1]}" />
@@ -170,7 +169,7 @@
     </div>
   </div>
 
-  <!-- ================== 휴대폰 ================== -->
+  <!-- 휴대폰 -->
   <div class="row phone-row">
     <div class="lab">휴대폰</div>
 
@@ -197,6 +196,10 @@
   <div class="cta">
     <button type="submit" class="joinbtn">저장</button>
   </div>
+  
+  <div class="delete-link">
+  	<a href="${pageContext.request.contextPath}/mypage/withdraw.do">탈퇴하기</a>
+  </div>
 
 </form>
 
@@ -221,9 +224,9 @@
 
 
 
-  /* =========================
-     2) 프로필 A/B 선택 미리보기
-  ========================= */
+  /* 
+      프로필 A/B 선택 미리보기
+  */
   document.addEventListener("DOMContentLoaded", () => {
     const thumb = document.getElementById("profileThumb");
     const radios = document.querySelectorAll('input[name="profile_img"]');
@@ -237,10 +240,10 @@
     });
   });
 
-  /* =========================
-     3) 닉네임 중복확인
+  /*
+     닉네임 중복확인
      - 서버가 {"count":0/1} 반환
-  ========================= */
+  */
   document.getElementById("btnNickCheck")?.addEventListener("click", async () => {
     const nick = document.getElementById("nickname").value.trim();
     if(!nick){
@@ -270,9 +273,9 @@
     setChecked("nicknameChecked", false);
   });
 
-  /* =========================
+  /*
      4) 이메일 중복확인
-  ========================= */
+   */
   document.getElementById("btnEmailCheck")?.addEventListener("click", async () => {
     const id = document.getElementById("email_id").value.trim();
     const domain = document.getElementById("email_domain").value.trim();
@@ -310,9 +313,9 @@
     setChecked("emailChecked", false);
   });
 
-  /* =========================
+  /* 
      5) 휴대폰 인증(발송/확인)
-  ========================= */
+  */
   document.getElementById("btnPhoneSend")?.addEventListener("click", async () => {
     const phone = document.getElementById("phone_no").value.trim();
     if(!phone){

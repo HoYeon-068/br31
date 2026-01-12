@@ -7,15 +7,26 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mvc.command.CommandHandler;
+import mvc.service.user.UserService;
 
 public class PhoneSendCodeHandler implements CommandHandler {
 
+	private UserService userService = new UserService();
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String phone = request.getParameter("phone_no");
+        
 
         // 6자리 코드 생성
         String code = String.format("%06d", new Random().nextInt(1000000));
+        
+        if (userService.isPhoneTaken(phone)) {
+            response.setContentType("text/plain; charset=UTF-8");
+            response.getWriter().print("DUPLICATE");
+            return null;
+        }
+
+        
 
         HttpSession session = request.getSession();
         session.setAttribute("PHONE_AUTH_PHONE", phone);

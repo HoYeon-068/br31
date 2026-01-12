@@ -34,7 +34,7 @@ public class CampaignInfoHandler implements CommandHandler {
 	            request.setAttribute("campaignList", campaignList);
 	            request.setAttribute("infoAll", infoAll);
 
-	            return "/views/story/be-better.jsp";
+	            return "/WEB-INF/views/story/be-better.jsp";
 
 	        } finally {
 	            if (conn != null) conn.close();

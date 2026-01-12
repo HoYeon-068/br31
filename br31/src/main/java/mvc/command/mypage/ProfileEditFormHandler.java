@@ -22,7 +22,7 @@ public class ProfileEditFormHandler implements CommandHandler {
 	            return null;
 	        }
 
-	        request.setAttribute("loginUser", loginUser);  // ✅ 이거 꼭!
-	        return "/views/mypage/profileEdit.jsp";
+	        request.setAttribute("loginUser", loginUser);  
+	        return "/WEB-INF/views/mypage/profileEdit.jsp";
 	    }
 }

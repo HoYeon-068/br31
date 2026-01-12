@@ -15,6 +15,12 @@ public class FindIdEmailHandler implements CommandHandler {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+    	if (request.getMethod().equalsIgnoreCase("GET")) {
+    	    return "/WEB-INF/views/login/findId.jsp";
+    	}
+    	
+    	
+    	
         String name = request.getParameter("name");
         String email = request.getParameter("email");
 
@@ -25,10 +31,10 @@ public class FindIdEmailHandler implements CommandHandler {
         	UserDTO user = userService.getUserById(userId);
             request.setAttribute("name", user.getName());
             request.setAttribute("foundUserId", userId);
-            return "/views/login/findIdResult.jsp";
+            return "/WEB-INF/views/login/findIdResult.jsp";
         }
-
-        request.setAttribute("message", "일치하는 회원 정보가 없습니다.");
-        return "/views/login/findId.jsp";
+        request.setAttribute("activeTab", "email");
+        request.setAttribute("eMessage", "일치하는 회원 정보가 없습니다.");
+        return "/WEB-INF/views/login/findId.jsp";
     }
 }

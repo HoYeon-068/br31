@@ -14,7 +14,7 @@ public class LogoutHandler implements CommandHandler{
 	      if (session != null) {
 	         session.invalidate();
 	      }
-	      response.sendRedirect(request.getContextPath() + "/story/history.do");
+	      response.sendRedirect(request.getContextPath() + "/index.do");
 	      return null;
 	}
 

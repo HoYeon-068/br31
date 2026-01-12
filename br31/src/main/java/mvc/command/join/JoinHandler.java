@@ -18,7 +18,7 @@ public class JoinHandler implements CommandHandler {
 
     	// GET이면 가입 폼
         if (request.getMethod().equalsIgnoreCase("GET")) {
-            return "/views/join/join.jsp";
+            return "/WEB-INF/views/join/join.jsp";
         }
 
         // POST면 가입 처리
@@ -30,6 +30,8 @@ public class JoinHandler implements CommandHandler {
         String nickname = request.getParameter("nickname");
         String phoneNo = request.getParameter("phone_no");
 
+        
+        
         // 이메일 합치기
         String emailId = request.getParameter("email_id");
         String emailDomain = request.getParameter("email_domain");
@@ -69,6 +71,10 @@ public class JoinHandler implements CommandHandler {
         user.setEmail(email);
         user.setGender(gender);
         user.setBirth(birth);
+        
+        
+        phoneNo = phoneNo == null ? null : phoneNo.replaceAll("[^0-9]", "");
+        user.setPhone_no(phoneNo);
 
         // 약관 ids 받기 (체크박스 name="terms_ids")
         String[] arr = request.getParameterValues("terms_ids");
@@ -81,15 +87,15 @@ public class JoinHandler implements CommandHandler {
             }
         }
 
-        // 서비스 호출 (한 번만!)
+        // 서비스 호출
         int result = userService.join(user, termsIds);
 
         if (result == 1) {
         	request.setAttribute("name", user.getName());
-        	return "/views/join/joinComplete.jsp";
+        	return "/WEB-INF/views/join/joinComplete.jsp";
         }
 
-        request.setAttribute("message", "회원가입에 실패했습니다. (중복이거나 DB 오류)");
-        return "/views/join/join.jsp";
+        request.setAttribute("message", "회원가입에 실패했습니다.");
+        return "/WEB-INF/views/join/join.jsp";
     }
 }

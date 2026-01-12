@@ -17,16 +17,19 @@ public class LoginHandler implements CommandHandler {
 
         if (request.getMethod().equalsIgnoreCase("GET")) {
             String referer = request.getHeader("Referer");
+            System.out.println("[LOGIN GET] referer = " + referer);
 
             // 로그인/회원가입 페이지 referer면 제외
             if (referer != null &&
-                !referer.contains("/login/login.do") &&
-                !referer.contains("/join")) {
-                request.setAttribute("redirectUrl", referer);
+                !referer.contains( request.getContextPath()+"/login/") &&
+                !referer.contains( request.getContextPath()+ "/join")) {
+            	
+            	request.setAttribute("redirectUrl", referer);
             }
-
-            return "/views/login/login.jsp";
+            return "/WEB-INF/views/login/login.jsp";
         }
+        
+
 
         request.setCharacterEncoding("UTF-8");
 
@@ -34,13 +37,16 @@ public class LoginHandler implements CommandHandler {
         String password = request.getParameter("password");
         String redirectUrl = request.getParameter("redirectUrl");
 
+        System.out.println("[LOGIN POST] redirectUrl(param) = " + redirectUrl);
+        System.out.println("[LOGIN POST] contextPath = " + request.getContextPath());
+
         UserDTO loginUser = userService.login(userId, password);
 
         if (loginUser == null) {
             request.setAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
             request.setAttribute("redirectUrl", redirectUrl); // hidden 유지
             request.setAttribute("userId", userId);           // 아이디 유지(선택)
-            return "/views/login/login.jsp"; // forward
+            return "/WEB-INF/views/login/login.jsp"; // forward
         }
 
         // 로그인 성공
@@ -48,8 +54,11 @@ public class LoginHandler implements CommandHandler {
         session.setAttribute("loginUser", loginUser);
 
         // redirectUrl 없으면 기본 이동
-        if (redirectUrl == null || redirectUrl.isBlank()) {
-            response.sendRedirect(request.getContextPath() + "/story/history.do");
+        if (redirectUrl == null || redirectUrl.isBlank() 
+        		|| "/".equals(redirectUrl)
+                || request.getContextPath().equals(redirectUrl)
+                || (request.getContextPath() + "/").equals(redirectUrl)) {
+            response.sendRedirect(request.getContextPath() + "/index.do");
             return null;
         }
 

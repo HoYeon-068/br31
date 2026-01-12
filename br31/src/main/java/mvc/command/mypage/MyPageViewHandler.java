@@ -16,7 +16,7 @@ public class MyPageViewHandler implements CommandHandler{
 		UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
 		request.setAttribute("loginUser", loginUser);
 		
-		return "/views/mypage/mypage.jsp";
+		return "/WEB-INF/views/mypage/mypage.jsp";
 	}
 
 }

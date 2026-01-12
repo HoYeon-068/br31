@@ -39,21 +39,20 @@
 
 <body>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
   <div class="page-title">
 	  <div class="title">아이디 찾기</div>
   </div>
   
     <div class="find-tabs">
-    <!--  data-사용자 지정="" ->jquery에서 data("사용자 지정")으로 사용 가능  -->
-    <button type="button" class="tab-btn active" data-target="phoneForm">휴대폰 번호로 찾기</button>
-    <button type="button" class="tab-btn" data-target="emailForm">이메일로 찾기</button>
+    <button type="button" class="tab-btn ${empty activeTab || activeTab == 'phone' ? 'active' : ''}" data-target="phoneForm">휴대폰 번호로 찾기</button>
+    <button type="button" class="tab-btn ${activeTab == 'email' ? 'active' : ''}" data-target="emailForm">이메일로 찾기</button>
   </div>
 
   <div class="fi-form">
   <!-- 휴대폰번호로 찾기 -->
-  <form id="phoneForm" class="find-form" method="post" action="${pageContext.request.contextPath}/login/findIdPhone.do">
+  <form id="phoneForm" class="find-form ${activeTab == 'email' ? 'hidden' : ''}" method="post" action="${pageContext.request.contextPath}/login/findIdPhone.do">
     <div class="field">
       <label class="lab">이름</label>
       <input type="text" name="name" placeholder="이름을 입력해 주세요" />
@@ -64,12 +63,15 @@
       <input type="text" name="phone_no" placeholder="휴대폰 번호를 입력해 주세요" />
     </div>
 
+	<c:if test="${not empty pMessage}">
+	  <div class="errorMsg">${pMessage}</div>
+	</c:if>   
     <button type="submit" class="check-btn">확인</button>
   </form>
 
   
   <!-- 이메일로 찾기 -->
-  <form id="emailForm" class="find-form hidden" method="post" action="${pageContext.request.contextPath}/login/findIdEmail.do">
+  <form id="emailForm" class="find-form ${activeTab == 'email' ? '' : 'hidden'}" method="post" action="${pageContext.request.contextPath}/login/findIdEmail.do">
     <div class="field">
       <label class="lab">이름</label>
       <input type="text" name="name" placeholder="이름을 입력해 주세요" />
@@ -79,12 +81,14 @@
       <label class="lab">이메일</label>
       <input type="text" name="email" placeholder="이메일을 입력해 주세요" />
     </div>
-
+	<c:if test="${not empty eMessage}">
+		<div class="errorMsg">${eMessage}</div>
+	</c:if>
     <button type="submit" class="check-btn">확인</button>
   </form>
   </div>
   
-  <jsp:include page="/views/layout/footer.jsp" />
+  <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
   
   <script>
   const tabBtns = $(".tab-btn");

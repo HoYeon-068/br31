@@ -31,6 +31,78 @@
   transition: max-height 0.35s ease;
 }
 
+.page-tab__item {
+  border: 1px solid #e5e5e5;
+  background: #f9f9f9;
+}
+
+.page-tab__link {
+  color: #aaa;
+  font-weight: 400;
+}
+
+/* 활성 탭 */
+.page-tab__item--active {
+  background: #fff;
+  border-bottom: 2px solid #000;
+}
+
+.page-tab__item--active .page-tab__link {
+  color: #000;
+  font-weight: 600;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 8px;
+}
+
+.pagination__item {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination__link {
+  color: #666;
+  font-size: 14px;
+}
+
+.pagination__item--current {
+  background: #ff5fa2;
+  border-color: #ff5fa2;
+}
+
+.pagination__item--current .pagination__link {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 이전 / 다음 */
+.pagination__item--icon {
+  border: none;
+}
+
+.pagination__item--prev .pagination__link::before {
+  content: "‹";
+}
+
+.pagination__item--next .pagination__link::before {
+  content: "›";
+}
+
+/* 비활성 */
+.pagination__item--disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
 
 
 </style>
@@ -43,7 +115,7 @@
 		value="${empty param.category ? 0 : param.category}" />
 
 
-	<jsp:include page="/views/layout/header.jsp" />
+	<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 	<div class="site-container">
 		<section id="content" class="faq-list">
@@ -124,38 +196,45 @@
 
 </div>
 
+<ul class="pagination">
 
-				<!-- 페이징 -->
-				<ul class="pagination">
+  <!-- 이전 : 1~5페이지 클릭 X / 6~7페이지 클릭 O -->
+  <li class="pagination__item pagination__item--icon pagination__item--prev">
+    <a class="pagination__link"
+       href="${prevBlockPage == null 
+              ? 'javascript:void(0);'
+              : pageContext.request.contextPath.concat('/faq/list.do?category=')
+                    .concat(categoryId)
+                    .concat('&page=')
+                    .concat(prevBlockPage)}">
+      <span class="pagination__name">이전</span>
+    </a>
+  </li>
 
-					<c:if test="${startPage > 1}">
-						<li
-							class="pagination__item pagination__item--icon pagination__item--prev">
-							<a class="pagination__link"
-							href="${pageContext.request.contextPath}/faq/list.do?category=${categoryId}&page=${startPage - 1}">
-								이전 </a>
-						</li>
-					</c:if>
+  <!-- 페이지 번호 -->
+  <c:forEach var="i" begin="${startPage}" end="${endPage}">
+    <li class="pagination__item ${i == currentPage ? 'pagination__item--current' : ''}">
+      <a class="pagination__link"
+         href="${pageContext.request.contextPath}/faq/list.do?category=${categoryId}&page=${i}">
+        <span class="pagination__name">${i}</span>
+      </a>
+    </li>
+  </c:forEach>
 
-					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<li
-							class="pagination__item ${i == currentPage ? 'pagination__item--current' : ''}">
-							<a class="pagination__link"
-							href="${pageContext.request.contextPath}/faq/list.do?category=${categoryId}&page=${i}">
-								${i} </a>
-						</li>
-					</c:forEach>
+  <!-- 다음 : 1~5페이지 클릭 O / 6~7페이지 클릭 X -->
+  <li class="pagination__item pagination__item--icon pagination__item--next">
+    <a class="pagination__link"
+       href="${nextBlockPage == null
+              ? 'javascript:void(0);'
+              : pageContext.request.contextPath.concat('/faq/list.do?category=')
+                    .concat(categoryId)
+                    .concat('&page=')
+                    .concat(nextBlockPage)}">
+      <span class="pagination__name">다음</span>
+    </a>
+  </li>
 
-					<c:if test="${endPage < totalPage}">
-						<li
-							class="pagination__item pagination__item--icon pagination__item--next">
-							<a class="pagination__link"
-							href="${pageContext.request.contextPath}/faq/list.do?category=${categoryId}&page=${endPage + 1}">
-								다음 </a>
-						</li>
-					</c:if>
-
-				</ul>
+</ul>
 
 
 			</section>
@@ -192,7 +271,7 @@ document.querySelectorAll(".faq-list__title").forEach(btn => {
 
 
 
-	<jsp:include page="/views/layout/footer.jsp" />
+	<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 
 

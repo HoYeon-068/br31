@@ -52,11 +52,11 @@
 
 <body>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <div class="site-container">
 
-    <jsp:include page="/views/information-center/_customerMenu.jsp" />
+    <jsp:include page="/WEB-INF/views/information-center/_customerMenu.jsp" />
 
     <section id="content" class="press-list board-list">
 
@@ -116,7 +116,7 @@
                     ${dto.pr_no}
                 </td>
                 <td class="board-list__table-title">
-                    <a href="${pageContext.request.contextPath}/press/view.do?pr_id=${dto.pr_id}">
+                    <a href="${pageContext.request.contextPath}/press/view.do?id=${dto.pr_id}">
                         ${dto.title}
                     </a>
                 </td>
@@ -189,7 +189,7 @@
     </section>
 </div>
 
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 <script>
 function submitPressSearch(form) {

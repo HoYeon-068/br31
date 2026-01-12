@@ -41,7 +41,7 @@
 
 <body>
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
   <div class="page-title">
 	  <div class="title">회원가입</div>
@@ -81,8 +81,9 @@
     <div class="row pw-row">
       <div class="lab">이름</div>
       <div class="ctrl">
-        <input type="text" name="name" placeholder="이름을 입력해 주세요" />
+        <input type="text" name="name" id="name" placeholder="이름을 입력해 주세요" />
       </div>
+      <span class="msg error" id="nameMsg"></span>
     </div>
 
     <div class="row">
@@ -149,7 +150,7 @@
     <div class="row">
       <div class="lab">생년월일</div>
       <div class="ctrl birth">
-		<select name="birthY" >
+		<select name="birthY" id="birthY" >
 			<option value="">YYYY</option>		
 		<%
 			int thisYear = LocalDate.now().getYear();
@@ -160,7 +161,7 @@
 			}
 		%>
 		</select>
-		<select name="birthM"  >
+		<select name="birthM"  id="birthM">
 			<option value="">MM</option>		
 		<%
 			for(int i = 1; i<=12; i++){
@@ -170,7 +171,7 @@
 			}
 		%>
 		</select>
-		<select name="birthD" >
+		<select name="birthD" id="birthD" >
 			<option value="">DD</option>		
 		<%
 			for(int i = 1; i<=31; i++){
@@ -181,6 +182,7 @@
 		%>
 		</select>
       </div>
+      <span class="msg" id="birthMsg"></span>
     </div>
 
   <!-- 약관 구분선 -->
@@ -244,7 +246,7 @@
   </form>
 
   </body>
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 <script>
 /* join.js 
@@ -270,7 +272,7 @@ $(function () {
     return $(selector).val().trim();
   }
 
-  // 1) 규칙(Validation)
+  // 규칙(Validation)
   // 아이디: 5~16자, 소문자 시작, 소문자+숫자만
   const ID_REGEX = /^[a-z][a-z0-9]{4,15}$/;
 
@@ -324,8 +326,57 @@ $(function () {
     setMsg($("#pwMsg"), "비밀번호가 일치합니다.", "success");
     return true;
   }
+  
+  
+  // 이메일 : 영어 숫자만
+  const EMAIL_ID_REGEX = /^[A-Za-z0-9]+$/;
+  function validateEmailId(emailId) {
+	  if (!emailId) return { ok: false, msg: "이메일 아이디를 입력하세요." };
+	  if (!EMAIL_ID_REGEX.test(emailId)) {
+	      return { ok: false, msg: "이메일 아이디는 영문/숫자만 입력 가능합니다." };
+	    }
+	  return { ok: true, msg: "이메일 아이디 형식이 올바릅니다. (중복확인 필요)" };
+  		
+	}
+  
+  
+  // 이름 : 한글만
+  const NAME_REGEX = /^[가-힣]+$/;
+  function validateName(name) {
+	  if (!name) return { ok: false, msg: "이름을 입력하세요." };
+	    if (!NAME_REGEX.test(name)) {
+	      return { ok: false, msg: "이름은 한글만 입력 가능합니다." };
+	    }
+	    return { ok: true, msg: "" };
+	  
+}
+  
+  // 휴대폰번호: 숫자만
+  function normalizePhone(phone) {
+    return (phone || "").replaceAll(/[^0-9]/g, "");
+  }
+  
+  function validatePhone(phoneRaw) {
+	  const phone = normalizePhone(phoneRaw);
+	  if (!phone) return { ok: false, msg: "휴대폰 번호를 입력하세요." };
+	    if (phone.length < 10 || phone.length > 11) {
+	      return { ok: false, msg: "휴대폰 번호는 10~11자리 숫자만 입력하세요." };
+	    }
+	    return { ok: true, msg: "" };
+  }
+  
+  
+  // 생년월일 선택
+  function validateBirth(y, m, d) {
+	  if (!y || !m || !d) {
+	    return { ok: false, msg: "생년월일을 모두 선택해주세요." };
+  }
+  	return { ok: true, msg: "" };
+  }
 
-  // 2) 상태값(hidden) 초기화/무효화
+  
+
+  // 상태값(hidden) 초기화/무효화
   function invalidateIdCheck() {
     $("#idChecked").val("false");
     // 형식 안내는 input 이벤트에서 처리
@@ -346,7 +397,7 @@ $(function () {
     clearMsg($("#phoneMsg"));
   }
 
-  // 3) 아이디 입력/중복확인
+  // 아이디 입력/중복확인
   $("#user_id").on("input", function () {
     invalidateIdCheck();
 
@@ -367,7 +418,7 @@ $(function () {
     }
 
     $.ajax({
-      url: "${pageContext.request.contextPath}/join/idCheck.do",
+      url: "${pageContext.request.contextPath}/join/idCheck.ajax",
       type: "get",
       dataType: "json",
       data: { user_id: userId },
@@ -387,12 +438,12 @@ $(function () {
     });
   });
 
-  // 4) 비밀번호 규칙/일치
+  // 비밀번호 규칙/일치
   $("#password, #password_confirm").on("input", function () {
     checkPwAll();
   });
 
-  // 5) 닉네임 중복확인
+  // 닉네임 중복확인
   $("#nickname").on("input", function () {
     invalidateNicknameCheck();
   });
@@ -408,7 +459,7 @@ $(function () {
     }
 
     $.ajax({
-      url: "${pageContext.request.contextPath}/join/nicknameCheck.do",
+      url: "${pageContext.request.contextPath}/join/nicknameCheck.ajax",
       type: "get",
       dataType: "json",
       data: { nickname: nickname },
@@ -428,10 +479,19 @@ $(function () {
     });
   });
 
-  // 6) 이메일 중복확인
-  $("#email_id, #email_domain").on("input change", function () {
-    invalidateEmailCheck();
+  // 이메일 중복확인
+  $("#email_id").on("input", function () {
+	  invalidateEmailCheck();
+	
+	  const cleaned = $(this).val().replace(/[^A-Za-z0-9]/g, "");
+	  if ($(this).val() !== cleaned) $(this).val(cleaned);
+	
+	  const v = validateEmailId(cleaned);
+	  setMsg($("#emailMsg"), v.msg, v.ok ? "success" : "error");
   });
+  $("#email_domain").on("change", function () {
+	  invalidateEmailCheck();
+	});
 
   $("#btnEmailCheck").on("click", function () {
     const emailId = trimVal("#email_id");
@@ -446,7 +506,7 @@ $(function () {
     const email = emailId + "@" + emailDomain;
 
     $.ajax({
-      url: "${pageContext.request.contextPath}/join/emailCheck.do",
+      url: "${pageContext.request.contextPath}/join/emailCheck.ajax",
       type: "get",
       dataType: "json",
       data: { email: email },
@@ -466,9 +526,17 @@ $(function () {
     });
   });
 
-  // 7) 휴대폰 인증 (전송/확인)
+  // 휴대폰 인증 (전송/확인)
   $("#phone_no").on("input", function () {
     invalidatePhoneAuth();
+ 	// 숫자만 남기기(한글/기호 자동 제거)
+    const cleaned = normalizePhone($(this).val());
+    if ($(this).val() !== cleaned) $(this).val(cleaned);
+
+    // 메시지 표시
+    const v = validatePhone(cleaned);
+    if (!v.ok) setMsg($("#phoneMsg"), v.msg, "error");
+    else clearMsg($("#phoneMsg"));
   });
 
   $("#btnPhoneSend").on("click", function () {
@@ -482,11 +550,17 @@ $(function () {
     }
 
     $.ajax({
-      url: "${pageContext.request.contextPath}/join/phoneSendCode.do",
+      url: "${pageContext.request.contextPath}/join/phoneSendCode.ajax",
       type: "post",
       dataType: "text",
       data: { phone_no: phone },
       success: function (res) {
+   	  	if ($.trim(res) === "DUPLICATE") {
+   		    setMsg($("#phoneMsg"), "이미 가입된 휴대폰 번호입니다.", "error");
+   		    $("#phoneChecked").val("false");
+   		    return;
+   		  }
+    	  
         if ($.trim(res) === "SENT") {
           setMsg($("#phoneMsg"), "인증번호를 전송했습니다. (콘솔 확인)", "success");
           $("#phoneChecked").val("false");
@@ -520,7 +594,7 @@ $(function () {
     }
 
     $.ajax({
-      url: "${pageContext.request.contextPath}/join/phoneVerifyCode.do",
+      url: "${pageContext.request.contextPath}/join/phoneVerifyCode.ajax",
       type: "post",
       dataType: "text",
       data: { phone_no: phone, code: code },
@@ -540,7 +614,7 @@ $(function () {
     });
   });
 
-  // 8) 약관 전체동의/개별동의(선택)
+  // 약관 전체동의/개별동의(선택)
   // 전체동의 체크하면 아래 체크 전부 on/off (필요 없으면 지워도 됨)
   $(".terms-box .all input[type='checkbox']").on("change", function () {
     const checked = $(this).is(":checked");
@@ -567,7 +641,7 @@ $(function () {
 	    $(".event input[type='checkbox']").prop("checked", total === checkedCount);
 	  });
 
-  // 9) 가입 submit 최종 검증
+  // 가입 submit 최종 검증
   $(".join-form").on("submit", function () {
 	  console.log("✅ submit 들어옴");
 	  console.log("idChecked=", $("#idChecked").val(),
@@ -577,7 +651,7 @@ $(function () {
 	  
 	  
 	  
-    // (1) 아이디 형식
+    // 아이디 형식
     const idv = validateUserId(trimVal("#user_id"));
     if (!idv.ok) {
       setMsg($("#idMsg"), idv.msg, "error");
@@ -585,40 +659,64 @@ $(function () {
       return false;
     }
 
-    // (2) 비번 규칙 + 일치
+    // 비번 규칙 + 일치
     if (!checkPwAll()) {
       $("#password_confirm").focus();
       return false;
     }
+    
+    // 이름 한글만
+    const nv = validateName(trimVal("#name"));
+    if (!nv.ok) {
+      setMsg($("#nameMsg"), nv.msg, "error");
+      $("#name").focus();
+      return false;
+    }
 
-    // (3) 아이디 중복확인 완료 여부
+    // 이메일 아이디 영문/숫자만
+    const ev = validateEmailId(trimVal("#email_id"));
+    if (!ev.ok) {
+      setMsg($("#emailMsg"), ev.msg, "error");
+      $("#email_id").focus();
+      return false;
+    }
+
+    //  휴대폰 숫자만 + 자리수
+    const pv = validatePhone(trimVal("#phone_no"));
+    if (!pv.ok) {
+      setMsg($("#phoneMsg"), pv.msg, "error");
+      $("#phone_no").focus();
+      return false;
+    }
+
+    // 아이디 중복확인 완료 여부
     if ($("#idChecked").val() !== "true") {
       setMsg($("#idMsg"), "아이디 중복확인을 해주세요.", "error");
       $("#user_id").focus();
       return false;
     }
 
-    // (4) 닉네임 중복확인
+    // 닉네임 중복확인
     if ($("#nicknameChecked").val() !== "true") {
       setMsg($("#nicknameMsg"), "닉네임 중복확인을 해주세요.", "error");
       $("#nickname").focus();
       return false;
     }
 
-    // (5) 이메일 중복확인
+    // 이메일 중복확인
     if ($("#emailChecked").val() !== "true") {
       setMsg($("#emailMsg"), "이메일 중복확인을 해주세요.", "error");
       return false;
     }
 
-    // (6) 휴대폰 인증
+    // 휴대폰 인증
     if ($("#phoneChecked").val() !== "true") {
       setMsg($("#phoneMsg"), "휴대폰 인증을 완료해주세요.", "error");
       $("#phone_no").focus();
       return false;
     }
 
-    // (7) 필수 약관
+    // 필수 약관
     const must1 = $("input[name='terms_ids'][value='1']").is(":checked");
     const must2 = $("input[name='terms_ids'][value='2']").is(":checked");
     const must4 = $("input[name='terms_ids'][value='4']").is(":checked");
@@ -627,8 +725,22 @@ $(function () {
       alert("필수 약관에 동의해야 가입할 수 있습니다.");
       return false;
     }
+    
+    // 이메일 선택하도록
+    const by = $("#birthY").val();
+    const bm = $("#birthM").val();
+    const bd = $("#birthD").val();
 
-    return true; // 여기서만 서버로 전송
+    const bv = validateBirth(by, bm, bd);
+    if (!bv.ok) {
+      setMsg($("#birthMsg"), bv.msg, "error");
+      $("#birthY").focus();
+      return false;
+    }
+    
+   
+
+    return true; 
   });
 
 });

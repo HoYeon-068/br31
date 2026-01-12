@@ -38,7 +38,7 @@
 <div class="skipnav"><a href="#content">본문 영역으로 바로가기</a></div>
 
 <!-- HEADER -->
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <section class="site-container">
 
@@ -46,25 +46,25 @@
     <nav class="page-menu">
         <ul class="page-menu__list">
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/event/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/event/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">이벤트</span></div>
                 </a>
             </li>
 
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/plaza/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">배라광장</span></div>
                 </a>
             </li>
 
             <li class="page-menu__item">
-                <a href="${pageContext.request.contextPath}/views/play/recipe/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/recipe/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">BR 레시피</span></div>
                 </a>
             </li>
 
             <li class="page-menu__item page-menu__item--active">
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/list.do" class="page-menu__link">
+                <a href="${pageContext.request.contextPath}/play/myflavor/list.do" class="page-menu__link">
                     <div class="page-menu__box"><span class="page-menu__name">마이플레이버 리스트</span></div>
                 </a>
             </li>
@@ -95,14 +95,14 @@
                 <span>내맘대로 추천하는</span>
                 <strong>나만의 <em>맛조합</em> 만들기</strong>
 
-                <a href="${pageContext.request.contextPath}/views/play/myflavor/register.do">참여하기</a>
+                <a href="${pageContext.request.contextPath}/play/myflavor/register.do">참여하기</a>
             </p>
         </aside>
 
         <!-- 필터 폼 -->
         <form class="myflavor-list__form myflavor-form"
               method="get"
-              action="${pageContext.request.contextPath}/views/play/myflavor/list.do">
+              action="${pageContext.request.contextPath}/play/myflavor/list.do">
 
             <!-- 맛 태그 -->
             <fieldset class="myflavor-form__field myflavor-form__field--tag">
@@ -234,7 +234,7 @@
                         <c:forEach var="item" items="${myFlavorList}">
                             <li>
                                 <!-- 예: 상세로 이동 -->
-                                <a href="${pageContext.request.contextPath}/views/play/myflavor/view.jsp?seq=${item.seq}">
+                                <a href="${pageContext.request.contextPath}/play/myflavor/view.jsp?seq=${item.seq}">
                                     <div class="card-list__content">
                                         <h3 class="card-list__title"><c:out value="${item.title}" /></h3>
                                         <p class="card-list__text"><c:out value="${item.summary}" /></p>
@@ -256,7 +256,7 @@
 </section>
 
 <!-- FOOTER -->
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 
 </body>

@@ -237,6 +237,27 @@ public class UserDAOImpl implements UserDAO {
 	    }
 	}
 	
+	
+	// 휴대폰 번호 중복확인
+	@Override
+	public boolean existsByPhone(String phone) throws SQLException {
+		String sql = "SELECT COUNT(*)"
+					+ " FROM \"user\" "
+					+ " WHERE \"phone_no\" = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, phone.replaceAll("[^0-9]", ""));
+			rs = pstmt.executeQuery();
+			if(rs.next()) return rs.getInt(1) > 0;
+			return false;
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();			
+		}
+		
+	}
+	
+	
 	// 회원가입
 	@Override
 	public int insert(UserDTO user) throws SQLException {
@@ -341,7 +362,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int updateProfile(String userId, String nickname, String email, String phoneNo, String profileImgPath) throws SQLException {
 	    String sql = "UPDATE \"user\" "
-	               + "SET \"nickname\"=?, \"email\"=?, \"phone_no\"=?, \"profile_img_path\"=? "
+	               + "SET \"nickname\"=NVL(?, \"nickname\"), \"email\"=NVL(?, \"email\"), \"phone_no\"=NVL(?, \"phone_no\"), \"profile_img_path\"=NVL(?, \"profile_img_path\") "
 	               + "WHERE \"user_id\"=?";
 	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 	        pstmt.setString(1, nickname);
@@ -372,6 +393,72 @@ public class UserDAOImpl implements UserDAO {
 	        }
 	    }
 	}
+	
+	@Override
+	public UserDTO selectByUserIdAndNameAndPhone(String userId, String name, String phone) throws SQLException {
+		String sql = "SELECT \"user_id\", \"name\", \"phone_no\" "
+					+ " FROM \"user\" "
+					+ " WHERE \"user_id\" = ? AND \"name\"=? AND REPLACE(\"phone_no\", '-', '')=? ";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, userId);
+			pstmt.setString(2, name);
+			pstmt.setString(3, phone);
+			try(ResultSet rs = pstmt.executeQuery()) {
+				if(!rs.next()) return null;
+				UserDTO dto = new UserDTO();
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone_no(rs.getString("phone_no"));
+				return dto;
+			}
+		}
+		
+	}
+	
+	
+	@Override
+	public List<UserDTO> getUserList() throws SQLException {
+		String sql = "SELECT \"user_id\", \"name\", \"phone_no\", \"email\", \"join_date\", \"gender\", \"birth\", \"nickname\" "
+					+ " FROM \"user\" "
+					+ " ORDER BY \"join_date\" DESC ";
+		List<UserDTO> list = new ArrayList<>();
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			try(ResultSet rs = pstmt.executeQuery()){
+				while(rs.next()) {
+					
+					UserDTO dto = new UserDTO();
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setName(rs.getString("name"));
+					dto.setPhone_no(rs.getString("phone_no"));
+					dto.setEmail(rs.getString("email"));
+					dto.setJoin_date(rs.getDate("join_date"));
+					dto.setGender(rs.getString("gender"));
+					dto.setBirth(rs.getDate("birth"));
+					dto.setNickname(rs.getString("nickname"));
+					list.add(dto);
+				}
+				
+			}
+		}
+		return list;
+	}
+	
+	
+	@Override
+	public int deleteUser(String userId) throws SQLException {
+		String sql = " DELETE FROM \"user\" "
+				 	+ " WHERE \"user_id\" =? ";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, userId);
+			return pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 
 	
 

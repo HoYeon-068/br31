@@ -14,7 +14,7 @@ public class ListHandler implements CommandHandler{
 		if (requsetMethod.equals("GET")) {
 			System.out.println("> flavor.ListHandler...get()...");
 			
-            return "/views/play/myflavor/list.jsp";
+            return "/WEB-INF/views/play/myflavor/list.jsp";
         }
 
         return null;

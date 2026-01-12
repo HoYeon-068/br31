@@ -46,21 +46,21 @@
                         </div>
                     </li>
                     <li class="site-menu__item">
-                        <a href="${pageContext.request.contextPath}/play/event/list.html" class="site-menu__link">BR Play</a>
+                        <a href="${pageContext.request.contextPath}/play/event/list.do" class="site-menu__link">BR Play</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/play/event/list.html" class="site-menu-list__link">이벤트</a>
+                                            <a href="${pageContext.request.contextPath}/play/event/list.do" class="site-menu-list__link">이벤트</a>
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/event/lista9a4.html?category=A" class="site-menu-sub__link">프로모션</a>
+                                                    <a href="${pageContext.request.contextPath}/play/event/lista9a4.do?category=1" class="site-menu-sub__link">프로모션</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/event/listd7a1.html?category=C" class="site-menu-sub__link">제휴혜택</a>
+                                                    <a href="${pageContext.request.contextPath}/play/event/listd7a1.do?category=2" class="site-menu-sub__link">제휴혜택</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -69,13 +69,13 @@
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/plaza/list.html" class="site-menu-sub__link">배라광장</a>
+                                                    <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="site-menu-sub__link">배라광장</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/recipe/list.html" class="site-menu-sub__link">BR레시피</a>
+                                                    <a href="${pageContext.request.contextPath}/play/recipe/list.do" class="site-menu-sub__link">BR레시피</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/myflavor/list.html" class="site-menu-sub__link">마이플레이버리스트</a>
+                                                    <a href="${pageContext.request.contextPath}/play/myflavor/list.do" class="site-menu-sub__link">마이플레이버리스트</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -87,20 +87,20 @@
                         </div>
                     </li>
                     <li class="site-menu__item">
-                        <a href="${pageContext.request.contextPath}/story/story.html" class="site-menu__link">BR Story</a>
+                        <a href="${pageContext.request.contextPath}/story/story.do" class="site-menu__link">BR Story</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/story/story.html" class="site-menu-list__link">브랜드 스토리</a>
+                                            <a href="${pageContext.request.contextPath}/story/story.do" class="site-menu-list__link">브랜드 스토리</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/story/historybc5e.html?release_year=2025" class="site-menu-list__link">이달의 맛 히스토리</a>
+                                            <a href="${pageContext.request.contextPath}/story/history.do" class="site-menu-list__link">이달의 맛 히스토리</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/story/be-better.html" class="site-menu-list__link">Be Better</a>
+                                            <a href="${pageContext.request.contextPath}/story/be-better.do" class="site-menu-list__link">Be Better</a>
                                         </li>
                                     </ul>
 
@@ -171,29 +171,29 @@
 
                     
                     <li class="site-menu__item site-menu__item--hidden">
-                        <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-menu__link">Information Center</a>
+                        <a href="${pageContext.request.contextPath}/information-center/customer/list.do" class="site-menu__link">Information Center</a>
 
                         <div class="site-menu-list">
                             <div class="site-menu-list__container">
                                 <div class="site-menu-list__content">
                                     <ul class="site-menu-list__list">
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-menu-list__link">고객센터</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/customer/list.do" class="site-menu-list__link">고객센터</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/customer/ccm.html" class="site-menu-list__link">소비자중심경영(CCM)</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/customer/ccm.do" class="site-menu-list__link">소비자중심경영(CCM)</a>
                                         </li>
                                         <li class="site-menu-list__item">
                                             <a href="${pageContext.request.contextPath}/information-center/praise/list.html" class="site-menu-list__link">칭찬점포</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/notice/list.html" class="site-menu-list__link">공지사항</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/notice/list.do" class="site-menu-list__link">공지사항</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/press/list.html" class="site-menu-list__link">보도자료</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/press/list.do" class="site-menu-list__link">보도자료</a>
                                         </li>
                                         <li class="site-menu-list__item">
-                                            <a href="${pageContext.request.contextPath}/information-center/fairtrade/list.html" class="site-menu-list__link">공정거래자율준수</a>
+                                            <a href="${pageContext.request.contextPath}/information-center/fairtrade/list.do" class="site-menu-list__link">공정거래자율준수</a>
                                         </li>                                        
                                     </ul>
 
@@ -236,7 +236,7 @@
 		                            
 		
 			                            <li class="site-user-menu__item">
-			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
+			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.do" class="site-user-menu__link">CS CENTER</a>
 			                            </li>
 	                        		</c:when>
 	                        		<%--  로그아웃 상태--%>
@@ -250,7 +250,7 @@
 		                            
 		
 			                            <li class="site-user-menu__item">
-			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.html" class="site-user-menu__link">CS CENTER</a>
+			                                <a href="${pageContext.request.contextPath}/information-center/customer/list.do" class="site-user-menu__link">CS CENTER</a>
 			                            </li>
 	                        		
 	                        		</c:otherwise>

@@ -2,6 +2,7 @@ package mvc.service.user;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.naming.NamingException;
 
@@ -186,4 +187,40 @@ public class UserService {
         }
     	
     }
+    
+    public List<UserDTO> getUserList() throws Exception {
+    	Connection conn = null;
+    	try {
+    		conn= ConnectionProvider.getConnection();
+    		
+    		return new UserDAOImpl(conn).getUserList();
+    		
+    		
+    	} finally {
+			if(conn != null) conn.close();
+		}
+    }
+    
+    public int deleteUser(String userId) throws Exception{
+    	Connection conn = null;
+    	try {
+    		conn = ConnectionProvider.getConnection();
+    		return new UserDAOImpl(conn).deleteUser(userId);
+    	}finally {
+			if(conn != null) conn.close();
+		}
+    }
+    
+    public boolean checkPassword(String userId, String pwd) throws Exception{
+    	Connection conn = null;
+    	try {
+    		conn = ConnectionProvider.getConnection();
+    		return new UserDAOImpl(conn).checkPassword(userId, pwd);
+    		
+    	}finally {			
+    		if(conn != null) conn.close();
+		}
+    	
+    }
+    
 }

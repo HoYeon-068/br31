@@ -58,7 +58,7 @@ public class LoginHandler implements CommandHandler {
         		|| "/".equals(redirectUrl)
                 || request.getContextPath().equals(redirectUrl)
                 || (request.getContextPath() + "/").equals(redirectUrl)) {
-            response.sendRedirect(request.getContextPath() + "/story/history.do");
+            response.sendRedirect(request.getContextPath() + "/index.do");
             return null;
         }
 

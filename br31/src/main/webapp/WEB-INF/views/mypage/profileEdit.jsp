@@ -196,6 +196,10 @@
   <div class="cta">
     <button type="submit" class="joinbtn">저장</button>
   </div>
+  
+  <div class="delete-link">
+  	<a href="${pageContext.request.contextPath}/mypage/withdraw.do">탈퇴하기</a>
+  </div>
 
 </form>
 

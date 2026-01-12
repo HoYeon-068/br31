@@ -408,11 +408,55 @@ public class UserDAOImpl implements UserDAO {
 				UserDTO dto = new UserDTO();
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setName(rs.getString("name"));
-				dto.setEmail(rs.getString("phone_no"));
+				dto.setPhone_no(rs.getString("phone_no"));
 				return dto;
 			}
 		}
 		
+	}
+	
+	
+	@Override
+	public List<UserDTO> getUserList() throws SQLException {
+		String sql = "SELECT \"user_id\", \"name\", \"phone_no\", \"email\", \"join_date\", \"gender\", \"birth\", \"nickname\" "
+					+ " FROM \"user\" "
+					+ " ORDER BY \"join_date\" DESC ";
+		List<UserDTO> list = new ArrayList<>();
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			try(ResultSet rs = pstmt.executeQuery()){
+				while(rs.next()) {
+					
+					UserDTO dto = new UserDTO();
+					dto.setUser_id(rs.getString("user_id"));
+					dto.setName(rs.getString("name"));
+					dto.setPhone_no(rs.getString("phone_no"));
+					dto.setEmail(rs.getString("email"));
+					dto.setJoin_date(rs.getDate("join_date"));
+					dto.setGender(rs.getString("gender"));
+					dto.setBirth(rs.getDate("birth"));
+					dto.setNickname(rs.getString("nickname"));
+					list.add(dto);
+				}
+				
+			}
+		}
+		return list;
+	}
+	
+	
+	@Override
+	public int deleteUser(String userId) throws SQLException {
+		String sql = " DELETE FROM \"user\" "
+				 	+ " WHERE \"user_id\" =? ";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, userId);
+			return pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 

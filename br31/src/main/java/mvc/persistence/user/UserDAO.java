@@ -41,5 +41,8 @@ public interface UserDAO  {
     boolean isEmailAvailable(String myUserId, String email) throws Exception;
     int updateProfile(String userId, String nickname, String email, String phoneNo, String profileImgPath) throws Exception;
 
+    // 관리자페이지
+    List<UserDTO> getUserList() throws SQLException;
+    int deleteUser(String userId) throws SQLException;
 
 }

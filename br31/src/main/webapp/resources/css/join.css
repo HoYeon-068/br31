@@ -202,7 +202,7 @@ body{
   display: flex;
   justify-content: center;
   margin-top: 22px;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 .joinbtn{
   width: 260px;
@@ -538,4 +538,13 @@ body{
     font-size: 15px;
 	
 }
+
+/* 탈퇴 */
+.delete-link{
+  display: flex;
+  justify-content: center;
+  margin-top: 3px;
+  margin-bottom: 100px;
+}
+
 

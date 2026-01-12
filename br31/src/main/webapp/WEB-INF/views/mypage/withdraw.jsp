@@ -39,27 +39,22 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
   <div class="page-title jc-title">
-	  <div class="title">아이디 찾기</div>
+	  <div class="title">회원 탈퇴</div>
   </div>
   	
+  <form action="${pageContext.request.contextPath}/mypage/withdraw.do" method="post"
+      onsubmit="return confirm('정말 탈퇴하시겠습니까?');">
   
   <div class="jc-content">
-  	<c:choose>
-  		<c:when test="${not empty foundUserId }">
-		 	${name}님의 아이디는 <br>
-		 	<b>${foundUserId}</b> 입니다
-  		</c:when>
-		<c:otherwise>
-			입력하신 정보로 가입된 아이디가 없습니다.
-		</c:otherwise>
-  	</c:choose>
+  	<div>비밀번호</div>
+  	<input type="password" name="password" id="password">
   </div>
   
   <div class="jc-btn">
-  	 <button type="button" class="jc-mainbtn" onclick="location.href='${pageContext.request.contextPath}/index.do'">메인으로 이동</button>
-  	 <button type="button" class="jc-loginbtn" onclick="location.href='${pageContext.request.contextPath}/login/login.do'">로그인</button>
+  	 <button type="submit" class="jc-mainbtn" id="withdrawbtn">탈퇴하기</button>
+  	 <button type="button" class="jc-loginbtn" onclick="location.href='${pageContext.request.contextPath}/story/history.do'">홈</button>
   </div>
-	
+  </form>
 	
 </body>
 

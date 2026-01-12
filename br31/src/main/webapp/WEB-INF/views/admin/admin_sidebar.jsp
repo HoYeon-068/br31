@@ -26,13 +26,7 @@
           </a>
         </li>
         <li class="nav-item">
-
           <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/product/write.do">상품 등록</a>
-
-          <a class="nav-link text-white"
-             href="${pageContext.request.contextPath}/admin/product/form.do">
-            상품 등록
-          </a>
         </li>
       </ul>
     </li>
@@ -40,9 +34,9 @@
     <!-- FAQ 관리 -->
     <li class="nav-item mb-2">
     <a class="nav-link text-white"
-   href="${pageContext.request.contextPath}/admin/faq/list.do">
-   FAQ 관리
-</a>
+	   href="${pageContext.request.contextPath}/admin/faq/list.do">
+	   FAQ 관리
+	</a>
 
     </li>
 

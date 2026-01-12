@@ -52,6 +52,7 @@ public class LoginHandler implements CommandHandler {
         // 로그인 성공
         HttpSession session = request.getSession();
         session.setAttribute("loginUser", loginUser);
+        session.setAttribute("loginUserId", loginUser.getUser_id());
 
         // redirectUrl 없으면 기본 이동
         if (redirectUrl == null || redirectUrl.isBlank() 

@@ -443,6 +443,7 @@ public class PlazaDAOImpl implements PlazaDAO{
                 " LEFT JOIN \"plaza_like\" pl " +
                 "   ON pl.\"plaza_id\" = p.\"plaza_id\" " +
                 "  AND pl.\"user_id\" = ? " +
+                " WHERE p.\"status\" = 0 " +
                 " ORDER BY p.\"plaza_id\" DESC";
         } else {
             sql =
@@ -450,6 +451,7 @@ public class PlazaDAOImpl implements PlazaDAO{
                 "        SUBSTR(p.\"user_id\", 1, 3) || RPAD('*', LENGTH(p.\"user_id\") - 3, '*') AS masked_user_id, " +
                 "        0 AS liked " +
                 " FROM \"plaza\" p " +
+                " WHERE p.\"status\" = 0 " +
                 " ORDER BY p.\"plaza_id\" DESC";
         }
 
@@ -506,6 +508,7 @@ public class PlazaDAOImpl implements PlazaDAO{
                 "   ON pl.\"plaza_id\" = p.\"plaza_id\" " +
                 "  AND pl.\"user_id\" = ? " +
                 " WHERE p.\"plaza_category_id\" = ? " +
+                "   AND p.\"status\" = 0 " + 
                 " ORDER BY p.\"plaza_id\" DESC";
         } else {
             sql =
@@ -514,6 +517,7 @@ public class PlazaDAOImpl implements PlazaDAO{
                 "        0 AS liked " +
                 " FROM \"plaza\" p " +
                 " WHERE p.\"plaza_category_id\" = ? " +
+                "   AND p.\"status\" = 0 " + 
                 " ORDER BY p.\"plaza_id\" DESC";
         }
 
@@ -573,14 +577,16 @@ public class PlazaDAOImpl implements PlazaDAO{
                 " LEFT JOIN \"plaza_like\" pl " +
                 "   ON pl.\"plaza_id\" = p.\"plaza_id\" " +
                 "  AND pl.\"user_id\" = ? " +
-                " WHERE p.\"plaza_id\" = ? ";
+                " WHERE p.\"plaza_id\" = ? " +
+                "   AND p.\"status\" = 0 ";
         } else {
             sql =
                 " SELECT u.\"name\", p.\"plaza_id\", p.\"title\", p.\"content\", p.\"is_author_public\", p.\"plaza_category_id\", " +
                 "        0 AS liked " +
                 " FROM \"plaza\" p " +
                 " JOIN \"user\" u ON u.\"user_id\" = p.\"user_id\" " +
-                " WHERE p.\"plaza_id\" = ? ";
+                " WHERE p.\"plaza_id\" = ? " +
+                "   AND p.\"status\" = 0 ";
         }
 
         PlazaViewDTO dto = null;

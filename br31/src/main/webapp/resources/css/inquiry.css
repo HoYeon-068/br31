@@ -24,6 +24,7 @@ input, select, textarea, button {
     font-size: inherit;
 }
 
+
 /* =================================================
    🚫 공용 header / footer 강제 제거
 ================================================= */
@@ -35,6 +36,7 @@ footer,
 [id*="footer"] {
     display: none !important;
 }
+
 
 /* =================================================
    MY VOC LIST 공통 레이아웃
@@ -67,7 +69,10 @@ footer,
     color: #1b9bd7;
 }
 
-/* 검색 영역 */
+
+/* =================================================
+   검색 영역
+================================================= */
 .voc-search {
     margin: 25px 0;
     padding: 12px 15px;
@@ -100,7 +105,10 @@ footer,
     cursor: pointer;
 }
 
-/* 테이블 */
+
+/* =================================================
+   테이블
+================================================= */
 .voc-table {
     width: 100%;
     border-collapse: collapse;
@@ -126,6 +134,7 @@ footer,
     padding: 40px 0;
     color: #777;
 }
+
 
 /* =================================================
    CREATE (상담 문의) 전용 레이아웃
@@ -161,10 +170,14 @@ footer,
     color: #555;
 }
 
-/* 이용동의 */
+
+/* =================================================
+   이용동의 / 안내
+================================================= */
 .agree-box {
     border: 1px solid #ddd;
     padding: 20px;
+    background: #fff;
 }
 
 .agree-box label {
@@ -173,7 +186,18 @@ footer,
     font-size: 14px;
 }
 
-/* 이용안내 */
+.agree-all {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.agree-item {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
 .guide-box {
     border: 1px solid #ddd;
     padding: 20px;
@@ -186,6 +210,7 @@ footer,
     color: #1b73d1;
 }
 
+
 /* =================================================
    문의 작성 폼
 ================================================= */
@@ -195,10 +220,9 @@ footer,
 
 .form-row {
     display: flex;
-    padding: 8px 0;   /* 기존 15px → 8px */
+    padding: 8px 0;
     border-bottom: 1px solid #eee;
 }
-
 
 .form-label {
     width: 180px;
@@ -215,19 +239,6 @@ footer,
     gap: 6px;
 }
 
-.form-field input,
-.form-field select,
-.form-field textarea {
-    padding: 8px;
-    border: 1px solid #ccc;
-}
-
-.form-field textarea {
-    width: 100%;
-    height: 160px;
-    resize: none;
-}
-
 .req {
     color: #f60;
 }
@@ -238,68 +249,48 @@ footer,
     margin-left: 10px;
 }
 
-/* 버튼 그룹 */
+
+/* =================================================
+   textarea / input 통일
+================================================= */
+.voc-form textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 10px;
+    resize: none;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* ===== 1:1 문의 input 최종 통일 ===== */
+.form-field input,
+.form-field select {
+    height: 37px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'Noto Sans KR', AppleSDGothicNeo, Arial, sans-serif;
+    color: #666;
+}
+
+/* 제목 input은 전체 폭 (실제 사이트 동작) */
+.form-row .form-field > input.inputText {
+    width: 100%;
+}
+
+
+/* =================================================
+   버튼
+================================================= */
 .btn-group button {
     padding: 6px 16px;
     margin-right: 6px;
     border: 1px solid #ccc;
     background: #fff;
     cursor: pointer;
-}
-
-/* 파일 안내 */
-.file-info {
-    font-size: 13px;
-    color: #666;
-    margin-top: 6px;
-}
-
-/* 제출 버튼 */
-.voc-submit {
-    margin: 50px 0;
-    text-align: center;
-}
-
-.voc-submit button {
-    width: 220px;
-    height: 52px;
-    background: #0b74de;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* ===============================
-   이용동의 보정
-================================ */
-.agree-box {
-    border: 1px solid #ddd;
-    padding: 20px;
-    background: #fff;
-}
-
-.agree-all {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.agree-item {
-    border-top: 1px solid #eee;
-    padding-top: 10px;
-    margin-top: 10px;
-}
-
-/* 경고 문구 */
-.warning-text {
-    margin-top: 8px;
-    font-size: 13px;
-    color: #666;
-}
-
-/* 버튼 스타일 보정 */
-.btn-group button {
     border-radius: 6px;
 }
 
@@ -310,60 +301,19 @@ footer,
     padding: 6px 14px;
 }
 
-/* 입력 간격 */
-.form-field input,
-.form-field textarea {
-    width: 100%;
+
+/* ACTIVE 상태 (상담유형 / 내용유형) */
+.form-field.btn-group button.active {
+    background-color: #f2f9ff !important;
+    border: 1px solid #007AFB !important;
+    color: #007AFB !important;
+    font-weight: 600;
 }
 
-/* ===============================
-   1:1 문의 – 실제사이트 UI 맞춤
-   =============================== */
 
-/* 공통 인풋 높이 */
-.inputText,
-.inputDate,
-.selStyle2,
-.selStyle3 {
-    height: 37px;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 6px;
-    font-size: 12px;
-}
-
-/* 상담유형 / 내용유형 선택 버튼 */
-.checkbox-container {
-    border: 1px solid #e3e8f1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 38px;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 5px;
-    margin-right: 6px;
-}
-
-.checkbox-container span {
-    width: 100%;
-    height: 100%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-}
-
-/* 선택 시 (실제사이트 파란색) */
-.checkbox-container input[type="radio"]:checked + span {
-    border: 1px solid #007AFB;
-    background-color: #f2f9ff;
-    color: #007AFB;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-/* 파일첨부 영역 */
+/* =================================================
+   파일 첨부
+================================================= */
 .fileDiv label {
     display: block;
     width: 100%;
@@ -384,33 +334,121 @@ footer,
     display: none;
 }
 
-/* textarea */
-.voc-form textarea {
-    width: 100%;
-    min-height: 140px;
-    padding: 10px;
-    box-sizing: border-box;
+
+/* =================================================
+   매장 찾기
+================================================= */
+.form-field.inline input[type="text"] {
+    width: 260px;
+}
+
+.form-field.inline .btn-dark {
+    height: 37px;
+    padding: 0 16px;
     border-radius: 6px;
     font-size: 12px;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 
-/* ===== input 강제 통일 (최종 덮어쓰기) ===== */
-.form-field input.inputText,
-.form-field input.inputDate,
-.form-field select.selStyle2 {
+/* =================================================
+   제출 버튼
+================================================= */
+.voc-submit {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.voc-submit button {
+    width: 220px;
+    height: 52px;
+    background: #0b74de;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ===============================
+   1:1 문의 input 크기 고정 (최종본)
+================================ */
+
+/* 이름 / 이메일 / 비밀번호 / 비밀번호 확인 */
+.form-row .form-field input.inputText {
+    width: 260px;
     height: 37px;
     padding: 10px;
     box-sizing: border-box;
+    border: 1px solid #dcdcdc;
     border-radius: 6px;
     font-size: 12px;
+    font-family: 'Noto Sans KR', AppleSDGothicNeo, Arial, sans-serif;
+    color: #666;
 }
 
-/* === 상담유형 / 내용유형 ACTIVE 강제 === */
-.form-field.btn-group button.active {
-    background-color: #f2f9ff !important;
-    border: 1px solid #007AFB !important;
-    color: #007AFB !important;
-    font-weight: 600;
+/* 제목만 전체 폭 */
+.form-row.title-row .form-field > input {
+    width: 100%;
+}
+
+.phone-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.phone-field .dash {
+    color: #666;
+    font-size: 14px;
+}
+
+.email-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.email-field .at {
+    color: #666;
+    font-size: 14px;
+}
+
+/* 하단 버튼 영역 */
+.voc-submit {
+    margin-top: 30px;
+}
+
+.voc-submit--right {
+    text-align: right;
+}
+
+/* 목록 버튼 */
+.btn-list {
+    display: inline-block;
+    min-width: 120px;
+    padding: 10px 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-list:hover {
+    border-color: #999;
+}
+
+/* 답변 박스 */
+.voc-answer-box {
+    min-height: 160px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    line-height: 1.6;
+    white-space: pre-line;
 }
 

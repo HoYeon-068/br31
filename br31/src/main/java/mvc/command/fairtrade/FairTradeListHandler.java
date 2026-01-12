@@ -19,6 +19,6 @@ public class FairTradeListHandler implements CommandHandler {
         request.setAttribute("list", list);
         request.setAttribute("totalCount", list.size());
 
-        return "/views/information-center/fairtrade/list.jsp";
+        return "/WEB-INF/views/information-center/fairtrade/list.jsp";
     }
 }

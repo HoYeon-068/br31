@@ -17,7 +17,7 @@
 <body id="baskinrobbins-fairtrade"
       class="baskinrobbins-fairtrade">
 
-<jsp:include page="/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <div class="site-container">
 
@@ -111,7 +111,8 @@
         ${dto.noticeNo}
     </td>
     <td class="board-list__table-title">
-        <a href="view.do?noticeId=${dto.noticeId}">
+        <a href="${pageContext.request.contextPath}/fairtrade/view.do?noticeId=${dto.noticeId}">
+
             ${dto.title}
         </a>
     </td>
@@ -139,7 +140,7 @@
     </section>
 </div>
 
-<jsp:include page="/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 </body>
 </html>

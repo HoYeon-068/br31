@@ -17,7 +17,7 @@ public class MainHandler implements CommandHandler{
 		
 		String view = request.getParameter("view");
 
-		String contentPage=null;
+		String contentPage = "/WEB-INF/views/admin/admin_main.jsp";
 		switch (view == null ? "" : view) {
 		  case "productList":
 		    contentPage = "/WEB-INF/views/admin/product/list.jsp";
@@ -25,6 +25,7 @@ public class MainHandler implements CommandHandler{
 		  default:
 		    //contentPage = "/WEB-INF/views/admin/dashboard.jsp";
 		    break;
+		    
 		}
 		
 		

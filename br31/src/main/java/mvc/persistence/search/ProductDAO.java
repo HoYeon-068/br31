@@ -29,48 +29,43 @@ public class ProductDAO {
         try {
             conn = ConnectionProvider.getConnection();
 
-            System.out.println("### ProductDAO FINAL VERSION");
-            System.out.println("### keyword = [" + keyword + "]");
-            System.out.println("### DB USER = " + conn.getMetaData().getUserName());
+            String sql =
+                "SELECT " +
+                "  p.\"products_id\", p.\"category_id\", p.\"product_name\", p.\"english_name\", p.\"sub_title\", " +
+                "  p.\"description\", p.\"product_status\", p.\"img_path\", p.\"bg_color\", p.\"span_color\", " +
+                "  p.\"poster_path\", p.\"price\", p.\"release_date\", " +
+                "  T.\"tags\" " +
+                "FROM \"products\" p " +
+                "LEFT JOIN ( " +
+                "   SELECT \"products_id\", " +
+                "          LISTAGG('#' || tag, ' ') WITHIN GROUP (ORDER BY tag) AS \"tags\" " +
+                "   FROM ( " +
+                "       SELECT DISTINCT \"products_id\", TRIM(\"tag\") AS tag " +
+                "       FROM \"product_tag\" " +
+                "   ) " +
+                "   GROUP BY \"products_id\" " +
+                ") T ON p.\"products_id\" = T.\"products_id\" " +
+                "WHERE p.\"product_status\" = '판매중' ";
 
-            String sql;
-
-            if (keyword.isEmpty()) {
-
-                sql =
-                    "SELECT " +
-                    "  \"products_id\", \"category_id\", \"product_name\", \"english_name\", \"sub_title\", " +
-                    "  \"description\", \"product_status\", \"img_path\", \"bg_color\", \"span_color\", " +
-                    "  \"poster_path\", \"price\", \"release_date\" " +
-                    "FROM \"products\" " +
-                    "WHERE \"product_status\" = '판매중' " +
-                    "ORDER BY \"product_name\"";
-
-                pstmt = conn.prepareStatement(sql);
-
-            } else {
-
-                sql =
-                    "SELECT " +
-                    "  \"products_id\", \"category_id\", \"product_name\", \"english_name\", \"sub_title\", " +
-                    "  \"description\", \"product_status\", \"img_path\", \"bg_color\", \"span_color\", " +
-                    "  \"poster_path\", \"price\", \"release_date\" " +
-                    "FROM \"products\" " +
-                    "WHERE \"product_status\" = '판매중' " +
+            if (!keyword.isEmpty()) {
+                sql +=
                     "AND ( " +
-                    "  NVL(\"product_name\", '')  LIKE '%' || ? || '%' " +
-                    "  OR NVL(\"english_name\", '') LIKE '%' || ? || '%' " +
-                    "  OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' " +
-                    ") " +
-                    "ORDER BY \"product_name\"";
-
-                pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, keyword);
-                pstmt.setString(2, keyword);
-                pstmt.setString(3, keyword);
+                    "  NVL(p.\"product_name\", '')  LIKE '%' || ? || '%' " +
+                    "  OR NVL(p.\"english_name\", '') LIKE '%' || ? || '%' " +
+                    "  OR NVL(p.\"sub_title\", '')    LIKE '%' || ? || '%' " +
+                    ") ";
             }
 
-            System.out.println("### EXEC SQL >>> " + sql);
+            sql += "ORDER BY p.\"product_name\"";
+
+            pstmt = conn.prepareStatement(sql);
+
+            int idx = 1;
+            if (!keyword.isEmpty()) {
+                pstmt.setString(idx++, keyword);
+                pstmt.setString(idx++, keyword);
+                pstmt.setString(idx++, keyword);
+            }
 
             rs = pstmt.executeQuery();
 
@@ -88,10 +83,9 @@ public class ProductDAO {
                 dto.setPosterPath(rs.getString("poster_path"));
                 dto.setPrice(rs.getInt("price"));
                 dto.setReleaseDate(rs.getDate("release_date"));
+                dto.setTags(rs.getString("tags")); // ⭐ 해시태그
                 list.add(dto);
             }
-
-            System.out.println("### search result size = " + list.size());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,7 +97,10 @@ public class ProductDAO {
 
         return list;
     }
-    
+
+    /* =======================
+     *  상품 검색 + 카테고리
+     * ======================= */
     public List<ProductDTO> search(String keyword, Integer categoryId) {
 
         List<ProductDTO> list = new ArrayList<>();
@@ -120,25 +117,35 @@ public class ProductDAO {
 
             StringBuilder sql = new StringBuilder();
             sql.append("SELECT ");
-            sql.append("  \"products_id\", \"category_id\", \"product_name\", \"english_name\", \"sub_title\", ");
-            sql.append("  \"description\", \"product_status\", \"img_path\", \"bg_color\", \"span_color\", ");
-            sql.append("  \"poster_path\", \"price\", \"release_date\" ");
-            sql.append("FROM \"products\" ");
-            sql.append("WHERE \"product_status\" = '판매중' ");
+            sql.append(" p.\"products_id\", p.\"category_id\", p.\"product_name\", p.\"english_name\", p.\"sub_title\", ");
+            sql.append(" p.\"description\", p.\"product_status\", p.\"img_path\", p.\"bg_color\", p.\"span_color\", ");
+            sql.append(" p.\"poster_path\", p.\"price\", p.\"release_date\", ");
+            sql.append(" T.\"tags\" ");
+            sql.append("FROM \"products\" p ");
+            sql.append("LEFT JOIN ( ");
+            sql.append("   SELECT \"products_id\", ");
+            sql.append("          LISTAGG('#' || tag, ' ') WITHIN GROUP (ORDER BY tag) AS \"tags\" ");
+            sql.append("   FROM ( ");
+            sql.append("       SELECT DISTINCT \"products_id\", TRIM(\"tag\") AS tag ");
+            sql.append("       FROM \"product_tag\" ");
+            sql.append("   ) ");
+            sql.append("   GROUP BY \"products_id\" ");
+            sql.append(") T ON p.\"products_id\" = T.\"products_id\" ");
+            sql.append("WHERE p.\"product_status\" = '판매중' ");
 
             if (!keyword.isEmpty()) {
                 sql.append("AND ( ");
-                sql.append("  NVL(\"product_name\", '')  LIKE '%' || ? || '%' ");
-                sql.append("  OR NVL(\"english_name\", '') LIKE '%' || ? || '%' ");
-                sql.append("  OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' ");
+                sql.append(" NVL(p.\"product_name\", '')  LIKE '%' || ? || '%' ");
+                sql.append(" OR NVL(p.\"english_name\", '') LIKE '%' || ? || '%' ");
+                sql.append(" OR NVL(p.\"sub_title\", '')    LIKE '%' || ? || '%' ");
                 sql.append(") ");
             }
 
             if (categoryId != null) {
-                sql.append("AND \"category_id\" = ? ");
+                sql.append("AND p.\"category_id\" = ? ");
             }
 
-            sql.append("ORDER BY \"product_name\"");
+            sql.append("ORDER BY p.\"product_name\"");
 
             pstmt = conn.prepareStatement(sql.toString());
 
@@ -168,6 +175,7 @@ public class ProductDAO {
                 dto.setPosterPath(rs.getString("poster_path"));
                 dto.setPrice(rs.getInt("price"));
                 dto.setReleaseDate(rs.getDate("release_date"));
+                dto.setTags(rs.getString("tags")); // ⭐ 해시태그
                 list.add(dto);
             }
 
@@ -182,7 +190,6 @@ public class ProductDAO {
         return list;
     }
 
-
     /* =======================
      *  검색 결과 개수
      * ======================= */
@@ -193,23 +200,18 @@ public class ProductDAO {
 
         int count = 0;
 
-        String sql;
+        String sql =
+            "SELECT COUNT(*) " +
+            "FROM \"products\" " +
+            "WHERE \"product_status\" = '판매중' ";
 
-        if (keyword.isEmpty()) {
-            sql =
-                "SELECT COUNT(*) " +
-                "FROM \"products\" " +
-                "WHERE \"product_status\" = '판매중'";
-        } else {
-            sql =
-                "SELECT COUNT(*) " +
-                "FROM \"products\" " +
-                "WHERE \"product_status\" = '판매중' " +
+        if (!keyword.isEmpty()) {
+            sql +=
                 "AND ( " +
-                "  NVL(\"product_name\", '')  LIKE '%' || ? || '%' " +
-                "  OR NVL(\"english_name\", '') LIKE '%' || ? || '%' " +
-                "  OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' " +
-                ")";
+                " NVL(\"product_name\", '')  LIKE '%' || ? || '%' " +
+                " OR NVL(\"english_name\", '') LIKE '%' || ? || '%' " +
+                " OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' " +
+                ") ";
         }
 
         try (
@@ -223,12 +225,8 @@ public class ProductDAO {
                 pstmt.setString(3, keyword);
             }
 
-            System.out.println("### EXEC COUNT SQL >>> " + sql);
-
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) count = rs.getInt(1);
-
-            System.out.println("### totalCount = " + count);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -236,7 +234,7 @@ public class ProductDAO {
 
         return count;
     }
-    
+
     public int getTotalCount(String keyword, Integer categoryId) {
 
         if (keyword == null) keyword = "";
@@ -251,9 +249,9 @@ public class ProductDAO {
 
         if (!keyword.isEmpty()) {
             sql.append("AND ( ");
-            sql.append("  NVL(\"product_name\", '')  LIKE '%' || ? || '%' ");
-            sql.append("  OR NVL(\"english_name\", '') LIKE '%' || ? || '%' ");
-            sql.append("  OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' ");
+            sql.append(" NVL(\"product_name\", '')  LIKE '%' || ? || '%' ");
+            sql.append(" OR NVL(\"english_name\", '') LIKE '%' || ? || '%' ");
+            sql.append(" OR NVL(\"sub_title\", '')    LIKE '%' || ? || '%' ");
             sql.append(") ");
         }
 
@@ -287,6 +285,4 @@ public class ProductDAO {
 
         return count;
     }
-
-    
 }

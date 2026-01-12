@@ -50,7 +50,7 @@ public class PressListHandler implements CommandHandler {
 	    request.setAttribute("blockSize", blockSize);
 
 
-	    return "/views/information-center/press/list.jsp";
+	    return "/WEB-INF/views/information-center/press/list.jsp";
 	}
 
 }

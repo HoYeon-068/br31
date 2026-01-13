@@ -65,7 +65,7 @@
                                             </ul>
                                         </li>
                                         <li class="site-menu-list__item site-menu-list__item--depth">
-                                            <a href="${pageContext.request.contextPath}/play/plaza/list.html" class="site-menu-list__link">BR Play</a>
+                                            <a href="${pageContext.request.contextPath}/play/plaza/list.do" class="site-menu-list__link">BR Play</a>
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
@@ -133,7 +133,7 @@
                                             </ul>
                                         </li>
                                         <li class="site-menu-list__item site-menu-list__item--depth">
-                                            <a href="${pageContext.request.contextPath}/play/plaza/list.html" class="site-menu-list__link">Delivery</a>
+                                            <a href="${pageContext.request.contextPath}/store/delivary.do" class="site-menu-list__link">Delivery</a>
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">

@@ -40,11 +40,6 @@
 
     </li>
 
-
-    <li class="nav-item mb-2">
-      <a class="nav-link text-white" href="${pageContext.request.contextPath}/admin/main.do?view=FAQList">FAQ 관리</a>
-    </li>
-
     <li class="nav-item mb-2">
       <a class="nav-link text-white" href="/admin/inquiry/list.do">1:1 문의 관리</a>
     </li>

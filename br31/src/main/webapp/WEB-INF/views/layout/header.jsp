@@ -57,10 +57,10 @@
 
                                             <ul class="site-menu-sub">
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/event/lista9a4.do?category=1" class="site-menu-sub__link">프로모션</a>
+                                                    <a href="${pageContext.request.contextPath}/play/event/list.do?category=1" class="site-menu-sub__link">프로모션</a>
                                                 </li>
                                                 <li class="site-menu-sub__item">
-                                                    <a href="${pageContext.request.contextPath}/play/event/listd7a1.do?category=2" class="site-menu-sub__link">제휴혜택</a>
+                                                    <a href="${pageContext.request.contextPath}/play/event/list.do?category=2" class="site-menu-sub__link">제휴혜택</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -273,12 +273,12 @@
 
         <div class="site-search__container">
             <div class="site-search__content">
-                <form action="https://www.baskinrobbins.co.kr/search/list.php" class="site-search__form">
+                <form action="${pageContext.request.contextPath}/search/list.do" class="site-search__form" method="GET">
                     <fieldset>
                         <legend>제품 검색 폼</legend>
 
                         <div class="site-search__box">
-                            <input type="text" name="findword" class="site-search__input" placeholder="제품명을 입력하세요">
+                            <input type="text" name="keyword" class="site-search__input" placeholder="제품명을 입력하세요">
 
                             <button type="button" class="site-search__delete">
                                 <span class="site-search__hidden">삭제</span>

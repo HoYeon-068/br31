@@ -130,7 +130,7 @@
                                 <a href="${pageContext.request.contextPath}/play/plaza/consulting.do" class="plaza-list-nav__link">
                                     동행을 희망해요
                                 </a>
-                                <a href="${pageContext.request.contextPath}/information-center/consulting/br.html"
+                                <a href="${pageContext.request.contextPath}/information-center/consulting/br.do"
                                    class="plaza-list-nav__link plaza-list-nav__link--white">
                                     더 알아보기
                                 </a>

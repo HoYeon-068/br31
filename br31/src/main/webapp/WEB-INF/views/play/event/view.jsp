@@ -196,7 +196,7 @@
 	                <a href="view.do?seq=${e.eventId}&category=${e.evtCategoryId}" class="event-view-list__link">
 	                    <div class="event-view-list__frame">
 	                        <img
-	                            src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/${e.imgPath}"
+	                            src="${pageContext.request.contextPath}${e.imgPath}"
 	                            alt="${e.title}"
 	                            class="event-view-list__image"
 	                        />

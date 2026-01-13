@@ -738,7 +738,6 @@ public class PlazaDAOImpl implements PlazaDAO{
 			e.printStackTrace();
 		} finally {
 			try {
-				rs.close();
 				pstmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -42,7 +42,7 @@
          
             <div class="board-view__container">
            
-			<div class="board-view__content">
+			<div class="board-view__content"">
     ${dto.content}
 </div>
 			

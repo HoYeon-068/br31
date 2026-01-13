@@ -99,7 +99,7 @@
 	                       <div class="swiper-slide">
 	                            <a href="play/event/view.do?seq=${dto.eventId}&category=${dto.evtCategoryId}" class="main-promotion__link">
 	                                <div class="main-promotion__frame">
-	                                    <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/${dto.imgPath}" alt="${dto.title}" class="main-promotion__image">
+	                                    <img src="${pageContext.request.contextPath}${dto.imgPath}" alt="${dto.title}" class="main-promotion__image">
 	                                </div>
 	
 	                                <div class="main-promotion__content">
@@ -500,7 +500,7 @@
 	                   <div class="swiper-slide">
 	                        <a href="play/event/view.do?seq=${dto.eventId}&category=${dto.evtCategoryId}" class="main-br-benefit__link">
 	                            <div class="main-br-benefit__frame">
-	                                <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/event/${dto.imgPath}" alt="${dto.title}" class="main-br-benefit__image">
+	                                <img src="${pageContext.request.contextPath}${dto.imgPath}" alt="${dto.title}" class="main-br-benefit__image">
 	                            </div>
 	                        </a>
 	                    </div>

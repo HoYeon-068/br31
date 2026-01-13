@@ -39,7 +39,7 @@
         <!-- 상품명 -->
         <div class="col-md-6">
           <label class="form-label fw-semibold">상품명</label>
-          <input type="text" name="productName" class="form-control" placeholder="예) 엄마는 외계인" required>
+          <input type="text" name="productName" value="베리 굿" class="form-control" placeholder="예) 엄마는 외계인" required>
         </div>
 
         <!-- 상품 카테고리 -->
@@ -72,7 +72,7 @@
         <!-- 상품명(영어) -->
         <div class="col-md-6">
           <label class="form-label fw-semibold">상품명(영어)</label>
-          <input type="text" name="englishName" class="form-control" placeholder="예) Puss In Boots" required>
+          <input type="text" name="englishName" value="Berry Good" class="form-control" placeholder="예) Puss In Boots" required>
         </div>
 
         <!-- 가격 -->
@@ -107,7 +107,7 @@
         <!-- 설명 -->
         <div class="col-12">
           <label class="form-label fw-semibold">설명</label>
-          <textarea name="description" class="form-control" rows="4" placeholder="상품 설명을 입력하세요" required></textarea>
+          <textarea name="description" class="form-control" rows="4" placeholder="상품 설명을 입력하세요" required>겨울 제철 딸기와 부드러운 크림의 달콤한 만남! 바삭한 마카롱까지 더해져 한 입 가득 풍성하게 즐기는 딸기 아이스크림 한 입!</textarea>
         </div>
 
         <!-- 상품 이미지 -->

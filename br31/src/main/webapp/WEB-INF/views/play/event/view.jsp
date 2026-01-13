@@ -104,7 +104,7 @@
         <div class="event-view__content">
             <c:if test="${not empty dto.eventDetailImg}">
                 <p style="text-align: center;">
-                    <img alt="" src="${dto.eventDetailImg}" />
+                    <img alt="${dto.title}" src="${pageContext.request.contextPath}${dto.eventDetailImg}" />
                 </p>
             </c:if>
         </div>

@@ -123,7 +123,7 @@
 			    <li class="card-list__item">
 			      <a href="view.do?recipeId=${dto.recipeId}&category=${category}&page=${pageVO.currentPage}" class="card-list__link">
 			        <div class="card-list__box">
-			          <img src="${pageContext.request.contextPath}/resources/images/upload/promotion/brRecipe/${dto.thumbnail}"
+			          <img src="${pageContext.request.contextPath}${dto.thumbnail}"
 			               alt="${dto.title}"
 			               class="recipe-list-list__image">
 			        </div>

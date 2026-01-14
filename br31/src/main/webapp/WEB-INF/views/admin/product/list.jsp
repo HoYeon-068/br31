@@ -25,7 +25,7 @@
   <!-- 페이지 타이틀 -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="fw-bold">배스킨라빈스 상품 관리</h3>
-    <a href="write.do" class="btn btn-primary btn-sm">
+    <a href="${pageContext.request.contextPath}/admin/product/write.do" class="btn btn-primary btn-sm">
       + 상품 등록
     </a>
   </div>

@@ -27,7 +27,7 @@
   <!-- 페이지 타이틀 -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="fw-bold">배스킨라빈스 상품 등록</h3>
-    <a href="list.do" class="btn btn-outline-secondary btn-sm">목록</a>
+    <a href="${pageContext.request.contextPath}/admin/main.do?view=productList" class="btn btn-outline-secondary btn-sm">목록</a>
   </div>
 
   <div class="card shadow-sm">
